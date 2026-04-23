@@ -762,6 +762,61 @@ html[data-theme="dark"] .proj-chip{background:var(--bg2);}
 .proj-chip .pch-del:hover{color:var(--red);}
 .proj-new-btn{background:none;border:0.5px dashed var(--border2);border-radius:4px;padding:5px 11px;font-size:12px;cursor:pointer;color:var(--ink3);font-family:var(--ff);}
 .proj-new-btn:hover{border-color:var(--yellow);color:var(--yellow-dark);}
+
+/* ══════════════════════════════════════════════
+   REAL-TIME COLLABORATION — presence + invite
+   ══════════════════════════════════════════════ */
+
+/* Presence avatars row */
+.presence-bar{display:flex;align-items:center;gap:6px;padding:4px 8px;background:rgba(250,182,23,0.12);border:1px solid rgba(250,182,23,0.3);border-radius:20px;max-width:fit-content;margin-top:4px;}
+.presence-bar:empty{display:none;}
+.pres-av{width:26px;height:26px;border-radius:50%;background:var(--olive);color:var(--cream);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--bg);position:relative;cursor:default;transition:transform .15s;}
+.pres-av:hover{transform:scale(1.15);z-index:2;}
+.pres-av-self{background:var(--yellow);color:var(--near-black);}
+.pres-av .pres-tooltip{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--near-black);color:var(--cream);font-size:10px;padding:3px 7px;border-radius:5px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s;}
+.pres-av:hover .pres-tooltip{opacity:1;}
+.pres-online-dot{width:7px;height:7px;background:#22c55e;border-radius:50%;position:absolute;bottom:0;left:0;border:1.5px solid var(--bg);animation:pulse-green 2s ease-in-out infinite;}
+@keyframes pulse-green{0%,100%{opacity:1;}50%{opacity:.4;}}
+.pres-label{font-size:10px;color:var(--ink3);white-space:nowrap;}
+
+/* Collab / invite modal */
+.collab-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:none;align-items:center;justify-content:center;}
+.collab-overlay.show{display:flex;}
+.collab-box{background:var(--bg);border:1px solid var(--border2);border-radius:14px;padding:28px;width:min(420px,92vw);box-shadow:0 16px 48px rgba(0,0,0,.25);}
+.collab-title{font-family:var(--fd);font-size:1.2rem;margin-bottom:4px;color:var(--ink);}
+.collab-sub{font-size:.8rem;color:var(--ink3);margin-bottom:18px;line-height:1.5;}
+.collab-invite-row{display:flex;gap:8px;margin-bottom:14px;}
+.collab-invite-row input{flex:1;padding:9px 12px;border:1.5px solid var(--border2);border-radius:8px;background:var(--bg2);color:var(--ink);font-size:.85rem;direction:ltr;}
+.collab-invite-row input:focus{outline:none;border-color:var(--yellow);}
+.collab-invite-btn{padding:9px 16px;background:var(--yellow);color:var(--near-black);border:none;border-radius:8px;font-weight:700;cursor:pointer;white-space:nowrap;font-size:.85rem;}
+.collab-invite-btn:hover{background:var(--yellow-dark);}
+.collab-role-sel{padding:8px 10px;border:1.5px solid var(--border2);border-radius:8px;background:var(--bg2);color:var(--ink);font-size:.82rem;cursor:pointer;}
+.collab-members-list{display:flex;flex-direction:column;gap:8px;max-height:200px;overflow-y:auto;margin-bottom:18px;}
+.collab-member{display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--bg2);border-radius:8px;}
+.collab-member-av{width:30px;height:30px;border-radius:50%;background:var(--olive);color:var(--cream);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.collab-member-info{flex:1;min-width:0;}
+.collab-member-email{font-size:.82rem;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;direction:ltr;}
+.collab-member-role{font-size:.72rem;color:var(--ink3);}
+.collab-member-remove{color:var(--red);background:none;border:none;cursor:pointer;font-size:1rem;padding:0 4px;opacity:.7;}
+.collab-member-remove:hover{opacity:1;}
+.collab-status{font-size:.78rem;padding:6px 10px;border-radius:6px;margin-bottom:10px;}
+.collab-status.ok{background:rgba(34,197,94,.12);color:#16a34a;}
+.collab-status.err{background:rgba(227,6,20,.1);color:var(--red);}
+.collab-close{width:100%;padding:10px;background:var(--bg2);border:1.5px solid var(--border);border-radius:8px;color:var(--ink);cursor:pointer;font-size:.85rem;}
+.collab-close:hover{background:var(--bg3);}
+
+/* Live edit indicator — "X is editing..." banner */
+.live-edit-banner{display:none;position:fixed;top:12px;left:50%;transform:translateX(-50%);background:var(--near-black);color:var(--cream);font-size:.78rem;padding:6px 14px;border-radius:20px;z-index:9990;align-items:center;gap:6px;box-shadow:0 4px 16px rgba(0,0,0,.3);}
+.live-edit-banner.show{display:flex;}
+.live-edit-dot{width:6px;height:6px;background:#22c55e;border-radius:50%;animation:pulse-green 1.2s ease-in-out infinite;}
+
+/* Sync dot — add syncing/synced/error/collab */
+.sync-dot{width:8px;height:8px;border-radius:50%;transition:background .3s;}
+.sync-dot.synced{background:#22c55e;}
+.sync-dot.syncing{background:var(--yellow);animation:pulse-green 1s ease-in-out infinite;}
+.sync-dot.error{background:var(--red);}
+.sync-dot.collab{background:#3b82f6;animation:pulse-green 1.5s ease-in-out infinite;}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 </head>
@@ -978,6 +1033,9 @@ html[data-theme="dark"] .proj-chip{background:var(--bg2);}
       <div class="user-av" id="user-av">؟</div>
       <div class="user-name" id="user-name">غير مسجّل</div>
       <div class="sync-dot" id="sync-dot" title="حالة المزامنة"></div>
+      <div class="presence-bar" id="presence-bar"></div>
+      <button class="btn btn-sm" id="collab-btn" onclick="openCollabPanel()" style="display:none;padding:4px 10px;font-size:.75rem;border-color:var(--olive);color:var(--olive);">👥 الفريق</button>
+
       <button class="user-signout" onclick="signOut()">خروج</button>
     </div>
     <div class="sb-logo" style="padding:1rem 1.2rem;">
@@ -2364,7 +2422,7 @@ async function saveProjectToCloud(pData){
       if(error) throw error;
       pData.cloud_id=data.id;
       const idx=projects.findIndex(p=>p.id===currentProjectId);
-      if(idx!==-1){ projects[idx].data.cloud_id=data.id; projects[idx].cloud_id=data.id; saveProjects(); }
+      if(idx!==-1){ projects[idx].data.cloud_id=data.id; projects[idx].cloud_id=data.id; saveProjects(); initRealtime(data.id); showCollabBtn(); }
     }
     setSyncStatus('synced');
     return true;
@@ -2391,6 +2449,12 @@ async function loadProjectsFromCloud(){
       if(projects.length>0){ currentProjectId=projects[0].id; loadProject(currentProjectId); }
       saveProjects();
       showToast(`تم تحميل ${data.length} مشروع من السحابة ✓`);
+      // Init realtime for the first/current project
+      if(projects.length > 0){
+        const cur = projects.find(p=>p.id===currentProjectId) || projects[0];
+        if(cur.cloud_id) initRealtime(cur.cloud_id);
+      }
+      loadSharedProjects();
     }
     setSyncStatus('synced');
   }catch(e){ console.error('Load error:',e); setSyncStatus('error'); }
@@ -2414,6 +2478,285 @@ function scheduleCloudSync(){
   },2000);
 }
 
+
+// ════════════════════════════════════════════════════
+// REAL-TIME COLLABORATION ENGINE
+// ════════════════════════════════════════════════════
+let realtimeChannel = null;
+let presenceInterval = null;
+let editBroadcastTimeout = null;
+let onlineMembers = {}; // { userId: { email, lastSeen } }
+
+// ── Init realtime for a project ──────────────────
+function initRealtime(cloudId) {
+  if (!supa || !cloudId) return;
+  // Clean up old channel
+  if (realtimeChannel) {
+    supa.removeChannel(realtimeChannel);
+    realtimeChannel = null;
+  }
+  const channelName = 'project:' + cloudId;
+  realtimeChannel = supa.channel(channelName, {
+    config: { broadcast: { self: false }, presence: { key: currentUser?.id || 'anon' } }
+  });
+
+  // ── Presence: who's online ───────────────────
+  realtimeChannel.on('presence', { event: 'sync' }, () => {
+    const state = realtimeChannel.presenceState();
+    onlineMembers = {};
+    Object.values(state).forEach(presences => {
+      presences.forEach(p => {
+        if (p.user_id !== currentUser?.id) {
+          onlineMembers[p.user_id] = { email: p.email, color: p.color };
+        }
+      });
+    });
+    renderPresenceBar();
+    setSyncStatus('collab');
+  });
+
+  realtimeChannel.on('presence', { event: 'join' }, ({ key, newPresences }) => {
+    newPresences.forEach(p => {
+      if (p.user_id !== currentUser?.id) {
+        onlineMembers[p.user_id] = { email: p.email, color: p.color };
+        showToast('🟢 ' + (p.email || 'زميل') + ' انضم للمشروع');
+      }
+    });
+    renderPresenceBar();
+  });
+
+  realtimeChannel.on('presence', { event: 'leave' }, ({ key, leftPresences }) => {
+    leftPresences.forEach(p => { delete onlineMembers[p.user_id]; });
+    renderPresenceBar();
+    if (Object.keys(onlineMembers).length === 0) setSyncStatus('synced');
+  });
+
+  // ── Broadcast: live changes ──────────────────
+  realtimeChannel.on('broadcast', { event: 'project_change' }, ({ payload }) => {
+    if (!payload || payload.sender === currentUser?.id) return;
+    // Apply incoming state
+    const idx = projects.findIndex(p => p.cloud_id === cloudId || p.data?.cloud_id === cloudId);
+    if (idx !== -1) {
+      projects[idx].data = { ...projects[idx].data, ...payload.data };
+      S = projects[idx].data;
+      updateSidebar();
+      refreshDashboard();
+      showLiveEditBanner(payload.sender_email || 'زميل');
+    }
+  });
+
+  realtimeChannel.on('broadcast', { event: 'editing' }, ({ payload }) => {
+    if (payload?.sender !== currentUser?.id) {
+      showLiveEditBanner(payload?.sender_email || 'زميل');
+    }
+  });
+
+  realtimeChannel.subscribe(async (status) => {
+    if (status === 'SUBSCRIBED' && currentUser) {
+      await realtimeChannel.track({
+        user_id: currentUser.id,
+        email: currentUser.email,
+        color: randomAvatarColor(currentUser.id),
+        online_at: new Date().toISOString()
+      });
+      showCollabBtn();
+      loadProjectMembers(cloudId);
+    }
+  });
+}
+
+// ── Broadcast a project change ───────────────────
+function broadcastProjectChange() {
+  if (!realtimeChannel || !currentUser) return;
+  clearTimeout(editBroadcastTimeout);
+  // First send "editing" signal immediately
+  realtimeChannel.send({ type: 'broadcast', event: 'editing', payload: { sender: currentUser.id, sender_email: currentUser.email } });
+  // Then send full state after short debounce
+  editBroadcastTimeout = setTimeout(() => {
+    const idx = projects.findIndex(p => p.id === currentProjectId);
+    if (idx === -1) return;
+    realtimeChannel.send({
+      type: 'broadcast',
+      event: 'project_change',
+      payload: { sender: currentUser.id, sender_email: currentUser.email, data: projects[idx].data }
+    });
+  }, 1500);
+}
+
+// ── Render presence avatars ──────────────────────
+function renderPresenceBar() {
+  const bar = document.getElementById('presence-bar');
+  if (!bar) return;
+  const members = Object.values(onlineMembers);
+  if (members.length === 0) { bar.innerHTML = ''; return; }
+  bar.innerHTML = '<span class="pres-label">معك الآن:</span>' + members.map(m => {
+    const initials = (m.email || '?').slice(0, 2).toUpperCase();
+    return `<div class="pres-av" style="background:${m.color || '#59561B'}">
+      ${initials}
+      <div class="pres-online-dot"></div>
+      <div class="pres-tooltip">${m.email || 'زميل'}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── Show "X is editing" banner ───────────────────
+let liveEditTimer = null;
+function showLiveEditBanner(email) {
+  const banner = document.getElementById('live-edit-banner');
+  const txt = document.getElementById('live-edit-text');
+  if (!banner) return;
+  if (txt) txt.textContent = email + ' يحرر المشروع الآن';
+  banner.classList.add('show');
+  clearTimeout(liveEditTimer);
+  liveEditTimer = setTimeout(() => banner.classList.remove('show'), 3000);
+}
+
+// ── Show collab button ───────────────────────────
+function showCollabBtn() {
+  const btn = document.getElementById('collab-btn');
+  if (btn) btn.style.display = 'inline-flex';
+}
+
+// ── Random color for avatar ──────────────────────
+function randomAvatarColor(uid) {
+  const colors = ['#59561B','#E30614','#FAB617','#3b82f6','#8b5cf6','#059669','#d97706'];
+  const idx = uid ? uid.charCodeAt(0) % colors.length : 0;
+  return colors[idx];
+}
+
+// ── Collab panel open/close ──────────────────────
+function openCollabPanel() {
+  const idx = projects.findIndex(p => p.id === currentProjectId);
+  if (idx === -1 || !projects[idx].cloud_id) {
+    showToast('احفظ المشروع في السحابة أولاً ☁');
+    return;
+  }
+  document.getElementById('collab-overlay').classList.add('show');
+  loadProjectMembers(projects[idx].cloud_id);
+}
+function closeCollabPanel() {
+  document.getElementById('collab-overlay').classList.remove('show');
+}
+
+// ── Load current members ─────────────────────────
+async function loadProjectMembers(cloudId) {
+  if (!supa || !currentUser || !cloudId) return;
+  const { data, error } = await supa.from('project_members').select('*').eq('project_id', cloudId).eq('owner_id', currentUser.id);
+  if (error) return;
+  renderMembersList(data || []);
+}
+
+function renderMembersList(members) {
+  const list = document.getElementById('collab-members-list');
+  if (!list) return;
+  if (!members.length) { list.innerHTML = '<div style="font-size:.8rem;color:var(--ink3);text-align:center;padding:8px">لا يوجد أعضاء حتى الآن</div>'; return; }
+  list.innerHTML = members.map(m => {
+    const initials = (m.member_email || '?').slice(0, 2).toUpperCase();
+    const roleLabel = m.role === 'editor' ? 'محرر' : 'مشاهد';
+    const isOnline = Object.values(onlineMembers).some(o => o.email === m.member_email);
+    return `<div class="collab-member">
+      <div class="collab-member-av" style="background:${randomAvatarColor(m.member_email)};position:relative">
+        ${initials}
+        ${isOnline ? '<div class="pres-online-dot"></div>' : ''}
+      </div>
+      <div class="collab-member-info">
+        <div class="collab-member-email">${m.member_email}</div>
+        <div class="collab-member-role">${roleLabel} ${isOnline ? '• 🟢 متصل' : ''}</div>
+      </div>
+      <button class="collab-member-remove" onclick="removeMember('${m.id}','${cloudId}')" title="إزالة">✕</button>
+    </div>`;
+  }).join('');
+}
+
+// ── Invite collaborator ──────────────────────────
+async function inviteCollaborator() {
+  const input = document.getElementById('collab-email-input');
+  const role = document.getElementById('collab-role-sel')?.value || 'editor';
+  const email = input?.value?.trim().toLowerCase();
+  const statusEl = document.getElementById('collab-status-msg');
+  if (!email || !email.includes('@')) {
+    showCollabStatus('أدخل بريد إلكتروني صحيح', 'err'); return;
+  }
+  const idx = projects.findIndex(p => p.id === currentProjectId);
+  if (idx === -1 || !projects[idx].cloud_id) {
+    showCollabStatus('احفظ المشروع في السحابة أولاً', 'err'); return;
+  }
+  const cloudId = projects[idx].cloud_id;
+  showCollabStatus('جاري الإرسال...', '');
+  try {
+    const { error } = await supa.from('project_members').upsert({
+      project_id: cloudId,
+      owner_id: currentUser.id,
+      member_email: email,
+      role: role
+    }, { onConflict: 'project_id,member_email' });
+    if (error) throw error;
+    if (input) input.value = '';
+    showCollabStatus('✓ تمت الدعوة — سيظهر المشروع عند تسجيل دخوله', 'ok');
+    loadProjectMembers(cloudId);
+  } catch(e) {
+    showCollabStatus('خطأ: ' + e.message, 'err');
+  }
+}
+
+async function removeMember(memberId, cloudId) {
+  if (!supa) return;
+  const { error } = await supa.from('project_members').delete().eq('id', memberId);
+  if (!error) { showCollabStatus('تم الحذف', 'ok'); loadProjectMembers(cloudId); }
+}
+
+function showCollabStatus(msg, type) {
+  const el = document.getElementById('collab-status-msg');
+  if (!el) return;
+  el.className = 'collab-status ' + type;
+  el.textContent = msg;
+  el.style.display = msg ? 'block' : 'none';
+}
+
+// ── Hook into existing autoSave ──────────────────
+const _origAutoSave = autoSave;
+function autoSave() {
+  _origAutoSave();
+  broadcastProjectChange();
+}
+
+// ── Load shared projects (projects where I'm a member) ──
+async function loadSharedProjects() {
+  if (!supa || !currentUser) return;
+  try {
+    // Find projects where user is a member (by email)
+    const { data: memberRows } = await supa
+      .from('project_members')
+      .select('project_id, role')
+      .eq('member_email', currentUser.email);
+    if (!memberRows || !memberRows.length) return;
+    const ids = memberRows.map(r => r.project_id);
+    const { data: sharedProjs } = await supa
+      .from('projects')
+      .select('*')
+      .in('id', ids);
+    if (!sharedProjs || !sharedProjs.length) return;
+    // Merge into local projects list
+    sharedProjs.forEach(row => {
+      const exists = projects.find(p => p.cloud_id === row.id);
+      if (!exists) {
+        projects.push({
+          id: row.data?.id || 'shared_' + row.id,
+          cloud_id: row.id,
+          name: row.name + ' (مشترك)',
+          date: row.shoot_date || '',
+          updated: row.updated_at,
+          shared: true,
+          data: { ...row.data, cloud_id: row.id }
+        });
+      }
+    });
+    saveProjects();
+    updateSidebar();
+    if (sharedProjs.length > 0) showToast(`📡 ${sharedProjs.length} مشروع مشترك معك`);
+  } catch(e) { console.warn('loadSharedProjects error:', e); }
+}
+
 // Init Supabase
 initSupabase();
 
@@ -2428,6 +2771,32 @@ setTimeout(()=>{
   }
 }, 200);
 </script>
+
+
+<!-- COLLAB / TEAM PANEL -->
+<div class="collab-overlay" id="collab-overlay" onclick="if(event.target===this)closeCollabPanel()">
+  <div class="collab-box">
+    <div class="collab-title">تعاون الفريق — المشروع الحالي</div>
+    <div class="collab-sub">ادعُ زملاءك للتعاون على هذا المشروع في الوقت الفعلي. المشروع يجب أن يكون محفوظاً في السحابة أولاً.</div>
+    <div class="collab-invite-row">
+      <input id="collab-email-input" type="email" placeholder="email@example.com" dir="ltr"/>
+      <select class="collab-role-sel" id="collab-role-sel">
+        <option value="editor">محرر</option>
+        <option value="viewer">مشاهد</option>
+      </select>
+      <button class="collab-invite-btn" onclick="inviteCollaborator()">دعوة</button>
+    </div>
+    <div id="collab-status-msg"></div>
+    <div class="collab-members-list" id="collab-members-list"></div>
+    <button class="collab-close" onclick="closeCollabPanel()">إغلاق</button>
+  </div>
+</div>
+
+<!-- LIVE EDIT BANNER -->
+<div class="live-edit-banner" id="live-edit-banner">
+  <div class="live-edit-dot"></div>
+  <span id="live-edit-text">زميل يحرر المشروع الآن</span>
+</div>
 
 <!-- SHARE MODAL -->
 <div class="share-overlay" id="share-overlay" onclick="if(event.target===this)closeShare()">
