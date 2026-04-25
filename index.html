@@ -64,6 +64,9 @@ body{font-family:'Noto Naskh Arabic','DM Sans',sans-serif;background:#F3E9DD;col
 .btn-primary:active{opacity:.85}
 .btn-ghost{background:transparent;color:#888;border:.5px solid rgba(0,0,0,.2);border-radius:8px;padding:11px 16px;font-size:14px;cursor:pointer;font-family:inherit}
 .btn-ghost:hover{background:rgba(0,0,0,.05)}
+.wx-fetch-row{display:flex;align-items:center;gap:12px;margin:4px 0 16px}
+.wx-strip{display:flex;gap:16px;align-items:center;font-size:13px;color:#444;background:rgba(250,182,23,.1);border:.5px solid rgba(250,182,23,.35);border-radius:8px;padding:7px 14px}
+.wx-strip span{white-space:nowrap}
 
 /* ── PREFILL NOTE ── */
 .prefill-note{background:rgba(250,182,23,.1);border:.5px solid rgba(250,182,23,.4);border-radius:8px;padding:10px 14px;font-size:12px;color:#7a5800;margin-bottom:20px;line-height:1.6}
@@ -231,6 +234,12 @@ body{font-family:'Noto Naskh Arabic','DM Sans',sans-serif;background:#F3E9DD;col
         <div class="form-row">
           <div class="form-group"><label class="form-label">المدينة</label><input class="form-input" id="cs-city" placeholder="الرياض"></div>
           <div class="form-group"><label class="form-label">أقرب مستشفى</label><input class="form-input" id="cs-hospital" placeholder="اسم المستشفى"></div>
+        </div>
+        <div class="wx-fetch-row">
+          <button type="button" class="btn-ghost" style="padding:7px 14px;font-size:13px" onclick="fetchWeather()">🌤 جلب الطقس</button>
+          <div id="cs-wx-strip" class="wx-strip" style="display:none">
+            <span id="cs-wx-temp"></span><span id="cs-wx-rise"></span><span id="cs-wx-set"></span>
+          </div>
         </div>
         <div class="form-group"><label class="form-label">عنوان الموقع</label><input class="form-input" id="cs-location" placeholder="العنوان الكامل للموقع"></div>
         <div class="form-group"><label class="form-label">معلومات الوقوف</label><input class="form-input" id="cs-parking" placeholder="تفاصيل وقوف السيارات"></div>
@@ -521,6 +530,33 @@ function renderView(prefix){
 // PREFILL HELPER
 // ══════════════════════════════════════════
 function showPF(elId, items){ const el=document.getElementById(elId); if(!items.length){ el.style.display='none'; return; } el.textContent='✓ معبّأ تلقائياً: '+items.join('، '); el.style.display=''; }
+
+// ══════════════════════════════════════════
+// WEATHER FETCH
+// ══════════════════════════════════════════
+async function fetchWeather(){
+  const _AR={'الرياض':'Riyadh','جدة':'Jeddah','مكة المكرمة':'Mecca','مكة':'Mecca','المدينة المنورة':'Medina','الدمام':'Dammam','الخبر':'Khobar','أبوظبي':'Abu Dhabi','دبي':'Dubai','الشارقة':'Sharjah','عجمان':'Ajman','مسقط':'Muscat','الكويت':'Kuwait City','الدوحة':'Doha','المنامة':'Manama','بيروت':'Beirut','القاهرة':'Cairo','عمّان':'Amman','بغداد':'Baghdad','الرباط':'Rabat','الجزائر':'Algiers','تونس':'Tunis','طرابلس':'Tripoli','الخرطوم':'Khartoum'};
+  const raw=(document.getElementById('cs-city').value||'').trim()||'Riyadh';
+  const city=_AR[raw]||raw;
+  const date=document.getElementById('cs-date').value||new Date().toISOString().slice(0,10);
+  const strip=document.getElementById('cs-wx-strip');
+  const btn=document.querySelector('[onclick="fetchWeather()"]');
+  if(btn){ btn.disabled=true; btn.textContent='⏳ جاري التحميل...'; }
+  try{
+    const geo=await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=en`).then(r=>r.json());
+    if(!geo.results?.length){ toast('لم يتم العثور على المدينة'); return; }
+    const {latitude:lat,longitude:lon,timezone}=geo.results[0];
+    const wx=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,sunrise,sunset&timezone=${encodeURIComponent(timezone)}&start_date=${date}&end_date=${date}`).then(r=>r.json());
+    const tMax=wx.daily?.temperature_2m_max?.[0];
+    const rise=wx.daily?.sunrise?.[0]?.slice(11);
+    const set=wx.daily?.sunset?.[0]?.slice(11);
+    document.getElementById('cs-wx-temp').textContent=tMax!=null?`🌡 ${tMax}°C`:'';
+    document.getElementById('cs-wx-rise').textContent=rise?`🌅 شروق ${rise}`:'';
+    document.getElementById('cs-wx-set').textContent=set?`🌇 غروب ${set}`:'';
+    strip.style.display='flex';
+  }catch(e){ toast('خطأ في جلب الطقس'); }
+  finally{ if(btn){ btn.disabled=false; btn.textContent='🌤 جلب الطقس'; } }
+}
 
 // ══════════════════════════════════════════
 // CALL SHEET
