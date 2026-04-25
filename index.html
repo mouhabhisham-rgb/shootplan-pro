@@ -1512,7 +1512,28 @@ function startWithAI(){
 }
 
 function startManual(){
+  // Reset S to blank state so "start from scratch" gives a truly empty project
+  S.scenes=[];S.locations=[];S.crew=[];S.equip=[];S.talent=[];S.contacts=[];S.calEvents=[];S.moodImages=[];
+  S.breakdown={};
+  S.budget={cur:'SAR',rows:[
+    {cat:'Crew',item:'Director',est:'',act:''},{cat:'Crew',item:'DP',est:'',act:''},
+    {cat:'Equipment',item:'Camera rental',est:'',act:''},{cat:'Equipment',item:'Lighting package',est:'',act:''},
+    {cat:'Location',item:'Location fee',est:'',act:''},{cat:'Location',item:'Permits',est:'',act:''},
+    {cat:'Production',item:'Catering / transport',est:'',act:''},{cat:'Post',item:'Editing',est:'',act:''},
+  ]};
+  S.approval={setup:'draft',shotlist:'draft',crew:'draft',budget:'draft',callsheet:'draft'};
+  // Clear all setup form fields
+  ['s-name','s-client','s-date','s-city','s-calltime','s-agency','s-director','s-dp','s-notes'].forEach(fid=>{
+    const el=document.getElementById(fid); if(el) el.value='';
+  });
+  // Register a fresh project slot
+  const id='proj_'+Date.now();
+  projects.push({id,name:'مشروع جديد',data:null,createdAt:Date.now(),updatedAt:Date.now()});
+  currentProjectId=id;
+  saveProjects();
+  updateSidebar();
   switchView('planner');
+  navP('setup');
 }
 
 function startWithExample(){
