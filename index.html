@@ -1218,7 +1218,26 @@ html[data-theme="dark"] .proj-chip{background:var(--bg2);}
     <div class="fr fsr"><div><label class="fl">المدة</label><select class="fs" id="s-duration"><option>نصف يوم (4 ساعات)</option><option selected>يوم كامل (8 ساعات)</option><option>يومان</option><option>3 أيام أو أكثر</option></select></div><div><label class="fl">المدينة</label><input class="fi" id="s-city" placeholder="مثال: الرياض"/></div></div>
     <div class="fsr"><label class="fl">المنطقة الزمنية</label><select class="fs" id="s-tz"><option value="Asia/Riyadh">Asia/Riyadh (AST +3)</option><option value="Asia/Dubai">Asia/Dubai (GST +4)</option><option value="Europe/London">Europe/London (GMT)</option><option value="America/New_York">America/New_York (ET)</option><option value="America/Los_Angeles">America/Los_Angeles (PT)</option></select><div class="tz-info" id="tz-now"></div></div>
     <div class="fsr"><label class="fl">البريف الإبداعي</label><textarea class="fta" id="s-brief" placeholder="صف الفكرة والمزاج البصري والهدف..."></textarea></div>
-    <div class="fsr"><label class="fl">التسليمات</label><div class="chips" id="del-chips"><div class="chip" onclick="toggleChip(this)">١ × فيلم رئيسي</div><div class="chip" onclick="toggleChip(this)">لقطات كواليس</div><div class="chip" onclick="toggleChip(this)">صور فوتوغرافية</div><div class="chip" onclick="toggleChip(this)">٣ × مقاطع سوشيال</div><div class="chip" onclick="toggleChip(this)">تيزر</div><div class="chip" onclick="toggleChip(this)">ريلز عمودي</div><div class="chip" onclick="toggleChip(this)">مقابلة كاملة</div><div class="chip" onclick="toggleChip(this)">لقطات خام</div></div></div>
+    <div class="fsr">
+      <label class="fl">التسليمات <span style="font-weight:400;font-size:11px;color:var(--ink3);">اختر النوع وحدد العدد</span></label>
+      <div id="deliv-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:7px;margin-top:4px;">
+        <div class="row-item deliv-card" onclick="toggleDelivCard(this)" data-dtype="Instagram Reel" style="cursor:pointer;padding:8px 10px;text-align:center;"><div class="row-name" style="font-size:12px;">📱 Reel</div><div class="row-meta" style="font-size:10px;">إنستاغرام / تيك توك</div></div>
+        <div class="row-item deliv-card" onclick="toggleDelivCard(this)" data-dtype="Story" style="cursor:pointer;padding:8px 10px;text-align:center;"><div class="row-name" style="font-size:12px;">⬜ Story</div><div class="row-meta" style="font-size:10px;">عمودي 9:16</div></div>
+        <div class="row-item deliv-card" onclick="toggleDelivCard(this)" data-dtype="TVC 30s" style="cursor:pointer;padding:8px 10px;text-align:center;"><div class="row-name" style="font-size:12px;">📺 TVC 30s</div><div class="row-meta" style="font-size:10px;">إعلان 30 ثانية</div></div>
+        <div class="row-item deliv-card" onclick="toggleDelivCard(this)" data-dtype="TVC 15s" style="cursor:pointer;padding:8px 10px;text-align:center;"><div class="row-name" style="font-size:12px;">📺 TVC 15s</div><div class="row-meta" style="font-size:10px;">إعلان 15 ثانية</div></div>
+        <div class="row-item deliv-card" onclick="toggleDelivCard(this)" data-dtype="TVC 60s" style="cursor:pointer;padding:8px 10px;text-align:center;"><div class="row-name" style="font-size:12px;">📺 TVC 60s</div><div class="row-meta" style="font-size:10px;">إعلان 60 ثانية</div></div>
+        <div class="row-item deliv-card" onclick="toggleDelivCard(this)" data-dtype="Photo" style="cursor:pointer;padding:8px 10px;text-align:center;"><div class="row-name" style="font-size:12px;">📷 Photo</div><div class="row-meta" style="font-size:10px;">تصوير فوتوغرافي</div></div>
+        <div class="row-item deliv-card" onclick="toggleDelivCard(this)" data-dtype="YouTube" style="cursor:pointer;padding:8px 10px;text-align:center;"><div class="row-name" style="font-size:12px;">▶️ YouTube</div><div class="row-meta" style="font-size:10px;">16:9 طولي</div></div>
+        <div class="row-item deliv-card" onclick="toggleDelivCard(this)" data-dtype="BTS" style="cursor:pointer;padding:8px 10px;text-align:center;"><div class="row-name" style="font-size:12px;">🎬 BTS</div><div class="row-meta" style="font-size:10px;">كواليس</div></div>
+        <div class="row-item deliv-card" onclick="toggleDelivCard(this)" data-dtype="Hero Film" style="cursor:pointer;padding:8px 10px;text-align:center;"><div class="row-name" style="font-size:12px;">🎥 Hero Film</div><div class="row-meta" style="font-size:10px;">الفيلم الرئيسي</div></div>
+        <div class="row-item deliv-card" onclick="toggleDelivCard(this)" data-dtype="Podcast" style="cursor:pointer;padding:8px 10px;text-align:center;"><div class="row-name" style="font-size:12px;">🎙️ Podcast</div><div class="row-meta" style="font-size:10px;">بودكاست</div></div>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:6px;">
+        <input class="fi" id="deliv-custom-input" placeholder="تسليم مخصص..." style="flex:1;" onkeydown="if(event.key==='Enter')addCustomDeliv()"/>
+        <button class="btn btn-sm" onclick="addCustomDeliv()" style="white-space:nowrap;">+ إضافة</button>
+      </div>
+      <div id="deliv-custom-list" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:5px;"></div>
+    </div>
     <div class="fsr"><label class="fl">الجو البصري والأسلوب</label><div class="chips" id="mood-chips"><div class="chip" onclick="toggleChip(this)">سينمائي</div><div class="chip" onclick="toggleChip(this)">خام / وثائقي</div><div class="chip" onclick="toggleChip(this)">نظيف وبسيط</div><div class="chip" onclick="toggleChip(this)">طاقة عالية</div><div class="chip" onclick="toggleChip(this)">دافئ وأصيل</div><div class="chip" onclick="toggleChip(this)">داكن وعاطفي</div><div class="chip" onclick="toggleChip(this)">مضيء وخفيف</div><div class="chip" onclick="toggleChip(this)">فاخر</div></div></div>
   </div>
 
@@ -1474,7 +1493,7 @@ html[data-theme="dark"] .proj-chip{background:var(--bg2);}
 // GLOBAL STATE
 // ════════════════════════════════════════════════════
 const S = {
-  scenes:[], locations:[], crew:[], equip:[], talent:[], contacts:[], calEvents:[], moodImages:[],
+  scenes:[], locations:[], crew:[], equip:[], talent:[], contacts:[], calEvents:[], moodImages:[], deliverables:[],
   breakdown:{},
   budget:{cur:'SAR', rows:[
     {cat:'Crew',item:'Director',est:'',act:''},{cat:'Crew',item:'DP',est:'',act:''},
@@ -1511,9 +1530,12 @@ function startWithAI(){
   switchView('intake');
 }
 
+function normCrew(arr){return(arr||[]).map(c=>typeof c==='string'?{role:c,count:1}:c);}
+function normEquip(arr){return(arr||[]).map(e=>typeof e==='string'?{item:e,qty:1}:e);}
+
 function startManual(){
   // Reset S to blank state so "start from scratch" gives a truly empty project
-  S.scenes=[];S.locations=[];S.crew=[];S.equip=[];S.talent=[];S.contacts=[];S.calEvents=[];S.moodImages=[];
+  S.scenes=[];S.locations=[];S.crew=[];S.equip=[];S.talent=[];S.contacts=[];S.calEvents=[];S.moodImages=[];S.deliverables=[];
   S.breakdown={};
   S.budget={cur:'SAR',rows:[
     {cat:'Crew',item:'Director',est:'',act:''},{cat:'Crew',item:'DP',est:'',act:''},
@@ -1553,7 +1575,7 @@ function startWithExample(){
     {name:'سارة العمري',role:'البطلة',mu:'60',call:'05:30',wardrobe:'فستان أبيض',notes:''},
     {name:'فيصل الرشيد',role:'مساعد',mu:'20',call:'06:00',wardrobe:'سوداء',notes:''},
   ];
-  S.crew=['مدير التصوير','المخرج','مدير الإنتاج','مصمم الإضاءة','مدير الصوت','مساعد مخرج'];
+  S.crew=[{role:'مدير التصوير',count:1},{role:'المخرج',count:1},{role:'مدير الإنتاج',count:1},{role:'مصمم الإضاءة',count:2},{role:'مدير الصوت',count:1},{role:'مساعد مخرج',count:2}];
   S.locations=[
     {name:'صحراء رمال الذهب',addr:'طريق الرياض-الدوادمي',type:'Outdoor',travel:45,parking:'متاح',permit:'مطلوب'},
     {name:'استوديو الرياض A',addr:'حي العليا، الرياض',type:'Indoor',travel:15,parking:'مجاني',permit:'لا يلزم'},
@@ -1624,6 +1646,77 @@ function closeImportModal(){
 function V(id){ return (document.getElementById(id)||{}).value||''; }
 function fmtTime(h,m){ const s=h>=12?'PM':'AM'; const fh=h>12?h-12:(h===0?12:h); return`${fh}:${String(m).padStart(2,'0')} ${s}`; }
 function toggleChip(el){ el.classList.toggle('on'); autoSave(); }
+
+// ─── DELIVERABLES ───
+function toggleDelivCard(el){
+  el.classList.toggle('on');
+  const dtype=el.dataset.dtype;
+  if(el.classList.contains('on')){
+    el.style.borderColor='var(--p400)'; el.style.background='var(--p50)';
+    if(!S.deliverables.find(d=>d.type===dtype)) S.deliverables.push({type:dtype,qty:1});
+    if(!el.querySelector('.deliv-qty-ctrl')){
+      const ctrl=document.createElement('div');
+      ctrl.className='deliv-qty-ctrl';
+      ctrl.style.cssText='display:flex;align-items:center;gap:5px;margin-top:5px;justify-content:center;';
+      const st=dtype.replace(/'/g,"\\'");
+      ctrl.innerHTML=`<button type="button" onclick="event.stopPropagation();chgDeliv('${st}',-1)" class="qty-btn">−</button><span class="deliv-qty-val" style="font-weight:700;min-width:16px;text-align:center;">1</span><button type="button" onclick="event.stopPropagation();chgDeliv('${st}',1)" class="qty-btn">+</button>`;
+      el.appendChild(ctrl);
+    }
+  } else {
+    el.style.borderColor=''; el.style.background='';
+    S.deliverables=S.deliverables.filter(d=>d.type!==dtype);
+    el.querySelector('.deliv-qty-ctrl')?.remove();
+  }
+  autoSave();
+}
+function chgDeliv(dtype,d){
+  const item=S.deliverables.find(x=>x.type===dtype); if(!item) return;
+  item.qty=Math.max(1,(item.qty||1)+d);
+  document.querySelectorAll('[data-dtype]').forEach(el=>{
+    if(el.dataset.dtype===dtype){ const v=el.querySelector('.deliv-qty-val'); if(v) v.textContent=item.qty; }
+  });
+  autoSave();
+}
+function addCustomDeliv(){
+  const inp=document.getElementById('deliv-custom-input'); if(!inp) return;
+  const val=inp.value.trim(); if(!val) return;
+  if(!S.deliverables.find(d=>d.type===val)) S.deliverables.push({type:val,qty:1});
+  inp.value='';
+  renderCustomDelivs();
+  autoSave();
+}
+function removeCustomDeliv(dtype){
+  S.deliverables=S.deliverables.filter(d=>d.type!==dtype);
+  renderCustomDelivs();
+  autoSave();
+}
+function renderCustomDelivs(){
+  const el=document.getElementById('deliv-custom-list'); if(!el) return;
+  const presets=new Set([...document.querySelectorAll('[data-dtype]')].map(c=>c.dataset.dtype));
+  const customs=S.deliverables.filter(d=>!presets.has(d.type));
+  el.innerHTML=customs.map(d=>`<span style="display:inline-flex;align-items:center;gap:4px;background:var(--p100);color:var(--p600);border-radius:12px;padding:3px 8px;font-size:11px;">${(d.qty||1)>1?d.qty+'× ':''}<strong>${d.type}</strong><button onclick="removeCustomDeliv('${d.type.replace(/'/g,"\\'")}');event.stopPropagation();" style="background:none;border:none;cursor:pointer;color:inherit;font-size:13px;line-height:1;padding:0 0 0 2px;">×</button></span>`).join('');
+}
+function renderDeliverables(){
+  if(!S.deliverables||!S.deliverables.length) return;
+  document.querySelectorAll('.deliv-card').forEach(el=>{
+    const dtype=el.dataset.dtype;
+    const found=S.deliverables.find(d=>d.type===dtype);
+    if(found){
+      if(!el.classList.contains('on')){ el.classList.add('on'); el.style.borderColor='var(--p400)'; el.style.background='var(--p50)'; }
+      if(!el.querySelector('.deliv-qty-ctrl')){
+        const ctrl=document.createElement('div');
+        ctrl.className='deliv-qty-ctrl';
+        ctrl.style.cssText='display:flex;align-items:center;gap:5px;margin-top:5px;justify-content:center;';
+        const st=dtype.replace(/'/g,"\\'");
+        ctrl.innerHTML=`<button type="button" onclick="event.stopPropagation();chgDeliv('${st}',-1)" class="qty-btn">−</button><span class="deliv-qty-val" style="font-weight:700;min-width:16px;text-align:center;">${found.qty||1}</span><button type="button" onclick="event.stopPropagation();chgDeliv('${st}',1)" class="qty-btn">+</button>`;
+        el.appendChild(ctrl);
+      } else {
+        const v=el.querySelector('.deliv-qty-val'); if(v) v.textContent=found.qty||1;
+      }
+    }
+  });
+  renderCustomDelivs();
+}
 function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); }
 function autoSave(){ try{ localStorage.setItem('shootplan_v4',JSON.stringify(S)); saveCurrentProject(); scheduleCloudSync(); if(typeof broadcastProjectChange==='function') broadcastProjectChange(); }catch(e){} }
 
@@ -1666,7 +1759,7 @@ function initProjects() {
     saveProjects();
   } else {
     currentProjectId = projects[0].id;
-    if (projects[0].data) Object.assign(S, projects[0].data);
+    if (projects[0].data){ Object.assign(S, projects[0].data); S.crew=normCrew(S.crew); S.equip=normEquip(S.equip); if(!S.deliverables) S.deliverables=[]; setTimeout(renderDeliverables,300); }
   }
 }
 
@@ -1710,7 +1803,7 @@ function saveToLocal(){ autoSave(); showToast('تم الحفظ ✓'); }
 function updateSidebar(){
   const n=V('s-name')||'Untitled project';
   const el=document.getElementById('sb-proj-name'); if(el) el.textContent=n;
-  const m=document.getElementById('sb-proj-meta'); if(m) m.textContent=S.scenes.length+' scenes · '+S.crew.length+' crew';
+  const totalCrew=S.crew.reduce((a,c)=>a+(c.count||1),0); const m=document.getElementById('sb-proj-meta'); if(m) m.textContent=S.scenes.length+' scenes · '+totalCrew+' crew';
   const sc=document.getElementById('sb-scene-count'); if(sc) sc.textContent=S.scenes.length;
 }
 function saveSetup(){ updateSidebar(); S.approval.setup='review'; renderApproval(); autoSave(); showToast('Saved ✓'); }
@@ -1975,7 +2068,7 @@ function applyProject(){
   set('s-name',pi.name); set('s-client',pi.client); set('s-director',pi.director);
   set('s-date',pi.date); set('s-brief',pi.brief);
   if(pi.shootType){ const sel=document.getElementById('s-type'); if(sel){ for(let o of sel.options){ if(o.value===pi.shootType||o.text===pi.shootType){ sel.value=o.value; break; } } } }
-  if(pi.deliverables?.length){ document.querySelectorAll('#del-chips .chip').forEach(c=>{ if(pi.deliverables.some(d=>c.textContent.toLowerCase().includes(d.toLowerCase())||d.toLowerCase().includes(c.textContent.toLowerCase()))) c.classList.add('on'); }); }
+  if(pi.deliverables?.length){ S.deliverables=pi.deliverables.map(d=>typeof d==='string'?{type:d,qty:1}:d); setTimeout(renderDeliverables,100); }
   updateSidebar();
 }
 
@@ -2001,7 +2094,7 @@ function applyTalent(){
 }
 
 function applyCrew(){
-  const newCrew=(extractedData.crew||[]).map(c=>c.role).filter(r=>!S.crew.includes(r));
+  const newCrew=(extractedData.crew||[]).map(c=>({role:c.role||c,count:1})).filter(c=>!S.crew.find(x=>x.role===c.role));
   S.crew=[...S.crew,...newCrew];
   // Visually toggle crew cards
   newCrew.forEach(role=>{ document.querySelectorAll('[data-role]').forEach(el=>{ if(el.dataset.role===role){ el.classList.add('on'); el.style.borderColor='var(--t400)'; el.style.background='var(--t50)'; } }); });
@@ -2009,7 +2102,7 @@ function applyCrew(){
 
 function applyEquipment(){
   const eq=extractedData.equipment||{};
-  const allItems=[...(eq.cameras||[]),...(eq.audio||[]),...(eq.lighting||[]),...(eq.support||[])].map(e=>e.name).filter(n=>!S.equip.includes(n));
+  const allItems=[...(eq.cameras||[]),...(eq.audio||[]),...(eq.lighting||[]),...(eq.support||[])].map(e=>({item:e.name||e,qty:1})).filter(e=>!S.equip.find(x=>x.item===e.item));
   S.equip=[...S.equip,...allItems];
   // Toggle equipment cards
   allItems.forEach(name=>{ document.querySelectorAll('.equip-card').forEach(el=>{ const n=el.querySelector('.row-name'); if(n&&n.textContent.trim()===name){ el.classList.add('on'); el.style.borderColor='var(--p400)'; el.style.background='var(--p50)'; } }); });
@@ -2186,7 +2279,34 @@ function renderCalendar(){ const el=document.getElementById('cal-list-el'); if(!
 // ════════════════════════════════════════════════════
 // PLANNER: CREW & TALENT
 // ════════════════════════════════════════════════════
-function toggleCrewCard(el){ el.classList.toggle('on'); const role=el.dataset.role; if(el.classList.contains('on')){ el.style.borderColor='var(--t400)'; el.style.background='var(--t50)'; if(!S.crew.includes(role)) S.crew.push(role); }else{ el.style.borderColor=''; el.style.background=''; S.crew=S.crew.filter(r=>r!==role); } updateSidebar(); autoSave(); }
+function toggleCrewCard(el){
+  el.classList.toggle('on');
+  const role=el.dataset.role;
+  if(el.classList.contains('on')){
+    el.style.borderColor='var(--t400)'; el.style.background='var(--t50)';
+    if(!S.crew.find(c=>c.role===role)) S.crew.push({role,count:1});
+    if(!el.querySelector('.crew-qty-ctrl')){
+      const ctrl=document.createElement('div');
+      ctrl.className='crew-qty-ctrl';
+      ctrl.style.cssText='display:flex;align-items:center;gap:5px;margin-top:5px;justify-content:center;';
+      ctrl.innerHTML=`<button type="button" onclick="event.stopPropagation();chgCrew('${role.replace(/'/g,"\'")}', -1)" class="qty-btn">−</button><span class="crew-qty-val" style="font-weight:700;min-width:16px;text-align:center;">1</span><button type="button" onclick="event.stopPropagation();chgCrew('${role.replace(/'/g,"\'")}', 1)" class="qty-btn">+</button>`;
+      el.querySelector('.row-body').appendChild(ctrl);
+    }
+  } else {
+    el.style.borderColor=''; el.style.background='';
+    S.crew=S.crew.filter(c=>c.role!==role);
+    el.querySelector('.crew-qty-ctrl')?.remove();
+  }
+  updateSidebar(); autoSave();
+}
+function chgCrew(role,d){
+  const item=S.crew.find(c=>c.role===role); if(!item) return;
+  item.count=Math.max(1,(item.count||1)+d);
+  document.querySelectorAll('[data-role]').forEach(el=>{
+    if(el.dataset.role===role){ const v=el.querySelector('.crew-qty-val'); if(v) v.textContent=item.count; }
+  });
+  autoSave();
+}
 function addTalent(){ const n=V('tal-name').trim(); if(!n) return; S.talent.push({name:n,role:V('tal-role'),mu:V('tal-mu'),call:V('tal-call'),nda:V('tal-nda'),wardrobe:V('tal-wardrobe'),notes:V('tal-notes')}); document.getElementById('tal-name').value=''; renderTalent(); updateSceneSelects(); autoSave(); }
 function deleteTalent(i){ confirmDelete("حذف هذا الممثل؟",()=>{ S.talent.splice(i,1); renderTalent(); updateSceneSelects(); autoSave(); }); }
 function renderTalent(){ const el=document.getElementById('talent-list-el'); if(!el) return; el.innerHTML=S.talent.map((t,i)=>`<div class="row-item"><div class="row-num">${i+1}</div><div class="row-body"><div class="row-name">${t.name} — ${t.role||'Talent'}</div><div class="row-meta"><span>MU: ${t.mu}</span><span>On set: ${t.call}</span>${t.wardrobe?`<span class="tag">${t.wardrobe}</span>`:''}<span class="tag ${t.nda==='Signed'?'tag-green':''}">${t.nda}</span></div>${t.notes?`<div class="scene-detail-inline"><span style="font-style:italic;">${t.notes}</span></div>`:''}</div><button class="btn-del" onclick="deleteTalent(${i})">✕</button></div>`).join('')||'<div class="empty">No talent added</div>'; }
@@ -2194,7 +2314,35 @@ function renderTalent(){ const el=document.getElementById('talent-list-el'); if(
 // ════════════════════════════════════════════════════
 // PLANNER: EQUIPMENT
 // ════════════════════════════════════════════════════
-function toggleEquip(el){ el.classList.toggle('on'); const n=el.querySelector('.row-name').textContent.trim(); if(el.classList.contains('on')){ el.style.borderColor='var(--p400)'; el.style.background='var(--p50)'; if(!S.equip.includes(n)) S.equip.push(n); }else{ el.style.borderColor=''; el.style.background=''; S.equip=S.equip.filter(e=>e!==n); } autoSave(); }
+function toggleEquip(el){
+  el.classList.toggle('on');
+  const n=el.querySelector('.row-name').textContent.trim();
+  if(el.classList.contains('on')){
+    el.style.borderColor='var(--p400)'; el.style.background='var(--p50)';
+    if(!S.equip.find(e=>e.item===n)) S.equip.push({item:n,qty:1});
+    if(!el.querySelector('.equip-qty-ctrl')){
+      const sid=n.replace(/[^a-zA-Z0-9]/g,'_');
+      const ctrl=document.createElement('div');
+      ctrl.className='equip-qty-ctrl';
+      ctrl.style.cssText='display:flex;align-items:center;gap:5px;margin-top:5px;justify-content:center;';
+      ctrl.innerHTML=`<button type="button" onclick="event.stopPropagation();chgEquip(this,-1)" class="qty-btn">−</button><span class="equip-qty-val" style="font-weight:700;min-width:16px;text-align:center;">1</span><button type="button" onclick="event.stopPropagation();chgEquip(this,1)" class="qty-btn">+</button>`;
+      el.appendChild(ctrl);
+    }
+  } else {
+    el.style.borderColor=''; el.style.background='';
+    S.equip=S.equip.filter(e=>e.item!==n);
+    el.querySelector('.equip-qty-ctrl')?.remove();
+  }
+  autoSave();
+}
+function chgEquip(btn,d){
+  const card=btn.closest('.equip-card,.row-item'); if(!card) return;
+  const n=card.querySelector('.row-name').textContent.trim();
+  const item=S.equip.find(e=>e.item===n); if(!item) return;
+  item.qty=Math.max(1,(item.qty||1)+d);
+  const v=card.querySelector('.equip-qty-val'); if(v) v.textContent=item.qty;
+  autoSave();
+}
 function calcMedia(){ const h=parseInt(V('calc-hours'))||8; const gb=parseInt(V('calc-fmt'))||25; const tot=h*gb; const cards=Math.ceil(tot/512); const batt=Math.ceil(h/1.5); const el=document.getElementById('media-result'); if(el) el.textContent=`~${tot} GB → ${cards}× 512GB cards  |  ~${batt} batteries (90min each)`; }
 
 // ════════════════════════════════════════════════════
@@ -2259,9 +2407,10 @@ function buildCallSheetDoc(){
   const shotRow=s=>`<div class="cs-shot-row"><span style="min-width:18px;color:var(--ink3);font-size:10px;">${s.sceneNum}</span><span style="flex:1;">${s.name}</span><span style="color:var(--ink3);font-size:10px;">${s.type} · ${s.move} · ${s.dur}m</span>${s.priority==='must'?'<span class="tag tag-must" style="font-size:9px;margin-left:4px;">Must</span>':''}</div>`;
   el.innerHTML=`
     <div class="cs-hdr"><div class="cs-title">${name.toUpperCase()}</div><div class="cs-meta-row"><span>📅 ${date||'TBD'}</span><span>⏰ Call: ${ct}</span><span>📍 ${loc}</span>${dir?`<span>🎬 ${dir}</span>`:''}${client?`<span>🏢 ${client}</span>`:''}</div></div>
-    <div class="cs-sec-title">Crew (${S.crew.length})</div><div style="font-size:12px;color:var(--ink2);">${S.crew.join(' · ')||'—'}</div>
+    <div class="cs-sec-title">Crew (${S.crew.reduce((a,c)=>a+(c.count||1),0)})</div><div style="font-size:12px;color:var(--ink2);">${S.crew.map(c=>(c.count||1)>1?c.count+'× '+c.role:c.role).join(' · ')||'—'}</div>
     <div class="cs-sec-title">Talent call times</div>${S.talent.length?`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;">${S.talent.map(t=>`<div style="background:var(--bg2);border-radius:6px;padding:6px 8px;font-size:11px;"><div style="font-weight:600;">${t.name}</div><div style="color:var(--ink3);">${t.role}<br/>MU: ${t.mu} · ${t.call}</div></div>`).join('')}</div>`:'<div class="empty">لم يُضف ممثلون</div>'}
-    <div class="cs-sec-title">Equipment</div><div style="font-size:12px;color:var(--ink2);">${S.equip.join(', ')||'—'}</div>
+    <div class="cs-sec-title">Equipment</div><div style="font-size:12px;color:var(--ink2);">${S.equip.map(e=>(e.qty||1)>1?e.qty+'× '+e.item:e.item).join('، ')||'—'}</div>
+    ${(S.deliverables||[]).length?`<div class="cs-sec-title">Deliverables</div><div style="font-size:12px;color:var(--ink2);">${S.deliverables.map(d=>(d.qty||1)>1?d.qty+'× '+d.type:d.type).join(' · ')}</div>`:''}
     <div class="cs-sec-title">Shot list — Must-haves first (${S.scenes.length} total)</div>${[...must,...std,...nice].map(shotRow).join('')||'<div class="empty">No scenes</div>'}
     ${S.locations.length?`<div class="cs-sec-title">Locations</div>${S.locations.map((l,i)=>`<table class="cs-tbl"><tr><td>Location ${i+1}</td><td>${l.name}</td></tr><tr><td>العنوان</td><td>${l.addr||'—'}</td></tr>${l.parking?`<tr><td>مواقف</td><td>${l.parking}</td></tr>`:''}<tr><td>التصريح</td><td>${l.permit}</td></tr>${l.backup?`<tr><td>البديل</td><td>${l.backup}</td></tr>`:''}</table>`).join('')}`:''}
     ${V('risk-weather')||V('r-emergency')?`<div class="cs-sec-title">Contingency</div><table class="cs-tbl">${V('risk-weather')?`<tr><td>Weather</td><td>${V('risk-weather')}</td></tr>`:''} ${V('risk-talent')?`<tr><td>Talent</td><td>${V('risk-talent')}</td></tr>`:''} ${V('risk-time')?`<tr><td>Running late</td><td>${V('risk-time')}</td></tr>`:''} ${V('r-emergency')?`<tr><td>Emergency</td><td>${V('r-emergency')}</td></tr>`:''}</table>`:''}
@@ -2273,7 +2422,7 @@ function generateCallSheetAI(){
   const talent=S.talent.map(t=>`${t.name} (${t.role}): MU ${t.mu} → ${t.call}${t.wardrobe?' | '+t.wardrobe:''}`).join('\n');
   const locs=S.locations.map((l,i)=>`${i+1}. ${l.name} | ${l.type} | ${l.permit}${l.backup?' | Backup: '+l.backup:''}`).join('\n');
   const est=S.budget.rows.reduce((a,r)=>a+(parseFloat(r.est)||0),0);
-  const p=`Generate a professional production call sheet and brief:\n\nPROJECT: ${V('s-name')||'—'} | CLIENT: ${V('s-client')||'—'} | TYPE: ${V('s-type')}\nDATE: ${V('s-date')||'TBD'} | CALL: ${V('s-calltime')} | CITY: ${V('s-city')||'—'}\nBRIEF: ${V('s-brief')||'—'}\n\nLOCATIONS:\n${locs||'—'}\n\nSHOT LIST (${S.scenes.length} scenes):\n${scenes||'—'}\n\nCREW: ${S.crew.join(', ')||'—'}\nTALENT:\n${talent||'—'}\nEQUIPMENT: ${S.equip.join(', ')||'—'}\nBUDGET: ${budgetCur} ${est.toLocaleString()}\n\nCONTINGENCY: Weather: ${V('risk-weather')||'—'} | Talent: ${V('risk-talent')||'—'} | Equipment: ${V('risk-equip')||'—'}\nEMERGENCY: ${V('r-emergency')||'—'}\n\nProduce: 1) Production brief 2) Detailed call sheet with minute-by-minute schedule 3) Pre-shoot checklist 4) Red flags`;
+  const p=`Generate a professional production call sheet and brief:\n\nPROJECT: ${V('s-name')||'—'} | CLIENT: ${V('s-client')||'—'} | TYPE: ${V('s-type')}\nDATE: ${V('s-date')||'TBD'} | CALL: ${V('s-calltime')} | CITY: ${V('s-city')||'—'}\nBRIEF: ${V('s-brief')||'—'}\n\nLOCATIONS:\n${locs||'—'}\n\nSHOT LIST (${S.scenes.length} scenes):\n${scenes||'—'}\n\nCREW: ${S.crew.map(c=>(c.count||1)>1?c.count+'× '+c.role:c.role).join(', ')||'—'}\nTALENT:\n${talent||'—'}\nEQUIPMENT: ${S.equip.map(e=>(e.qty||1)>1?e.qty+'× '+e.item:e.item).join(', ')||'—'}\nBUDGET: ${budgetCur} ${est.toLocaleString()}\n\nCONTINGENCY: Weather: ${V('risk-weather')||'—'} | Talent: ${V('risk-talent')||'—'} | Equipment: ${V('risk-equip')||'—'}\nEMERGENCY: ${V('r-emergency')||'—'}\n\nProduce: 1) Production brief 2) Detailed call sheet with minute-by-minute schedule 3) Pre-shoot checklist 4) Red flags`;
   if(typeof sendPrompt==='function') sendPrompt(p);
 }
 // ─── WHATSAPP ───
@@ -2285,9 +2434,9 @@ function buildWAMessage(){
   const loc=S.locations[0]?.name||'—';
   const must=S.scenes.filter(s=>s.priority==='must');
   const allScenes=S.scenes.slice(0,8);
-  const crewList=S.crew.slice(0,6).join(' · ')||'—';
+  const crewList=S.crew.slice(0,6).map(c=>(c.count||1)>1?c.count+'× '+c.role:c.role).join(' · ')||'—';
   const talentList=S.talent.map(t=>`${t.name} (${t.role}) — موعد الوصول: ${t.call}`).join('\n') || '—';
-  const equipList=S.equip.slice(0,6).join('، ')||'—';
+  const equipList=S.equip.slice(0,6).map(e=>(e.qty||1)>1?e.qty+'× '+e.item:e.item).join('، ')||'—';
   let msg=`*${name}*\n`;
   msg+=`📅 ${date}${city?' — '+city:''}\n`;
   msg+=`⏰ وقت الاستدعاء: ${call}\n`;
@@ -2326,49 +2475,145 @@ function openWAMsg(){
 }
 function generateWhatsApp(){ buildAndShowWA(); }
 function generateChecklist(){
-  const p=`قائمة تحضير يوم التصوير: ${V('s-type')} | ${V('s-name')||'—'} | ${V('s-date')||'—'} | الاستدعاء ${V('s-calltime')}. معدات: ${S.equip.join('، ')||'—'}. اكتب قائمة مفصّلة: قبل يوم التصوير + صباح التصوير. باللغة العربية.`;
+  const p=`قائمة تحضير يوم التصوير: ${V('s-type')} | ${V('s-name')||'—'} | ${V('s-date')||'—'} | الاستدعاء ${V('s-calltime')}. معدات: ${S.equip.map(e=>(e.qty||1)>1?e.qty+'× '+e.item:e.item).join('، ')||'—'}. اكتب قائمة مفصّلة: قبل يوم التصوير + صباح التصوير. باللغة العربية.`;
   if(typeof sendPrompt==='function') sendPrompt(p);
 }
 
 // ─── PDF EXPORT ───
 function exportPDF(){
-  buildCallSheetDoc();
-  setTimeout(()=>{
-    const el=document.getElementById('cs-doc-el');
-    if(!el||!el.innerHTML.trim()){ showToast('أضف بيانات المشروع أولاً'); return; }
-    // Open in new window for clean PDF print
-    const name=V('s-name')||'call-sheet';
-    const w=window.open('','_blank');
-    w.document.write(`<!DOCTYPE html><html lang="ar" dir="rtl"><head>
-    <meta charset="UTF-8"/>
-    <title>${name} — كول شيت</title>
-    <style>
-      *{box-sizing:border-box;margin:0;padding:0;}
-      body{font-family:'Arial','Helvetica',sans-serif;font-size:11px;color:#171717;direction:rtl;padding:15mm 12mm;}
-      @page{size:A4;margin:0;}
-      .cs-hdr{border-bottom:3px solid #171717;padding-bottom:8px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:flex-start;}
-      .cs-title{font-size:20px;font-weight:700;}
-      .cs-meta-row{display:flex;gap:14px;font-size:10px;color:#555;margin-top:3px;flex-wrap:wrap;}
-      .cs-sec-title{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#888;border-bottom:0.5px solid #ddd;padding-bottom:2px;margin-bottom:5px;margin-top:10px;}
-      .cs-tbl{width:100%;border-collapse:collapse;font-size:10px;margin-bottom:5px;}
-      .cs-tbl td{padding:3px 6px;border-bottom:0.5px solid #eee;}
-      .cs-tbl td:first-child{color:#888;width:90px;}
-      .cs-shot-row{display:flex;gap:6px;padding:3px 0;border-bottom:0.5px solid #eee;font-size:10px;align-items:center;}
-      .tag-must{background:#FDEAEA;color:#A8040F;border-radius:3px;padding:1px 5px;font-size:9px;}
-      .talent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:5px;}
-      .talent-card{background:#f8f8f8;border-radius:5px;padding:5px 7px;font-size:10px;}
-      .talent-card div:first-child{font-weight:600;margin-bottom:2px;}
-      .logo-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding-bottom:6px;border-bottom:0.5px solid #eee;}
-      .logo-bar-name{font-size:14px;font-weight:700;}
-      .logo-bar-meta{font-size:10px;color:#888;}
-      .footer{margin-top:14px;font-size:9px;color:#aaa;text-align:center;border-top:0.5px solid #eee;padding-top:6px;}
-    </style></head><body>
-    ${el.innerHTML}
-    <div class="footer">صُنع بـ ShootPlan Pro — الإنتاجات البسيطة &nbsp;·&nbsp; ${new Date().toLocaleDateString('ar-SA')}</div>
-    <script>window.onload=function(){window.print();window.onafterprint=function(){window.close();};};<\/script>
-    </body></html>`);
-    w.document.close();
-  }, 300);
+  const name=V('s-name')||'Call Sheet';
+  const client=V('s-client')||'';
+  const date=V('s-date')||'TBD';
+  const ct=V('s-calltime')||'07:00';
+  const city=V('s-city')||'';
+  const dir=V('s-director')||'';
+  const projType=V('s-type')||'';
+  const brief=V('s-brief')||'';
+  const loc1=S.locations[0]?.name||'TBD';
+  const must=S.scenes.filter(s=>s.priority==='must');
+  const std=S.scenes.filter(s=>s.priority==='std');
+  const nice=S.scenes.filter(s=>s.priority==='nice');
+  const allShots=[...must,...std,...nice];
+  const totalCrew=S.crew.reduce((a,c)=>a+(c.count||1),0);
+  const est=S.budget?.rows?.reduce((a,r)=>a+(parseFloat(r.est)||0),0)||0;
+  const today=new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+
+  const shotRows=allShots.map((s,i)=>{
+    const pri=s.priority==='must'?'<span style="background:#c00;color:#fff;border-radius:3px;padding:1px 5px;font-size:9px;font-weight:600;">MUST</span>':
+              s.priority==='nice'?'<span style="background:#eee;color:#666;border-radius:3px;padding:1px 5px;font-size:9px;">NICE</span>':'';
+    const locName=(s.locIdx!=null&&S.locations[s.locIdx])?S.locations[s.locIdx].name:'';
+    return `<tr><td style="color:#777;width:28px;text-align:center;font-weight:600;">${s.sceneNum||i+1}</td><td style="font-weight:500;">${s.name||'—'}</td><td style="color:#555;">${s.type||''}${s.move?' · '+s.move:''}</td><td style="color:#555;white-space:nowrap;text-align:center;">${s.dur||''}m</td><td>${locName?'<span style="background:#f0f0f0;border-radius:3px;padding:1px 5px;font-size:9px;">'+locName+'</span>':''}</td><td>${pri}</td></tr>`;
+  }).join('');
+
+  const crewRows=S.crew.map(c=>`<tr><td style="padding:5px 8px;">${(c.count||1)>1?'<span style="background:#1a1a1a;color:#fff;border-radius:3px;padding:1px 5px;font-size:10px;font-weight:700;">'+c.count+'×</span> ':''}<span style="font-weight:500;">${c.role}</span></td></tr>`).join('');
+
+  const equipRows=S.equip.map(e=>`<tr><td style="padding:5px 8px;">${(e.qty||1)>1?'<span style="background:#333;color:#fff;border-radius:3px;padding:1px 5px;font-size:10px;font-weight:700;">'+e.qty+'×</span> ':''}<span style="font-weight:500;">${e.item}</span></td></tr>`).join('');
+
+  const delivRows=(S.deliverables||[]).map(d=>`<tr><td style="padding:5px 8px;">${(d.qty||1)>1?'<span style="background:#333;color:#fff;border-radius:3px;padding:1px 5px;font-size:10px;font-weight:700;">'+d.qty+'×</span> ':''}<span style="font-weight:500;">${d.type}</span></td></tr>`).join('');
+
+  const talentCards=S.talent.map(t=>`<div style="border:1px solid #e0e0e0;border-radius:6px;padding:8px 10px;break-inside:avoid;page-break-inside:avoid;"><div style="font-weight:700;font-size:11px;margin-bottom:3px;">${t.name}</div><div style="color:#555;font-size:10px;">${t.role}</div><div style="margin-top:4px;font-size:10px;display:flex;gap:10px;"><span><span style="color:#888;">MU:</span> ${t.mu||'—'}</span><span style="font-weight:600;color:#000;"><span style="color:#888;">Call:</span> ${t.call||'—'}</span></div>${t.wardrobe?'<div style="font-size:10px;color:#888;margin-top:2px;">Wardrobe: '+t.wardrobe+'</div>':''}</div>`).join('');
+
+  const locBlocks=S.locations.map((l,i)=>`<div style="margin-bottom:6px;padding:7px 10px;background:#fafafa;border:1px solid #e8e8e8;border-radius:6px;"><div style="font-weight:700;font-size:11px;">📍 ${l.name}</div>${l.addr?'<div style="color:#555;font-size:10px;margin-top:2px;">'+l.addr+'</div>':''}<div style="display:flex;gap:14px;margin-top:3px;font-size:10px;color:#666;">${l.type?'<span>'+l.type+'</span>':''}${l.permit?'<span>Permit: <strong>'+l.permit+'</strong></span>':''}</div>${l.parking?'<div style="font-size:10px;color:#666;margin-top:2px;">🚗 '+l.parking+'</div>':''}</div>`).join('');
+
+  const w=window.open('','_blank');
+  if(!w){ showToast('اسمح بفتح النوافذ المنبثقة'); return; }
+  w.document.write('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><title>'+name+' — Call Sheet</title><style>'+
+    '*{box-sizing:border-box;margin:0;padding:0;}'+
+    'body{font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;color:#1a1a1a;background:#fff;}'+
+    '@page{size:A4;margin:0;}'+
+    '.page{width:210mm;min-height:297mm;padding:0;margin:0 auto;}'+
+    '.hdr{background:#1a1a1a;color:#fff;padding:14px 20px 12px;display:flex;justify-content:space-between;align-items:flex-start;}'+
+    '.hdr-left{}'+
+    '.hdr-proj{font-size:22px;font-weight:800;letter-spacing:-.3px;line-height:1.1;}'+
+    '.hdr-sub{font-size:11px;color:#aaa;margin-top:4px;}'+
+    '.hdr-right{text-align:right;}'+
+    '.hdr-date{font-size:20px;font-weight:700;}'+
+    '.hdr-call{font-size:11px;color:#bbb;margin-top:3px;}'+
+    '.meta{background:#f2f2f2;border-bottom:2px solid #e0e0e0;padding:6px 20px;display:flex;gap:18px;flex-wrap:wrap;font-size:10px;color:#555;}'+
+    '.meta strong{color:#1a1a1a;}'+
+    '.body{padding:12px 20px 16px;}'+
+    '.sec{margin-top:13px;}'+
+    '.sec-title{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#fff;background:#1a1a1a;padding:3px 9px;display:inline-block;border-radius:2px;margin-bottom:6px;}'+
+    '.sec-dark .sec-title{background:#555;}'+
+    '.sec-mid .sec-title{background:#333;}'+
+    'table.tbl{width:100%;border-collapse:collapse;}'+
+    'table.tbl th{background:#f0f0f0;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#666;padding:4px 8px;text-align:left;border-bottom:2px solid #ddd;}'+
+    'table.tbl td{padding:4px 8px;border-bottom:1px solid #efefef;font-size:10.5px;vertical-align:middle;}'+
+    'table.tbl tr:last-child td{border-bottom:none;}'+
+    '.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}'+
+    '.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}'+
+    '.footer{padding:7px 20px;border-top:2px solid #1a1a1a;display:flex;justify-content:space-between;font-size:9px;color:#aaa;margin-top:14px;}'+
+    '.confidential{color:#c00;font-weight:700;letter-spacing:.04em;}'+
+    '.no-print{text-align:center;padding:20px;background:#f5f5f5;border-top:1px solid #ddd;}'+
+    '@media print{.no-print{display:none;}body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}'+
+  '</style></head><body>'+
+  '<div class="page">'+
+    '<div class="hdr">'+
+      '<div class="hdr-left">'+
+        '<div class="hdr-proj">'+name.toUpperCase()+'</div>'+
+        '<div class="hdr-sub">'+(client?(client+(projType?' · '+projType:'')):projType)+'</div>'+
+      '</div>'+
+      '<div class="hdr-right">'+
+        '<div class="hdr-date">'+date+'</div>'+
+        '<div class="hdr-call">Call: '+ct+(city?' · '+city:'')+'</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="meta">'+
+      '<span>📍 <strong>'+loc1+'</strong></span>'+
+      (dir?'<span>🎬 Director: <strong>'+dir+'</strong></span>':'')+
+      '<span>👥 Crew: <strong>'+totalCrew+'</strong></span>'+
+      '<span>🎬 Scenes: <strong>'+S.scenes.length+'</strong></span>'+
+      ((S.deliverables||[]).length?'<span>📦 Deliverables: <strong>'+(S.deliverables||[]).reduce((a,d)=>a+(d.qty||1),0)+'</strong></span>':'')+
+      (est>0?'<span>💰 Budget: <strong>'+budgetCur+' '+est.toLocaleString()+'</strong></span>':'')+
+    '</div>'+
+    '<div class="body">'+
+      (brief?'<div class="sec sec-dark"><div class="sec-title">Creative Brief</div><div style="font-size:10.5px;color:#444;line-height:1.55;padding:4px 0;">'+brief.slice(0,400)+(brief.length>400?'…':'')+'</div></div>':'')+
+      (allShots.length?
+        '<div class="sec"><div class="sec-title">Shot List — '+allShots.length+' Scene'+(allShots.length!==1?'s':'')+'</div>'+
+        '<table class="tbl"><thead><tr>'+
+          '<th style="width:32px;">#</th><th>Scene</th><th style="width:130px;">Type · Move</th>'+
+          '<th style="width:42px;text-align:center;">Dur</th><th style="width:110px;">Location</th><th style="width:52px;">Priority</th>'+
+        '</tr></thead><tbody>'+shotRows+'</tbody></table></div>':'')+
+      '<div class="two-col" style="margin-top:13px;">'+
+        (S.crew.length?
+          '<div class="sec"><div class="sec-title">Crew ('+totalCrew+')</div>'+
+          '<table class="tbl"><tbody>'+crewRows+'</tbody></table></div>':'<div></div>')+
+        '<div>'+
+          (S.equip.length?
+            '<div class="sec sec-dark"><div class="sec-title">Equipment ('+S.equip.length+')</div>'+
+            '<table class="tbl"><tbody>'+equipRows+'</tbody></table></div>':'')+
+          ((S.deliverables||[]).length?
+            '<div class="sec sec-mid" style="margin-top:8px;"><div class="sec-title">Deliverables</div>'+
+            '<table class="tbl"><tbody>'+delivRows+'</tbody></table></div>':'')+
+        '</div>'+
+      '</div>'+
+      (S.talent.length?
+        '<div class="sec sec-dark" style="margin-top:13px;"><div class="sec-title">Talent Call Times ('+S.talent.length+')</div>'+
+        '<div class="three-col">'+talentCards+'</div></div>':'')+
+      (S.locations.length?
+        '<div class="sec sec-mid" style="margin-top:13px;"><div class="sec-title">Locations</div>'+locBlocks+'</div>':'')+
+      (V('risk-weather')||V('r-emergency')?
+        '<div class="sec" style="margin-top:13px;"><div class="sec-title" style="background:#c00;">Contingency</div>'+
+        '<table class="tbl"><tbody>'+
+          (V('risk-weather')?'<tr><td style="color:#888;width:110px;">Weather</td><td>'+V('risk-weather')+'</td></tr>':'')+
+          (V('risk-talent')?'<tr><td style="color:#888;">Talent</td><td>'+V('risk-talent')+'</td></tr>':'')+
+          (V('risk-time')?'<tr><td style="color:#888;">Running late</td><td>'+V('risk-time')+'</td></tr>':'')+
+          (V('r-emergency')?'<tr><td style="color:#888;">Emergency</td><td>'+V('r-emergency')+'</td></tr>':'')+
+        '</tbody></table></div>':'')+
+    '</div>'+
+    '<div class="footer">'+
+      '<span class="confidential">CONFIDENTIAL</span>'+
+      '<span>'+name+(client?' · '+client:'')+' · '+date+'</span>'+
+      '<span>ShootPlan Pro · Generated '+today+'</span>'+
+    '</div>'+
+  '</div>'+
+  '<div class="no-print">'+
+    '<button onclick="window.print()" style="background:#1a1a1a;color:#fff;border:none;padding:10px 28px;font-size:14px;font-weight:600;border-radius:6px;cursor:pointer;">🖨️ Print / Save as PDF</button>'+
+    '<p style="margin-top:10px;font-size:11px;color:#888;">Browser print dialog → Save as PDF &nbsp;·&nbsp; Paper: A4 &nbsp;·&nbsp; Margins: None &nbsp;·&nbsp; ☑ Background graphics</p>'+
+  '</div>'+
+  '<script>window.addEventListener("load",function(){ setTimeout(function(){window.print();},400); });<\/script>'+
+  '</body></html>');
+  w.document.close();
 }
 
 // ─── SHARE VIA LINK ───
@@ -2378,9 +2623,9 @@ function buildShareURL(){
     ci:V('s-city'),br:V('s-brief').slice(0,200),
     sc:S.scenes.map(s=>({n:s.name,t:s.type,d:s.dur,p:s.priority,day:s.day})),
     lo:S.locations.map(l=>({n:l.name,t:l.type,p:l.permit})),
-    cr:S.crew.slice(0,10),
+    cr:S.crew.slice(0,10).map(c=>({r:c.role,n:c.count||1})),
     ta:S.talent.map(t=>({n:t.name,r:t.role,c:t.call})),
-    eq:S.equip.slice(0,10),
+    eq:S.equip.slice(0,10).map(e=>({i:e.item,q:e.qty||1})),
   };
   try{
     const json=JSON.stringify(data);
@@ -2406,9 +2651,9 @@ function loadFromURL(){
     if(d.br) document.getElementById('s-brief').value=d.br;
     if(d.sc?.length) S.scenes=d.sc.map((s,i)=>({name:s.n,type:s.t,dur:s.d||20,lens:'—',move:'ثابت',priority:s.p||'std',locIdx:'',day:s.day||1,notes:'',sceneNum:i+1,shootOrder:i+1,status:'pending'}));
     if(d.lo?.length) S.locations=d.lo.map(l=>({name:l.n,addr:'',type:l.t||'داخلي – استوديو',travel:0,parking:'',permit:l.p||'لا يلزم تصريح',backup:''}));
-    if(d.cr?.length) S.crew=d.cr;
+    if(d.cr?.length) S.crew=d.cr.map(c=>typeof c==='string'?{role:c,count:1}:{role:c.r||c,count:c.n||1});
     if(d.ta?.length) S.talent=d.ta.map(t=>({name:t.n,role:t.r||'',mu:'07:00',call:t.c||'07:30',nda:'غير مطلوب',wardrobe:'',notes:''}));
-    if(d.eq?.length) S.equip=d.eq;
+    if(d.eq?.length) S.equip=d.eq.map(e=>typeof e==='string'?{item:e,qty:1}:{item:e.i||e,qty:e.q||1});
     return true;
   }catch(e){ return false; }
 }
@@ -2443,7 +2688,7 @@ function refreshDashboard(){
   const ct=V('s-calltime')||'07:00'; let [wh,wm]=ct.split(':').map(Number); wm+=60+total+45; wh+=Math.floor(wm/60); wm=wm%60;
   document.getElementById('d-scenes').textContent=S.scenes.length;
   document.getElementById('d-must').textContent=must+' أساسية';
-  document.getElementById('d-crew').textContent=S.crew.length;
+  document.getElementById('d-crew').textContent=S.crew.reduce((a,c)=>a+(c.count||1),0);
   document.getElementById('d-talent').textContent=S.talent.length+' ممثل';
   document.getElementById('d-hours').textContent=Math.round(total/6)/10+'h';
   document.getElementById('d-wrap').textContent='الانتهاء: ~'+fmtTime(wh,wm);
