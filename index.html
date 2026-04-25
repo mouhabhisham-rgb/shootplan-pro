@@ -1591,6 +1591,85 @@ function fmtTime(h,m){ const s=h>=12?'PM':'AM'; const fh=h>12?h-12:(h===0?12:h);
 function toggleChip(el){ el.classList.toggle('on'); autoSave(); }
 function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); }
 function autoSave(){ try{ localStorage.setItem('shootplan_v4',JSON.stringify(S)); saveCurrentProject(); scheduleCloudSync(); }catch(e){} }
+
+// ── Project Management ───────────────────────────────────────
+let projects = [];
+let currentProjectId = null;
+
+function saveCurrentProject() {
+  if (!currentProjectId) return;
+  const idx = projects.findIndex(p => p.id === currentProjectId);
+  if (idx !== -1) {
+    projects[idx].data = JSON.parse(JSON.stringify(S));
+    projects[idx].updatedAt = Date.now();
+    saveProjects();
+  }
+}
+
+function saveProjects() {
+  try { localStorage.setItem('shootplan_projects', JSON.stringify(projects)); } catch(e) {}
+}
+
+function loadProject(id) {
+  const proj = projects.find(p => p.id === id);
+  if (!proj) return;
+  currentProjectId = id;
+  if (proj.data) Object.assign(S, proj.data);
+  if (typeof updateSidebar === 'function') updateSidebar();
+  if (typeof renderShotList === 'function') renderShotList();
+}
+
+function initProjects() {
+  try {
+    const stored = localStorage.getItem('shootplan_projects');
+    if (stored) projects = JSON.parse(stored);
+  } catch(e) { projects = []; }
+  if (!projects.length) {
+    const id = 'proj_' + Date.now();
+    projects.push({ id, name: '\u0645\u0634\u0631\u0648\u0639 \u062c\u062f\u064a\u062f', data: null, createdAt: Date.now(), updatedAt: Date.now() });
+    currentProjectId = id;
+    saveProjects();
+  } else {
+    currentProjectId = projects[0].id;
+    if (projects[0].data) Object.assign(S, projects[0].data);
+  }
+}
+
+function loadFromURL() {
+  try {
+    const hash = window.location.hash;
+    if (hash && hash.startsWith('#shared=')) {
+      const decoded = JSON.parse(atob(hash.slice(8)));
+      Object.assign(S, decoded);
+    }
+  } catch(e) {}
+}
+
+function renderProjectsBar() {
+  const bar = document.getElementById('projects-bar');
+  if (!bar) return;
+  bar.innerHTML = projects.map(p =>
+    '<div class="project-item' + (p.id === currentProjectId ? ' active' : '') + '" onclick="loadProject(\'' + p.id + '\')">' + p.name + '</div>'
+  ).join('');
+}
+
+function newProject() {
+  const name = prompt('\u0627\u0633\u0645 \u0627\u0644\u0645\u0634\u0631\u0648\u0639:', '\u0645\u0634\u0631\u0648\u0639 \u062c\u062f\u064a\u062f');
+  if (!name) return;
+  const id = 'proj_' + Date.now();
+  projects.push({ id, name, data: null, createdAt: Date.now(), updatedAt: Date.now() });
+  currentProjectId = id;
+  saveProjects();
+  renderProjectsBar();
+}
+
+function deleteProject(id) {
+  if (projects.length <= 1) { alert('\u0644\u0627 \u064a\u0645\u0643\u0646 \u062d\u0630\u0641 \u0627\u0644\u0645\u0634\u0631\u0648\u0639 \u0627\u0644\u0648\u062d\u064a\u062f'); return; }
+  projects = projects.filter(p => p.id !== id);
+  if (currentProjectId === id) loadProject(projects[0].id);
+  saveProjects();
+  renderProjectsBar();
+}
 function saveToLocal(){ autoSave(); showToast('تم الحفظ ✓'); }
 
 function updateSidebar(){
