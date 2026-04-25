@@ -1495,6 +1495,8 @@ let currentView = 'intake';
 // VIEW SWITCHING
 // ════════════════════════════════════════════════════
 function switchView(v){
+  const wEl = document.getElementById('view-welcome');
+  if(wEl) wEl.style.display = (v==='welcome') ? 'flex' : 'none';
   document.querySelectorAll('.view').forEach(el=>el.classList.remove('active'));
   document.getElementById('view-'+v).classList.add('active');
   currentView = v;
