@@ -1812,7 +1812,380 @@ function saveSetup(){ updateSidebar(); S.approval.setup='review'; renderApproval
 // THEME / LANG
 // ════════════════════════════════════════════════════
 function toggleTheme(){ const h=document.getElementById('html-root'); h.dataset.theme=h.dataset.theme==='dark'?'':'dark'; showToast(h.dataset.theme==='dark'?'الوضع الداكن':'الوضع الفاتح'); }
-function toggleLang(){ const h=document.getElementById('html-root'); const isRtl=h.dir==='rtl'; h.dir=isRtl?'ltr':'rtl'; h.lang=isRtl?'en':'ar'; showToast(isRtl?'English / LTR':'عربي / RTL'); }
+// ════════════════════════════════════════════════════
+// LANGUAGE / i18n
+// ════════════════════════════════════════════════════
+const AR_TO_EN = {
+  // ── Sidebar navigation ──
+  'لوحة القيادة': 'Dashboard',
+  '١ — قبل التصوير': '1 — Pre-Production',
+  'إعداد المشروع': 'Project Setup',
+  'قائمة اللقطات': 'Shot List',
+  'المواقع': 'Locations',
+  'الفريق والممثلون': 'Crew & Talent',
+  'الفريق والممثلون': 'Crew & Talent',
+  'الميزانية': 'Budget',
+  '٢ — يوم التصوير': '2 — Shoot Day',
+  'الستريب بورد': 'Stripboard',
+  'جدول اليوم': 'Day Schedule',
+  'الكول شيت': 'Call Sheet',
+  'كول شيت': 'Call Sheet',
+  'المخاطر والبدائل': 'Risks & Contingency',
+  '٣ — بعد التصوير': '3 — Post-Production',
+  'ما بعد الإنتاج': 'Post Production',
+  'لوحة المرجعيات': 'Moodboard',
+  'شيتات التفكيك': 'Breakdown Sheets',
+  'دليل الاتصال': 'Contact Sheet',
+  'السكريبت': 'Script',
+  'المعدات': 'Equipment',
+  'التقويم الإنتاجي': 'Production Calendar',
+  'الاستيراد الذكي': 'Smart Import',
+  'اختصارات لوحة المفاتيح': 'Keyboard Shortcuts',
+  'مقارنة مع StudioBinder': 'Compare with StudioBinder',
+  // ── Dashboard ──
+  'نظرة عامة على مشروعك': 'Your project at a glance',
+  '✓ الاستيراد الذكي': '✓ Smart Import',
+  '☗ حفظ في السحابة': '☗ Save to Cloud',
+  'مشاركة رابط': 'Share Link',
+  'توليد البريف ↗': 'Generate Brief ↗',
+  'المشاهد': 'Scenes',
+  'الفريق': 'Crew',
+  'وقت التصوير': 'Shoot Duration',
+  'غير محدد': 'Not set',
+  'مراجعة المشروع ←': 'Review Project →',
+  'معاينة جدول اليوم': 'Schedule Preview',
+  'مواعيد استدعاء الممثلين': 'Talent Call Times',
+  'المحطات القادمة': 'Upcoming Milestones',
+  'لا توجد مشاهد بعد': 'No scenes yet',
+  'أضف لقطاتك لترى قائمة التصوير هنا': 'Add shots to see your list here',
+  '+ إضافة مشهد ←': '+ Add Scene →',
+  'الجدول يُبنى تلقائياً': 'Schedule builds automatically',
+  'أضف مشاهد وحدد وقت الاستدعاء لتوليد جدول اليوم': 'Add scenes and set call time to generate schedule',
+  'لا ممثلون بعد': 'No talent yet',
+  'أضف ممثلين لتظهر مواعيد استدعاؤهم هنا': 'Add talent to see call times here',
+  '+ إضافة ممثل ←': '+ Add Talent →',
+  'لا أحداث مجدولة': 'No events scheduled',
+  'أضف محطات الإنتاج والمواعيد المهمة هنا': 'Add production milestones here',
+  '+ إضافة حدث ←': '+ Add Event →',
+  // ── Setup page ──
+  'ملاحظات': 'Notes',
+  'اسم المشروع': 'Project Name',
+  'العميل / العلامة': 'Client / Brand',
+  'نوع التصوير': 'Shoot Type',
+  'المخرج / المنتج': 'Director / Producer',
+  'تاريخ التصوير': 'Shoot Date',
+  'وقت الاستدعاء': 'Call Time',
+  'المدة': 'Duration',
+  'المدينة': 'City',
+  'المنطقة الزمنية': 'Timezone',
+  'البريف الإبداعي': 'Creative Brief',
+  'التسليمات': 'Deliverables',
+  'الجو البصري والأسلوب': 'Visual Style & Mood',
+  'حفظ ✓': 'Save ✓',
+  // Shoot types
+  'بودكاست': 'Podcast',
+  'إعلان تجاري': 'Commercial',
+  'فيلم دعائي': 'Promo Film',
+  'محتوى سوشيال': 'Social Content',
+  'وثائقي': 'Documentary',
+  'تغطية فعالية': 'Event Coverage',
+  'فيديو كليب': 'Music Video',
+  'تصوير منتج': 'Product Shoot',
+  'مقابلة': 'Interview',
+  // Duration options
+  'نصف يوم (4 ساعات)': 'Half Day (4 hours)',
+  'يوم كامل (8 ساعات)': 'Full Day (8 hours)',
+  'يومان': 'Two Days',
+  '3 أيام أو أكثر': '3+ Days',
+  // Mood chips
+  'سينمائي': 'Cinematic',
+  'خام / وثائقي': 'Raw / Documentary',
+  'نظيف وبسيط': 'Clean & Minimal',
+  'طاقة عالية': 'High Energy',
+  'دافئ وأصيل': 'Warm & Authentic',
+  'داكن وعاطفي': 'Dark & Emotional',
+  'مضيء وخفيف': 'Bright & Light',
+  'فاخر': 'Luxury',
+  // Deliverable subtitles
+  'إنستاغرام / تيك توك': 'Instagram / TikTok',
+  'عمودي 9:16': 'Vertical 9:16',
+  'إعلان 30 ثانية': '30-second ad',
+  'إعلان 15 ثانية': '15-second ad',
+  'إعلان 60 ثانية': '60-second ad',
+  'تصوير فوتوغرافي': 'Photography',
+  '16:9 طولي': '16:9 horizontal',
+  'كواليس': 'Behind the scenes',
+  'الفيلم الرئيسي': 'Hero film',
+  // ── Shot list ──
+  'الأساسية فقط': 'Must-haves Only',
+  'الكل': 'All',
+  'اسم المشهد': 'Scene Name',
+  'نوع اللقطة': 'Shot Type',
+  'المدة (دقيقة)': 'Duration (min)',
+  'العدسة': 'Lens',
+  'الحركة': 'Camera Move',
+  'الأولوية': 'Priority',
+  'الموقع': 'Location',
+  'اليوم': 'Day',
+  '+ إضافة مشهد': '+ Add Scene',
+  'أساسي': 'Must-have',
+  'عادي': 'Standard',
+  'إذا أمكن': 'Nice to Have',
+  'اليوم ١': 'Day 1',
+  'اليوم ٢': 'Day 2',
+  'اليوم ٣': 'Day 3',
+  // Shot types
+  'لقطة واسعة': 'Wide Shot',
+  'لقطة مقربة': 'Close Up',
+  'إعداد مقابلة': 'Interview Setup',
+  'مسيّرة / جوية': 'Drone / Aerial',
+  'لقطة المنتج الرئيسية': 'Hero Product Shot',
+  'وجه متحدث': 'Talking Head',
+  'حركة / أكشن': 'Action',
+  'كاتاواي': 'Cutaway',
+  'مونتاج': 'Montage',
+  'تايم لابس': 'Time Lapse',
+  // Camera moves
+  'ثابت': 'Static',
+  'يدوي': 'Handheld',
+  'جيمبال': 'Gimbal',
+  'سلايدر': 'Slider',
+  'دولي للداخل/الخارج': 'Dolly In/Out',
+  'بان': 'Pan',
+  'أوربيت': 'Orbit',
+  'مسيّرة FPV': 'FPV Drone',
+  'تثبيت على سيارة': 'Car Mount',
+  // ── Breakdown ──
+  'شيتات التفكيك': 'Breakdown Sheets',
+  'الإكسسوارات، الملابس، المؤثرات، المركبات، المعدات لكل مشهد': 'Props, wardrobe, SFX, vehicles, equipment per scene',
+  'أضف مشاهد أولاً.': 'Add scenes first.',
+  // ── Locations ──
+  'الاسم': 'Name',
+  'العنوان': 'Address',
+  'النوع': 'Type',
+  'وقت التنقل (دقيقة)': 'Travel Time (min)',
+  'التصريح': 'Permit',
+  'مواقف / تحميل': 'Parking / Load-in',
+  'الخطة البديلة': 'Backup Plan',
+  '+ إضافة موقع': '+ Add Location',
+  'داخلي – استوديو': 'Indoor – Studio',
+  'داخلي – موقع حقيقي': 'Indoor – Real Location',
+  'خارجي': 'Outdoor',
+  'متحرك (سيارة / مسيّرة)': 'Moving (Car / Drone)',
+  'بعيد / صحراء': 'Remote / Desert',
+  'سطح المبنى': 'Rooftop',
+  'لا يلزم تصريح': 'No Permit Required',
+  'قيد الإنجاز': 'In Progress',
+  'مؤكد': 'Confirmed',
+  'يحتاج تنسيقاً': 'Needs Coordination',
+  // ── Crew ──
+  'فريق العمل والممثلون': 'Crew & Talent',
+  'الفريق المطلوب': 'Required Crew',
+  'متطلبات الموقع': 'On-Set Requirements',
+  'الممثلون': 'Talent',
+  'موعد المكياج': 'MU Time',
+  'موعد الوصول للموقع': 'Set Call Time',
+  'اتفاقية سرية': 'NDA',
+  'الملابس': 'Wardrobe',
+  'ملاحظات / قيود': 'Notes / Restrictions',
+  '+ إضافة ممثل': '+ Add Talent',
+  // Crew meta labels
+  'القيادة الإبداعية': 'Creative Lead',
+  'قيادة الكاميرا والإضاءة': 'Camera & Lighting Lead',
+  'كاميرا إضافية': 'Additional Camera',
+  'تسجيل الصوت': 'Sound Recording',
+  'فريق الإضاءة': 'Lighting Crew',
+  'الديكور والبيئة البصرية': 'Art & Set Design',
+  'تحضير الممثلين': 'Talent Prep',
+  'الملابس والإكسسوارات': 'Wardrobe & Styling',
+  'دعم في الموقع': 'On-Set Support',
+  'لقطات جوية': 'Aerial Shots',
+  'مرجع ألوان في الموقع': 'On-Set Color Reference',
+  'تغذية النص': 'Text Feed',
+  // On-set requirements chips
+  'تيليبرومبتر': 'Teleprompter',
+  'محطة شعر ومكياج': 'Hair & Makeup Station',
+  'كاتيرينغ': 'Catering',
+  'أمن': 'Security',
+  'مسعف احتياطي': 'Medic on Standby',
+  'مترجم': 'Interpreter',
+  // NDA options
+  'غير مطلوب': 'Not Required',
+  'قيد التوقيع': 'Pending Signature',
+  'موقّع': 'Signed',
+  // ── Equipment ──
+  'قائمة المعدات': 'Equipment List',
+  'الكاميرا': 'Camera',
+  'الصوت': 'Audio',
+  'الإضاءة': 'Lighting',
+  'الحوامل والحركة': 'Rigs & Motion',
+  'ساعات التصوير': 'Shoot Hours',
+  'صيغة التسجيل': 'Recording Format',
+  'أدخل عدد الساعات': 'Enter shoot hours',
+  // ── Budget ──
+  '+ إضافة بند': '+ Add Line Item',
+  // ── Schedule ──
+  'إعادة البناء': 'Rebuild',
+  // ── Call Sheet ──
+  'بريف كامل + كول شيت ↗': 'Full Brief + Call Sheet ↗',
+  'ملخص واتساب للفريق ↗': 'WhatsApp Summary for Crew ↗',
+  'قائمة التحضير للتصوير ↗': 'Shoot Day Checklist ↗',
+  '\U0001f5a8 طباعة': '\U0001f5a8 Print',
+  'طباعة': 'Print',
+  // ── Risk ──
+  'تنبيهات المخاطر': 'Risk Alerts',
+  'يعتمد على الطقس': 'Weather-dependent',
+  'تصريح غير مؤكد': 'Permit not confirmed',
+  'خطر توفر الممثلين': 'Talent availability risk',
+  'جدول ضيق': 'Tight schedule',
+  'إضاءة معقدة': 'Complex lighting',
+  'موقع بعيد': 'Remote location',
+  'حشد كبير': 'Large crowd',
+  'معدات ذات قيمة عالية': 'High-value equipment',
+  'تقييم المخاطر ومعلومات التأمين...': 'Risk assessment and insurance info...',
+  // ── Contacts ──
+  'لا توجد جهات اتصال بعد': 'No contacts yet',
+  'الهاتف': 'Phone',
+  'البريد الإلكتروني': 'Email',
+  'الشركة': 'Company',
+  '+ إضافة جهة اتصال': '+ Add Contact',
+  'نسخ قائمة الاتصال': 'Copy Contact List',
+  // ── Calendar ──
+  'اسم الحدث': 'Event Name',
+  'التاريخ': 'Date',
+  'مسؤول': 'Assigned To',
+  '+ إضافة حدث': '+ Add Event',
+  // Calendar types
+  'ما قبل الإنتاج': 'Pre-Production',
+  'كشف موقع': 'Location Scout',
+  'اختيار ممثلين': 'Casting',
+  'حجز معدات': 'Equipment Booking',
+  'موعد التصاريح': 'Permit Deadline',
+  'يوم التصوير': 'Shoot Day',
+  'موعد المونتاج': 'Edit Deadline',
+  'مراجعة واعتماد': 'Review & Approval',
+  'التسليم النهائي': 'Final Delivery',
+  // ── Script ──
+  'السكريبت / الرانداون': 'Script / Rundown',
+  'محتوى السكريبت': 'Script Content',
+  'إصدار السكريبت': 'Script Version',
+  'الكاتب': 'Writer',
+  '✓ إعادة تحليل المستند': '✓ Re-analyze Document',
+  // ── General buttons / labels ──
+  'اسحب لإعادة الترتيب. الرقم الأيسر = ترتيب التصوير، الأيمن = رقم المشهد الأصلي.': 'Drag to reorder. Left = shoot order, Right = original scene number.',
+  '+ فاصل يوم': '+ Day Break',
+  // ── Placeholders stored separately as data attributes ──
+};
+
+// Build reverse map (EN → AR)
+const EN_TO_AR = {};
+Object.keys(AR_TO_EN).forEach(ar => { EN_TO_AR[AR_TO_EN[ar]] = ar; });
+
+// Placeholder translations (id → {ar, en})
+const PH_MAP = {
+  'note-setup':    { ar: 'سجل التعديلات والموافقات...', en: 'Log revisions and approvals...' },
+  's-name':        { ar: 'مثال: حملة الربع الثاني', en: 'e.g. Q2 Campaign' },
+  's-client':      { ar: 'مثال: نيوم', en: 'e.g. NEOM' },
+  's-director':    { ar: 'الاسم', en: 'Name' },
+  's-city':        { ar: 'مثال: الرياض', en: 'e.g. Riyadh' },
+  's-brief':       { ar: 'صف الفكرة والمزاج البصري والهدف...', en: 'Describe the concept, visual mood and goal...' },
+  'deliv-custom-input': { ar: 'تسليم مخصص...', en: 'Custom deliverable...' },
+  'note-shotlist': { ar: 'ملاحظات أولويات اللقطات...', en: 'Shot priority notes...' },
+  'scene-search':  { ar: 'بحث في المشاهد... (⌘K)', en: 'Search scenes... (⌘K)' },
+  'sc-name':       { ar: 'مثال: لقطة مقربة للمنتج', en: 'e.g. Product close-up' },
+  'sc-notes':      { ar: 'ملاحظات المخرج، حركة الممثلين، مرجع الإضاءة...', en: "Director's notes, talent blocking, lighting reference..." },
+  'loc-name':      { ar: 'مثال: استوديو A، سطح المبنى', en: 'e.g. Studio A, Rooftop' },
+  'loc-addr':      { ar: 'العنوان الكامل', en: 'Full address' },
+  'loc-parking':   { ar: 'مثال: B1 تحت الأرض', en: 'e.g. B1 Underground' },
+  'loc-backup':    { ar: 'مثال: الانتقال للاستوديو B', en: 'e.g. Move to Studio B' },
+  'note-crew':     { ar: 'تأكيدات الفريق والمتطلبات الخاصة...', en: 'Crew confirmations and special requirements...' },
+  'tal-name':      { ar: 'الاسم', en: 'Name' },
+  'tal-role':      { ar: 'مثال: مقدم، متحدث رسمي', en: 'e.g. Presenter, Official Speaker' },
+  'tal-wardrobe':  { ar: 'وصف الإطلالة', en: 'Describe the look' },
+  'tal-notes':     { ar: 'حساسية، قيود غذائية...', en: 'Allergies, dietary restrictions...' },
+  'note-equip':    { ar: 'تأكيدات استئجار المعدات...', en: 'Equipment rental confirmations...' },
+  'note-budget':   { ar: 'حالة اعتماد الميزانية وملاحظات الدفع...', en: 'Budget approval status and payment notes...' },
+  'note-risk':     { ar: 'تقييم المخاطر ومعلومات التأمين...', en: 'Risk assessment and insurance info...' },
+  'note-mood':     { ar: 'لوحة الألوان، مراجع الإضاءة...', en: 'Color palette, lighting references...' },
+  'con-name':      { ar: 'الاسم', en: 'Name' },
+  'con-role':      { ar: 'مثال: مدير تصوير، مخرج', en: 'e.g. DP, Director' },
+  'con-company':   { ar: 'اختياري', en: 'Optional' },
+  'cal-name':      { ar: 'مثال: كشف موقع، حجز معدات', en: 'e.g. Location scout, Equipment booking' },
+  'cal-assigned':  { ar: 'الاسم', en: 'Name' },
+  'cal-notes':     { ar: 'ملاحظات...', en: 'Notes...' },
+  'script-ver':    { ar: 'مثال: v3 نهائي مقفل 14 أبريل', en: 'e.g. v3 final locked Apr 14' },
+  'script-writer': { ar: 'الاسم', en: 'Name' },
+  'mood-url':      { ar: 'الصق رابط الصورة...', en: 'Paste image URL...' },
+  'mood-lbl':      { ar: 'تسمية', en: 'Label' },
+};
+
+let _currentLang = localStorage.getItem('spp_lang') || 'ar';
+
+function applyLang(lang) {
+  const h = document.getElementById('html-root');
+  h.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  h.lang = lang;
+  _currentLang = lang;
+  localStorage.setItem('spp_lang', lang);
+
+  const map = lang === 'en' ? AR_TO_EN : EN_TO_AR;
+
+  // Walk all text nodes, skip script/style
+  const walker = document.createTreeWalker(
+    document.body,
+    NodeFilter.SHOW_TEXT,
+    { acceptNode: n => {
+      const p = n.parentNode;
+      if (!p) return NodeFilter.FILTER_REJECT;
+      const tag = p.tagName ? p.tagName.toUpperCase() : '';
+      if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'TEXTAREA') return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }}
+  );
+  const replacements = [];
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    const raw = node.textContent;
+    const trimmed = raw.trim();
+    if (trimmed && map[trimmed]) {
+      replacements.push({ node, raw, trimmed });
+    }
+  }
+  replacements.forEach(({ node, raw, trimmed }) => {
+    node.textContent = raw.replace(trimmed, map[trimmed]);
+  });
+
+  // Translate placeholders by element id
+  Object.keys(PH_MAP).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.placeholder = PH_MAP[id][lang];
+  });
+
+  // Translate placeholder of any input/textarea not in PH_MAP using the same map
+  document.querySelectorAll('[placeholder]').forEach(el => {
+    const ph = el.getAttribute('placeholder');
+    const trimmedPh = ph ? ph.trim() : '';
+    if (trimmedPh && map[trimmedPh]) {
+      el.setAttribute('placeholder', ph.replace(trimmedPh, map[trimmedPh]));
+    }
+  });
+
+  // Update lang button
+  const btn = document.querySelector('[onclick="toggleLang()"]');
+  if (btn) btn.textContent = lang === 'ar' ? 'EN' : 'ع';
+
+  showToast(lang === 'en' ? 'English mode' : 'الوضع العربي');
+}
+
+function toggleLang() {
+  applyLang(_currentLang === 'ar' ? 'en' : 'ar');
+}
+
+// Apply saved language on load (after DOM ready)
+document.addEventListener('DOMContentLoaded', function() {
+  const saved = localStorage.getItem('spp_lang');
+  if (saved && saved !== 'ar') applyLang(saved);
+});
 function updateTzInfo(){ const tz=V('s-tz')||'Asia/Riyadh'; try{ const now=new Intl.DateTimeFormat('en-US',{timeZone:tz,hour:'2-digit',minute:'2-digit',timeZoneName:'short'}).format(new Date()); const el=document.getElementById('tz-now'); if(el) el.textContent='Current time: '+now; }catch(e){} }
 setInterval(updateTzInfo,30000); setTimeout(updateTzInfo,500);
 
