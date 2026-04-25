@@ -2059,15 +2059,7 @@ function initProjects() {
   }
 }
 
-function loadFromURL() {
-  try {
-    const hash = window.location.hash;
-    if (hash && hash.startsWith('#shared=')) {
-      const decoded = JSON.parse(atob(hash.slice(8)));
-      Object.assign(S, decoded);
-    }
-  } catch(e) {}
-}
+// loadFromURL moved to share section below
 
 function renderProjectsBar() {
   const bar = document.getElementById('projects-bar');
@@ -2836,8 +2828,7 @@ function addScene(){
 function importScenesFromText(){
   const ta=document.getElementById('scene-import-ta'); if(!ta) return;
   const pri=document.getElementById('scene-import-priority')?.value||'std';
-  const lines=ta.value.split('
-').map(l=>l.trim()).filter(l=>l.length>0);
+  const lines=ta.value.split('\n').map(l=>l.trim()).filter(l=>l.length>0);
   if(!lines.length){ showToast('لم يُعثر على مشاهد في النص'); return; }
   const base=S.scenes.length;
   lines.forEach((name,i)=>{
