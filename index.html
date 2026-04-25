@@ -4,6 +4,12 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>الإنتاجات البسيطة — Simple Productions</title>
+<link rel="manifest" href="manifest.json"/>
+<meta name="theme-color" content="#171717"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="ShootPlan"/>
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='32' fill='%23171717'/%3E%3Ctext x='96' y='130' font-size='100' text-anchor='middle' fill='%23FAB617'%3E%F0%9F%8E%AC%3C/text%3E%3C/svg%3E"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -96,6 +102,27 @@ html[dir="ltr"] .ph-right{flex-direction:row;}
 html[dir="ltr"] .tl-dur{text-align:right;}
 html[dir="ltr"] .sb-badge{margin-left:auto;margin-right:0;}
 html[dir="ltr"] body{direction:ltr;}
+html[dir="ltr"] .add-form{text-align:left;}
+html[dir="ltr"] .fsr{flex-direction:row;}
+html[dir="ltr"] .fl{text-align:left;}
+html[dir="ltr"] .fr{flex-direction:row;}
+html[dir="ltr"] .fr4{flex-direction:row;}
+html[dir="ltr"] .fr-wrap{flex-direction:row;}
+html[dir="ltr"] .top-cards,html[dir="ltr"] .hero-cards{direction:ltr;}
+html[dir="ltr"] .proj-card-actions{flex-direction:row;}
+html[dir="ltr"] .cs-meta-row{flex-direction:row;}
+html[dir="ltr"] .wx-meta{flex-direction:row;}
+html[dir="ltr"] .sb-bottom{direction:ltr;}
+html[dir="ltr"] .sb-tools{flex-direction:row;}
+html[dir="ltr"] .approval-bar{flex-direction:row;}
+html[dir="ltr"] .page-sub{text-align:left;}
+html[dir="ltr"] .ps-step{flex-direction:row;}
+html[dir="ltr"] .card-head{flex-direction:row;}
+html[dir="ltr"] .cs-shot-row{flex-direction:row;}
+html[dir="ltr"] .d-meta{text-align:left;}
+html[dir="ltr"] .d-val{text-align:left;}
+html[dir="ltr"] input[dir="rtl"],html[dir="ltr"] textarea[dir="rtl"]{direction:rtl;}
+html[dir="ltr"] .ob-input{direction:ltr;text-align:left;}
 
 /* ═══ FILM FRAME CORNER BRACKETS — brand identity element ═══ */
 .frame-bracket{position:absolute;width:18px;height:18px;pointer-events:none;}
@@ -897,6 +924,18 @@ html[data-theme="dark"] .proj-chip{background:var(--bg2);}
 
 /* ── All Shoots timeline ── */
 .shoot-row{display:flex;gap:12px;align-items:center;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;margin-bottom:7px;}
+.gc-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;}
+.gc-card-name{font-size:13px;font-weight:700;color:var(--ink);}
+.gc-card-role{font-size:11px;color:var(--ink3);}
+.gc-card-actions{display:flex;gap:6px;margin-top:6px;}
+.ac-dropdown{position:absolute;top:100%;right:0;left:0;background:white;border:1px solid var(--border2);border-radius:6px;z-index:200;max-height:160px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,.1);}
+.ac-item{padding:7px 12px;font-size:12px;cursor:pointer;color:var(--ink);}
+.ac-item:hover{background:var(--bg2);}
+.import-text-panel{background:var(--bg2);border:1px solid var(--border);border-radius:10px;margin-bottom:12px;overflow:hidden;}
+.import-text-summary{display:flex;align-items:center;gap:8px;padding:10px 14px;cursor:pointer;font-size:12px;font-weight:600;color:var(--ink3);list-style:none;user-select:none;}
+.import-text-summary::-webkit-details-marker{display:none;}
+.import-text-body{padding:12px 14px 14px;border-top:1px solid var(--border);}
+.import-text-ta{width:100%;font-family:var(--fa);font-size:12px;color:var(--ink);background:white;border:1px solid var(--border2);border-radius:6px;padding:8px 10px;resize:vertical;min-height:80px;direction:rtl;}
 .shoot-date-box{min-width:50px;text-align:center;background:var(--near-black);color:var(--cream);border-radius:6px;padding:5px 8px;}
 .shoot-date-mon{font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);}
 .shoot-date-day{font-size:20px;font-weight:800;line-height:1.1;}
@@ -905,6 +944,29 @@ html[data-theme="dark"] .proj-chip{background:var(--bg2);}
 .shoot-sub{font-size:11px;color:var(--ink3);margin-top:2px;}
 .shoot-badge{background:var(--t100);color:var(--t600);border-radius:10px;padding:2px 8px;font-size:10px;font-weight:600;}
 .shoot-month-hdr{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);padding:8px 0 4px;border-bottom:1px solid var(--border);margin-bottom:6px;margin-top:12px;}
+
+/* ── Onboarding Modal ── */
+.ob-overlay{position:fixed;inset:0;background:rgba(23,23,23,.85);z-index:3000;display:flex;align-items:center;justify-content:center;padding:20px;}
+.ob-modal{background:var(--bg);border-radius:16px;width:100%;max-width:480px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.4);}
+.ob-header{background:var(--near-black);color:var(--cream);padding:24px 28px;text-align:center;}
+.ob-logo{font-size:36px;margin-bottom:8px;}
+.ob-title{font-size:20px;font-weight:700;font-family:var(--fd);}
+.ob-sub{font-size:12px;color:rgba(243,233,221,.6);margin-top:4px;}
+.ob-steps{padding:24px 28px;display:flex;flex-direction:column;gap:16px;}
+.ob-step{display:none;}
+.ob-step.ob-active{display:flex;flex-direction:column;gap:10px;}
+.ob-step-num{font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;}
+.ob-step-title{font-size:16px;font-weight:700;color:var(--ink);}
+.ob-step-desc{font-size:12px;color:var(--ink3);line-height:1.6;}
+.ob-input{width:100%;padding:10px 14px;border:1.5px solid var(--border2);border-radius:8px;font-size:14px;font-family:var(--fa);background:white;color:var(--ink);outline:none;}
+.ob-input:focus{border-color:var(--yellow);}
+.ob-footer{padding:16px 28px;display:flex;gap:10px;border-top:1px solid var(--border);}
+.ob-dots{display:flex;gap:6px;align-items:center;flex:1;}
+.ob-dot{width:7px;height:7px;border-radius:50%;background:var(--border2);}
+.ob-dot.ob-on{background:var(--yellow);}
+.ob-btn-skip{font-size:11px;color:var(--ink3);background:none;border:none;cursor:pointer;padding:4px 8px;}
+.ob-btn-next{background:var(--near-black);color:var(--cream);border:none;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--ff);}
+.ob-btn-next:hover{background:var(--olive);}
 
 /* ── Call Sheet fill panel ── */
 .cs-fill-panel{background:var(--bg2);border:1px solid var(--border);border-radius:10px;margin-bottom:10px;overflow:hidden;}
@@ -1160,6 +1222,7 @@ details.cs-fill-panel:not([open]) .cs-fill-summary::after{content:"▼";}
     <div class="sb-item has-tip" onclick="navP('moodboard')"><span class="sb-icon">⊞</span>لوحة المرجعيات<span class="tip">صور وروابط إلهام المشروع البصري</span></div>
     <div class="sb-item has-tip" onclick="navP('breakdown')"><span class="sb-icon">⊡</span>شيتات التفكيك<span class="tip">الإكسسوارات والملابس والمعدات لكل مشهد</span></div>
     <div class="sb-item" onclick="navP('contacts')"><span class="sb-icon">◍</span>دليل الاتصال</div>
+    <div class="sb-item" onclick="navP('contact-book')"><span class="sb-icon">📒</span>دفتر جهات الاتصال</div>
     <div class="sb-item has-tip" onclick="navP('script')"><span class="sb-icon">≡</span>السكريبت<span class="tip">نص التصوير وترتيب الفقرات</span></div>
     <div class="sb-item" onclick="navP('equipment')"><span class="sb-icon">◫</span>المعدات</div>
     <div class="sb-item" onclick="navP('calendar')"><span class="sb-icon">◷</span>التقويم الإنتاجي</div>
@@ -1177,8 +1240,53 @@ details.cs-fill-panel:not([open]) .cs-fill-summary::after{content:"▼";}
         <button class="sb-tool" onclick="importJSON()" title="استيراد JSON">⬆</button>
       </div>
       <input type="file" id="json-import-input" accept=".json" onchange="handleJSONImport(this)"/>
+  <input type="file" id="all-projects-import-input" accept=".json" onchange="handleAllProjectsImport(this)" style="display:none;"/>
     </div>
   </aside>
+
+  <!-- ═══ ONBOARDING MODAL ═══ -->
+  <div class="ob-overlay" id="ob-overlay" style="display:none;">
+    <div class="ob-modal">
+      <div class="ob-header">
+        <div class="ob-logo">🎬</div>
+        <div class="ob-title">ShootPlan Pro</div>
+        <div class="ob-sub">خطط تصويرك الاحترافي في دقائق</div>
+      </div>
+      <div class="ob-steps">
+        <!-- Step 1 -->
+        <div class="ob-step ob-active" id="ob-s1">
+          <div class="ob-step-num">الخطوة 1 من 3</div>
+          <div class="ob-step-title">ما اسم مشروعك؟</div>
+          <div class="ob-step-desc">أعطِ مشروعك اسماً واضحاً — مثل "حملة رمضان" أو "إطلاق منتج Q2"</div>
+          <input class="ob-input" id="ob-name" placeholder="مثال: حملة العلامة — صيف 2025" dir="rtl"/>
+        </div>
+        <!-- Step 2 -->
+        <div class="ob-step" id="ob-s2">
+          <div class="ob-step-num">الخطوة 2 من 3</div>
+          <div class="ob-step-title">متى يوم التصوير؟</div>
+          <div class="ob-step-desc">حدّد تاريخ التصوير الرئيسي وسيقوم النظام بجلب توقعات الطقس تلقائياً</div>
+          <input class="ob-input" id="ob-date" type="date"/>
+          <input class="ob-input" id="ob-city" placeholder="المدينة — مثال: الرياض" dir="rtl" style="margin-top:4px;"/>
+        </div>
+        <!-- Step 3 -->
+        <div class="ob-step" id="ob-s3">
+          <div class="ob-step-num">الخطوة 3 من 3</div>
+          <div class="ob-step-title">ما أول مشهد تريد تصويره؟</div>
+          <div class="ob-step-desc">أضف لقطتك الأولى — يمكنك إضافة المزيد لاحقاً</div>
+          <input class="ob-input" id="ob-scene1" placeholder="مثال: لقطة واسعة للمنتج على الطاولة" dir="rtl"/>
+        </div>
+      </div>
+      <div class="ob-footer">
+        <div class="ob-dots">
+          <div class="ob-dot ob-on" id="ob-d1"></div>
+          <div class="ob-dot" id="ob-d2"></div>
+          <div class="ob-dot" id="ob-d3"></div>
+        </div>
+        <button class="ob-btn-skip" onclick="skipOnboarding()">تخطي</button>
+        <button class="ob-btn-next" id="ob-next-btn" onclick="obNext()">التالي ←</button>
+      </div>
+    </div>
+  </div>
 
   <main class="content">
 
@@ -1281,9 +1389,50 @@ details.cs-fill-panel:not([open]) .cs-fill-summary::after{content:"▼";}
       <div class="ph-left"><div class="page-title">المشاريع</div><div class="page-sub">كل مشاريعك المحفوظة</div></div>
       <div class="ph-right">
         <button class="btn btn-a btn-sm" onclick="createNewProjectFromManager()">+ مشروع جديد</button>
+        <button class="btn btn-sm" onclick="exportAllProjects()" title="تصدير كل المشاريع كـ JSON">⬇ نسخ احتياطي</button>
+        <button class="btn btn-sm" onclick="document.getElementById('all-projects-import-input').click()" title="استيراد نسخة احتياطية">⬆ استيراد</button>
       </div>
     </div>
     <div id="projects-manager-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:4px;"></div>
+  </div>
+
+  <!-- GLOBAL CONTACT BOOK -->
+  <div class="page" id="page-contact-book">
+    <div class="page-header">
+      <div class="ph-left"><div class="page-title">📒 دفتر جهات الاتصال</div><div class="page-sub">جهات الاتصال المشتركة عبر كل المشاريع — تُقترح تلقائياً عند إضافة فريق</div></div>
+      <div class="ph-right"><button class="btn btn-a btn-sm" onclick="openAddGlobalContact()">+ إضافة جهة</button></div>
+    </div>
+    <div class="fr" style="gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+      <input class="fi" id="gc-search" placeholder="بحث بالاسم أو الدور..." oninput="renderGlobalContacts(this.value)" style="flex:1;min-width:200px;"/>
+      <select class="fs" id="gc-filter-role" onchange="renderGlobalContacts(document.getElementById('gc-search').value)" style="width:150px;">
+        <option value="">كل الأدوار</option>
+        <option>مخرج</option><option>مدير تصوير</option><option>مصوّر</option>
+        <option>مهندس صوت</option><option>مدير إنتاج</option><option>مساعد مخرج</option>
+        <option>مسؤول الإضاءة</option><option>مونتاج</option><option>كولورست</option>
+      </select>
+    </div>
+    <div id="gc-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;"></div>
+    <!-- Add/Edit modal -->
+    <div id="gc-modal" style="display:none;position:fixed;inset:0;background:rgba(23,23,23,.7);z-index:2000;align-items:center;justify-content:center;padding:20px;">
+      <div style="background:var(--bg);border-radius:14px;width:100%;max-width:420px;padding:24px;">
+        <div style="font-size:15px;font-weight:700;margin-bottom:16px;">إضافة / تعديل جهة اتصال</div>
+        <div class="fr fsr" style="gap:8px;">
+          <div><label class="fl">الاسم</label><input class="fi" id="gc-inp-name" placeholder="اسم الشخص"/></div>
+          <div><label class="fl">الدور</label><input class="fi" id="gc-inp-role" placeholder="مثال: مدير تصوير"/></div>
+        </div>
+        <div class="fr fsr" style="gap:8px;margin-top:8px;">
+          <div><label class="fl">الهاتف</label><input class="fi" id="gc-inp-phone" placeholder="+966 5x xxx xxxx"/></div>
+          <div><label class="fl">البريد</label><input class="fi" id="gc-inp-email" placeholder="email@domain.com"/></div>
+        </div>
+        <div style="margin-top:8px;"><label class="fl">الشركة / الوكالة</label><input class="fi" id="gc-inp-company" placeholder="اختياري"/></div>
+        <div style="margin-top:8px;"><label class="fl">ملاحظات</label><input class="fi" id="gc-inp-notes" placeholder="تخصصات، معدات خاصة..."/></div>
+        <input type="hidden" id="gc-inp-id"/>
+        <div style="display:flex;gap:8px;margin-top:16px;justify-content:flex-end;">
+          <button class="btn btn-sm" onclick="document.getElementById('gc-modal').style.display='none'">إلغاء</button>
+          <button class="btn btn-a btn-sm" onclick="saveGlobalContact()">حفظ</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ALL SHOOTS -->
@@ -1360,6 +1509,18 @@ details.cs-fill-panel:not([open]) .cs-fill-summary::after{content:"▼";}
   <!-- SHOT LIST -->
   <div class="page" id="page-shotlist">
     <div class="page-header"><div class="ph-left"><div class="page-title">قائمة اللقطات</div></div><div class="ph-right"><button class="btn btn-sm" onclick="filterScenes('must')">الأساسية فقط</button><button class="btn btn-sm" onclick="filterScenes('all')">الكل</button></div></div>
+    <details class="import-text-panel">
+      <summary class="import-text-summary">📋 استيراد مشاهد من نص — الصق قائمة مشاهدك دفعة واحدة</summary>
+      <div class="import-text-body">
+        <div style="font-size:11px;color:var(--ink3);margin-bottom:8px;">ضع كل مشهد في سطر منفصل. سيتم إنشاء بطاقة لكل سطر تلقائياً.</div>
+        <textarea class="import-text-ta" id="scene-import-ta" placeholder="لقطة واسعة للمنتج على الطاولة&#10;مقابلة المؤسس — خلفية بيضاء&#10;B-roll: يد تفتح العبوة&#10;Drone: خارج المقر&#10;لقطة مقربة على التفاصيل"></textarea>
+        <div style="display:flex;gap:8px;margin-top:8px;align-items:center;">
+          <button class="btn btn-a btn-sm" onclick="importScenesFromText()">⬇ استيراد المشاهد</button>
+          <select class="fs" id="scene-import-priority" style="width:120px;font-size:11px;"><option value="std">أولوية عادية</option><option value="must">أساسي</option><option value="nice">إذا أمكن</option></select>
+          <span id="scene-import-result" style="font-size:11px;color:var(--ink3);"></span>
+        </div>
+      </div>
+    </details>
     <div class="section-note"><span class="sn-label">ملاحظات</span><textarea class="sn-ta" id="note-shotlist" placeholder="ملاحظات أولويات اللقطات..."></textarea></div>
     <div class="filter-bar">
       <input class="search-input" id="scene-search" placeholder="بحث في المشاهد... (⌘K)" oninput="filterScenesSearch(this.value)"/>
@@ -1484,7 +1645,8 @@ details.cs-fill-panel:not([open]) .cs-fill-summary::after{content:"▼";}
     </div>
 
     <!-- ── QUICK FILL (call-sheet specific fields) ── -->
-    <details class="cs-fill-panel" id="cs-fill-panel" open>
+    <div id="cs-weather-widget" style="margin-bottom:8px;"></div>
+<details class="cs-fill-panel" id="cs-fill-panel" open>
       <summary class="cs-fill-summary">
         <span>✏️ تعبئة الكول شيت</span>
         <span class="cs-fill-hint" style="font-size:10px;color:var(--ink3);margin-right:auto;margin-left:8px;">اضغط للطي</span>
@@ -1692,6 +1854,47 @@ function startWithExample(){
 // CONFIRM DELETE / IMPORT HELPERS
 // ═════════════════════════════════════════════════
 function confirmDelete(msg, cb){ if(window.confirm(msg)) cb(); }
+
+function exportAllProjects(){
+  // Save current state first
+  saveCurrentProject && saveCurrentProject();
+  const blob=new Blob([JSON.stringify({version:2,exportedAt:new Date().toISOString(),projects:projects},null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='shootplan-all-projects-'+new Date().toISOString().split('T')[0]+'.json';
+  a.click();
+  showToast(`تم تصدير ${projects.length} مشروع ✓`);
+}
+
+function handleAllProjectsImport(input){
+  const f=input.files[0]; if(!f) return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    try{
+      const data=JSON.parse(ev.target.result);
+      const imported=data.version===2?data.projects:data; // support old format
+      if(!Array.isArray(imported)) throw new Error('Invalid format');
+      let added=0, skipped=0;
+      imported.forEach(p=>{
+        if(!p.id||!p.name) return;
+        const exists=projects.find(ex=>ex.id===p.id);
+        if(exists){
+          // Merge: update if imported is newer
+          if((p.updatedAt||0)>(exists.updatedAt||0)){
+            Object.assign(exists, p); skipped++;
+          } else skipped++;
+        } else {
+          projects.push(p); added++;
+        }
+      });
+      saveProjects();
+      renderProjectsPage();
+      showToast(`تم استيراد ${added} مشروع جديد، ${skipped} مُدمج ✓`);
+    }catch(err){ showToast('خطأ في قراءة الملف — تأكد من صحة النسخة الاحتياطية'); }
+  };
+  reader.readAsText(f);
+  input.value='';
+}
 
 function exportJSON(){
   const name = (document.getElementById('s-name')||{}).value || 'shootplan';
@@ -2293,12 +2496,13 @@ function navP(id){
   if(id==='dashboard') refreshDashboard();
   if(id==='projects') renderProjectsPage();
   if(id==='allshoots') renderAllShoots();
-  if(id==='callsheet'){ loadCsFillFromS(); buildCallSheetDoc(); }
+  if(id==='callsheet'){ loadCsFillFromS(); buildCallSheetDoc(); fetchWeather('cs-weather-widget'); }
   if(id==='stripboard') renderStripboard();
   if(id==='breakdown') renderBreakdown();
   if(id==='schedule') rebuildSchedule();
   if(id==='callsheet') buildCallSheetDoc();
   if(id==='compare') renderCompare();
+  if(id==='contact-book') renderGlobalContacts();
   if(id==='shotlist'){ updateSceneSelects(); renderScenes(); }
 }
 
@@ -2313,26 +2517,41 @@ function renderApproval(){ const el=document.getElementById('approval-bar'); if(
 // ════════════════════════════════════════════════════
 // WEATHER
 // ════════════════════════════════════════════════════
-async function fetchWeather(){
+// Global weather cache
+let _wxCache = {};
+
+async function fetchWeather(targetElId){
   const city=V('s-city')||'Riyadh'; const date=V('s-date');
-  const el=document.getElementById('weather-area'); if(!el) return;
-  el.innerHTML=`<div style="font-size:11px;color:var(--ink3);padding:6px 0;">Fetching weather for ${city}...</div>`;
+  const elIds = targetElId ? [targetElId] : ['weather-area','cs-weather-widget'];
+  const els = elIds.map(id=>document.getElementById(id)).filter(Boolean);
+  if(!els.length) return;
+  const loadHtml=`<div style="font-size:11px;color:var(--ink3);padding:6px 0;">⏳ جاري جلب الطقس لـ ${city}...</div>`;
+  els.forEach(el=>el.innerHTML=loadHtml);
   try{
     const g=await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1`);
     const gd=await g.json();
-    if(!gd.results?.[0]){ el.innerHTML=''; return; }
+    if(!gd.results?.[0]){ els.forEach(el=>el.innerHTML=''); return; }
     const {latitude:lat,longitude:lon}=gd.results[0];
-    const w=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_probability_max&timezone=auto&forecast_days=16`);
+    const w=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_probability_max,sunrise,sunset&timezone=auto&forecast_days=16`);
     const wd=await w.json();
     const today=date||new Date().toISOString().split('T')[0];
     const idx=wd.daily.time.indexOf(today); const i=idx>=0?idx:0;
     const tMax=Math.round(wd.daily.temperature_2m_max[i]),tMin=Math.round(wd.daily.temperature_2m_min[i]);
     const code=wd.daily.weathercode[i],rain=wd.daily.precipitation_probability_max[i];
+    const riseRaw=wd.daily.sunrise?.[i]||''; const setRaw=wd.daily.sunset?.[i]||'';
+    const fmtSun=s=>s?s.split('T')[1]?.slice(0,5)||'':'-';
+    const rise=fmtSun(riseRaw), sunset=fmtSun(setRaw);
+    // Store globally for call sheet
+    _wxCache={tMax,tMin,code,rain,rise,sunset,city,date:today};
     const icons={0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',51:'🌦',61:'🌧',80:'🌦',95:'⛈'};
-    const descs={0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',51:'Light drizzle',61:'Rainy',80:'Showers',95:'Thunderstorm'};
+    const descs={0:'صافٍ',1:'صافٍ غالباً',2:'غائم جزئياً',3:'غائم',45:'ضبابي',51:'رذاذ خفيف',61:'ممطر',80:'زخات مطر',95:'عاصفة رعدية'};
     const col=rain>50?'#A32D2D,#633806':'#0F6E56,#185FA5';
-    el.innerHTML=`<div class="wx-box" style="background:linear-gradient(135deg,${col});"><span class="wx-icon">${icons[code]||'🌡'}</span><div><div class="wx-temp">${tMax}°C</div><div class="wx-desc">${descs[code]||'Variable'} · Low ${tMin}°C</div><div class="wx-meta"><span>📍${city}</span><span>🌧 Rain: ${rain}%</span><span>📅${today}</span></div>${rain>50?'<div class="wx-warn">⚠️ High rain risk — check contingency plan</div>':''}</div></div>`;
-  }catch(e){ el.innerHTML=''; }
+    const sunHtml=rise?`<span>🌅 ${rise}</span><span>🌇 ${sunset}</span>`:'';
+    const wxHtml=`<div class="wx-box" style="background:linear-gradient(135deg,${col});"><span class="wx-icon" style="font-size:28px;">${icons[code]||'🌡'}</span><div style="flex:1;"><div class="wx-temp">${tMax}°C <span style="font-size:13px;font-weight:400;">/ ${tMin}°C</span></div><div class="wx-desc">${descs[code]||'متغير'} &nbsp;·&nbsp; 🌧 ${rain}%</div><div class="wx-meta">${sunHtml}<span>📍 ${city}</span><span>📅 ${today}</span></div>${rain>50?'<div class="wx-warn">⚠️ احتمال أمطار مرتفع — راجع خطة الطقس</div>':''}</div></div>`;
+    els.forEach(el=>el.innerHTML=wxHtml);
+    // Refresh call sheet if visible
+    if(document.getElementById('page-callsheet')?.classList.contains('active')) buildCallSheetDoc();
+  }catch(e){ els.forEach(el=>el.innerHTML=''); }
 }
 
 // ════════════════════════════════════════════════════
@@ -2614,6 +2833,29 @@ function addScene(){
   document.getElementById('sc-name').value=''; document.getElementById('sc-notes').value='';
   renderScenes(); renderStripboard(); updateSidebar(); refreshDashboard(); autoSave(); showToast('تمت إضافة المشهد');
 }
+function importScenesFromText(){
+  const ta=document.getElementById('scene-import-ta'); if(!ta) return;
+  const pri=document.getElementById('scene-import-priority')?.value||'std';
+  const lines=ta.value.split('
+').map(l=>l.trim()).filter(l=>l.length>0);
+  if(!lines.length){ showToast('لم يُعثر على مشاهد في النص'); return; }
+  const base=S.scenes.length;
+  lines.forEach((name,i)=>{
+    // Auto-detect shot type from keywords
+    let type='B-roll';
+    if(/واسع|wide/i.test(name)) type='لقطة واسعة';
+    else if(/مقرب|close|macro/i.test(name)) type='لقطة مقربة';
+    else if(/مقابل|interview/i.test(name)) type='إعداد مقابلة';
+    else if(/drone|مسيّر|جوي/i.test(name)) type='مسيّرة / جوية';
+    else if(/product|منتج/i.test(name)) type='لقطة المنتج الرئيسية';
+    else if(/وجه|متحدث|speaker/i.test(name)) type='وجه متحدث';
+    S.scenes.push({name,type,dur:20,lens:'—',move:'ثابت',priority:pri,locIdx:'',talentIds:[],day:1,notes:'',sceneNum:base+i+1,shootOrder:base+i+1,status:'pending'});
+  });
+  renderScenes(); renderStripboard(); updateSidebar(); refreshDashboard(); autoSave();
+  document.getElementById('scene-import-result').textContent=`✓ تمت إضافة ${lines.length} مشهد`;
+  ta.value='';
+  showToast(`تمت إضافة ${lines.length} مشاهد ✓`);
+}
 function deleteScene(i){ confirmDelete("حذف هذا المشهد؟",()=>{ S.scenes.splice(i,1); S.scenes.forEach((s,j)=>s.sceneNum=j+1); renderScenes(); renderStripboard(); refreshDashboard(); autoSave(); }); }
 function duplicateScene(i){ const c={...S.scenes[i],name:S.scenes[i].name+' (copy)',sceneNum:S.scenes.length+1,status:'pending'}; S.scenes.push(c); renderScenes(); renderStripboard(); autoSave(); showToast('تم التكرار'); }
 function cycleStatus(i){ const cy={'pending':'inprogress','inprogress':'done','done':'ng','ng':'pending'}; S.scenes[i].status=cy[S.scenes[i].status||'pending']; renderScenes(); autoSave(); }
@@ -2724,7 +2966,11 @@ function renderLocations(){ const el=document.getElementById('loc-list-el'); if(
 // PLANNER: CONTACTS
 // ════════════════════════════════════════════════════
 const AVC=['#FAB617','#59561B','#E30614','#C8910F','#7A7620','#A8040F'];
-function addContact(){ const n=V('con-name').trim(); if(!n) return; S.contacts.push({name:n,role:V('con-role'),phone:V('con-phone'),email:V('con-email'),company:V('con-company'),calltime:V('con-call')}); ['con-name','con-role','con-phone','con-email','con-company'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';}); renderContacts(); autoSave(); }
+function addContact(){ const n=V('con-name').trim(); if(!n) return;
+  // Also save to global book if not already there
+  const alreadyInBook=globalContacts.some(c=>c.name.toLowerCase()===n.toLowerCase());
+  if(!alreadyInBook&&n.length>2){ globalContacts.push({name:n,role:V('con-role'),phone:V('con-phone'),email:V('con-email'),company:V('con-company'),notes:''}); saveGlobalContacts(); }
+  S.contacts.push({name:n,role:V('con-role'),phone:V('con-phone'),email:V('con-email'),company:V('con-company'),calltime:V('con-call')}); ['con-name','con-role','con-phone','con-email','con-company'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';}); renderContacts(); autoSave(); }
 function deleteContact(i){ confirmDelete("حذف جهة الاتصال؟",()=>{ S.contacts.splice(i,1); renderContacts(); autoSave(); }); }
 function renderContacts(){ const el=document.getElementById('contact-grid-el'); if(!el) return; el.innerHTML=S.contacts.map((c,i)=>{ const ini=c.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2); const col=AVC[i%AVC.length]; return`<div class="contact-card"><div class="contact-av" style="background:${col}20;color:${col};">${ini}</div><div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:500;color:var(--ink);">${c.name}</div><div style="font-size:11px;color:var(--ink3);line-height:1.6;">${c.role}${c.company?' · '+c.company:''}<br/>${c.phone?`<span style="color:var(--b600);">${c.phone}</span>`:''}${c.email?' · '+c.email:''}<br/>Call: ${c.calltime}</div></div><button class="btn-del" onclick="deleteContact(${i})">✕</button></div>`; }).join('')||'<div class="empty">No contacts yet</div>'; }
 function copyContacts(){ navigator.clipboard.writeText(S.contacts.map(c=>`${c.name} | ${c.role} | ${c.phone||'—'} | ${c.email||'—'} | Call: ${c.calltime}`).join('\n')).then(()=>showToast('تم النسخ!')); }
@@ -2871,10 +3117,12 @@ function rebuildSchedule(){
 function buildCallSheetDoc(){
   const el=document.getElementById('cs-doc-el'); if(!el) return;
   const name=V('s-name')||'Untitled Project'; const client=V('s-client'); const date=V('s-date'); const ct=V('s-calltime')||'07:00'; const loc=S.locations[0]?.name||'TBD'; const dir=V('s-director');
+  const wx=_wxCache&&_wxCache.date===date?_wxCache:null;
+  const wxBar=wx?`<div style="background:linear-gradient(135deg,${wx.rain>50?'#A32D2D,#633806':'#0F6E56,#185FA5'});color:#fff;border-radius:8px;padding:8px 14px;margin-bottom:10px;font-size:12px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;"><span style="font-size:22px;">${{0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',51:'🌦',61:'🌧',80:'🌦',95:'⛈'}[wx.code]||'🌡'}</span><strong>${wx.tMax}°C / ${wx.tMin}°C</strong><span>🌧 ${wx.rain}%</span>${wx.rise?`<span>🌅 ${wx.rise}</span><span>🌇 ${wx.sunset}</span>`:''}<span>📍 ${wx.city}</span></div>`:''  ;
   const est=S.budget.rows.reduce((a,r)=>a+(parseFloat(r.est)||0),0);
   const must=S.scenes.filter(s=>s.priority==='must'); const std=S.scenes.filter(s=>s.priority==='std'); const nice=S.scenes.filter(s=>s.priority==='nice');
   const shotRow=s=>`<div class="cs-shot-row"><span style="min-width:18px;color:var(--ink3);font-size:10px;">${s.sceneNum}</span><span style="flex:1;">${s.name}</span><span style="color:var(--ink3);font-size:10px;">${s.type} · ${s.move} · ${s.dur}m</span>${s.priority==='must'?'<span class="tag tag-must" style="font-size:9px;margin-left:4px;">Must</span>':''}</div>`;
-  el.innerHTML=`
+  el.innerHTML=wxBar+`
     <div class="cs-hdr"><div class="cs-title">${name.toUpperCase()}</div><div class="cs-meta-row"><span>📅 ${date||'TBD'}</span><span>⏰ Call: ${ct}</span><span>📍 ${loc}</span>${dir?`<span>🎬 ${dir}</span>`:''}${client?`<span>🏢 ${client}</span>`:''}</div></div>
     <div class="cs-sec-title">Crew (${S.crew.reduce((a,c)=>a+(c.count||1),0)})</div><div style="font-size:12px;color:var(--ink2);">${S.crew.map(c=>(c.count||1)>1?c.count+'× '+c.role:c.role).join(' · ')||'—'}</div>
     <div class="cs-sec-title">Talent call times</div>${S.talent.length?`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;">${S.talent.map(t=>`<div style="background:var(--bg2);border-radius:6px;padding:6px 8px;font-size:11px;"><div style="font-weight:600;">${t.name}</div><div style="color:var(--ink3);">${t.role}<br/>MU: ${t.mu} · ${t.call}</div></div>`).join('')}</div>`:'<div class="empty">لم يُضف ممثلون</div>'}
@@ -3086,31 +3334,48 @@ function exportPDF(){
 }
 
 // ─── SHARE VIA LINK ───
+// ─── SHARE: Full-project URL (uses sessionStorage for large payloads) ───
 function buildShareURL(){
+  saveCurrentProject && saveCurrentProject();
+  const cur=projects.find(p=>p.id===currentProjectId);
   const data={
+    v:2,
     n:V('s-name'),cl:V('s-client'),t:V('s-type'),d:V('s-date'),ct:V('s-calltime'),
-    ci:V('s-city'),br:V('s-brief').slice(0,200),
-    sc:S.scenes.map(s=>({n:s.name,t:s.type,d:s.dur,p:s.priority,day:s.day})),
-    lo:S.locations.map(l=>({n:l.name,t:l.type,p:l.permit})),
-    cr:S.crew.slice(0,10).map(c=>({r:c.role,n:c.count||1})),
-    ta:S.talent.map(t=>({n:t.name,r:t.role,c:t.call})),
-    eq:S.equip.slice(0,10).map(e=>({i:e.item,q:e.qty||1})),
+    ci:V('s-city'),br:V('s-brief').slice(0,300),tz:V('s-tz'),dir:V('s-director'),
+    sc:S.scenes.map(s=>({n:s.name,t:s.type,d:s.dur,l:s.lens,m:s.move,p:s.priority,day:s.day,no:s.notes})),
+    lo:S.locations.map(l=>({n:l.name,a:l.addr,t:l.type,pk:l.parking,pm:l.permit,bk:l.backup})),
+    cr:S.crew.map(c=>({r:c.role,n:c.count||1})),
+    ta:S.talent.map(t=>({n:t.name,r:t.role,mu:t.mu,c:t.call,w:t.wardrobe})),
+    eq:S.equip.map(e=>({i:e.item,q:e.qty||1})),
+    dl:(S.deliverables||[]).map(d=>({t:d.type,q:d.qty||1})),
   };
   try{
     const json=JSON.stringify(data);
     const b64=btoa(unescape(encodeURIComponent(json)));
-    // Truncate if too long — URL limit ~2000 chars
-    const compressed=b64.length>1400?b64.slice(0,1400)+'…':b64;
-    return window.location.href.split('#')[0]+'#p='+compressed;
+    const base=window.location.href.split('#')[0];
+    // If under 3000 chars, embed in URL; otherwise use #view= with sessionStorage key
+    if(b64.length<=3000){
+      return base+'#p='+b64;
+    } else {
+      const key='spp_share_'+Date.now();
+      try{ sessionStorage.setItem(key,json); }catch(e){}
+      return base+'#p='+b64.slice(0,3000)+'&k='+key;
+    }
   }catch(e){ return window.location.href; }
 }
 function loadFromURL(){
   try{
     const hash=window.location.hash;
     if(!hash.startsWith('#p=')) return false;
-    const b64=hash.slice(3);
-    if(b64.endsWith('…')) return false; // truncated
-    const json=decodeURIComponent(escape(atob(b64)));
+    const parts=hash.slice(3).split('&k=');
+    let json;
+    if(parts[1]){
+      // Try sessionStorage first
+      try{ json=sessionStorage.getItem(parts[1]); }catch(e){}
+    }
+    if(!json){
+      json=decodeURIComponent(escape(atob(parts[0])));
+    }
     const d=JSON.parse(json);
     if(d.n) document.getElementById('s-name').value=d.n;
     if(d.cl) document.getElementById('s-client').value=d.cl;
@@ -3118,11 +3383,18 @@ function loadFromURL(){
     if(d.ct) document.getElementById('s-calltime').value=d.ct;
     if(d.ci) document.getElementById('s-city').value=d.ci;
     if(d.br) document.getElementById('s-brief').value=d.br;
-    if(d.sc?.length) S.scenes=d.sc.map((s,i)=>({name:s.n,type:s.t,dur:s.d||20,lens:'—',move:'ثابت',priority:s.p||'std',locIdx:'',day:s.day||1,notes:'',sceneNum:i+1,shootOrder:i+1,status:'pending'}));
-    if(d.lo?.length) S.locations=d.lo.map(l=>({name:l.n,addr:'',type:l.t||'داخلي – استوديو',travel:0,parking:'',permit:l.p||'لا يلزم تصريح',backup:''}));
+    if(d.dir){ const e=document.getElementById('s-director'); if(e) e.value=d.dir; }
+    if(d.sc?.length) S.scenes=d.sc.map((s,i)=>({name:s.n,type:s.t||'B-roll',dur:s.d||20,lens:s.l||'—',move:s.m||'ثابت',priority:s.p||'std',locIdx:'',talentIds:[],day:s.day||1,notes:s.no||'',sceneNum:i+1,shootOrder:i+1,status:'pending'}));
+    if(d.lo?.length) S.locations=d.lo.map(l=>({name:l.n,addr:l.a||'',type:l.t||'داخلي – استوديو',travel:0,parking:l.pk||'',permit:l.pm||'لا يلزم تصريح',backup:l.bk||''}));
     if(d.cr?.length) S.crew=d.cr.map(c=>typeof c==='string'?{role:c,count:1}:{role:c.r||c,count:c.n||1});
-    if(d.ta?.length) S.talent=d.ta.map(t=>({name:t.n,role:t.r||'',mu:'07:00',call:t.c||'07:30',nda:'غير مطلوب',wardrobe:'',notes:''}));
+    if(d.ta?.length) S.talent=d.ta.map(t=>({name:t.n,role:t.r||'',mu:t.mu||'07:00',call:t.c||'07:30',nda:'غير مطلوب',wardrobe:t.w||'',notes:''}));
     if(d.eq?.length) S.equip=d.eq.map(e=>typeof e==='string'?{item:e,qty:1}:{item:e.i||e,qty:e.q||1});
+    if(d.dl?.length) S.deliverables=d.dl.map(x=>({type:x.t,qty:x.q||1}));
+    // Show read-only banner
+    const banner=document.createElement('div');
+    banner.innerHTML='👁️ وضع العرض فقط — هذا الرابط مشارَك معك <button onclick="window.location.hash=\'\'" style="margin-right:12px;background:white;color:var(--near-black);border:none;border-radius:4px;padding:2px 8px;font-size:11px;cursor:pointer;">تعديل</button>';
+    banner.style.cssText='position:fixed;top:0;left:0;right:0;z-index:5000;background:var(--yellow);color:var(--near-black);font-size:12px;font-weight:600;padding:7px 16px;display:flex;align-items:center;gap:8px;justify-content:center;';
+    document.body.prepend(banner);
     return true;
   }catch(e){ return false; }
 }
@@ -3786,6 +4058,101 @@ setTimeout(()=>{
 // ════════════════════════════════════════════════════
 // PROJECTS MANAGER
 // ════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════
+// GLOBAL CONTACT BOOK
+// ════════════════════════════════════════════════════
+let globalContacts = [];
+try{ globalContacts=JSON.parse(localStorage.getItem('spp_global_contacts')||'[]'); }catch(e){}
+
+function saveGlobalContacts(){ localStorage.setItem('spp_global_contacts',JSON.stringify(globalContacts)); }
+
+function renderGlobalContacts(query=''){
+  const el=document.getElementById('gc-grid'); if(!el) return;
+  const roleFilter=document.getElementById('gc-filter-role')?.value||'';
+  const q=(query||'').trim().toLowerCase();
+  const list=globalContacts.filter(c=>{
+    if(q&&!(c.name+c.role+c.phone+c.company).toLowerCase().includes(q)) return false;
+    if(roleFilter&&c.role!==roleFilter) return false;
+    return true;
+  });
+  if(!list.length){ el.innerHTML='<div class="empty" style="grid-column:1/-1;">لا توجد جهات اتصال بعد — أضف أعضاء فريقك المتكرر</div>'; return; }
+  el.innerHTML=list.map((c,i)=>`<div class="gc-card"><div class="gc-card-name">${c.name}</div><div class="gc-card-role">${c.role||'—'}${c.company?' · '+c.company:''}</div>${c.phone?`<div style="font-size:11px;color:var(--ink3);">📞 ${c.phone}</div>`:''} ${c.email?`<div style="font-size:11px;color:var(--ink3);">✉️ ${c.email}</div>`:''}${c.notes?`<div style="font-size:10px;color:var(--ink3);margin-top:2px;">${c.notes}</div>`:''}<div class="gc-card-actions"><button class="btn btn-sm" style="font-size:10px;" onclick="editGlobalContact(${globalContacts.indexOf(c)})">تعديل</button><button class="btn btn-sm" style="font-size:10px;color:var(--red-dark);" onclick="deleteGlobalContact(${globalContacts.indexOf(c)})">حذف</button><button class="btn btn-a btn-sm" style="font-size:10px;" onclick="addContactToProject(${globalContacts.indexOf(c)})">➕ للمشروع</button></div></div>`).join('');
+}
+
+function openAddGlobalContact(){
+  ['gc-inp-id','gc-inp-name','gc-inp-role','gc-inp-phone','gc-inp-email','gc-inp-company','gc-inp-notes'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  document.getElementById('gc-modal').style.display='flex';
+  setTimeout(()=>document.getElementById('gc-inp-name')?.focus(),100);
+}
+
+function editGlobalContact(idx){
+  const c=globalContacts[idx]; if(!c) return;
+  document.getElementById('gc-inp-id').value=idx;
+  document.getElementById('gc-inp-name').value=c.name||'';
+  document.getElementById('gc-inp-role').value=c.role||'';
+  document.getElementById('gc-inp-phone').value=c.phone||'';
+  document.getElementById('gc-inp-email').value=c.email||'';
+  document.getElementById('gc-inp-company').value=c.company||'';
+  document.getElementById('gc-inp-notes').value=c.notes||'';
+  document.getElementById('gc-modal').style.display='flex';
+}
+
+function saveGlobalContact(){
+  const name=document.getElementById('gc-inp-name')?.value.trim(); if(!name) return;
+  const obj={name,role:document.getElementById('gc-inp-role')?.value.trim()||'',phone:document.getElementById('gc-inp-phone')?.value.trim()||'',email:document.getElementById('gc-inp-email')?.value.trim()||'',company:document.getElementById('gc-inp-company')?.value.trim()||'',notes:document.getElementById('gc-inp-notes')?.value.trim()||''};
+  const id=document.getElementById('gc-inp-id')?.value;
+  if(id!==''&&id!==undefined&&id!==null&&!isNaN(parseInt(id))) globalContacts[parseInt(id)]=obj;
+  else globalContacts.push(obj);
+  saveGlobalContacts();
+  renderGlobalContacts();
+  document.getElementById('gc-modal').style.display='none';
+  showToast('تم الحفظ في دفتر الاتصال ✓');
+}
+
+function deleteGlobalContact(idx){
+  confirmDelete('حذف جهة الاتصال؟',()=>{ globalContacts.splice(idx,1); saveGlobalContacts(); renderGlobalContacts(); });
+}
+
+function addContactToProject(idx){
+  const c=globalContacts[idx]; if(!c) return;
+  S.contacts.push({name:c.name,role:c.role,phone:c.phone,email:c.email,company:c.company,calltime:'',});
+  renderContacts && renderContacts(); autoSave();
+  showToast(c.name+' أُضيف للمشروع الحالي ✓');
+  navP('contacts');
+}
+
+// Autocomplete helper for crew name fields using global contacts
+function showContactAutocomplete(inputEl, role){
+  const q=(inputEl.value||'').trim().toLowerCase();
+  const matches=globalContacts.filter(c=>{
+    if(role&&c.role&&!c.role.toLowerCase().includes(role.toLowerCase())) return false;
+    if(q&&!(c.name+c.role).toLowerCase().includes(q)) return false;
+    return true;
+  }).slice(0,6);
+  let dd=document.getElementById('ac-dd-'+inputEl.id);
+  if(!dd){
+    dd=document.createElement('div'); dd.id='ac-dd-'+inputEl.id;
+    dd.className='ac-dropdown';
+    inputEl.parentElement.style.position='relative';
+    inputEl.parentElement.appendChild(dd);
+  }
+  if(!matches.length){ dd.style.display='none'; return; }
+  dd.innerHTML=matches.map(c=>`<div class="ac-item" onmousedown="fillContactAc(event,'${inputEl.id}','${c.name}','${c.phone}')">${c.name} <span style="color:var(--ink3);font-size:10px;">${c.role}</span></div>`).join('');
+  dd.style.display='block';
+}
+function fillContactAc(e, inpId, name, phone){
+  e.preventDefault();
+  const inp=document.getElementById(inpId); if(inp) inp.value=name;
+  const dd=document.getElementById('ac-dd-'+inpId); if(dd) dd.style.display='none';
+  // Try to fill phone if there's a companion phone field
+  if(phone){ const pEl=document.getElementById('con-phone')||document.getElementById('tal-phone'); if(pEl&&!pEl.value) pEl.value=phone; }
+}
+document.addEventListener('click',e=>{ document.querySelectorAll('.ac-dropdown').forEach(dd=>{ if(!dd.contains(e.target)) dd.style.display='none'; }); });
+
+function renderGlobalContactsIfActive(){
+  if(document.getElementById('page-contact-book')?.classList.contains('active')) renderGlobalContacts();
+}
+
 function renderProjectsPage() {
   const grid = document.getElementById('projects-manager-grid');
   if (!grid) return;
@@ -4008,6 +4375,66 @@ function loadCsFillFromS() {
 }
 
 // Will be injected into page-callsheet dynamically
+
+// ─── ONBOARDING ───
+let _obStep = 1;
+function obShow(){
+  if(localStorage.getItem('spp_onboarded')) return;
+  document.getElementById('ob-overlay').style.display='flex';
+  // Pre-fill today's date
+  const d=new Date(); d.setDate(d.getDate()+7);
+  document.getElementById('ob-date').value=d.toISOString().split('T')[0];
+  document.getElementById('ob-city').value='الرياض';
+}
+function obNext(){
+  if(_obStep===1){
+    const n=document.getElementById('ob-name').value.trim();
+    if(n){ const el=document.getElementById('s-name'); if(el) el.value=n; }
+    _obStep=2;
+    document.getElementById('ob-s1').classList.remove('ob-active');
+    document.getElementById('ob-s2').classList.add('ob-active');
+    document.getElementById('ob-d1').classList.remove('ob-on');
+    document.getElementById('ob-d2').classList.add('ob-on');
+  } else if(_obStep===2){
+    const dt=document.getElementById('ob-date').value;
+    const cy=document.getElementById('ob-city').value.trim();
+    if(dt){ const el=document.getElementById('s-date'); if(el) el.value=dt; }
+    if(cy){ const el=document.getElementById('s-city'); if(el) el.value=cy; }
+    _obStep=3;
+    document.getElementById('ob-s2').classList.remove('ob-active');
+    document.getElementById('ob-s3').classList.add('ob-active');
+    document.getElementById('ob-d2').classList.remove('ob-on');
+    document.getElementById('ob-d3').classList.add('ob-on');
+    document.getElementById('ob-next-btn').textContent='ابدأ الآن 🚀';
+  } else {
+    const sc=document.getElementById('ob-scene1').value.trim();
+    if(sc){
+      S.scenes.push({name:sc,type:'لقطة واسعة',dur:20,lens:'—',move:'ثابت',priority:'must',locIdx:'',talentIds:[],day:1,notes:'',sceneNum:1,shootOrder:1,status:'pending'});
+      renderScenes && renderScenes(); renderStripboard && renderStripboard(); updateSidebar && updateSidebar(); refreshDashboard && refreshDashboard();
+    }
+    localStorage.setItem('spp_onboarded','1');
+    const nameVal = document.getElementById('s-name')?.value;
+    if(nameVal){ const cur=projects.find(p=>p.id===currentProjectId); if(cur){ cur.name=nameVal; saveProjects(); renderProjectsPage(); } }
+    autoSave && autoSave();
+    document.getElementById('ob-overlay').style.display='none';
+    if(sc) navP('shotlist'); else navP('setup');
+    showToast('مرحباً بك في ShootPlan Pro! 🎬');
+    fetchWeather && fetchWeather();
+  }
+}
+function skipOnboarding(){
+  localStorage.setItem('spp_onboarded','1');
+  document.getElementById('ob-overlay').style.display='none';
+}
+// Trigger onboarding after DOM ready (delay so app initializes first)
+setTimeout(obShow, 1200);
+
+// ─── SERVICE WORKER REGISTRATION ───
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
 </script>
 
 </body>
