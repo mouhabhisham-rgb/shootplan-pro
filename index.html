@@ -21,21 +21,25 @@ body{font-family:'Noto Naskh Arabic','DM Sans',sans-serif;background:#F3E9DD;col
 #topbar{background:#171717;height:56px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;flex-shrink:0;border-bottom:1px solid rgba(255,255,255,.07)}
 .logo{color:#fff;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;user-select:none;letter-spacing:-.2px}
 .logo-dot{width:8px;height:8px;background:#FAB617;border-radius:50%;flex-shrink:0}
-.topbar-center{flex:1;text-align:center;font-size:13px;color:#555;padding:0 12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.topbar-center .pname{color:#FAB617;font-weight:500}
 .btn-new{background:#FAB617;color:#171717;border:none;border-radius:7px;padding:7px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0;letter-spacing:-.1px}
 .btn-new:hover{background:#ffc030}
 .btn-new:active{opacity:.9}
+
+/* ── PROJECT NAV BAR ── */
+#proj-nav{background:#fff;border-bottom:1px solid rgba(0,0,0,.09);position:sticky;top:56px;z-index:99;display:none}
+.pn-inner{max-width:760px;margin:0 auto;padding:0 20px;display:flex;align-items:center;height:48px;overflow-x:auto;gap:0}
+.pn-back{color:#888;font-size:13px;cursor:pointer;white-space:nowrap;padding-left:14px;border-left:1px solid rgba(0,0,0,.1);margin-left:14px;flex-shrink:0;transition:color .15s}
+.pn-back:hover{color:#FAB617}
+.pn-name{font-size:13px;font-weight:600;color:#171717;white-space:nowrap;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.pn-tabs{display:flex;gap:2px;flex-shrink:0;padding-right:4px}
+.pn-tab{background:transparent;border:none;padding:6px 14px;font-size:13px;color:#888;cursor:pointer;border-radius:6px;font-family:inherit;transition:all .15s;white-space:nowrap}
+.pn-tab:hover{background:rgba(0,0,0,.05);color:#171717}
+.pn-tab.active{background:#171717;color:#FAB617;font-weight:500}
 
 /* ── SCREENS ── */
 .screen{display:none;flex:1;flex-direction:column}
 .screen.active{display:flex}
 .screen-inner{padding:20px;flex:1;max-width:760px;width:100%;margin:0 auto}
-
-/* ── BREADCRUMB ── */
-.breadcrumb{display:flex;align-items:center;gap:5px;font-size:12px;color:#888;margin-bottom:20px;cursor:pointer;user-select:none}
-.bc-link{color:#FAB617}
-.bc-sep{color:#bbb}
 
 /* ── SECTION LABEL ── */
 .slabel{font-size:11px;color:#aaa;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:14px;font-weight:500}
@@ -61,49 +65,19 @@ body{font-family:'Noto Naskh Arabic','DM Sans',sans-serif;background:#F3E9DD;col
 .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:#FAB617;box-shadow:0 0 0 3px rgba(250,182,23,.15)}
 .form-textarea{resize:vertical;min-height:80px;line-height:1.6}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.form-actions{display:flex;gap:10px;margin-top:28px}
-.btn-primary{background:#FAB617;color:#171717;border:none;border-radius:8px;padding:11px 20px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;flex:1}
-.btn-primary:active{opacity:.85}
 .btn-ghost{background:transparent;color:#888;border:.5px solid rgba(0,0,0,.2);border-radius:8px;padding:11px 16px;font-size:14px;cursor:pointer;font-family:inherit}
 .btn-ghost:hover{background:rgba(0,0,0,.05)}
 .wx-fetch-row{display:flex;align-items:center;gap:12px;margin:4px 0 16px}
 .wx-strip{display:flex;gap:16px;align-items:center;font-size:13px;color:#444;background:rgba(250,182,23,.1);border:.5px solid rgba(250,182,23,.35);border-radius:8px;padding:7px 14px}
 .wx-strip span{white-space:nowrap}
 
-/* ── PREFILL NOTE ── */
-.prefill-note{background:rgba(250,182,23,.1);border:.5px solid rgba(250,182,23,.4);border-radius:8px;padding:10px 14px;font-size:12px;color:#7a5800;margin-bottom:20px;line-height:1.6}
-
-/* ── HUB ── */
-.hub-header{margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid rgba(0,0,0,.08)}
-.hub-title{font-size:24px;font-weight:600;margin-bottom:6px;letter-spacing:-.3px}
-.hub-meta{font-size:13px;color:#888;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.hub-meta-sep{color:#ccc}
-.hub-progress{margin-top:14px;display:flex;align-items:center;gap:10px}
-.hub-progress-bar{flex:1;height:4px;background:rgba(0,0,0,.08);border-radius:2px;overflow:hidden}
-.hub-progress-fill{height:100%;background:#FAB617;border-radius:2px;transition:width .4s}
-.hub-progress-label{font-size:11px;color:#888;white-space:nowrap}
-.doc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.doc-card{background:#fff;border-radius:12px;border:1px solid rgba(0,0,0,.07);padding:18px;cursor:pointer;transition:transform .12s,box-shadow .15s;box-shadow:0 1px 4px rgba(0,0,0,.06);border-top-width:3px}
-.doc-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
-.doc-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-.doc-icon svg{width:18px;height:18px}
-.doc-name{font-size:14px;font-weight:600;margin-bottom:4px;letter-spacing:-.1px}
-.doc-desc{font-size:12px;color:#999;line-height:1.45;margin-bottom:14px}
-.doc-status{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500}
-.sdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.s-empty .sdot{background:#d5d5d5} .s-empty{color:#bbb}
-.s-done .sdot{background:#16a34a} .s-done{color:#16a34a}
-
 /* ── DOC SCREEN HEADER ── */
-.doc-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:16px;border-bottom:.5px solid rgba(0,0,0,.1)}
+.doc-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-bottom:16px;border-bottom:.5px solid rgba(0,0,0,.1)}
+.doc-topbar-left{display:flex;flex-direction:column;gap:2px}
 .doc-topbar-title{font-size:18px;font-weight:500}
+.autosave-hint{font-size:11px;color:#10B981;height:16px;transition:opacity .3s}
 .btn-export{background:#171717;color:#FAB617;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit}
 .btn-export:active{opacity:.85}
-
-/* ── DOC TABS ── */
-.doc-tabs{display:flex;gap:2px;background:rgba(0,0,0,.06);border-radius:8px;padding:3px;margin-bottom:20px}
-.doc-tab{flex:1;text-align:center;padding:7px;font-size:13px;color:#888;cursor:pointer;border-radius:6px;transition:all .15s;font-family:inherit;border:none;background:transparent}
-.doc-tab.active{background:#171717;color:#FAB617;font-weight:500}
 
 /* ── TABLES ── */
 .tbl-wrap{background:#fff;border-radius:10px;border:.5px solid rgba(0,0,0,.1);overflow:hidden;margin-bottom:14px}
@@ -118,23 +92,6 @@ body{font-family:'Noto Naskh Arabic','DM Sans',sans-serif;background:#F3E9DD;col
 .tbl-input{background:transparent;border:none;outline:none;font-family:inherit;font-size:13px;color:#171717;width:100%;min-width:60px}
 .tbl-input:focus{background:rgba(250,182,23,.1);border-radius:4px;padding:2px 4px}
 .tbl-del{cursor:pointer;color:#A32D2D;font-size:18px;line-height:1;padding:0 4px}
-
-/* ── VIEW CARD ── */
-.view-card{background:#fff;border-radius:12px;border:.5px solid rgba(0,0,0,.1);overflow:hidden;margin-bottom:14px}
-.view-card-head{background:#171717;padding:14px 18px}
-.view-card-head-title{color:#FAB617;font-size:16px;font-weight:500}
-.view-card-head-sub{color:#888;font-size:12px;margin-top:2px}
-.view-card-body{padding:14px 18px}
-.info-row{display:flex;padding:7px 0;border-bottom:.5px solid rgba(0,0,0,.06);font-size:13px}
-.info-row:last-child{border-bottom:none}
-.info-lbl{color:#888;width:38%;flex-shrink:0}
-.info-val{color:#171717;flex:1}
-.total-bar{background:#171717;border-radius:8px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:8px}
-.total-bar-item{text-align:center}
-.total-bar-lbl{font-size:11px;color:#888}
-.total-bar-val{font-size:15px;color:#FAB617;font-weight:500}
-.priority-must{background:rgba(163,45,45,.1);color:#A32D2D;padding:2px 8px;border-radius:20px;font-size:11px;white-space:nowrap}
-.priority-nice{background:rgba(15,110,86,.1);color:#0F6E56;padding:2px 8px;border-radius:20px;font-size:11px;white-space:nowrap}
 
 /* ── SCHEDULE DAY CARD ── */
 .day-card{background:#fff;border-radius:10px;border:.5px solid rgba(0,0,0,.1);overflow:hidden;margin-bottom:12px}
@@ -155,17 +112,13 @@ body{font-family:'Noto Naskh Arabic','DM Sans',sans-serif;background:#F3E9DD;col
 #toast.show{transform:translateX(-50%) translateY(0)}
 
 /* ── RESPONSIVE ── */
-@media(max-width:680px){
-  .doc-grid{grid-template-columns:1fr 1fr}
-}
 @media(max-width:600px){
   .form-row{grid-template-columns:1fr}
   .proj-grid{grid-template-columns:1fr 1fr}
   .screen-inner{padding:14px}
-  .total-bar{flex-direction:column;gap:8px}
+  .pn-name{max-width:90px}
 }
 @media(max-width:420px){
-  .doc-grid{grid-template-columns:1fr}
   .proj-grid{grid-template-columns:1fr}
 }
 </style>
@@ -176,8 +129,20 @@ body{font-family:'Noto Naskh Arabic','DM Sans',sans-serif;background:#F3E9DD;col
 <!-- TOPBAR -->
 <div id="topbar">
   <div class="logo" onclick="navHome()"><span class="logo-dot"></span>ShootPlan</div>
-  <div class="topbar-center" id="tc" style="display:none"><span class="pname" id="tc-name"></span></div>
   <div><button class="btn-new" onclick="navNewProject()">+ مشروع جديد</button></div>
+</div>
+
+<!-- PROJECT NAV BAR -->
+<div id="proj-nav">
+  <div class="pn-inner">
+    <span class="pn-back" onclick="navHome()">← المشاريع</span>
+    <span class="pn-name" id="pn-name"></span>
+    <div class="pn-tabs">
+      <button class="pn-tab" id="pn-cs" onclick="openCS()">كول شيت</button>
+      <button class="pn-tab" id="pn-sl" onclick="openSL()">اللقطات</button>
+      <button class="pn-tab" id="pn-sc" onclick="openSC()">الجدول</button>
+    </div>
+  </div>
 </div>
 
 <!-- ══ HOME ══ -->
@@ -191,7 +156,6 @@ body{font-family:'Noto Naskh Arabic','DM Sans',sans-serif;background:#F3E9DD;col
 <!-- ══ NEW PROJECT ══ -->
 <div class="screen" id="screen-new-project">
   <div class="screen-inner">
-    <div class="breadcrumb" onclick="navHome()"><span class="bc-sep">←</span><span class="bc-link">المشاريع</span></div>
     <div class="form-wrap">
       <div class="form-title">مشروع جديد</div>
       <div class="form-sub">المعلومات الأساسية فقط — التفاصيل تُكمل داخل كل وثيقة</div>
@@ -201,204 +165,102 @@ body{font-family:'Noto Naskh Arabic','DM Sans',sans-serif;background:#F3E9DD;col
         <div class="form-group"><label class="form-label">تاريخ التصوير</label><input class="form-input" id="np-date" type="date"></div>
         <div class="form-group"><label class="form-label">المدينة</label><input class="form-input" id="np-city" placeholder="الرياض"></div>
       </div>
-      <div class="form-actions">
+      <div style="display:flex;gap:10px;margin-top:28px">
         <button class="btn-ghost" onclick="navHome()">إلغاء</button>
-        <button class="btn-primary" onclick="createProject()">إنشاء المشروع ←</button>
+        <button style="background:#FAB617;color:#171717;border:none;border-radius:8px;padding:11px 20px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;flex:1" onclick="createProject()">إنشاء المشروع ←</button>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- ══ HUB ══ -->
-<div class="screen" id="screen-hub">
-  <div class="screen-inner">
-    <div class="breadcrumb" onclick="navHome()"><span class="bc-sep">←</span><span class="bc-link">المشاريع</span></div>
-    <div class="hub-header">
-      <div class="hub-title" id="hub-title"></div>
-      <div class="hub-meta" id="hub-meta"></div>
-    </div>
-    <div class="slabel">الوثائق</div>
-    <div class="doc-grid" id="doc-grid"></div>
   </div>
 </div>
 
 <!-- ══ CALL SHEET ══ -->
 <div class="screen" id="screen-callsheet">
   <div class="screen-inner">
-    <div class="breadcrumb" onclick="navHub()"><span class="bc-sep">←</span><span class="bc-link" id="cs-bc"></span><span class="bc-sep">/</span><span>كول شيت</span></div>
     <div class="doc-topbar">
-      <div class="doc-topbar-title">كول شيت</div>
+      <div class="doc-topbar-left">
+        <div class="doc-topbar-title">كول شيت</div>
+        <div class="autosave-hint" id="cs-hint"></div>
+      </div>
       <button class="btn-export" onclick="exportCallSheetPDF()">⬇ PDF</button>
     </div>
-    <div class="doc-tabs">
-      <button class="doc-tab active" id="cs-tab-fill" onclick="switchTab('cs','fill')">تعبئة</button>
-      <button class="doc-tab" id="cs-tab-view" onclick="switchTab('cs','view')">معاينة</button>
-    </div>
-    <div id="cs-fill">
-      <div class="prefill-note" id="cs-pf" style="display:none"></div>
-      <div class="form-wrap" style="max-width:600px">
-        <div class="form-row">
-          <div class="form-group"><label class="form-label">تاريخ التصوير</label><input class="form-input" id="cs-date" type="date"></div>
-          <div class="form-group"><label class="form-label">الموعد العام (Call Time)</label><input class="form-input" id="cs-calltime" type="time"></div>
+    <div style="max-width:600px">
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">تاريخ التصوير</label><input class="form-input" id="cs-date" type="date" oninput="scheduleSave('callsheet')"></div>
+        <div class="form-group"><label class="form-label">الموعد العام (Call Time)</label><input class="form-input" id="cs-calltime" type="time" oninput="scheduleSave('callsheet')"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">المدينة</label><input class="form-input" id="cs-city" placeholder="الرياض" oninput="scheduleSave('callsheet')"></div>
+        <div class="form-group"><label class="form-label">أقرب مستشفى</label><input class="form-input" id="cs-hospital" placeholder="اسم المستشفى" oninput="scheduleSave('callsheet')"></div>
+      </div>
+      <div class="wx-fetch-row">
+        <button type="button" class="btn-ghost" style="padding:7px 14px;font-size:13px" onclick="fetchWeather()">🌤 جلب الطقس</button>
+        <div id="cs-wx-strip" class="wx-strip" style="display:none">
+          <span id="cs-wx-temp"></span><span id="cs-wx-rise"></span><span id="cs-wx-set"></span>
         </div>
-        <div class="form-row">
-          <div class="form-group"><label class="form-label">المدينة</label><input class="form-input" id="cs-city" placeholder="الرياض"></div>
-          <div class="form-group"><label class="form-label">أقرب مستشفى</label><input class="form-input" id="cs-hospital" placeholder="اسم المستشفى"></div>
+      </div>
+      <div class="form-group"><label class="form-label">عنوان الموقع</label><input class="form-input" id="cs-location" placeholder="العنوان الكامل للموقع" oninput="scheduleSave('callsheet')"></div>
+      <div class="form-group"><label class="form-label">معلومات الوقوف</label><input class="form-input" id="cs-parking" placeholder="تفاصيل وقوف السيارات" oninput="scheduleSave('callsheet')"></div>
+      <div class="form-group"><label class="form-label">خطة بديلة (سوء الطقس)</label><input class="form-input" id="cs-weather" placeholder="ماذا نفعل إذا تغيّر الطقس؟" oninput="scheduleSave('callsheet')"></div>
+      <div class="form-group"><label class="form-label">ملاحظات عامة</label><textarea class="form-textarea" id="cs-notes" placeholder="أي معلومات مهمة للفريق..." oninput="scheduleSave('callsheet')"></textarea></div>
+      <div class="slabel" style="margin-top:20px">الفريق ومواعيد الحضور</div>
+      <div class="tbl-wrap">
+        <div class="tbl-scroll">
+          <table class="data-table" style="min-width:700px">
+            <thead><tr><th>الاسم</th><th>الدور</th><th>موعد الحضور</th><th>الجوال</th><th>الإيميل</th><th>ملاحظات</th><th style="width:36px"></th></tr></thead>
+            <tbody id="cs-crew-body"></tbody>
+          </table>
         </div>
-        <div class="wx-fetch-row">
-          <button type="button" class="btn-ghost" style="padding:7px 14px;font-size:13px" onclick="fetchWeather()">🌤 جلب الطقس</button>
-          <div id="cs-wx-strip" class="wx-strip" style="display:none">
-            <span id="cs-wx-temp"></span><span id="cs-wx-rise"></span><span id="cs-wx-set"></span>
-          </div>
-        </div>
-        <div class="form-group"><label class="form-label">عنوان الموقع</label><input class="form-input" id="cs-location" placeholder="العنوان الكامل للموقع"></div>
-        <div class="form-group"><label class="form-label">معلومات الوقوف</label><input class="form-input" id="cs-parking" placeholder="تفاصيل وقوف السيارات"></div>
-        <div class="form-group"><label class="form-label">خطة بديلة (سوء الطقس)</label><input class="form-input" id="cs-weather" placeholder="ماذا نفعل إذا تغيّر الطقس؟"></div>
-        <div class="form-group"><label class="form-label">ملاحظات عامة</label><textarea class="form-textarea" id="cs-notes" placeholder="أي معلومات مهمة للفريق..."></textarea></div>
-        <div class="slabel" style="margin-top:20px">الفريق ومواعيد الحضور</div>
-        <div class="tbl-wrap">
-          <div class="tbl-scroll">
-            <table class="data-table">
-              <thead><tr><th>الاسم</th><th>الدور</th><th>موعد الحضور</th><th>الجوال</th><th style="width:36px"></th></tr></thead>
-              <tbody id="cs-crew-body"></tbody>
-            </table>
-          </div>
-          <div class="tbl-add" onclick="addCSCrew()">+ إضافة فرد</div>
-        </div>
-        <div class="form-actions"><button class="btn-primary" onclick="saveCS()">حفظ الكول شيت</button></div>
+        <div class="tbl-add" onclick="addCSCrew()">+ إضافة فرد</div>
       </div>
     </div>
-    <div id="cs-view" style="display:none"><div id="cs-view-content"></div></div>
   </div>
 </div>
 
 <!-- ══ SHOT LIST ══ -->
 <div class="screen" id="screen-shotlist">
   <div class="screen-inner">
-    <div class="breadcrumb" onclick="navHub()"><span class="bc-sep">←</span><span class="bc-link" id="sl-bc"></span><span class="bc-sep">/</span><span>قائمة اللقطات</span></div>
     <div class="doc-topbar">
-      <div class="doc-topbar-title">قائمة اللقطات</div>
+      <div class="doc-topbar-left">
+        <div class="doc-topbar-title">قائمة اللقطات</div>
+        <div class="autosave-hint" id="sl-hint"></div>
+      </div>
       <button class="btn-export" onclick="exportShotListPDF()">⬇ PDF</button>
     </div>
-    <div class="doc-tabs">
-      <button class="doc-tab active" id="sl-tab-fill" onclick="switchTab('sl','fill')">تعبئة</button>
-      <button class="doc-tab" id="sl-tab-view" onclick="switchTab('sl','view')">معاينة</button>
-    </div>
-    <div id="sl-fill">
-      <div class="prefill-note" id="sl-pf" style="display:none"></div>
-      <div class="form-row" style="max-width:380px;margin-bottom:16px">
-        <div class="form-group"><label class="form-label">نوع التصوير</label>
-          <select class="form-select" id="sl-type">
-            <option value="">اختر...</option>
-            <option>كوميرشال منتج</option><option>وثائقي / مقابلة</option>
-            <option>موشن + تصوير</option><option>إعلان تلفزيوني</option>
-            <option>محتوى سوشيال ميديا</option><option>حفل / فعالية</option><option>أخرى</option>
-          </select>
-        </div>
+    <div class="form-row" style="max-width:380px;margin-bottom:16px">
+      <div class="form-group"><label class="form-label">نوع التصوير</label>
+        <select class="form-select" id="sl-type" onchange="scheduleSave('shotlist')">
+          <option value="">اختر...</option>
+          <option>كوميرشال منتج</option><option>وثائقي / مقابلة</option>
+          <option>موشن + تصوير</option><option>إعلان تلفزيوني</option>
+          <option>محتوى سوشيال ميديا</option><option>حفل / فعالية</option><option>أخرى</option>
+        </select>
       </div>
-      <div class="slabel">اللقطات</div>
-      <div class="tbl-wrap">
-        <div class="tbl-scroll">
-          <table class="data-table" style="min-width:700px">
-            <thead><tr><th style="width:40px">#</th><th>اسم اللقطة</th><th>النوع</th><th>العدسة</th><th>المدة (ث)</th><th>الأولوية</th><th>ملاحظات</th><th style="width:36px"></th></tr></thead>
-            <tbody id="sl-body"></tbody>
-          </table>
-        </div>
-        <div class="tbl-add" onclick="addSLShot()">+ إضافة لقطة</div>
+    </div>
+    <div class="slabel">اللقطات</div>
+    <div class="tbl-wrap">
+      <div class="tbl-scroll">
+        <table class="data-table" style="min-width:700px">
+          <thead><tr><th style="width:40px">#</th><th>اسم اللقطة</th><th>النوع</th><th>العدسة</th><th>المدة (ث)</th><th>الأولوية</th><th>ملاحظات</th><th style="width:36px"></th></tr></thead>
+          <tbody id="sl-body"></tbody>
+        </table>
       </div>
-      <div class="form-actions" style="max-width:400px"><button class="btn-primary" onclick="saveSL()">حفظ قائمة اللقطات</button></div>
+      <div class="tbl-add" onclick="addSLShot()">+ إضافة لقطة</div>
     </div>
-    <div id="sl-view" style="display:none"><div id="sl-view-content"></div></div>
-  </div>
-</div>
-
-<!-- ══ BUDGET ══ -->
-<div class="screen" id="screen-budget">
-  <div class="screen-inner">
-    <div class="breadcrumb" onclick="navHub()"><span class="bc-sep">←</span><span class="bc-link" id="bg-bc"></span><span class="bc-sep">/</span><span>ملخص الميزانية</span></div>
-    <div class="doc-topbar">
-      <div class="doc-topbar-title">ملخص الميزانية</div>
-      <button class="btn-export" onclick="exportBudgetPDF()">⬇ PDF</button>
-    </div>
-    <div class="doc-tabs">
-      <button class="doc-tab active" id="bg-tab-fill" onclick="switchTab('bg','fill')">تعبئة</button>
-      <button class="doc-tab" id="bg-tab-view" onclick="switchTab('bg','view')">معاينة</button>
-    </div>
-    <div id="bg-fill">
-      <div class="form-row" style="max-width:300px;margin-bottom:16px">
-        <div class="form-group"><label class="form-label">العملة</label>
-          <select class="form-select" id="bg-currency">
-            <option value="SAR">ريال سعودي (SAR)</option>
-            <option value="USD">دولار (USD)</option>
-            <option value="AED">درهم (AED)</option>
-          </select>
-        </div>
-      </div>
-      <div class="slabel">بنود التكلفة</div>
-      <div class="tbl-wrap">
-        <div class="tbl-scroll">
-          <table class="data-table">
-            <thead><tr><th>الفئة</th><th>البيان</th><th>المقدّر</th><th>الفعلي</th><th style="width:36px"></th></tr></thead>
-            <tbody id="bg-body"></tbody>
-          </table>
-        </div>
-        <div class="tbl-add" onclick="addBGItem()">+ إضافة بند</div>
-      </div>
-      <div class="form-actions" style="max-width:400px"><button class="btn-primary" onclick="saveBG()">حفظ الميزانية</button></div>
-    </div>
-    <div id="bg-view" style="display:none"><div id="bg-view-content"></div></div>
-  </div>
-</div>
-
-<!-- ══ CREW LIST ══ -->
-<div class="screen" id="screen-crew">
-  <div class="screen-inner">
-    <div class="breadcrumb" onclick="navHub()"><span class="bc-sep">←</span><span class="bc-link" id="cr-bc"></span><span class="bc-sep">/</span><span>قائمة الفريق</span></div>
-    <div class="doc-topbar">
-      <div class="doc-topbar-title">قائمة الفريق</div>
-      <button class="btn-export" onclick="exportCrewPDF()">⬇ PDF</button>
-    </div>
-    <div class="doc-tabs">
-      <button class="doc-tab active" id="cr-tab-fill" onclick="switchTab('cr','fill')">تعبئة</button>
-      <button class="doc-tab" id="cr-tab-view" onclick="switchTab('cr','view')">معاينة</button>
-    </div>
-    <div id="cr-fill">
-      <div class="prefill-note" id="cr-pf" style="display:none"></div>
-      <div class="slabel">أفراد الفريق</div>
-      <div class="tbl-wrap">
-        <div class="tbl-scroll">
-          <table class="data-table" style="min-width:640px">
-            <thead><tr><th>الاسم</th><th>الدور</th><th>الجوال</th><th>الإيميل</th><th>موعد الحضور</th><th>ملاحظات</th><th style="width:36px"></th></tr></thead>
-            <tbody id="cr-body"></tbody>
-          </table>
-        </div>
-        <div class="tbl-add" onclick="addCRMember()">+ إضافة فرد</div>
-      </div>
-      <div class="form-actions" style="max-width:400px"><button class="btn-primary" onclick="saveCR()">حفظ قائمة الفريق</button></div>
-    </div>
-    <div id="cr-view" style="display:none"><div id="cr-view-content"></div></div>
   </div>
 </div>
 
 <!-- ══ SCHEDULE ══ -->
 <div class="screen" id="screen-schedule">
   <div class="screen-inner">
-    <div class="breadcrumb" onclick="navHub()"><span class="bc-sep">←</span><span class="bc-link" id="sc-bc"></span><span class="bc-sep">/</span><span>جدول التصوير</span></div>
     <div class="doc-topbar">
-      <div class="doc-topbar-title">جدول التصوير</div>
+      <div class="doc-topbar-left">
+        <div class="doc-topbar-title">جدول التصوير</div>
+        <div class="autosave-hint" id="sc-hint"></div>
+      </div>
       <button class="btn-export" onclick="exportSchedulePDF()">⬇ PDF</button>
     </div>
-    <div class="doc-tabs">
-      <button class="doc-tab active" id="sc-tab-fill" onclick="switchTab('sc','fill')">تعبئة</button>
-      <button class="doc-tab" id="sc-tab-view" onclick="switchTab('sc','view')">معاينة</button>
-    </div>
-    <div id="sc-fill">
-      <div class="prefill-note" id="sc-pf" style="display:none"></div>
-      <div id="sc-days"></div>
-      <button class="btn-ghost" onclick="addSCDay()" style="margin-top:4px">+ إضافة يوم تصوير</button>
-      <div class="form-actions" style="max-width:400px;margin-top:20px"><button class="btn-primary" onclick="saveSC()">حفظ الجدول</button></div>
-    </div>
-    <div id="sc-view" style="display:none"><div id="sc-view-content"></div></div>
+    <div id="sc-days"></div>
+    <button class="btn-ghost" onclick="addSCDay()" style="margin-top:4px">+ إضافة يوم تصوير</button>
   </div>
 </div>
 
@@ -413,7 +275,11 @@ body{font-family:'Noto Naskh Arabic','DM Sans',sans-serif;background:#F3E9DD;col
 const SK = 'spp_v2';
 let projects = [], cid = null;
 
-function load(){ try{ projects = JSON.parse(localStorage.getItem(SK)||'[]'); }catch(e){ projects=[]; } }
+function load(){
+  // Clean old localStorage keys from previous app versions
+  ['shootplan_projects','shootplan_v4','spp_global_contacts','spp_onboarded','spp_lang','pusherTransportTLS'].forEach(k=>localStorage.removeItem(k));
+  try{ projects = JSON.parse(localStorage.getItem(SK)||'[]'); }catch(e){ projects=[]; }
+}
 function save(){ localStorage.setItem(SK, JSON.stringify(projects)); }
 function getP(){ return projects.find(p=>p.id===cid)||null; }
 function setDoc(type, data){
@@ -428,6 +294,27 @@ function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').repla
 function fmtDate(d, opts){ if(!d) return ''; try{ return new Date(d+'T00:00:00').toLocaleDateString('ar-SA', opts||{day:'numeric',month:'long',year:'numeric'}); }catch(e){ return d; } }
 
 // ══════════════════════════════════════════
+// AUTOSAVE
+// ══════════════════════════════════════════
+let _saveTimers = {};
+function scheduleSave(type){
+  clearTimeout(_saveTimers[type]);
+  _saveTimers[type] = setTimeout(()=>doSave(type), 700);
+}
+function doSave(type){
+  if(!cid) return;
+  if(type==='callsheet') _doSaveCS();
+  else if(type==='shotlist') _doSaveSL();
+  else if(type==='schedule') _doSaveSC();
+}
+function showHint(id){
+  const el = document.getElementById(id); if(!el) return;
+  el.textContent = '✓ تم الحفظ';
+  clearTimeout(el._t);
+  el._t = setTimeout(()=>{ el.textContent=''; }, 2200);
+}
+
+// ══════════════════════════════════════════
 // NAV
 // ══════════════════════════════════════════
 function showScreen(id){
@@ -435,26 +322,27 @@ function showScreen(id){
   document.getElementById('screen-'+id)?.classList.add('active');
   window.scrollTo(0,0);
 }
-function navHome(){
-  cid=null;
-  document.getElementById('tc').style.display='none';
-  renderProjects(); showScreen('home');
+function setProjNav(activeTab){
+  const nav = document.getElementById('proj-nav');
+  const p = getP();
+  if(!p){ nav.style.display='none'; return; }
+  nav.style.display = '';
+  document.getElementById('pn-name').textContent = p.name;
+  ['cs','sl','sc'].forEach(id=>document.getElementById('pn-'+id).classList.remove('active'));
+  if(activeTab) document.getElementById('pn-'+activeTab)?.classList.add('active');
 }
-function navHub(pid){
-  if(pid) cid=pid;
-  const p=getP(); if(!p) return;
-  document.getElementById('tc').style.display='block';
-  document.getElementById('tc-name').textContent=p.name;
-  renderHub(); showScreen('hub');
+function navHome(){
+  cid = null;
+  document.getElementById('proj-nav').style.display = 'none';
+  renderProjects();
+  showScreen('home');
 }
 function navNewProject(){
-  const d=new Date(); d.setDate(d.getDate()+7);
-  document.getElementById('np-date').value=d.toISOString().split('T')[0];
+  const d = new Date(); d.setDate(d.getDate()+7);
+  document.getElementById('np-date').value = d.toISOString().split('T')[0];
   ['np-name','np-client','np-city'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('proj-nav').style.display = 'none';
   showScreen('new-project');
-}
-function navDoc(type){
-  ({callsheet:openCS,shotlist:openSL,budget:openBG,crew:openCR,schedule:openSC})[type]?.();
 }
 function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2500); }
 
@@ -464,110 +352,53 @@ function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg
 function createProject(){
   const name = document.getElementById('np-name').value.trim();
   if(!name){ toast('أدخل اسم المشروع'); return; }
-  const p={ id:uid(), name, client:document.getElementById('np-client').value.trim(),
+  const p = { id:uid(), name, client:document.getElementById('np-client').value.trim(),
     date:document.getElementById('np-date').value, city:document.getElementById('np-city').value.trim()||'الرياض',
     created:new Date().toISOString(), docs:{} };
-  projects.unshift(p); save(); navHub(p.id);
+  projects.unshift(p); save();
+  cid = p.id; openCS();
 }
+function openProject(pid){ cid = pid; openCS(); }
 function renderProjects(){
-  const g=document.getElementById('proj-grid');
-  const DL={callsheet:'كول شيت',shotlist:'اللقطات',budget:'الميزانية',crew:'الفريق',schedule:'الجدول'};
+  const g = document.getElementById('proj-grid');
+  const DL = {callsheet:'كول شيت', shotlist:'اللقطات', schedule:'الجدول'};
   if(!projects.length){
-    g.innerHTML=`<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">🎬</div><div class="empty-text">لا يوجد مشاريع بعد</div><div class="empty-sub">ابدأ بإنشاء مشروعك الأول</div></div><div class="proj-card-new" onclick="navNewProject()"><span style="font-size:20px">+</span><span>مشروع جديد</span></div>`;
+    g.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">🎬</div><div class="empty-text">لا يوجد مشاريع بعد</div><div class="empty-sub">ابدأ بإنشاء مشروعك الأول</div></div><div class="proj-card-new" onclick="navNewProject()"><span style="font-size:20px">+</span><span>مشروع جديد</span></div>`;
     return;
   }
   g.innerHTML = projects.map(p=>{
-    const docs = Object.keys(p.docs||{});
-    return `<div class="proj-card" onclick="navHub('${p.id}')">
+    const docs = Object.keys(p.docs||{}).filter(k=>DL[k]);
+    return `<div class="proj-card" onclick="openProject('${p.id}')">
       <div class="proj-card-name">${esc(p.name)}</div>
       <div class="proj-card-meta">${fmtDate(p.date)}${p.city?' · '+esc(p.city):''}</div>
-      ${docs.length?`<div class="proj-card-docs">${docs.map(d=>`<span class="doc-chip">${DL[d]||d}</span>`).join('')}</div>`:''}
+      ${docs.length?`<div class="proj-card-docs">${docs.map(d=>`<span class="doc-chip">${DL[d]}</span>`).join('')}</div>`:''}
     </div>`;
-  }).join('')+`<div class="proj-card-new" onclick="navNewProject()"><span style="font-size:20px">+</span><span>مشروع جديد</span></div>`;
+  }).join('') + `<div class="proj-card-new" onclick="navNewProject()"><span style="font-size:20px">+</span><span>مشروع جديد</span></div>`;
 }
-
-// ══════════════════════════════════════════
-// HUB
-// ══════════════════════════════════════════
-const DOCS=[
-  {type:'callsheet',color:'#3B82F6',icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><line x1="12" y1="11" x2="16" y2="11"/><line x1="12" y1="15" x2="16" y2="15"/><circle cx="8" cy="11" r=".5" fill="currentColor"/><circle cx="8" cy="15" r=".5" fill="currentColor"/></svg>',name:'كول شيت',desc:'مواعيد الفريق، الموقع، الطقس'},
-  {type:'shotlist', color:'#10B981',icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="17" y1="7" x2="22" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/></svg>',name:'قائمة اللقطات',desc:'اللقطات مع النوع، العدسة، المدة'},
-  {type:'budget',   color:'#F59E0B',icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',name:'ملخص الميزانية',desc:'التكاليف الفعلية مقابل المقدّرة'},
-  {type:'crew',     color:'#8B5CF6',icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',name:'قائمة الفريق',desc:'الأسماء، الأدوار، جهات التواصل'},
-  {type:'schedule', color:'#F97316',icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',name:'جدول التصوير',desc:'اللقطات موزعة على أيام التصوير'},
-];
-function renderHub(){
-  const p=getP(); if(!p) return;
-  document.getElementById('hub-title').textContent=p.name;
-  const metaParts=[fmtDate(p.date),p.city,p.client].filter(Boolean);
-  document.getElementById('hub-meta').innerHTML=metaParts.map(v=>`<span>${esc(v)}</span>`).join('<span class="hub-meta-sep">·</span>');
-  const doneCount=DOCS.filter(d=>!!getDoc(d.type)).length;
-  const pct=Math.round(doneCount/DOCS.length*100);
-  document.getElementById('hub-meta').innerHTML+=`<div class="hub-progress"><div class="hub-progress-bar"><div class="hub-progress-fill" style="width:${pct}%"></div></div><span class="hub-progress-label">${doneCount}/${DOCS.length}</span></div>`;
-  document.getElementById('doc-grid').innerHTML=DOCS.map(d=>{
-    const done=!!getDoc(d.type);
-    return `<div class="doc-card" style="border-top-color:${d.color}" onclick="navDoc('${d.type}')">
-      <div class="doc-icon" style="background:${d.color}18;color:${d.color}">${d.icon}</div>
-      <div class="doc-name">${d.name}</div>
-      <div class="doc-desc">${d.desc}</div>
-      <div class="doc-status ${done?'s-done':'s-empty'}"><span class="sdot"></span>${done?'مكتمل':'لم يبدأ'}</div>
-    </div>`;
-  }).join('');
-}
-
-// ══════════════════════════════════════════
-// TAB SWITCH
-// ══════════════════════════════════════════
-function switchTab(prefix, tab){
-  const fill=document.getElementById(prefix+'-fill');
-  const view=document.getElementById(prefix+'-view');
-  const tf=document.getElementById(prefix+'-tab-fill');
-  const tv=document.getElementById(prefix+'-tab-view');
-  if(tab==='fill'){ fill.style.display=''; view.style.display='none'; tf.classList.add('active'); tv.classList.remove('active'); }
-  else { fill.style.display='none'; view.style.display=''; tf.classList.remove('active'); tv.classList.add('active'); renderView(prefix); }
-}
-function renderView(prefix){
-  const map={cs:'callsheet',sl:'shotlist',bg:'budget',cr:'crew',sc:'schedule'};
-  const docType=map[prefix];
-  const data=getDoc(docType);
-  const el=document.getElementById(prefix+'-view-content');
-  if(!data){ el.innerHTML=`<div class="empty-state"><div class="empty-icon">📄</div><div class="empty-text">لم تُحفظ بيانات بعد</div><div class="empty-sub">اذهب لتبويب التعبئة أولاً</div></div>`; return; }
-  const p=getP();
-  if(docType==='callsheet') el.innerHTML=viewCS(data,p);
-  else if(docType==='shotlist') el.innerHTML=viewSL(data,p);
-  else if(docType==='budget') el.innerHTML=viewBG(data,p);
-  else if(docType==='crew') el.innerHTML=viewCR(data,p);
-  else if(docType==='schedule') el.innerHTML=viewSC(data,p);
-}
-
-// ══════════════════════════════════════════
-// PREFILL HELPER
-// ══════════════════════════════════════════
-function showPF(elId, items){ const el=document.getElementById(elId); if(!items.length){ el.style.display='none'; return; } el.textContent='✓ معبّأ تلقائياً: '+items.join('، '); el.style.display=''; }
 
 // ══════════════════════════════════════════
 // WEATHER FETCH
 // ══════════════════════════════════════════
 async function fetchWeather(){
   const _AR={'الرياض':'Riyadh','جدة':'Jeddah','مكة المكرمة':'Mecca','مكة':'Mecca','المدينة المنورة':'Medina','الدمام':'Dammam','الخبر':'Khobar','أبوظبي':'Abu Dhabi','دبي':'Dubai','الشارقة':'Sharjah','عجمان':'Ajman','مسقط':'Muscat','الكويت':'Kuwait City','الدوحة':'Doha','المنامة':'Manama','بيروت':'Beirut','القاهرة':'Cairo','عمّان':'Amman','بغداد':'Baghdad','الرباط':'Rabat','الجزائر':'Algiers','تونس':'Tunis','طرابلس':'Tripoli','الخرطوم':'Khartoum'};
-  const raw=(document.getElementById('cs-city').value||'').trim()||'Riyadh';
-  const city=_AR[raw]||raw;
-  const date=document.getElementById('cs-date').value||new Date().toISOString().slice(0,10);
-  const strip=document.getElementById('cs-wx-strip');
-  const btn=document.querySelector('[onclick="fetchWeather()"]');
+  const raw = (document.getElementById('cs-city').value||'').trim() || 'Riyadh';
+  const city = _AR[raw] || raw;
+  const date = document.getElementById('cs-date').value || new Date().toISOString().slice(0,10);
+  const strip = document.getElementById('cs-wx-strip');
+  const btn = document.querySelector('[onclick="fetchWeather()"]');
   if(btn){ btn.disabled=true; btn.textContent='⏳ جاري التحميل...'; }
   try{
-    const geo=await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=en`).then(r=>r.json());
+    const geo = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=en`).then(r=>r.json());
     if(!geo.results?.length){ toast('لم يتم العثور على المدينة'); return; }
-    const {latitude:lat,longitude:lon,timezone}=geo.results[0];
-    const wx=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,sunrise,sunset&timezone=${encodeURIComponent(timezone)}&start_date=${date}&end_date=${date}`).then(r=>r.json());
-    const tMax=wx.daily?.temperature_2m_max?.[0];
-    const rise=wx.daily?.sunrise?.[0]?.slice(11);
-    const set=wx.daily?.sunset?.[0]?.slice(11);
-    document.getElementById('cs-wx-temp').textContent=tMax!=null?`🌡 ${tMax}°C`:'';
-    document.getElementById('cs-wx-rise').textContent=rise?`🌅 شروق ${rise}`:'';
-    document.getElementById('cs-wx-set').textContent=set?`🌇 غروب ${set}`:'';
-    strip.style.display='flex';
+    const {latitude:lat,longitude:lon,timezone} = geo.results[0];
+    const wx = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,sunrise,sunset&timezone=${encodeURIComponent(timezone)}&start_date=${date}&end_date=${date}`).then(r=>r.json());
+    const tMax = wx.daily?.temperature_2m_max?.[0];
+    const rise = wx.daily?.sunrise?.[0]?.slice(11);
+    const set  = wx.daily?.sunset?.[0]?.slice(11);
+    document.getElementById('cs-wx-temp').textContent = tMax!=null ? `🌡 ${tMax}°C` : '';
+    document.getElementById('cs-wx-rise').textContent = rise ? `🌅 شروق ${rise}` : '';
+    document.getElementById('cs-wx-set').textContent  = set  ? `🌇 غروب ${set}`  : '';
+    strip.style.display = 'flex';
   }catch(e){ toast('خطأ في جلب الطقس'); }
   finally{ if(btn){ btn.disabled=false; btn.textContent='🌤 جلب الطقس'; } }
 }
@@ -575,239 +406,149 @@ async function fetchWeather(){
 // ══════════════════════════════════════════
 // CALL SHEET
 // ══════════════════════════════════════════
-let _csCrew=[];
+let _csCrew = [];
 function openCS(){
-  const p=getP();
-  document.getElementById('cs-bc').textContent=p.name;
-  const saved=getDoc('callsheet');
-  document.getElementById('cs-date').value=saved?.date||p.date||'';
-  document.getElementById('cs-city').value=saved?.city||p.city||'';
-  document.getElementById('cs-calltime').value=saved?.calltime||'';
-  document.getElementById('cs-hospital').value=saved?.hospital||'';
-  document.getElementById('cs-location').value=saved?.location||'';
-  document.getElementById('cs-parking').value=saved?.parking||'';
-  document.getElementById('cs-weather').value=saved?.weather||'';
-  document.getElementById('cs-notes').value=saved?.notes||'';
-  _csCrew=saved?.crew?[...saved.crew]:[];
+  const p = getP(); if(!p) return;
+  const saved = getDoc('callsheet');
+  document.getElementById('cs-date').value     = saved?.date     || p.date || '';
+  document.getElementById('cs-city').value     = saved?.city     || p.city || '';
+  document.getElementById('cs-calltime').value = saved?.calltime || '';
+  document.getElementById('cs-hospital').value = saved?.hospital || '';
+  document.getElementById('cs-location').value = saved?.location || '';
+  document.getElementById('cs-parking').value  = saved?.parking  || '';
+  document.getElementById('cs-weather').value  = saved?.weather  || '';
+  document.getElementById('cs-notes').value    = saved?.notes    || '';
+  document.getElementById('cs-wx-strip').style.display = 'none';
+  document.getElementById('cs-wx-temp').textContent = '';
+  document.getElementById('cs-wx-rise').textContent = '';
+  document.getElementById('cs-wx-set').textContent  = '';
+  _csCrew = saved?.crew ? [...saved.crew] : [];
   renderCSCrew();
-  showPF('cs-pf', saved?[]:[p.date&&'تاريخ التصوير',p.city&&'المدينة'].filter(Boolean));
-  switchTab('cs','fill'); showScreen('callsheet');
+  document.getElementById('cs-hint').textContent = '';
+  setProjNav('cs');
+  showScreen('callsheet');
 }
 function renderCSCrew(){
-  document.getElementById('cs-crew-body').innerHTML=_csCrew.map((m,i)=>`
+  document.getElementById('cs-crew-body').innerHTML = _csCrew.map((m,i)=>`
     <tr>
-      <td><input class="tbl-input" value="${esc(m.name||'')}" onchange="_csCrew[${i}].name=this.value" placeholder="الاسم"></td>
-      <td><input class="tbl-input" value="${esc(m.role||'')}" onchange="_csCrew[${i}].role=this.value" placeholder="الدور"></td>
-      <td><input class="tbl-input" type="time" value="${esc(m.calltime||'')}" onchange="_csCrew[${i}].calltime=this.value"></td>
-      <td><input class="tbl-input" value="${esc(m.phone||'')}" onchange="_csCrew[${i}].phone=this.value" placeholder="05xxxxxxxx" dir="ltr"></td>
-      <td><span class="tbl-del" onclick="_csCrew.splice(${i},1);renderCSCrew()">×</span></td>
+      <td><input class="tbl-input" value="${esc(m.name||'')}"     onchange="_csCrew[${i}].name=this.value;scheduleSave('callsheet')"     placeholder="الاسم"        style="min-width:80px"></td>
+      <td><input class="tbl-input" value="${esc(m.role||'')}"     onchange="_csCrew[${i}].role=this.value;scheduleSave('callsheet')"     placeholder="الدور"        style="min-width:70px"></td>
+      <td><input class="tbl-input" type="time" value="${esc(m.calltime||'')}" onchange="_csCrew[${i}].calltime=this.value;scheduleSave('callsheet')"></td>
+      <td><input class="tbl-input" value="${esc(m.phone||'')}"    onchange="_csCrew[${i}].phone=this.value;scheduleSave('callsheet')"    placeholder="05xxxxxxxx"   dir="ltr" style="min-width:100px"></td>
+      <td><input class="tbl-input" value="${esc(m.email||'')}"    onchange="_csCrew[${i}].email=this.value;scheduleSave('callsheet')"    placeholder="email@..."    dir="ltr" style="min-width:110px"></td>
+      <td><input class="tbl-input" value="${esc(m.notes||'')}"    onchange="_csCrew[${i}].notes=this.value;scheduleSave('callsheet')"    placeholder="ملاحظات"      style="min-width:80px"></td>
+      <td><span class="tbl-del" onclick="_csCrew.splice(${i},1);renderCSCrew();scheduleSave('callsheet')">×</span></td>
     </tr>`).join('');
 }
-function addCSCrew(){ _csCrew.push({name:'',role:'',calltime:'',phone:''}); renderCSCrew(); }
-function saveCS(){
-  const rows=document.querySelectorAll('#cs-crew-body tr');
-  const crew=Array.from(rows).map(r=>{ const inp=r.querySelectorAll('input'); return {name:inp[0].value,role:inp[1].value,calltime:inp[2].value,phone:inp[3].value}; }).filter(m=>m.name||m.role);
-  setDoc('callsheet',{ date:document.getElementById('cs-date').value, city:document.getElementById('cs-city').value, calltime:document.getElementById('cs-calltime').value, hospital:document.getElementById('cs-hospital').value, location:document.getElementById('cs-location').value, parking:document.getElementById('cs-parking').value, weather:document.getElementById('cs-weather').value, notes:document.getElementById('cs-notes').value, crew });
-  toast('✓ تم حفظ الكول شيت'); renderHub();
+function addCSCrew(){
+  _csCrew.push({name:'',role:'',calltime:'',phone:'',email:'',notes:''});
+  renderCSCrew();
+  scheduleSave('callsheet');
+  const rows = document.querySelectorAll('#cs-crew-body tr');
+  if(rows.length) rows[rows.length-1].querySelector('input')?.focus();
 }
-function viewCS(d,p){
-  const dateStr=fmtDate(d.date,{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-  let h=`<div class="view-card"><div class="view-card-head"><div class="view-card-head-title">${esc(p.name)}</div><div class="view-card-head-sub">${esc(p.client||'')}${dateStr?' · '+dateStr:''}</div></div><div class="view-card-body">
-    ${d.calltime?`<div class="info-row"><span class="info-lbl">الموعد العام</span><span class="info-val">${esc(d.calltime)}</span></div>`:''}
-    ${d.city?`<div class="info-row"><span class="info-lbl">المدينة</span><span class="info-val">${esc(d.city)}</span></div>`:''}
-    ${d.location?`<div class="info-row"><span class="info-lbl">الموقع</span><span class="info-val">${esc(d.location)}</span></div>`:''}
-    ${d.parking?`<div class="info-row"><span class="info-lbl">وقوف السيارات</span><span class="info-val">${esc(d.parking)}</span></div>`:''}
-    ${d.hospital?`<div class="info-row"><span class="info-lbl">أقرب مستشفى</span><span class="info-val">${esc(d.hospital)}</span></div>`:''}
-    ${d.weather?`<div class="info-row"><span class="info-lbl">خطة الطقس</span><span class="info-val">${esc(d.weather)}</span></div>`:''}
-    ${d.notes?`<div class="info-row"><span class="info-lbl">ملاحظات</span><span class="info-val">${esc(d.notes)}</span></div>`:''}
-  </div></div>`;
-  if(d.crew?.length) h+=`<div class="tbl-wrap"><div class="tbl-scroll"><table class="data-table"><thead><tr><th>الاسم</th><th>الدور</th><th>موعد الحضور</th><th>الجوال</th></tr></thead><tbody>${d.crew.map(m=>`<tr><td>${esc(m.name)}</td><td>${esc(m.role)}</td><td>${esc(m.calltime)}</td><td dir="ltr">${esc(m.phone)}</td></tr>`).join('')}</tbody></table></div></div>`;
-  return h;
+function _doSaveCS(){
+  const rows = document.querySelectorAll('#cs-crew-body tr');
+  const crew = Array.from(rows).map(r=>{
+    const inp = r.querySelectorAll('input');
+    return { name:inp[0]?.value||'', role:inp[1]?.value||'', calltime:inp[2]?.value||'', phone:inp[3]?.value||'', email:inp[4]?.value||'', notes:inp[5]?.value||'' };
+  }).filter(m=>m.name||m.role);
+  setDoc('callsheet',{
+    date:     document.getElementById('cs-date').value,
+    city:     document.getElementById('cs-city').value,
+    calltime: document.getElementById('cs-calltime').value,
+    hospital: document.getElementById('cs-hospital').value,
+    location: document.getElementById('cs-location').value,
+    parking:  document.getElementById('cs-parking').value,
+    weather:  document.getElementById('cs-weather').value,
+    notes:    document.getElementById('cs-notes').value,
+    crew
+  });
+  showHint('cs-hint');
 }
 
 // ══════════════════════════════════════════
 // SHOT LIST
 // ══════════════════════════════════════════
-let _slShots=[];
-const SL_TYPES=['واسعة','متوسطة','قريبة','تفصيلية','درون','B-Roll','منتج','أخرى'];
-const SL_LENS=['16mm','24mm','35mm','50mm','85mm','100mm Macro','70-200mm','أخرى'];
+let _slShots = [];
+const SL_TYPES = ['واسعة','متوسطة','قريبة','تفصيلية','درون','B-Roll','منتج','أخرى'];
+const SL_LENS  = ['16mm','24mm','35mm','50mm','85mm','100mm Macro','70-200mm','أخرى'];
 function openSL(){
-  const p=getP(); document.getElementById('sl-bc').textContent=p.name;
-  const saved=getDoc('shotlist');
-  document.getElementById('sl-type').value=saved?.type||'';
-  _slShots=saved?.shots?[...saved.shots]:[];
+  const p = getP(); if(!p) return;
+  const saved = getDoc('shotlist');
+  document.getElementById('sl-type').value = saved?.type || '';
+  _slShots = saved?.shots ? [...saved.shots] : [];
   renderSLShots();
-  showPF('sl-pf', saved?[]:[p.date&&'تاريخ التصوير'].filter(Boolean));
-  switchTab('sl','fill'); showScreen('shotlist');
+  document.getElementById('sl-hint').textContent = '';
+  setProjNav('sl');
+  showScreen('shotlist');
 }
 function renderSLShots(){
-  document.getElementById('sl-body').innerHTML=_slShots.map((s,i)=>`
+  document.getElementById('sl-body').innerHTML = _slShots.map((s,i)=>`
     <tr>
       <td style="color:#888;text-align:center;font-size:12px">${i+1}</td>
-      <td><input class="tbl-input" value="${esc(s.name||'')}" onchange="_slShots[${i}].name=this.value" placeholder="اسم اللقطة" style="min-width:120px"></td>
-      <td><select class="tbl-input" onchange="_slShots[${i}].type=this.value"><option value="">نوع</option>${SL_TYPES.map(t=>`<option ${s.type===t?'selected':''}>${esc(t)}</option>`).join('')}</select></td>
-      <td><select class="tbl-input" onchange="_slShots[${i}].lens=this.value"><option value="">عدسة</option>${SL_LENS.map(l=>`<option ${s.lens===l?'selected':''}>${esc(l)}</option>`).join('')}</select></td>
-      <td><input class="tbl-input" value="${esc(s.duration||'')}" onchange="_slShots[${i}].duration=this.value" placeholder="—" style="width:55px"></td>
-      <td><select class="tbl-input" onchange="_slShots[${i}].priority=this.value"><option value="must" ${(!s.priority||s.priority==='must')?'selected':''}>أساسية</option><option value="nice" ${s.priority==='nice'?'selected':''}>إضافية</option></select></td>
-      <td><input class="tbl-input" value="${esc(s.notes||'')}" onchange="_slShots[${i}].notes=this.value" placeholder="ملاحظات" style="min-width:100px"></td>
-      <td><span class="tbl-del" onclick="_slShots.splice(${i},1);renderSLShots()">×</span></td>
+      <td><input class="tbl-input" value="${esc(s.name||'')}" onchange="_slShots[${i}].name=this.value;scheduleSave('shotlist')" placeholder="اسم اللقطة" style="min-width:120px"></td>
+      <td><select class="tbl-input" onchange="_slShots[${i}].type=this.value;scheduleSave('shotlist')"><option value="">نوع</option>${SL_TYPES.map(t=>`<option ${s.type===t?'selected':''}>${esc(t)}</option>`).join('')}</select></td>
+      <td><select class="tbl-input" onchange="_slShots[${i}].lens=this.value;scheduleSave('shotlist')"><option value="">عدسة</option>${SL_LENS.map(l=>`<option ${s.lens===l?'selected':''}>${esc(l)}</option>`).join('')}</select></td>
+      <td><input class="tbl-input" value="${esc(s.duration||'')}" onchange="_slShots[${i}].duration=this.value;scheduleSave('shotlist')" placeholder="—" style="width:55px"></td>
+      <td><select class="tbl-input" onchange="_slShots[${i}].priority=this.value;scheduleSave('shotlist')"><option value="must" ${(!s.priority||s.priority==='must')?'selected':''}>أساسية</option><option value="nice" ${s.priority==='nice'?'selected':''}>إضافية</option></select></td>
+      <td><input class="tbl-input" value="${esc(s.notes||'')}" onchange="_slShots[${i}].notes=this.value;scheduleSave('shotlist')" placeholder="ملاحظات" style="min-width:100px"></td>
+      <td><span class="tbl-del" onclick="_slShots.splice(${i},1);renderSLShots();scheduleSave('shotlist')">×</span></td>
     </tr>`).join('');
 }
-function addSLShot(){ _slShots.push({name:'',type:'',lens:'',duration:'',priority:'must',notes:''}); renderSLShots(); }
-function saveSL(){
-  setDoc('shotlist',{ type:document.getElementById('sl-type').value, shots:_slShots.filter(s=>s.name||s.type) });
-  toast('✓ تم حفظ قائمة اللقطات'); renderHub();
+function addSLShot(){
+  _slShots.push({name:'',type:'',lens:'',duration:'',priority:'must',notes:''});
+  renderSLShots();
+  scheduleSave('shotlist');
+  const rows = document.querySelectorAll('#sl-body tr');
+  if(rows.length) rows[rows.length-1].querySelector('input')?.focus();
 }
-function viewSL(d,p){
-  if(!d.shots?.length) return `<div class="empty-state"><div class="empty-text">لا توجد لقطات</div></div>`;
-  return `<div class="tbl-wrap"><div class="tbl-scroll"><table class="data-table" style="min-width:640px"><thead><tr><th>#</th><th>اسم اللقطة</th><th>النوع</th><th>العدسة</th><th>المدة</th><th>الأولوية</th><th>ملاحظات</th></tr></thead><tbody>
-    ${d.shots.map((s,i)=>`<tr><td style="color:#888;text-align:center">${i+1}</td><td>${esc(s.name)}</td><td>${esc(s.type)}</td><td dir="ltr">${esc(s.lens)}</td><td dir="ltr">${s.duration?esc(s.duration)+'ث':'—'}</td><td><span class="priority-${s.priority||'must'}">${s.priority==='nice'?'إضافية':'أساسية'}</span></td><td style="color:#888">${esc(s.notes)}</td></tr>`).join('')}
-  </tbody></table></div></div>
-  <div class="total-bar"><div class="total-bar-item"><div class="total-bar-lbl">إجمالي اللقطات</div><div class="total-bar-val">${d.shots.length}</div></div><div class="total-bar-item"><div class="total-bar-lbl">أساسية</div><div class="total-bar-val">${d.shots.filter(s=>!s.priority||s.priority==='must').length}</div></div><div class="total-bar-item"><div class="total-bar-lbl">إضافية</div><div class="total-bar-val">${d.shots.filter(s=>s.priority==='nice').length}</div></div></div>`;
-}
-
-// ══════════════════════════════════════════
-// BUDGET
-// ══════════════════════════════════════════
-let _bgItems=[];
-const BG_CATS=['فريق','ممثلون / طاقم','معدات','موقع','مواصلات','طعام وشراب','ما بعد الإنتاج','متفرقات'];
-function openBG(){
-  const p=getP(); document.getElementById('bg-bc').textContent=p.name;
-  const saved=getDoc('budget');
-  document.getElementById('bg-currency').value=saved?.currency||'SAR';
-  _bgItems=saved?.items?[...saved.items]:[];
-  renderBGItems();
-  switchTab('bg','fill'); showScreen('budget');
-}
-function renderBGItems(){
-  const cur=document.getElementById('bg-currency').value||'SAR';
-  const tbody=document.getElementById('bg-body');
-  const totalE=_bgItems.reduce((s,i)=>s+(+i.est||0),0);
-  const totalA=_bgItems.reduce((s,i)=>s+(+i.act||0),0);
-  tbody.innerHTML=_bgItems.map((item,i)=>`
-    <tr>
-      <td><select class="tbl-input" onchange="_bgItems[${i}].cat=this.value"><option value="">فئة</option>${BG_CATS.map(c=>`<option ${item.cat===c?'selected':''}>${esc(c)}</option>`).join('')}</select></td>
-      <td><input class="tbl-input" value="${esc(item.desc||'')}" onchange="_bgItems[${i}].desc=this.value" placeholder="البيان" style="min-width:120px"></td>
-      <td><input class="tbl-input" type="number" value="${item.est||''}" onchange="_bgItems[${i}].est=+this.value" placeholder="0" style="width:90px" dir="ltr"></td>
-      <td><input class="tbl-input" type="number" value="${item.act||''}" onchange="_bgItems[${i}].act=+this.value" placeholder="0" style="width:90px" dir="ltr"></td>
-      <td><span class="tbl-del" onclick="_bgItems.splice(${i},1);renderBGItems()">×</span></td>
-    </tr>`).join('')+(_bgItems.length?`<tr style="background:#fafaf8;font-weight:500"><td colspan="2" style="padding:9px 12px;color:#555">الإجمالي</td><td style="padding:9px 12px" dir="ltr">${totalE.toLocaleString()} ${cur}</td><td style="padding:9px 12px" dir="ltr">${totalA.toLocaleString()} ${cur}</td><td></td></tr>`:'');
-}
-function addBGItem(){ _bgItems.push({cat:'',desc:'',est:'',act:''}); renderBGItems(); }
-function saveBG(){
-  setDoc('budget',{ currency:document.getElementById('bg-currency').value, items:_bgItems.filter(i=>i.desc||i.cat) });
-  toast('✓ تم حفظ الميزانية'); renderHub();
-}
-function viewBG(d,p){
-  if(!d.items?.length) return `<div class="empty-state"><div class="empty-text">لا توجد بنود</div></div>`;
-  const cur=d.currency||'SAR';
-  const tE=d.items.reduce((s,i)=>s+(+i.est||0),0);
-  const tA=d.items.reduce((s,i)=>s+(+i.act||0),0);
-  return `<div class="tbl-wrap"><div class="tbl-scroll"><table class="data-table"><thead><tr><th>الفئة</th><th>البيان</th><th>المقدّر</th><th>الفعلي</th><th>الفرق</th></tr></thead><tbody>
-    ${d.items.map(item=>{ const diff=(+item.act||0)-(+item.est||0); return `<tr><td>${esc(item.cat)}</td><td>${esc(item.desc)}</td><td dir="ltr">${(+item.est||0).toLocaleString()} ${cur}</td><td dir="ltr">${(+item.act||0).toLocaleString()} ${cur}</td><td dir="ltr" style="color:${diff>0?'#A32D2D':'#0F6E56'}">${diff>0?'+':''}${diff.toLocaleString()} ${cur}</td></tr>`; }).join('')}
-  </tbody></table></div></div>
-  <div class="total-bar">
-    <div class="total-bar-item"><div class="total-bar-lbl">إجمالي مقدّر</div><div class="total-bar-val" dir="ltr">${tE.toLocaleString()} ${cur}</div></div>
-    <div class="total-bar-item"><div class="total-bar-lbl">إجمالي فعلي</div><div class="total-bar-val" dir="ltr">${tA.toLocaleString()} ${cur}</div></div>
-    <div class="total-bar-item"><div class="total-bar-lbl">الفرق</div><div class="total-bar-val" style="color:${tA-tE>0?'#ff7b7b':'#4ecb8d'}" dir="ltr">${tA-tE>0?'+':''}${(tA-tE).toLocaleString()} ${cur}</div></div>
-  </div>`;
-}
-
-// ══════════════════════════════════════════
-// CREW LIST
-// ══════════════════════════════════════════
-let _crCrew=[];
-function openCR(){
-  const p=getP(); document.getElementById('cr-bc').textContent=p.name;
-  const saved=getDoc('crew');
-  const csData=getDoc('callsheet');
-  if(saved){ _crCrew=[...saved.crew]; document.getElementById('cr-pf').style.display='none'; }
-  else if(csData?.crew?.length){
-    _crCrew=csData.crew.map(m=>({...m,email:'',notes:''}));
-    showPF('cr-pf',[`${_crCrew.length} فرد من الكول شيت — أضف بياناتهم الناقصة`]);
-  } else { _crCrew=[]; document.getElementById('cr-pf').style.display='none'; }
-  renderCRCrew();
-  switchTab('cr','fill'); showScreen('crew');
-}
-function renderCRCrew(){
-  document.getElementById('cr-body').innerHTML=_crCrew.map((m,i)=>`
-    <tr>
-      <td><input class="tbl-input" value="${esc(m.name||'')}" onchange="_crCrew[${i}].name=this.value" placeholder="الاسم" style="min-width:90px"></td>
-      <td><input class="tbl-input" value="${esc(m.role||'')}" onchange="_crCrew[${i}].role=this.value" placeholder="الدور" style="min-width:80px"></td>
-      <td><input class="tbl-input" value="${esc(m.phone||'')}" onchange="_crCrew[${i}].phone=this.value" placeholder="05xxxxxxxx" dir="ltr" style="min-width:100px"></td>
-      <td><input class="tbl-input" value="${esc(m.email||'')}" onchange="_crCrew[${i}].email=this.value" placeholder="email" dir="ltr" style="min-width:120px"></td>
-      <td><input class="tbl-input" type="time" value="${esc(m.calltime||'')}" onchange="_crCrew[${i}].calltime=this.value"></td>
-      <td><input class="tbl-input" value="${esc(m.notes||'')}" onchange="_crCrew[${i}].notes=this.value" placeholder="ملاحظات" style="min-width:80px"></td>
-      <td><span class="tbl-del" onclick="_crCrew.splice(${i},1);renderCRCrew()">×</span></td>
-    </tr>`).join('');
-}
-function addCRMember(){ _crCrew.push({name:'',role:'',phone:'',email:'',calltime:'',notes:''}); renderCRCrew(); }
-function saveCR(){
-  setDoc('crew',{ crew:_crCrew.filter(m=>m.name||m.role) });
-  toast('✓ تم حفظ قائمة الفريق'); renderHub();
-}
-function viewCR(d,p){
-  if(!d.crew?.length) return `<div class="empty-state"><div class="empty-text">لا يوجد أفراد</div></div>`;
-  return `<div class="tbl-wrap"><div class="tbl-scroll"><table class="data-table" style="min-width:580px"><thead><tr><th>الاسم</th><th>الدور</th><th>الجوال</th><th>الإيميل</th><th>موعد الحضور</th><th>ملاحظات</th></tr></thead><tbody>
-    ${d.crew.map(m=>`<tr><td>${esc(m.name)}</td><td>${esc(m.role)}</td><td dir="ltr">${esc(m.phone)}</td><td dir="ltr" style="font-size:12px">${esc(m.email)}</td><td>${esc(m.calltime)}</td><td style="color:#888">${esc(m.notes)}</td></tr>`).join('')}
-  </tbody></table></div></div>`;
+function _doSaveSL(){
+  setDoc('shotlist',{ type: document.getElementById('sl-type').value, shots: _slShots.filter(s=>s.name||s.type) });
+  showHint('sl-hint');
 }
 
 // ══════════════════════════════════════════
 // SCHEDULE
 // ══════════════════════════════════════════
-let _scDays=[];
+let _scDays = [];
 function openSC(){
-  const p=getP(); document.getElementById('sc-bc').textContent=p.name;
-  const saved=getDoc('schedule');
-  const slData=getDoc('shotlist');
-  if(saved){ _scDays=[...saved.days]; document.getElementById('sc-pf').style.display='none'; }
-  else {
-    _scDays=[{date:p.date||'',calltime:'',location:'',items:''}];
-    showPF('sc-pf', slData?.shots?.length?[`${slData.shots.length} لقطة في قائمة اللقطات — وزّعها على الأيام`]:[]);
-  }
+  const p = getP(); if(!p) return;
+  const saved = getDoc('schedule');
+  _scDays = saved ? [...saved.days] : [{date:p.date||'',calltime:'',location:'',items:''}];
   renderSCDays();
-  switchTab('sc','fill'); showScreen('schedule');
+  document.getElementById('sc-hint').textContent = '';
+  setProjNav('sc');
+  showScreen('schedule');
 }
 function renderSCDays(){
-  document.getElementById('sc-days').innerHTML=_scDays.map((day,i)=>`
+  document.getElementById('sc-days').innerHTML = _scDays.map((day,i)=>`
     <div class="day-card">
       <div class="day-card-head">
         <span class="day-card-head-title">يوم ${i+1}</span>
-        ${_scDays.length>1?`<span class="day-remove" onclick="_scDays.splice(${i},1);renderSCDays()">حذف اليوم</span>`:''}
+        ${_scDays.length>1?`<span class="day-remove" onclick="_scDays.splice(${i},1);renderSCDays();scheduleSave('schedule')">حذف اليوم</span>`:''}
       </div>
       <div class="day-card-body">
         <div class="form-row">
-          <div class="form-group"><label class="form-label">التاريخ</label><input class="form-input" type="date" value="${esc(day.date||'')}" onchange="_scDays[${i}].date=this.value"></div>
-          <div class="form-group"><label class="form-label">الموعد العام</label><input class="form-input" type="time" value="${esc(day.calltime||'')}" onchange="_scDays[${i}].calltime=this.value"></div>
+          <div class="form-group"><label class="form-label">التاريخ</label><input class="form-input" type="date" value="${esc(day.date||'')}" onchange="_scDays[${i}].date=this.value;scheduleSave('schedule')"></div>
+          <div class="form-group"><label class="form-label">الموعد العام</label><input class="form-input" type="time" value="${esc(day.calltime||'')}" onchange="_scDays[${i}].calltime=this.value;scheduleSave('schedule')"></div>
         </div>
-        <div class="form-group"><label class="form-label">الموقع</label><input class="form-input" value="${esc(day.location||'')}" onchange="_scDays[${i}].location=this.value" placeholder="موقع التصوير هذا اليوم"></div>
-        <div class="form-group"><label class="form-label">اللقطات / المشاهد المقررة</label><textarea class="form-textarea" onchange="_scDays[${i}].items=this.value" placeholder="اذكر اللقطات أو المشاهد المجدولة لهذا اليوم..." style="min-height:70px">${esc(day.items||'')}</textarea></div>
+        <div class="form-group"><label class="form-label">الموقع</label><input class="form-input" value="${esc(day.location||'')}" onchange="_scDays[${i}].location=this.value;scheduleSave('schedule')" placeholder="موقع التصوير هذا اليوم"></div>
+        <div class="form-group"><label class="form-label">اللقطات / المشاهد المقررة</label><textarea class="form-textarea" onchange="_scDays[${i}].items=this.value;scheduleSave('schedule')" placeholder="اذكر اللقطات أو المشاهد المجدولة لهذا اليوم..." style="min-height:70px">${esc(day.items||'')}</textarea></div>
       </div>
     </div>`).join('');
 }
-function addSCDay(){ _scDays.push({date:'',calltime:'',location:'',items:''}); renderSCDays(); }
-function saveSC(){
-  setDoc('schedule',{ days:_scDays });
-  toast('✓ تم حفظ الجدول'); renderHub();
-}
-function viewSC(d,p){
-  if(!d.days?.length) return `<div class="empty-state"><div class="empty-text">لا توجد أيام</div></div>`;
-  return d.days.map((day,i)=>{
-    const dateStr=fmtDate(day.date,{weekday:'long',day:'numeric',month:'long'});
-    return `<div class="day-card"><div class="day-card-head"><span class="day-card-head-title">يوم ${i+1}</span><span style="color:#888;font-size:12px">${esc(dateStr)}</span></div><div class="day-card-body">
-      ${day.calltime?`<div class="info-row"><span class="info-lbl">الموعد العام</span><span class="info-val">${esc(day.calltime)}</span></div>`:''}
-      ${day.location?`<div class="info-row"><span class="info-lbl">الموقع</span><span class="info-val">${esc(day.location)}</span></div>`:''}
-      ${day.items?`<div style="margin-top:10px;padding-top:10px;border-top:.5px solid rgba(0,0,0,.08);font-size:13px;color:#555;line-height:1.7;white-space:pre-line">${esc(day.items)}</div>`:''}
-    </div></div>`;
-  }).join('');
+function addSCDay(){ _scDays.push({date:'',calltime:'',location:'',items:''}); renderSCDays(); scheduleSave('schedule'); }
+function _doSaveSC(){
+  setDoc('schedule',{ days: _scDays });
+  showHint('sc-hint');
 }
 
 // ══════════════════════════════════════════
 // PDF EXPORTS
 // ══════════════════════════════════════════
 function pdfBase(title, body){
-  const p=getP();
+  const p = getP();
   return `<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><title>${esc(title)}</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
@@ -835,25 +576,27 @@ function pdfBase(title, body){
 function openPDF(html){ const w=window.open('','_blank'); w.document.write(html); w.document.close(); setTimeout(()=>w.print(),900); }
 
 function exportCallSheetPDF(){
-  const d=getDoc('callsheet'); if(!d){toast('احفظ البيانات أولاً');return;}
-  const p=getP(); const dateStr=fmtDate(d.date,{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-  let body=`<div class="ig">
-    <div class="ig-item"><div class="ig-lbl">التاريخ</div><div class="ig-val">${esc(dateStr)}</div></div>
-    <div class="ig-item"><div class="ig-lbl">الموعد العام</div><div class="ig-val">${esc(d.calltime||'—')}</div></div>
-    <div class="ig-item"><div class="ig-lbl">المدينة</div><div class="ig-val">${esc(d.city||'—')}</div></div>
-    <div class="ig-item"><div class="ig-lbl">أقرب مستشفى</div><div class="ig-val">${esc(d.hospital||'—')}</div></div>
-    <div class="ig-item" style="grid-column:1/-1"><div class="ig-lbl">الموقع</div><div class="ig-val">${esc(d.location||'—')}</div></div>
-    <div class="ig-item"><div class="ig-lbl">وقوف السيارات</div><div class="ig-val">${esc(d.parking||'—')}</div></div>
-    <div class="ig-item"><div class="ig-lbl">خطة الطقس البديلة</div><div class="ig-val">${esc(d.weather||'—')}</div></div>
-    ${d.notes?`<div class="ig-item" style="grid-column:1/-1"><div class="ig-lbl">ملاحظات</div><div class="ig-val">${esc(d.notes)}</div></div>`:''}
+  _doSaveCS();
+  const d = getDoc('callsheet'); if(!d){ toast('أدخل بيانات أولاً'); return; }
+  const dateStr = fmtDate(d.date,{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  let body = `<div class="ig">
+    <div><div class="ig-lbl">التاريخ</div><div class="ig-val">${esc(dateStr||'—')}</div></div>
+    <div><div class="ig-lbl">الموعد العام</div><div class="ig-val">${esc(d.calltime||'—')}</div></div>
+    <div><div class="ig-lbl">المدينة</div><div class="ig-val">${esc(d.city||'—')}</div></div>
+    <div><div class="ig-lbl">أقرب مستشفى</div><div class="ig-val">${esc(d.hospital||'—')}</div></div>
+    <div style="grid-column:1/-1"><div class="ig-lbl">الموقع</div><div class="ig-val">${esc(d.location||'—')}</div></div>
+    <div><div class="ig-lbl">وقوف السيارات</div><div class="ig-val">${esc(d.parking||'—')}</div></div>
+    <div><div class="ig-lbl">خطة الطقس البديلة</div><div class="ig-val">${esc(d.weather||'—')}</div></div>
+    ${d.notes?`<div style="grid-column:1/-1"><div class="ig-lbl">ملاحظات</div><div class="ig-val">${esc(d.notes)}</div></div>`:''}
   </div>`;
-  if(d.crew?.length) body+=`<div class="sh">الفريق ومواعيد الحضور</div><table><thead><tr><th>الاسم</th><th>الدور</th><th>موعد الحضور</th><th>الجوال</th></tr></thead><tbody>${d.crew.map(m=>`<tr><td>${esc(m.name)}</td><td>${esc(m.role)}</td><td>${esc(m.calltime)}</td><td dir="ltr">${esc(m.phone)}</td></tr>`).join('')}</tbody></table>`;
+  if(d.crew?.length) body += `<div class="sh">الفريق ومواعيد الحضور</div><table><thead><tr><th>الاسم</th><th>الدور</th><th>موعد الحضور</th><th>الجوال</th><th>الإيميل</th><th>ملاحظات</th></tr></thead><tbody>${d.crew.map(m=>`<tr><td>${esc(m.name)}</td><td>${esc(m.role)}</td><td>${esc(m.calltime)}</td><td dir="ltr">${esc(m.phone)}</td><td dir="ltr" style="font-size:11px">${esc(m.email||'')}</td><td style="color:#888">${esc(m.notes||'')}</td></tr>`).join('')}</tbody></table>`;
   openPDF(pdfBase('كول شيت', body));
 }
 
 function exportShotListPDF(){
-  const d=getDoc('shotlist'); if(!d){toast('احفظ البيانات أولاً');return;}
-  const body=`${d.type?`<div style="margin-bottom:14px"><span style="background:#FAB617;color:#171717;padding:4px 12px;border-radius:4px;font-size:12px;font-weight:600">${esc(d.type)}</span></div>`:''}
+  _doSaveSL();
+  const d = getDoc('shotlist'); if(!d){ toast('أدخل بيانات أولاً'); return; }
+  const body = `${d.type?`<div style="margin-bottom:14px"><span style="background:#FAB617;color:#171717;padding:4px 12px;border-radius:4px;font-size:12px;font-weight:600">${esc(d.type)}</span></div>`:''}
   <table><thead><tr><th style="width:32px">#</th><th>اسم اللقطة</th><th>النوع</th><th>العدسة</th><th>المدة</th><th>الأولوية</th><th>ملاحظات</th></tr></thead><tbody>
     ${(d.shots||[]).map((s,i)=>`<tr><td style="text-align:center;color:#888">${i+1}</td><td>${esc(s.name)}</td><td>${esc(s.type)}</td><td dir="ltr">${esc(s.lens)}</td><td dir="ltr">${s.duration?esc(s.duration)+'ث':'—'}</td><td>${s.priority==='nice'?'إضافية':'أساسية'}</td><td style="color:#888">${esc(s.notes)}</td></tr>`).join('')}
   </tbody></table>
@@ -861,30 +604,11 @@ function exportShotListPDF(){
   openPDF(pdfBase('قائمة اللقطات', body));
 }
 
-function exportBudgetPDF(){
-  const d=getDoc('budget'); if(!d){toast('احفظ البيانات أولاً');return;}
-  const cur=d.currency||'SAR';
-  const tE=(d.items||[]).reduce((s,i)=>s+(+i.est||0),0);
-  const tA=(d.items||[]).reduce((s,i)=>s+(+i.act||0),0);
-  const body=`<table><thead><tr><th>الفئة</th><th>البيان</th><th>المقدّر</th><th>الفعلي</th><th>الفرق</th></tr></thead><tbody>
-    ${(d.items||[]).map(item=>{ const diff=(+item.act||0)-(+item.est||0); return `<tr><td>${esc(item.cat)}</td><td>${esc(item.desc)}</td><td dir="ltr">${(+item.est||0).toLocaleString()} ${cur}</td><td dir="ltr">${(+item.act||0).toLocaleString()} ${cur}</td><td dir="ltr" style="color:${diff>0?'#A32D2D':'#0F6E56'}">${diff>0?'+':''}${diff.toLocaleString()} ${cur}</td></tr>`; }).join('')}
-  </tbody></table>
-  <div class="tb"><span>مقدّر: ${tE.toLocaleString()} ${cur}</span><span>فعلي: ${tA.toLocaleString()} ${cur}</span><span>الفرق: ${tA-tE>0?'+':''}${(tA-tE).toLocaleString()} ${cur}</span></div>`;
-  openPDF(pdfBase('ملخص الميزانية', body));
-}
-
-function exportCrewPDF(){
-  const d=getDoc('crew'); if(!d){toast('احفظ البيانات أولاً');return;}
-  const body=`<table><thead><tr><th>الاسم</th><th>الدور</th><th>الجوال</th><th>الإيميل</th><th>موعد الحضور</th><th>ملاحظات</th></tr></thead><tbody>
-    ${(d.crew||[]).map(m=>`<tr><td>${esc(m.name)}</td><td>${esc(m.role)}</td><td dir="ltr">${esc(m.phone)}</td><td dir="ltr" style="font-size:11px">${esc(m.email)}</td><td>${esc(m.calltime)}</td><td style="color:#888">${esc(m.notes)}</td></tr>`).join('')}
-  </tbody></table>`;
-  openPDF(pdfBase('قائمة الفريق', body));
-}
-
 function exportSchedulePDF(){
-  const d=getDoc('schedule'); if(!d){toast('احفظ البيانات أولاً');return;}
-  const body=(d.days||[]).map((day,i)=>{
-    const dateStr=fmtDate(day.date,{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  _doSaveSC();
+  const d = getDoc('schedule'); if(!d){ toast('أدخل بيانات أولاً'); return; }
+  const body = (d.days||[]).map((day,i)=>{
+    const dateStr = fmtDate(day.date,{weekday:'long',day:'numeric',month:'long',year:'numeric'});
     return `<div class="day-block"><div class="day-head"><span>يوم ${i+1}</span><span>${esc(dateStr)}</span></div><div class="day-body">
       <table style="margin-bottom:${day.items?'10px':'0'}">
         ${day.calltime?`<tr><td style="color:#888;width:30%">الموعد العام</td><td>${esc(day.calltime)}</td></tr>`:''}
