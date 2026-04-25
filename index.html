@@ -1,564 +1,673 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ShootPlan Pro</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ShootPlan Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f1117;
+  --bg2:#13161f;
+  --surface:#1a1d27;
+  --surface2:#21253a;
+  --border:rgba(255,255,255,.07);
+  --border2:rgba(255,255,255,.12);
+  --text:#f0f0f0;
+  --text2:#9499b0;
+  --text3:#555a75;
+  --accent:#4f7df3;
+  --accent-h:#3d6ae6;
+  --accent-glow:rgba(79,125,243,.18);
+  --green:#22c55e;
+  --red:#ef4444;
+  --sb-w:230px;
+  --tb-h:52px;
+  --r:10px;
+  --r2:6px;
+  --arabic:'Noto Naskh Arabic',sans-serif;
+  --latin:'Inter',sans-serif;
+}
+body{font-family:var(--arabic);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
-    :root{
-      --bg:#0d0d0d;
-      --surface:#111111;
-      --surface2:#181818;
-      --border:rgba(255,255,255,.08);
-      --text:#e2e2e2;
-      --text-dim:#888;
-      --text-muted:#555;
-      --accent:#3B82F6;
-      --accent-h:#2563EB;
-      --green:#10B981;
-      --sidebar-w:260px;
-      --topbar-h:54px;
-      --r:8px;
-      --font:'Noto Naskh Arabic',sans-serif;
-    }
+/* ══════════════ AUTH ══════════════ */
+#auth-page{
+  display:flex;min-height:100vh;
+}
+#auth-page.hidden{display:none}
 
-    body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+/* LEFT PANEL */
+.auth-left{
+  flex:0 0 52%;
+  background:linear-gradient(145deg,#0b0e17 0%,#111527 50%,#0d1229 100%);
+  display:flex;flex-direction:column;
+  padding:48px 56px;
+  position:relative;overflow:hidden;
+  border-left:1px solid var(--border);
+}
+.auth-left::before{
+  content:'';position:absolute;
+  top:-180px;right:-120px;
+  width:480px;height:480px;
+  background:radial-gradient(circle,rgba(79,125,243,.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+.auth-left-logo{
+  display:flex;align-items:center;gap:10px;margin-bottom:auto;
+}
+.auth-left-logo-icon{
+  width:34px;height:34px;background:var(--accent);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:17px;
+}
+.auth-left-logo-name{font-family:var(--latin);font-size:16px;font-weight:700;letter-spacing:-.3px;color:var(--text)}
 
-    /* ─── AUTH ─── */
-    #auth-overlay{
-      position:fixed;inset:0;background:var(--bg);
-      display:flex;align-items:center;justify-content:center;z-index:1000;
-    }
-    #auth-overlay.hidden{display:none}
+.auth-left-hero{margin-top:auto;margin-bottom:auto;padding:40px 0}
+.auth-left-hero h1{
+  font-size:34px;font-weight:700;line-height:1.3;
+  color:var(--text);margin-bottom:14px;
+  letter-spacing:-.5px;
+}
+.auth-left-hero h1 span{color:var(--accent)}
+.auth-left-hero p{font-size:15px;color:var(--text2);line-height:1.7;margin-bottom:36px}
 
-    .auth-card{
-      width:400px;background:var(--surface);
-      border:1px solid var(--border);border-radius:14px;padding:40px;
-    }
+.auth-feature-list{display:flex;flex-direction:column;gap:14px}
+.auth-feature{display:flex;align-items:flex-start;gap:12px}
+.auth-feature-icon{
+  width:32px;height:32px;border-radius:8px;
+  background:rgba(79,125,243,.12);border:1px solid rgba(79,125,243,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;flex-shrink:0;margin-top:1px;
+}
+.auth-feature-text{font-size:13px;color:var(--text2);line-height:1.5}
+.auth-feature-text strong{color:var(--text);display:block;font-size:13.5px;margin-bottom:2px}
 
-    .auth-logo{text-align:center;margin-bottom:30px}
-    .auth-logo-icon{
-      width:56px;height:56px;background:var(--accent);border-radius:14px;
-      display:flex;align-items:center;justify-content:center;
-      font-size:26px;margin:0 auto 14px;
-    }
-    .auth-logo h1{font-size:20px;font-weight:700;letter-spacing:-.3px}
-    .auth-logo p{font-size:12px;color:var(--text-dim);margin-top:4px}
+.auth-left-footer{margin-top:auto;font-size:12px;color:var(--text3)}
 
-    .auth-tabs{
-      display:flex;background:var(--surface2);border-radius:var(--r);
-      padding:4px;margin-bottom:22px;gap:4px;
-    }
-    .auth-tab{
-      flex:1;padding:8px;background:none;border:none;
-      color:var(--text-dim);font-family:var(--font);font-size:14px;
-      border-radius:6px;cursor:pointer;transition:all .15s;
-    }
-    .auth-tab.active{background:var(--surface);color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,.5)}
+/* RIGHT PANEL */
+.auth-right{
+  flex:1;
+  display:flex;align-items:center;justify-content:center;
+  padding:40px 32px;
+  background:var(--bg2);
+}
+.auth-form-wrap{width:100%;max-width:380px}
 
-    .auth-field{margin-bottom:15px}
-    .auth-field label{display:block;font-size:12px;color:var(--text-dim);margin-bottom:6px}
-    .auth-field input{
-      width:100%;background:var(--surface2);border:1px solid var(--border);
-      border-radius:var(--r);padding:10px 14px;color:var(--text);
-      font-family:var(--font);font-size:14px;outline:none;direction:ltr;
-      transition:border-color .15s;
-    }
-    .auth-field input:focus{border-color:var(--accent)}
+.auth-form-title{font-size:22px;font-weight:700;margin-bottom:6px}
+.auth-form-sub{font-size:13px;color:var(--text2);margin-bottom:28px}
 
-    .auth-btn{
-      width:100%;padding:11px;background:var(--accent);border:none;
-      border-radius:var(--r);color:#fff;font-family:var(--font);
-      font-size:15px;font-weight:600;cursor:pointer;transition:background .15s;margin-top:4px;
-    }
-    .auth-btn:hover{background:var(--accent-h)}
-    .auth-btn:disabled{opacity:.45;cursor:default}
+.auth-tabs{
+  display:flex;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:3px;margin-bottom:24px;gap:3px;
+}
+.auth-tab{
+  flex:1;padding:8px;background:none;border:none;
+  color:var(--text2);font-family:var(--arabic);font-size:14px;
+  border-radius:7px;cursor:pointer;transition:all .15s;
+}
+.auth-tab.active{background:var(--surface2);color:var(--text);font-weight:600}
 
-    .auth-divider{
-      display:flex;align-items:center;gap:12px;margin:18px 0;
-      color:var(--text-muted);font-size:12px;
-    }
-    .auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.auth-msg{
+  border-radius:var(--r2);padding:10px 14px;font-size:13px;margin-bottom:16px;display:none;
+}
+.auth-msg.err{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);color:#f87171}
+.auth-msg.ok{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);color:#86efac}
+.auth-msg.show{display:block}
 
-    .auth-btn-google{
-      width:100%;padding:10px;background:var(--surface2);
-      border:1px solid var(--border);border-radius:var(--r);
-      color:var(--text);font-family:var(--font);font-size:14px;cursor:pointer;
-      transition:border-color .15s;display:flex;align-items:center;justify-content:center;gap:10px;
-    }
-    .auth-btn-google:hover{border-color:rgba(255,255,255,.2)}
+.auth-label{display:block;font-size:12px;color:var(--text2);margin-bottom:6px;font-weight:500}
+.auth-input{
+  display:block;width:100%;background:var(--surface);
+  border:1px solid var(--border2);border-radius:var(--r2);
+  padding:10px 14px;color:var(--text);font-family:var(--arabic);
+  font-size:14px;outline:none;direction:ltr;margin-bottom:14px;
+  transition:border-color .15s,box-shadow .15s;
+}
+.auth-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+.auth-input::placeholder{color:var(--text3)}
 
-    .auth-error{
-      background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);
-      border-radius:var(--r);padding:10px 14px;font-size:13px;
-      color:#f87171;margin-bottom:14px;display:none;
-    }
-    .auth-error.show{display:block}
-    .auth-success{
-      background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);
-      border-radius:var(--r);padding:10px 14px;font-size:13px;
-      color:#6EE7B7;margin-bottom:14px;display:none;
-    }
-    .auth-success.show{display:block}
+.auth-btn-main{
+  display:block;width:100%;padding:11px;
+  background:var(--accent);border:none;border-radius:var(--r2);
+  color:#fff;font-family:var(--arabic);font-size:15px;font-weight:600;
+  cursor:pointer;transition:background .15s,transform .1s;margin-top:6px;
+}
+.auth-btn-main:hover{background:var(--accent-h)}
+.auth-btn-main:active{transform:scale(.99)}
+.auth-btn-main:disabled{opacity:.4;cursor:default}
 
-    /* ─── APP ─── */
-    #app-main{display:none}
-    #app-main.show{display:flex}
+.auth-sep{display:flex;align-items:center;gap:10px;margin:18px 0;color:var(--text3);font-size:12px}
+.auth-sep::before,.auth-sep::after{content:'';flex:1;height:1px;background:var(--border)}
 
-    /* ─── SIDEBAR ─── */
-    #sidebar{
-      position:fixed;top:0;right:0;width:var(--sidebar-w);height:100vh;
-      background:var(--surface);border-left:1px solid var(--border);
-      display:flex;flex-direction:column;z-index:50;
-    }
+.auth-btn-google{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;padding:10px;background:var(--surface);
+  border:1px solid var(--border2);border-radius:var(--r2);
+  color:var(--text);font-family:var(--arabic);font-size:14px;cursor:pointer;
+  transition:border-color .15s,background .15s;
+}
+.auth-btn-google:hover{background:var(--surface2);border-color:var(--border2)}
 
-    .sb-brand{
-      height:var(--topbar-h);display:flex;align-items:center;
-      padding:0 16px;border-bottom:1px solid var(--border);gap:10px;flex-shrink:0;
-    }
-    .sb-brand-icon{
-      width:30px;height:30px;background:var(--accent);border-radius:7px;
-      display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;
-    }
-    .sb-brand-name{font-size:15px;font-weight:700}
+/* ══════════════ APP ══════════════ */
+#app{display:none}
+#app.show{display:flex;min-height:100vh}
 
-    .sb-new-btn{
-      margin:10px 10px 4px;padding:8px 14px;background:var(--accent);
-      border:none;border-radius:var(--r);color:#fff;font-family:var(--font);
-      font-size:13px;font-weight:600;cursor:pointer;
-      display:flex;align-items:center;justify-content:center;gap:6px;
-      transition:background .15s;flex-shrink:0;
-    }
-    .sb-new-btn:hover{background:var(--accent-h)}
+/* SIDEBAR */
+#sb{
+  position:fixed;top:0;right:0;
+  width:var(--sb-w);height:100vh;
+  background:var(--bg2);
+  border-left:1px solid var(--border);
+  display:flex;flex-direction:column;z-index:50;
+}
 
-    .sb-section{
-      padding:12px 14px 4px;font-size:10px;font-weight:600;
-      text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);flex-shrink:0;
-    }
+.sb-logo{
+  height:var(--tb-h);display:flex;align-items:center;
+  padding:0 16px;gap:10px;border-bottom:1px solid var(--border);flex-shrink:0;
+}
+.sb-logo-icon{
+  width:28px;height:28px;background:var(--accent);border-radius:7px;
+  display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;
+}
+.sb-logo-name{font-family:var(--latin);font-size:14px;font-weight:700;letter-spacing:-.2px}
 
-    .sb-list{flex:1;overflow-y:auto;padding:2px 0 4px}
-    .sb-list::-webkit-scrollbar{width:3px}
-    .sb-list::-webkit-scrollbar-track{background:transparent}
-    .sb-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.sb-section-label{
+  padding:16px 16px 6px;font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:1.2px;color:var(--text3);flex-shrink:0;
+}
 
-    .sb-proj-header{
-      display:flex;align-items:center;padding:7px 10px;
-      cursor:pointer;border-radius:6px;margin:0 4px;gap:8px;
-      transition:background .12s;
-    }
-    .sb-proj-header:hover{background:rgba(255,255,255,.04)}
-    .sb-proj-header.active{background:rgba(59,130,246,.12)}
-    .sb-proj-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-    .sb-proj-name{font-size:13px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sb-nav{padding:4px 8px;flex-shrink:0}
+.sb-nav-item{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 10px;border-radius:var(--r2);
+  color:var(--text2);cursor:pointer;font-size:13px;font-weight:500;
+  transition:background .12s,color .12s;
+}
+.sb-nav-item:hover{background:rgba(255,255,255,.04);color:var(--text)}
+.sb-nav-item.active{background:var(--accent-glow);color:var(--accent)}
+.sb-nav-icon{font-size:15px;flex-shrink:0;width:18px;text-align:center}
 
-    .sb-subnav{padding:2px 0 6px;display:none}
-    .sb-subnav.open{display:block}
-    .sb-sublink{
-      display:flex;align-items:center;padding:6px 10px;
-      margin:0 4px 0 14px;border-radius:6px;font-size:12px;
-      color:var(--text-dim);cursor:pointer;gap:8px;
-      transition:background .12s,color .12s;
-    }
-    .sb-sublink:hover{background:rgba(255,255,255,.04);color:var(--text)}
-    .sb-sublink.active{background:rgba(59,130,246,.1);color:var(--accent)}
+.sb-divider{height:1px;background:var(--border);margin:8px 0;flex-shrink:0}
 
-    .sb-empty{padding:16px 14px;font-size:12px;color:var(--text-muted)}
+.sb-proj-section{flex:1;overflow-y:auto;padding:0 8px 8px}
+.sb-proj-section::-webkit-scrollbar{width:3px}
+.sb-proj-section::-webkit-scrollbar-track{background:transparent}
+.sb-proj-section::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 
-    .sb-user{
-      border-top:1px solid var(--border);padding:13px 14px;
-      display:flex;align-items:center;gap:10px;flex-shrink:0;
-    }
-    .sb-avatar{
-      width:32px;height:32px;background:var(--surface2);border-radius:50%;
-      display:flex;align-items:center;justify-content:center;
-      font-size:13px;font-weight:700;color:var(--accent);flex-shrink:0;
-    }
-    .sb-user-info{flex:1;min-width:0}
-    .sb-user-email{font-size:11px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .sb-signout{
-      background:none;border:none;color:var(--text-muted);cursor:pointer;
-      font-size:17px;padding:3px;transition:color .12s;flex-shrink:0;
-    }
-    .sb-signout:hover{color:#f87171}
+.sb-new-btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  margin:0 8px 6px;padding:8px 12px;
+  background:var(--accent);border:none;border-radius:var(--r2);
+  color:#fff;font-family:var(--arabic);font-size:13px;font-weight:600;
+  cursor:pointer;transition:background .15s;flex-shrink:0;
+}
+.sb-new-btn:hover{background:var(--accent-h)}
 
-    /* ─── CONTENT ─── */
-    #content{
-      margin-right:var(--sidebar-w);min-height:100vh;
-      display:flex;flex-direction:column;width:calc(100% - var(--sidebar-w));
-    }
+.sb-proj-item{margin-bottom:1px}
+.sb-proj-btn{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 10px;border-radius:var(--r2);
+  cursor:pointer;transition:background .12s;
+}
+.sb-proj-btn:hover{background:rgba(255,255,255,.04)}
+.sb-proj-btn.active{background:var(--accent-glow)}
+.sb-proj-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.sb-proj-name{font-size:12.5px;color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.sb-proj-btn.active .sb-proj-name{color:var(--text)}
 
-    /* ─── TOPBAR ─── */
-    #topbar{
-      height:var(--topbar-h);background:var(--surface);
-      border-bottom:1px solid var(--border);
-      position:sticky;top:0;z-index:40;
-      display:flex;align-items:center;padding:0 26px;gap:12px;flex-shrink:0;
-    }
+.sb-subnav{padding:2px 0 4px 0;display:none}
+.sb-subnav.open{display:block}
+.sb-sublink{
+  display:flex;align-items:center;gap:8px;
+  padding:6px 10px 6px 14px;margin:0 0 0 16px;
+  border-radius:var(--r2);font-size:12px;color:var(--text3);
+  cursor:pointer;transition:background .12s,color .12s;
+}
+.sb-sublink:hover{background:rgba(255,255,255,.04);color:var(--text2)}
+.sb-sublink.active{color:var(--accent)}
 
-    .breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;flex:1;min-width:0}
-    .bc-item{color:var(--text-dim);cursor:pointer;transition:color .12s;white-space:nowrap}
-    .bc-item:hover{color:var(--text)}
-    .bc-item.current{color:var(--text);font-weight:600;cursor:default}
-    .bc-sep{color:var(--text-muted);font-size:11px}
+.sb-empty-msg{padding:10px 10px;font-size:12px;color:var(--text3)}
 
-    .topbar-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
-    #save-hint{font-size:12px;color:var(--green);min-width:72px;text-align:center}
+.sb-user{
+  border-top:1px solid var(--border);padding:12px 12px;
+  display:flex;align-items:center;gap:10px;flex-shrink:0;
+}
+.sb-avatar{
+  width:30px;height:30px;background:var(--surface2);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:var(--accent);flex-shrink:0;
+  font-family:var(--latin);
+}
+.sb-user-info{flex:1;min-width:0}
+.sb-user-email{font-size:11px;color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sb-signout-btn{
+  background:none;border:none;color:var(--text3);cursor:pointer;
+  font-size:14px;padding:4px;transition:color .12s;flex-shrink:0;
+}
+.sb-signout-btn:hover{color:var(--red)}
 
-    .btn-pdf{
-      padding:7px 16px;background:rgba(255,255,255,.05);
-      border:1px solid var(--border);border-radius:var(--r);
-      color:var(--text);font-family:var(--font);font-size:13px;
-      cursor:pointer;display:flex;align-items:center;gap:6px;transition:background .12s;
-    }
-    .btn-pdf:hover{background:rgba(255,255,255,.09)}
-    .btn-pdf.hidden{display:none}
+/* CONTENT */
+#content{
+  margin-right:var(--sb-w);
+  display:flex;flex-direction:column;
+  min-height:100vh;
+  width:calc(100% - var(--sb-w));
+}
 
-    /* ─── MAIN ─── */
-    #main-content{flex:1;padding:28px 32px}
-    .screen{display:none}
-    .screen.active{display:block}
+/* TOPBAR */
+#topbar{
+  height:var(--tb-h);background:var(--bg2);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 24px;gap:14px;
+  position:sticky;top:0;z-index:40;flex-shrink:0;
+}
+.bc{display:flex;align-items:center;gap:6px;font-size:13px;flex:1;min-width:0}
+.bc-seg{color:var(--text2);cursor:pointer;transition:color .12s;white-space:nowrap;font-weight:500}
+.bc-seg:hover{color:var(--text)}
+.bc-seg.cur{color:var(--text);cursor:default}
+.bc-arrow{color:var(--text3);font-size:10px}
+.tb-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+#sh{font-size:12px;color:var(--green);min-width:72px;text-align:center;font-family:var(--latin)}
+.btn-pdf{
+  display:flex;align-items:center;gap:6px;
+  padding:6px 14px;background:transparent;
+  border:1px solid var(--border2);border-radius:var(--r2);
+  color:var(--text2);font-family:var(--arabic);font-size:12.5px;
+  cursor:pointer;transition:all .15s;font-weight:500;
+}
+.btn-pdf:hover{background:var(--surface);color:var(--text);border-color:var(--border2)}
+.btn-pdf.hidden{display:none}
 
-    /* ─── HOME ─── */
-    .home-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}
-    .home-title{font-size:22px;font-weight:700}
+/* DOC NAV TABS inside topbar */
+.tb-doc-tabs{display:flex;gap:2px}
+.tb-doc-tab{
+  padding:5px 12px;border-radius:var(--r2);font-size:12.5px;font-weight:500;
+  color:var(--text2);cursor:pointer;transition:all .15s;border:1px solid transparent;
+}
+.tb-doc-tab:hover{background:var(--surface);color:var(--text)}
+.tb-doc-tab.active{background:var(--surface2);color:var(--text);border-color:var(--border)}
+.tb-doc-tabs.hidden{display:none}
 
-    .search-wrap{position:relative;width:240px}
-    .search-wrap input{
-      width:100%;background:var(--surface);border:1px solid var(--border);
-      border-radius:var(--r);padding:8px 36px 8px 14px;
-      color:var(--text);font-family:var(--font);font-size:13px;outline:none;
-      transition:border-color .15s;
-    }
-    .search-wrap input:focus{border-color:var(--accent)}
-    .search-icon{
-      position:absolute;left:11px;top:50%;transform:translateY(-50%);
-      color:var(--text-muted);font-size:13px;pointer-events:none;
-    }
+/* MAIN */
+#main{flex:1;padding:28px 30px}
+.screen{display:none}
+.screen.active{display:block}
 
-    .projects-grid{
-      display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px;
-    }
+/* ═══ HOME ═══ */
+.pg-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.pg-title{font-size:20px;font-weight:700;letter-spacing:-.3px}
+.search-box{
+  position:relative;width:220px;
+}
+.search-box input{
+  width:100%;background:var(--surface);border:1px solid var(--border2);
+  border-radius:var(--r2);padding:7px 32px 7px 12px;
+  color:var(--text);font-family:var(--arabic);font-size:13px;outline:none;
+  transition:border-color .15s;
+}
+.search-box input:focus{border-color:var(--accent)}
+.search-box input::placeholder{color:var(--text3)}
+.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:13px;pointer-events:none}
 
-    .proj-card{
-      background:var(--surface);border:1px solid var(--border);
-      border-radius:10px;overflow:hidden;cursor:pointer;
-      transition:border-color .15s,transform .12s;
-    }
-    .proj-card:hover{border-color:rgba(255,255,255,.16);transform:translateY(-1px)}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
 
-    .proj-card-stripe{height:4px}
-    .proj-card-body{padding:15px 15px 10px}
-    .proj-card-name{font-size:15px;font-weight:600;margin-bottom:7px}
-    .proj-card-meta{font-size:12px;color:var(--text-dim);display:flex;flex-wrap:wrap;gap:6px}
-    .proj-card-meta span{display:flex;align-items:center;gap:3px}
-    .proj-card-docs{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
-    .doc-badge{
-      padding:3px 10px;border-radius:20px;font-size:11px;border:1px solid;
-    }
-    .doc-badge.done{background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.3);color:#6EE7B7}
-    .doc-badge.empty{background:rgba(255,255,255,.03);border-color:var(--border);color:var(--text-muted)}
-    .proj-card-footer{
-      display:flex;justify-content:flex-end;
-      border-top:1px solid rgba(255,255,255,.04);
-      padding:8px 12px;margin-top:4px;
-    }
-    .btn-del-proj{
-      background:none;border:none;color:var(--text-muted);cursor:pointer;
-      font-size:12px;padding:3px 8px;border-radius:4px;transition:background .12s,color .12s;
-      font-family:var(--font);
-    }
-    .btn-del-proj:hover{background:rgba(239,68,68,.1);color:#f87171}
+.proj-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;cursor:pointer;
+  transition:border-color .15s,box-shadow .15s,transform .12s;
+}
+.proj-card:hover{
+  border-color:rgba(255,255,255,.14);
+  box-shadow:0 4px 20px rgba(0,0,0,.3);
+  transform:translateY(-2px);
+}
+.proj-card-hero{
+  height:72px;position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.proj-card-hero-abbr{
+  font-family:var(--latin);font-size:22px;font-weight:800;
+  color:rgba(255,255,255,.18);letter-spacing:-1px;text-transform:uppercase;
+}
+.proj-card-body{padding:14px 14px 10px}
+.proj-card-name{font-size:14px;font-weight:600;margin-bottom:6px;line-height:1.3}
+.proj-card-meta{display:flex;flex-wrap:wrap;gap:5px 10px;margin-bottom:12px}
+.proj-card-meta-item{font-size:11.5px;color:var(--text2);display:flex;align-items:center;gap:4px}
+.proj-card-docs{display:flex;gap:5px;flex-wrap:wrap}
+.doc-chip{
+  padding:3px 9px;border-radius:20px;font-size:10.5px;border:1px solid;font-weight:500;
+}
+.doc-chip.done{background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.2);color:#86efac}
+.doc-chip.empty{background:transparent;border-color:var(--border);color:var(--text3)}
+.proj-card-footer{
+  padding:8px 14px;border-top:1px solid var(--border);
+  display:flex;justify-content:flex-end;
+}
+.btn-del-card{
+  background:none;border:none;color:var(--text3);cursor:pointer;
+  font-family:var(--arabic);font-size:12px;padding:3px 8px;border-radius:4px;
+  transition:background .12s,color .12s;
+}
+.btn-del-card:hover{background:rgba(239,68,68,.1);color:var(--red)}
 
-    .new-proj-card{
-      background:var(--surface);border:1px dashed var(--border);
-      border-radius:10px;min-height:118px;display:flex;flex-direction:column;
-      align-items:center;justify-content:center;cursor:pointer;
-      transition:border-color .15s,background .12s;gap:8px;padding:20px;
-    }
-    .new-proj-card:hover{border-color:var(--accent);background:rgba(59,130,246,.04)}
-    .new-proj-icon{font-size:26px;color:var(--text-muted)}
-    .new-proj-label{font-size:13px;color:var(--text-muted)}
+.new-card{
+  background:var(--surface);border:1.5px dashed var(--border2);
+  border-radius:12px;min-height:170px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  cursor:pointer;gap:10px;
+  transition:border-color .15s,background .15s;
+}
+.new-card:hover{border-color:var(--accent);background:var(--accent-glow)}
+.new-card-plus{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--surface2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;color:var(--text2);
+  transition:background .15s,color .15s;
+}
+.new-card:hover .new-card-plus{background:var(--accent);color:#fff}
+.new-card-label{font-size:13px;color:var(--text2)}
 
-    /* ─── MODAL ─── */
-    .modal-overlay{
-      position:fixed;inset:0;background:rgba(0,0,0,.7);
-      display:flex;align-items:center;justify-content:center;z-index:200;
-    }
-    .modal-overlay.hidden{display:none}
-    .modal{
-      background:var(--surface);border:1px solid var(--border);
-      border-radius:12px;width:440px;padding:28px;
-    }
-    .modal-title{font-size:17px;font-weight:700;margin-bottom:20px}
-    .modal-field{margin-bottom:13px}
-    .modal-field label{display:block;font-size:12px;color:var(--text-dim);margin-bottom:5px}
-    .modal-field input{
-      width:100%;background:var(--surface2);border:1px solid var(--border);
-      border-radius:6px;padding:9px 12px;color:var(--text);
-      font-family:var(--font);font-size:14px;outline:none;transition:border-color .15s;
-    }
-    .modal-field input:focus{border-color:var(--accent)}
-    .modal-actions{display:flex;gap:10px;margin-top:20px}
-    .btn-primary{
-      padding:9px 22px;background:var(--accent);border:none;
-      border-radius:var(--r);color:#fff;font-family:var(--font);
-      font-size:14px;font-weight:600;cursor:pointer;transition:background .15s;
-    }
-    .btn-primary:hover{background:var(--accent-h)}
-    .btn-ghost{
-      padding:9px 22px;background:none;border:1px solid var(--border);
-      border-radius:var(--r);color:var(--text-dim);font-family:var(--font);
-      font-size:14px;cursor:pointer;transition:border-color .15s,color .15s;
-    }
-    .btn-ghost:hover{border-color:rgba(255,255,255,.2);color:var(--text)}
+/* ═══ MODAL ═══ */
+.modal-bg{
+  position:fixed;inset:0;background:rgba(0,0,0,.65);
+  display:flex;align-items:center;justify-content:center;z-index:300;
+  backdrop-filter:blur(4px);
+}
+.modal-bg.hidden{display:none}
+.modal{
+  background:var(--surface);border:1px solid var(--border2);
+  border-radius:14px;width:440px;padding:28px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+.modal-title{font-size:17px;font-weight:700;margin-bottom:20px}
+.mf{margin-bottom:13px}
+.mf label{display:block;font-size:12px;color:var(--text2);margin-bottom:5px;font-weight:500}
+.mf input{
+  display:block;width:100%;background:var(--bg2);border:1px solid var(--border2);
+  border-radius:var(--r2);padding:9px 12px;color:var(--text);
+  font-family:var(--arabic);font-size:14px;outline:none;transition:border-color .15s;
+}
+.mf input:focus{border-color:var(--accent)}
+.modal-actions{display:flex;gap:10px;margin-top:20px}
+.btn-p{
+  padding:9px 22px;background:var(--accent);border:none;border-radius:var(--r2);
+  color:#fff;font-family:var(--arabic);font-size:14px;font-weight:600;
+  cursor:pointer;transition:background .15s;
+}
+.btn-p:hover{background:var(--accent-h)}
+.btn-g{
+  padding:9px 22px;background:none;border:1px solid var(--border2);border-radius:var(--r2);
+  color:var(--text2);font-family:var(--arabic);font-size:14px;cursor:pointer;
+  transition:border-color .15s,color .15s;
+}
+.btn-g:hover{border-color:rgba(255,255,255,.2);color:var(--text)}
 
-    /* ─── DOC SCREENS ─── */
-    .doc-wrap{max-width:920px}
-    .doc-section{
-      background:var(--surface);border:1px solid var(--border);
-      border-radius:10px;margin-bottom:16px;overflow:hidden;
-    }
-    .doc-section-hdr{
-      padding:13px 18px;border-bottom:1px solid var(--border);
-      font-size:11px;font-weight:700;color:var(--text-dim);
-      text-transform:uppercase;letter-spacing:.8px;
-    }
-    .doc-section-body{padding:18px}
+/* ═══ DOC PAGES ═══ */
+.doc-page{max-width:900px}
+.doc-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;margin-bottom:14px;overflow:hidden;
+}
+.doc-card-hdr{
+  padding:12px 18px;border-bottom:1px solid var(--border);
+  font-size:10.5px;font-weight:700;color:var(--text3);
+  text-transform:uppercase;letter-spacing:1px;
+  display:flex;align-items:center;gap:8px;
+}
+.doc-card-body{padding:18px}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg.three{grid-template-columns:1fr 1fr 1fr}
+.fgl label{display:block;font-size:11.5px;color:var(--text2);margin-bottom:5px;font-weight:500}
+.fgl input,.fgl textarea{
+  display:block;width:100%;background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r2);padding:8px 12px;color:var(--text);
+  font-family:var(--arabic);font-size:13.5px;outline:none;
+  transition:border-color .15s;resize:vertical;
+}
+.fgl input:focus,.fgl textarea:focus{border-color:var(--accent)}
 
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-    .form-group label{display:block;font-size:12px;color:var(--text-dim);margin-bottom:5px}
-    .form-group input,.form-group textarea{
-      width:100%;background:var(--surface2);border:1px solid var(--border);
-      border-radius:6px;padding:8px 12px;color:var(--text);
-      font-family:var(--font);font-size:14px;outline:none;
-      transition:border-color .15s;resize:vertical;
-    }
-    .form-group input:focus,.form-group textarea:focus{border-color:var(--accent)}
+/* TABLES */
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:580px}
+thead th{
+  background:var(--bg2);padding:9px 12px;text-align:right;
+  font-size:11px;font-weight:600;color:var(--text3);
+  border-bottom:1px solid var(--border);white-space:nowrap;
+  letter-spacing:.3px;
+}
+tbody tr{border-bottom:1px solid rgba(255,255,255,.035)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:rgba(255,255,255,.02)}
+tbody td{padding:4px}
+tbody td input{
+  display:block;width:100%;background:transparent;border:none;
+  color:var(--text);font-family:var(--arabic);font-size:13px;
+  padding:5px 8px;border-radius:4px;outline:none;
+  transition:background .12s;
+}
+tbody td input:focus{background:rgba(255,255,255,.06)}
+tbody td input[type="date"],tbody td input[type="time"]{direction:ltr;font-family:var(--latin)}
+.btn-add{
+  margin-top:10px;padding:7px 14px;
+  background:rgba(255,255,255,.03);border:1px dashed var(--border2);
+  border-radius:var(--r2);color:var(--text2);font-family:var(--arabic);
+  font-size:12.5px;cursor:pointer;transition:background .12s,color .12s;
+}
+.btn-add:hover{background:rgba(255,255,255,.06);color:var(--text)}
+.btn-del{
+  display:flex;align-items:center;justify-content:center;
+  background:none;border:none;color:var(--text3);cursor:pointer;
+  font-size:13px;padding:4px 7px;transition:color .12s;
+}
+.btn-del:hover{color:var(--red)}
 
-    /* ─── TABLES ─── */
-    .table-wrap{overflow-x:auto}
-    table{width:100%;border-collapse:collapse;min-width:600px}
-    thead th{
-      background:var(--surface2);padding:10px 12px;text-align:right;
-      font-size:11px;font-weight:700;color:var(--text-dim);
-      border-bottom:1px solid var(--border);white-space:nowrap;
-    }
-    tbody tr{border-bottom:1px solid rgba(255,255,255,.04)}
-    tbody tr:last-child{border-bottom:none}
-    tbody tr:hover{background:rgba(255,255,255,.02)}
-    tbody td{padding:5px}
-    tbody td input{
-      width:100%;background:transparent;border:none;color:var(--text);
-      font-family:var(--font);font-size:13px;padding:5px 7px;
-      border-radius:4px;outline:none;transition:background .12s;
-    }
-    tbody td input:focus{background:rgba(255,255,255,.06)}
-    tbody td input[type="date"],tbody td input[type="time"]{direction:ltr}
+/* ═══ ANIM ═══ */
+.fade-in{animation:fi .18s ease}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-    .btn-add-row{
-      margin-top:11px;padding:7px 16px;background:rgba(255,255,255,.04);
-      border:1px dashed var(--border);border-radius:var(--r);
-      color:var(--text-dim);font-family:var(--font);font-size:13px;
-      cursor:pointer;transition:background .12s,color .12s;
-    }
-    .btn-add-row:hover{background:rgba(255,255,255,.07);color:var(--text)}
+/* SCROLLBAR */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.14)}
 
-    .btn-del-row{
-      background:none;border:none;color:var(--text-muted);
-      cursor:pointer;font-size:13px;padding:4px 6px;
-      transition:color .12s;line-height:1;
-    }
-    .btn-del-row:hover{color:#f87171}
-
-    /* ─── SCROLLBAR ─── */
-    ::-webkit-scrollbar{width:6px;height:6px}
-    ::-webkit-scrollbar-track{background:transparent}
-    ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px}
-
-    /* ─── ANIMATION ─── */
-    .fade-in{animation:fi .18s ease}
-    @keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-
-    /* ─── PRINT ─── */
-    @media print{
-      #sidebar,#topbar{display:none!important}
-      #content{margin-right:0!important;width:100%!important}
-      body{background:#fff!important;color:#000!important}
-      .doc-section{border:1px solid #ddd!important;background:#fff!important;break-inside:avoid}
-      .doc-section-hdr{background:#f5f5f5!important;color:#333!important;border-bottom:1px solid #ddd!important}
-      input{background:transparent!important;color:#000!important;border:none!important;border-bottom:1px solid #eee!important}
-      .btn-add-row,.btn-del-row,.btn-pdf,#save-hint{display:none!important}
-    }
-  </style>
+/* PRINT */
+@media print{
+  #sb,#topbar{display:none!important}
+  #content{margin-right:0!important;width:100%!important}
+  body{background:#fff!important;color:#000!important}
+  .doc-card{border:1px solid #ddd!important;background:#fff!important;break-inside:avoid;margin-bottom:20px!important}
+  .doc-card-hdr{background:#f5f5f5!important;color:#333!important}
+  input{background:transparent!important;color:#000!important;border:none!important;border-bottom:1px solid #ddd!important}
+  .btn-add,.btn-del,.btn-pdf,#sh{display:none!important}
+}
+</style>
 </head>
 <body>
 
 <!-- ══════════════ AUTH ══════════════ -->
-<div id="auth-overlay">
-  <div class="auth-card">
-    <div class="auth-logo">
-      <div class="auth-logo-icon">🎬</div>
-      <h1>ShootPlan Pro</h1>
-      <p>منصة تخطيط التصوير الاحترافية</p>
+<div id="auth-page">
+
+  <!-- LEFT PANEL: Brand showcase -->
+  <div class="auth-left">
+    <div class="auth-left-logo">
+      <div class="auth-left-logo-icon">🎬</div>
+      <div class="auth-left-logo-name">ShootPlan Pro</div>
     </div>
 
-    <div class="auth-tabs">
-      <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">تسجيل الدخول</button>
-      <button class="auth-tab" id="tab-signup" onclick="switchTab('signup')">إنشاء حساب</button>
+    <div class="auth-left-hero">
+      <h1>خطط بذكاء.<br><span>صوّر باحتراف.</span></h1>
+      <p>منصة إدارة الإنتاج المرئي المصممة للفرق الاحترافية — كل شيء في مكان واحد.</p>
+
+      <div class="auth-feature-list">
+        <div class="auth-feature">
+          <div class="auth-feature-icon">📋</div>
+          <div class="auth-feature-text">
+            <strong>كول شيت ذكي</strong>
+            طاقم، مواعيد، موقع، طقس — جاهز بثوانٍ
+          </div>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">🎞️</div>
+          <div class="auth-feature-text">
+            <strong>قائمة اللقطات</strong>
+            نظّم لقطاتك مع الكاميرا والحركة والإضاءة
+          </div>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">📅</div>
+          <div class="auth-feature-text">
+            <strong>جدول التصوير</strong>
+            خطط كل يوم تصوير بدقة واحترافية
+          </div>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">📄</div>
+          <div class="auth-feature-text">
+            <strong>تصدير PDF</strong>
+            شارك وثائقك مع فريقك بضغطة واحدة
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div id="auth-error" class="auth-error"></div>
-    <div id="auth-success" class="auth-success"></div>
+    <div class="auth-left-footer">© 2025 ShootPlan Pro — جميع الحقوق محفوظة</div>
+  </div>
 
-    <div class="auth-field">
-      <label>البريد الإلكتروني</label>
-      <input type="email" id="auth-email" placeholder="you@example.com" autocomplete="email">
+  <!-- RIGHT PANEL: Form -->
+  <div class="auth-right">
+    <div class="auth-form-wrap">
+      <div class="auth-form-title">مرحباً بك</div>
+      <div class="auth-form-sub">سجّل دخولك للمتابعة إلى مشاريعك</div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-in" onclick="switchTab('in')">تسجيل الدخول</button>
+        <button class="auth-tab" id="tab-up" onclick="switchTab('up')">إنشاء حساب</button>
+      </div>
+
+      <div id="auth-err" class="auth-msg err"></div>
+      <div id="auth-ok" class="auth-msg ok"></div>
+
+      <label class="auth-label">البريد الإلكتروني</label>
+      <input class="auth-input" type="email" id="ae" placeholder="you@example.com" autocomplete="email">
+
+      <label class="auth-label">كلمة المرور</label>
+      <input class="auth-input" type="password" id="ap" placeholder="••••••••" autocomplete="current-password">
+
+      <div id="ap2-wrap" style="display:none">
+        <label class="auth-label">تأكيد كلمة المرور</label>
+        <input class="auth-input" type="password" id="ap2" placeholder="••••••••" autocomplete="new-password">
+      </div>
+
+      <button class="auth-btn-main" id="auth-submit" onclick="authGo()">تسجيل الدخول</button>
+
+      <div class="auth-sep">أو</div>
+
+      <button class="auth-btn-google" onclick="authGoogle()">
+        <svg width="17" height="17" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z"/><path fill="#FBBC05" d="M3.964 10.707c-.18-.54-.282-1.117-.282-1.707s.102-1.167.282-1.707V4.961H.957C.347 6.175 0 7.55 0 9s.348 2.825.957 4.039l3.007-2.332z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.961L3.964 7.293C4.672 5.166 6.656 3.58 9 3.58z"/></svg>
+        المتابعة عبر Google
+      </button>
     </div>
-    <div class="auth-field">
-      <label>كلمة المرور</label>
-      <input type="password" id="auth-password" placeholder="••••••••" autocomplete="current-password">
-    </div>
-    <div class="auth-field" id="field-confirm" style="display:none">
-      <label>تأكيد كلمة المرور</label>
-      <input type="password" id="auth-confirm" placeholder="••••••••" autocomplete="new-password">
-    </div>
-
-    <button class="auth-btn" id="auth-submit" onclick="authSubmit()">تسجيل الدخول</button>
-
-    <div class="auth-divider">أو</div>
-
-    <button class="auth-btn-google" onclick="signInGoogle()">
-      <svg width="18" height="18" viewBox="0 0 18 18">
-        <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"/>
-        <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z"/>
-        <path fill="#FBBC05" d="M3.964 10.707c-.18-.54-.282-1.117-.282-1.707s.102-1.167.282-1.707V4.961H.957C.347 6.175 0 7.55 0 9s.348 2.825.957 4.039l3.007-2.332z"/>
-        <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.961L3.964 7.293C4.672 5.166 6.656 3.58 9 3.58z"/>
-      </svg>
-      المتابعة عبر Google
-    </button>
   </div>
 </div>
 
 <!-- ══════════════ APP ══════════════ -->
-<div id="app-main">
+<div id="app">
 
   <!-- SIDEBAR -->
-  <nav id="sidebar">
-    <div class="sb-brand">
-      <div class="sb-brand-icon">🎬</div>
-      <div class="sb-brand-name">ShootPlan Pro</div>
+  <nav id="sb">
+    <div class="sb-logo">
+      <div class="sb-logo-icon">🎬</div>
+      <div class="sb-logo-name">ShootPlan Pro</div>
     </div>
 
-    <button class="sb-new-btn" onclick="showNewProjectModal()">
-      <span style="font-size:16px;line-height:1">+</span> مشروع جديد
-    </button>
+    <div class="sb-nav">
+      <div class="sb-nav-item active" id="nav-home" onclick="showHome()">
+        <span class="sb-nav-icon">⊞</span> الرئيسية
+      </div>
+    </div>
 
-    <div class="sb-section">المشاريع</div>
-    <div class="sb-list" id="sb-list"></div>
+    <div class="sb-divider"></div>
+
+    <button class="sb-new-btn" onclick="openModal()">+ مشروع جديد</button>
+
+    <div class="sb-section-label">المشاريع</div>
+    <div class="sb-proj-section" id="sb-projs"></div>
 
     <div class="sb-user">
-      <div class="sb-avatar" id="sb-avatar">م</div>
+      <div class="sb-avatar" id="sb-av">م</div>
       <div class="sb-user-info">
-        <div class="sb-user-email" id="sb-email">—</div>
+        <div class="sb-user-email" id="sb-em">—</div>
       </div>
-      <button class="sb-signout" onclick="signOut()" title="تسجيل الخروج">⏻</button>
+      <button class="sb-signout-btn" onclick="doSignOut()" title="خروج">⏻</button>
     </div>
   </nav>
 
   <!-- CONTENT -->
   <div id="content">
     <div id="topbar">
-      <div class="breadcrumb" id="breadcrumb">
-        <span class="bc-item current" onclick="showHome()">المشاريع</span>
+      <div class="bc" id="bc">
+        <span class="bc-seg cur" onclick="showHome()">الرئيسية</span>
       </div>
-      <div class="topbar-right">
-        <span id="save-hint"></span>
-        <button class="btn-pdf hidden" id="btn-pdf" onclick="exportPDF()">📄 PDF</button>
+      <div class="tb-right">
+        <div class="tb-doc-tabs hidden" id="doc-tabs">
+          <div class="tb-doc-tab" id="dtab-cs" onclick="openDoc('cs')">كول شيت</div>
+          <div class="tb-doc-tab" id="dtab-sl" onclick="openDoc('sl')">اللقطات</div>
+          <div class="tb-doc-tab" id="dtab-sc" onclick="openDoc('sc')">الجدول</div>
+        </div>
+        <span id="sh"></span>
+        <button class="btn-pdf hidden" id="pdf-btn" onclick="window.print()">↓ PDF</button>
       </div>
     </div>
 
-    <div id="main-content">
+    <div id="main">
 
       <!-- HOME -->
-      <div class="screen active" id="screen-home">
-        <div class="home-header">
-          <div class="home-title">مشاريعي</div>
-          <div class="search-wrap">
-            <input type="text" id="search-input" placeholder="ابحث عن مشروع..." oninput="filterProjects()">
-            <span class="search-icon">🔍</span>
+      <div class="screen active" id="s-home">
+        <div class="pg-header">
+          <div class="pg-title">مشاريعي</div>
+          <div class="search-box">
+            <input type="text" id="q" placeholder="ابحث..." oninput="renderHome(this.value)">
+            <span class="search-icon">⌕</span>
           </div>
         </div>
-        <div class="projects-grid" id="projects-grid"></div>
+        <div class="proj-grid" id="pg"></div>
       </div>
 
       <!-- CALL SHEET -->
-      <div class="screen" id="screen-callsheet">
-        <div class="doc-wrap fade-in">
+      <div class="screen" id="s-cs">
+        <div class="doc-page fade-in">
 
-          <div class="doc-section">
-            <div class="doc-section-hdr">تفاصيل الإنتاج</div>
-            <div class="doc-section-body">
-              <div class="form-grid">
-                <div class="form-group">
-                  <label>تاريخ التصوير</label>
-                  <input type="date" id="cs-date" oninput="scheduleSave('callsheet')">
-                </div>
-                <div class="form-group">
-                  <label>المدينة</label>
-                  <input type="text" id="cs-city" placeholder="الرياض" oninput="scheduleSave('callsheet')">
-                </div>
-                <div class="form-group">
-                  <label>موعد الحضور العام</label>
-                  <input type="time" id="cs-calltime" oninput="scheduleSave('callsheet')">
-                </div>
-                <div class="form-group">
-                  <label>حالة الطقس</label>
-                  <input type="text" id="cs-weather" placeholder="مشمس، 28°م" oninput="scheduleSave('callsheet')">
-                </div>
-                <div class="form-group">
-                  <label>اسم الموقع</label>
-                  <input type="text" id="cs-location" placeholder="وصف أو اسم الموقع" oninput="scheduleSave('callsheet')">
-                </div>
-                <div class="form-group">
-                  <label>موقف السيارات</label>
-                  <input type="text" id="cs-parking" placeholder="وصف موقف السيارات" oninput="scheduleSave('callsheet')">
-                </div>
-                <div class="form-group">
-                  <label>أقرب مستشفى</label>
-                  <input type="text" id="cs-hospital" placeholder="اسم المستشفى" oninput="scheduleSave('callsheet')">
-                </div>
-                <div class="form-group">
-                  <label>ملاحظات عامة</label>
-                  <input type="text" id="cs-notes" placeholder="أي ملاحظات إضافية" oninput="scheduleSave('callsheet')">
-                </div>
+          <div class="doc-card">
+            <div class="doc-card-hdr">📋 تفاصيل الإنتاج</div>
+            <div class="doc-card-body">
+              <div class="fg">
+                <div class="fgl"><label>تاريخ التصوير</label><input type="date" id="cs-date" oninput="sched('cs')"></div>
+                <div class="fgl"><label>المدينة</label><input type="text" id="cs-city" placeholder="الرياض" oninput="sched('cs')"></div>
+                <div class="fgl"><label>موعد الحضور</label><input type="time" id="cs-ct" oninput="sched('cs')"></div>
+                <div class="fgl"><label>الطقس</label><input type="text" id="cs-wx" placeholder="مشمس، 28°" oninput="sched('cs')"></div>
+                <div class="fgl"><label>الموقع</label><input type="text" id="cs-loc" placeholder="اسم أو وصف الموقع" oninput="sched('cs')"></div>
+                <div class="fgl"><label>موقف السيارات</label><input type="text" id="cs-park" placeholder="وصف موقف السيارات" oninput="sched('cs')"></div>
+                <div class="fgl"><label>أقرب مستشفى</label><input type="text" id="cs-hosp" placeholder="اسم المستشفى" oninput="sched('cs')"></div>
+                <div class="fgl"><label>ملاحظات</label><input type="text" id="cs-notes" placeholder="..." oninput="sched('cs')"></div>
               </div>
             </div>
           </div>
 
-          <div class="doc-section">
-            <div class="doc-section-hdr">قائمة الطاقم</div>
-            <div class="doc-section-body">
-              <div class="table-wrap">
+          <div class="doc-card">
+            <div class="doc-card-hdr">👥 قائمة الطاقم</div>
+            <div class="doc-card-body">
+              <div class="tbl-wrap">
                 <table>
-                  <thead>
-                    <tr>
-                      <th>الاسم</th>
-                      <th>الدور</th>
-                      <th>موعد الحضور</th>
-                      <th>الجوال</th>
-                      <th>الإيميل</th>
-                      <th>ملاحظات</th>
-                      <th style="width:34px"></th>
-                    </tr>
-                  </thead>
-                  <tbody id="cs-crew-body"></tbody>
+                  <thead><tr>
+                    <th>الاسم</th><th>الدور</th><th>الحضور</th>
+                    <th>الجوال</th><th>الإيميل</th><th>ملاحظات</th><th style="width:32px"></th>
+                  </tr></thead>
+                  <tbody id="cs-tb"></tbody>
                 </table>
               </div>
-              <button class="btn-add-row" onclick="addCrewRow()">+ إضافة فرد</button>
+              <button class="btn-add" onclick="addCsRow()">+ إضافة فرد</button>
             </div>
           </div>
 
@@ -566,528 +675,468 @@
       </div>
 
       <!-- SHOT LIST -->
-      <div class="screen" id="screen-shotlist">
-        <div class="doc-wrap fade-in">
-          <div class="doc-section">
-            <div class="doc-section-hdr">قائمة اللقطات</div>
-            <div class="doc-section-body">
-              <div class="table-wrap">
+      <div class="screen" id="s-sl">
+        <div class="doc-page fade-in">
+          <div class="doc-card">
+            <div class="doc-card-hdr">🎞️ قائمة اللقطات</div>
+            <div class="doc-card-body">
+              <div class="tbl-wrap">
                 <table>
-                  <thead>
-                    <tr>
-                      <th style="width:44px">#</th>
-                      <th>وصف اللقطة</th>
-                      <th style="width:80px">المشهد</th>
-                      <th>الكاميرا</th>
-                      <th>الحركة</th>
-                      <th>الإضاءة</th>
-                      <th style="width:70px">المدة</th>
-                      <th style="width:34px"></th>
-                    </tr>
-                  </thead>
-                  <tbody id="sl-body"></tbody>
+                  <thead><tr>
+                    <th style="width:40px">#</th><th>الوصف</th><th style="width:72px">المشهد</th>
+                    <th>الكاميرا</th><th>الحركة</th><th>الإضاءة</th><th style="width:64px">المدة</th><th style="width:32px"></th>
+                  </tr></thead>
+                  <tbody id="sl-tb"></tbody>
                 </table>
               </div>
-              <button class="btn-add-row" onclick="addShotRow()">+ إضافة لقطة</button>
+              <button class="btn-add" onclick="addSlRow()">+ إضافة لقطة</button>
             </div>
           </div>
         </div>
       </div>
 
       <!-- SCHEDULE -->
-      <div class="screen" id="screen-schedule">
-        <div class="doc-wrap fade-in">
-          <div class="doc-section">
-            <div class="doc-section-hdr">جدول التصوير</div>
-            <div class="doc-section-body">
-              <div class="table-wrap">
+      <div class="screen" id="s-sc">
+        <div class="doc-page fade-in">
+          <div class="doc-card">
+            <div class="doc-card-hdr">📅 جدول التصوير</div>
+            <div class="doc-card-body">
+              <div class="tbl-wrap">
                 <table>
-                  <thead>
-                    <tr>
-                      <th>التاريخ</th>
-                      <th style="width:90px">الوقت</th>
-                      <th>المشهد</th>
-                      <th>الموقع</th>
-                      <th>الممثلون / الطاقم</th>
-                      <th>المعدات</th>
-                      <th>ملاحظات</th>
-                      <th style="width:34px"></th>
-                    </tr>
-                  </thead>
-                  <tbody id="sc-body"></tbody>
+                  <thead><tr>
+                    <th>التاريخ</th><th style="width:82px">الوقت</th><th>المشهد</th>
+                    <th>الموقع</th><th>الأسماء</th><th>المعدات</th><th>ملاحظات</th><th style="width:32px"></th>
+                  </tr></thead>
+                  <tbody id="sc-tb"></tbody>
                 </table>
               </div>
-              <button class="btn-add-row" onclick="addScheduleRow()">+ إضافة يوم</button>
+              <button class="btn-add" onclick="addScRow()">+ إضافة يوم</button>
             </div>
           </div>
         </div>
       </div>
 
-    </div><!-- /main-content -->
-  </div><!-- /content -->
-</div><!-- /app-main -->
+    </div>
+  </div>
+</div>
 
 <!-- MODAL -->
-<div class="modal-overlay hidden" id="modal-new-proj">
+<div class="modal-bg hidden" id="modal">
   <div class="modal">
-    <div class="modal-title">إنشاء مشروع جديد</div>
-    <div class="modal-field">
-      <label>اسم المشروع *</label>
-      <input type="text" id="np-name" placeholder="مثال: حملة رمضان 2025">
-    </div>
-    <div class="modal-field">
-      <label>اسم العميل</label>
-      <input type="text" id="np-client" placeholder="اسم العميل أو الشركة">
-    </div>
-    <div class="modal-field">
-      <label>تاريخ التصوير</label>
-      <input type="date" id="np-date">
-    </div>
-    <div class="modal-field">
-      <label>المدينة</label>
-      <input type="text" id="np-city" placeholder="الرياض">
-    </div>
+    <div class="modal-title">+ مشروع جديد</div>
+    <div class="mf"><label>اسم المشروع *</label><input type="text" id="mn" placeholder="مثال: حملة رمضان 2025"></div>
+    <div class="mf"><label>العميل</label><input type="text" id="mc" placeholder="اسم العميل"></div>
+    <div class="mf"><label>تاريخ التصوير</label><input type="date" id="md"></div>
+    <div class="mf"><label>المدينة</label><input type="text" id="mci" placeholder="الرياض"></div>
     <div class="modal-actions">
-      <button class="btn-primary" onclick="createProject()">إنشاء المشروع</button>
-      <button class="btn-ghost" onclick="closeModal()">إلغاء</button>
+      <button class="btn-p" onclick="createProj()">إنشاء</button>
+      <button class="btn-g" onclick="closeModal()">إلغاء</button>
     </div>
   </div>
 </div>
 
 <script>
-// ═══════════════════════════════════════
-//  SUPABASE AUTH
-// ═══════════════════════════════════════
-const SUPABASE_URL  = 'https://lldbkfvzkikowojjtyan.supabase.co';
-const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxsZGJrZnZ6a2lrb3dvamp0eWFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTE5OTksImV4cCI6MjA5MjQ2Nzk5OX0.rDo-lm1cb25pVr6xVFPL3uDAuCNiaJBd0gQ4exqJ9m8';
-const _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
-let _user = null;
-let _authMode = 'login';
+// ══════════════════════════════
+//  SUPABASE
+// ══════════════════════════════
+const SB_URL  = 'https://lldbkfvzkikowojjtyan.supabase.co';
+const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxsZGJrZnZ6a2lrb3dvamp0eWFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTE5OTksImV4cCI6MjA5MjQ2Nzk5OX0.rDo-lm1cb25pVr6xVFPL3uDAuCNiaJBd0gQ4exqJ9m8';
+const _sb = supabase.createClient(SB_URL, SB_ANON);
+let _u = null, _mode = 'in';
 
-_sb.auth.onAuthStateChange((event, session) => {
-  _user = session?.user || null;
-  _user ? showApp() : showAuthScreen();
+_sb.auth.onAuthStateChange((ev, sess) => {
+  _u = sess?.user || null;
+  _u ? enterApp() : enterAuth();
 });
 
-function getSK(){ return 'spp_v2' + (_user ? '_' + _user.id : ''); }
+const getSK = () => 'spp_v2' + (_u ? '_' + _u.id : '');
 
-function switchTab(mode){
-  _authMode = mode;
-  document.getElementById('tab-login').className = 'auth-tab' + (mode==='login'?' active':'');
-  document.getElementById('tab-signup').className = 'auth-tab' + (mode==='signup'?' active':'');
-  document.getElementById('auth-submit').textContent = mode==='login' ? 'تسجيل الدخول' : 'إنشاء الحساب';
-  document.getElementById('field-confirm').style.display = mode==='signup' ? '' : 'none';
-  document.getElementById('auth-password').autocomplete = mode==='login' ? 'current-password' : 'new-password';
-  clearMsg();
+// ── Auth helpers
+function setErr(m){ const e=document.getElementById('auth-err'); e.textContent=m; e.classList.toggle('show',!!m); document.getElementById('auth-ok').classList.remove('show'); }
+function setOk(m){ const e=document.getElementById('auth-ok'); e.textContent=m; e.classList.toggle('show',!!m); document.getElementById('auth-err').classList.remove('show'); }
+
+function switchTab(t){
+  _mode=t;
+  document.getElementById('tab-in').classList.toggle('active',t==='in');
+  document.getElementById('tab-up').classList.toggle('active',t==='up');
+  document.getElementById('auth-submit').textContent = t==='in' ? 'تسجيل الدخول' : 'إنشاء الحساب';
+  document.getElementById('ap2-wrap').style.display = t==='up' ? '' : 'none';
+  document.getElementById('ap').autocomplete = t==='in' ? 'current-password' : 'new-password';
+  setErr(''); setOk('');
 }
 
-function showErr(msg){ const e=document.getElementById('auth-error'); e.textContent=msg; e.classList.add('show'); document.getElementById('auth-success').classList.remove('show'); }
-function showOk(msg){ const e=document.getElementById('auth-success'); e.textContent=msg; e.classList.add('show'); document.getElementById('auth-error').classList.remove('show'); }
-function clearMsg(){ document.getElementById('auth-error').classList.remove('show'); document.getElementById('auth-success').classList.remove('show'); }
-
-async function authSubmit(){
-  const email = document.getElementById('auth-email').value.trim();
-  const pass  = document.getElementById('auth-password').value;
-  const btn   = document.getElementById('auth-submit');
-  clearMsg();
-  if(!email || !pass){ showErr('يرجى تعبئة البريد الإلكتروني وكلمة المرور'); return; }
-  btn.disabled = true; btn.textContent = '...';
+async function authGo(){
+  const em=document.getElementById('ae').value.trim(), pw=document.getElementById('ap').value;
+  const btn=document.getElementById('auth-submit');
+  setErr('');
+  if(!em||!pw){ setErr('يرجى تعبئة الحقول المطلوبة'); return; }
+  btn.disabled=true; btn.textContent='...';
   try{
-    if(_authMode === 'login'){
-      const {error} = await _sb.auth.signInWithPassword({email, password:pass});
+    if(_mode==='in'){
+      const {error}=await _sb.auth.signInWithPassword({email:em,password:pw});
       if(error) throw error;
     } else {
-      const conf = document.getElementById('auth-confirm').value;
-      if(pass !== conf) throw new Error('كلمات المرور غير متطابقة');
-      if(pass.length < 6) throw new Error('كلمة المرور يجب أن تكون 6 أحرف على الأقل');
-      const {error} = await _sb.auth.signUp({email, password:pass});
+      const pw2=document.getElementById('ap2').value;
+      if(pw!==pw2) throw new Error('كلمات المرور غير متطابقة');
+      if(pw.length<6) throw new Error('كلمة المرور 6 أحرف على الأقل');
+      const {error}=await _sb.auth.signUp({email:em,password:pw});
       if(error) throw error;
-      showOk('تم الإرسال! تحقق من بريدك لتأكيد الحساب');
-      btn.disabled = false; btn.textContent = 'إنشاء الحساب'; return;
+      setOk('تحقق من بريدك لتأكيد الحساب');
+      btn.disabled=false; btn.textContent='إنشاء الحساب'; return;
     }
   } catch(e){
-    const map = {
-      'Invalid login credentials':'البريد أو كلمة المرور غير صحيحة',
-      'Email not confirmed':'يرجى تأكيد بريدك الإلكتروني أولاً',
-      'User already registered':'هذا البريد مسجل مسبقاً'
-    };
-    showErr(map[e.message] || e.message);
-    btn.disabled = false;
-    btn.textContent = _authMode==='login' ? 'تسجيل الدخول' : 'إنشاء الحساب';
+    const map={'Invalid login credentials':'البريد أو كلمة المرور غير صحيحة','Email not confirmed':'يرجى تأكيد بريدك أولاً','User already registered':'هذا البريد مسجل مسبقاً'};
+    setErr(map[e.message]||e.message);
+    btn.disabled=false; btn.textContent=_mode==='in'?'تسجيل الدخول':'إنشاء الحساب';
   }
 }
 
-async function signInGoogle(){
-  const {error} = await _sb.auth.signInWithOAuth({
-    provider:'google', options:{redirectTo: window.location.origin}
-  });
-  if(error) showErr(error.message);
+async function authGoogle(){
+  const {error}=await _sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:window.location.origin}});
+  if(error) setErr(error.message);
 }
 
-async function signOut(){ await _sb.auth.signOut(); }
+async function doSignOut(){ await _sb.auth.signOut(); }
 
-function showAuthScreen(){
-  document.getElementById('auth-overlay').classList.remove('hidden');
-  document.getElementById('app-main').classList.remove('show');
+function enterAuth(){
+  document.getElementById('auth-page').classList.remove('hidden');
+  document.getElementById('app').classList.remove('show');
 }
-
-function showApp(){
-  document.getElementById('auth-overlay').classList.add('hidden');
-  document.getElementById('app-main').classList.add('show');
-  const email = _user?.email || '';
-  document.getElementById('sb-email').textContent = email;
-  document.getElementById('sb-avatar').textContent = (email[0]||'م').toUpperCase();
+function enterApp(){
+  document.getElementById('auth-page').classList.add('hidden');
+  document.getElementById('app').classList.add('show');
+  const em=_u?.email||'';
+  document.getElementById('sb-em').textContent=em;
+  document.getElementById('sb-av').textContent=(em[0]||'م').toUpperCase();
   load(); renderSidebar(); showHome();
 }
 
-// ═══════════════════════════════════════
+// ══════════════════════════════
 //  DATA
-// ═══════════════════════════════════════
-let projects=[], cid=null;
+// ══════════════════════════════
+let projs=[], cid=null;
 
 function load(){
-  ['shootplan_projects','shootplan_v4','spp_global_contacts','spp_onboarded','spp_lang','pusherTransportTLS']
-    .forEach(k => localStorage.removeItem(k));
-  try{ projects = JSON.parse(localStorage.getItem(getSK())||'[]'); }catch(e){ projects=[]; }
+  ['shootplan_projects','shootplan_v4','spp_global_contacts','spp_onboarded','spp_lang','pusherTransportTLS'].forEach(k=>localStorage.removeItem(k));
+  try{ projs=JSON.parse(localStorage.getItem(getSK())||'[]'); }catch(e){ projs=[]; }
 }
+function save(){ localStorage.setItem(getSK(),JSON.stringify(projs)); }
+function gp(){ return projs.find(p=>p.id===cid); }
+function setDoc(t,d){ const p=gp(); if(!p) return; p.docs=p.docs||{}; p.docs[t]=d; save(); }
+function gDoc(t){ const p=gp(); if(!p) return null; return (p.docs||{})[t]||null; }
 
-function save(){ localStorage.setItem(getSK(), JSON.stringify(projects)); }
-function getProj(){ return projects.find(p => p.id === cid); }
-function setDoc(type, data){ const p=getProj(); if(!p) return; p.docs=p.docs||{}; p.docs[type]=data; save(); }
-function getDoc(type){ const p=getProj(); if(!p) return null; return (p.docs||{})[type]||null; }
-
-// ═══════════════════════════════════════
+// ══════════════════════════════
 //  COLORS
-// ═══════════════════════════════════════
-const COLORS=['#3B82F6','#10B981','#F59E0B','#EF4444','#8B5CF6','#EC4899','#F97316','#06B6D4'];
-function projColor(id){ let h=0; for(let c of (id||'x')) h=(h*31+c.charCodeAt(0))%COLORS.length; return COLORS[h]; }
+// ══════════════════════════════
+const COLS=['#4f7df3','#10b981','#f59e0b','#ef4444','#8b5cf6','#ec4899','#f97316','#06b6d4','#14b8a6','#a855f7'];
+function pcol(id){ let h=0; for(let c of(id||'x')) h=(h*31+c.charCodeAt(0))%COLS.length; return COLS[h]; }
 
-// ═══════════════════════════════════════
+// ══════════════════════════════
 //  SIDEBAR
-// ═══════════════════════════════════════
+// ══════════════════════════════
+let _doc=null;
 function renderSidebar(){
-  const el = document.getElementById('sb-list');
-  if(!projects.length){ el.innerHTML='<div class="sb-empty">لا توجد مشاريع بعد</div>'; return; }
-  el.innerHTML = projects.map(p => {
-    const col = projColor(p.id);
-    const act = p.id === cid;
-    const sub = act ? `<div class="sb-subnav open">
-      <div class="sb-sublink ${_curDoc==='callsheet'?'active':''}" onclick="openDoc('callsheet')"><span style="color:${col};font-size:9px">●</span> كول شيت</div>
-      <div class="sb-sublink ${_curDoc==='shotlist'?'active':''}" onclick="openDoc('shotlist')"><span style="color:${col};font-size:9px">●</span> اللقطات</div>
-      <div class="sb-sublink ${_curDoc==='schedule'?'active':''}" onclick="openDoc('schedule')"><span style="color:${col};font-size:9px">●</span> الجدول</div>
-    </div>` : '';
-    return `<div><div class="sb-proj-header${act?' active':''}" onclick="selectProject('${p.id}')">
+  const el=document.getElementById('sb-projs');
+  if(!projs.length){ el.innerHTML='<div class="sb-empty-msg">لا توجد مشاريع</div>'; return; }
+  el.innerHTML=projs.map(p=>{
+    const col=pcol(p.id), act=p.id===cid;
+    const sub=act?`<div class="sb-subnav open">
+      <div class="sb-sublink ${_doc==='cs'?'active':''}" onclick="openDoc('cs')">▸ كول شيت</div>
+      <div class="sb-sublink ${_doc==='sl'?'active':''}" onclick="openDoc('sl')">▸ اللقطات</div>
+      <div class="sb-sublink ${_doc==='sc'?'active':''}" onclick="openDoc('sc')">▸ الجدول</div>
+    </div>`:'';
+    return `<div class="sb-proj-item"><div class="sb-proj-btn${act?' active':''}" onclick="selProj('${p.id}')">
       <div class="sb-proj-dot" style="background:${col}"></div>
       <div class="sb-proj-name">${esc(p.name)}</div>
     </div>${sub}</div>`;
   }).join('');
 }
 
-// ═══════════════════════════════════════
+// ══════════════════════════════
 //  TOPBAR
-// ═══════════════════════════════════════
-let _curDoc = null;
+// ══════════════════════════════
+function setTopbar(proj, docName, docType){
+  _doc=docType||null;
+  const bc=document.getElementById('bc');
+  const tabs=document.getElementById('doc-tabs');
+  const pdf=document.getElementById('pdf-btn');
 
-function setTopbar(project, doc, docType){
-  _curDoc = docType || null;
-  const bc  = document.getElementById('breadcrumb');
-  const pdf = document.getElementById('btn-pdf');
-  if(!project){
-    bc.innerHTML = '<span class="bc-item current" onclick="showHome()">المشاريع</span>';
-    pdf.classList.add('hidden'); return;
+  // breadcrumb
+  if(!proj){
+    bc.innerHTML='<span class="bc-seg cur">الرئيسية</span>';
+    tabs.classList.add('hidden'); pdf.classList.add('hidden'); return;
   }
-  let html = `<span class="bc-item" onclick="showHome()">المشاريع</span><span class="bc-sep">›</span>`;
-  if(doc){
-    html += `<span class="bc-item" onclick="openDoc(_curDoc||'callsheet')">${esc(project)}</span><span class="bc-sep">›</span><span class="bc-item current">${doc}</span>`;
-    pdf.classList.remove('hidden');
+  if(!docName){
+    bc.innerHTML=`<span class="bc-seg" onclick="showHome()">الرئيسية</span><span class="bc-arrow"> › </span><span class="bc-seg cur">${esc(proj)}</span>`;
+    tabs.classList.remove('hidden'); pdf.classList.add('hidden');
   } else {
-    html += `<span class="bc-item current">${esc(project)}</span>`;
-    pdf.classList.add('hidden');
+    bc.innerHTML=`<span class="bc-seg" onclick="showHome()">الرئيسية</span><span class="bc-arrow"> › </span><span class="bc-seg" onclick="selProj(cid)">${esc(proj)}</span><span class="bc-arrow"> › </span><span class="bc-seg cur">${docName}</span>`;
+    tabs.classList.remove('hidden'); pdf.classList.remove('hidden');
   }
-  bc.innerHTML = html;
+  // active doc tab
+  ['cs','sl','sc'].forEach(t=>{
+    document.getElementById('dtab-'+t).classList.toggle('active',t===docType);
+  });
 }
 
-// ═══════════════════════════════════════
+// ══════════════════════════════
 //  AUTOSAVE
-// ═══════════════════════════════════════
-let _timers={};
-function scheduleSave(type){ clearTimeout(_timers[type]); _timers[type]=setTimeout(()=>doSave(type), 700); }
-function doSave(type){
+// ══════════════════════════════
+const _T={};
+function sched(t){ clearTimeout(_T[t]); _T[t]=setTimeout(()=>doSave(t),700); }
+function doSave(t){
   if(!cid) return;
-  if(type==='callsheet') _saveCS();
-  else if(type==='shotlist') _saveSL();
-  else if(type==='schedule') _saveSC();
-  showSaveHint();
-  renderSidebar();
+  t==='cs'?saveCs():t==='sl'?saveSl():saveSc();
+  flashSave(); renderSidebar();
 }
-function showSaveHint(){
-  const el = document.getElementById('save-hint');
-  el.textContent = '✓ تم الحفظ'; clearTimeout(el._t);
-  el._t = setTimeout(()=>{ el.textContent=''; }, 2200);
+function flashSave(){
+  const el=document.getElementById('sh');
+  el.textContent='✓ تم الحفظ'; clearTimeout(el._t);
+  el._t=setTimeout(()=>el.textContent='',2200);
 }
 
-// ═══════════════════════════════════════
-//  SCREEN ROUTING
-// ═══════════════════════════════════════
+// ══════════════════════════════
+//  SCREEN ROUTER
+// ══════════════════════════════
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('screen-'+id)?.classList.add('active');
+  document.getElementById('s-'+id)?.classList.add('active');
+}
+function setNavActive(id){
+  document.querySelectorAll('.sb-nav-item').forEach(i=>i.classList.remove('active'));
+  document.getElementById(id)?.classList.add('active');
 }
 
 function showHome(){
-  cid=null; _curDoc=null;
+  cid=null;_doc=null;
   setTopbar(null);
+  setNavActive('nav-home');
   showScreen('home');
-  renderProjects();
+  renderHome();
   renderSidebar();
 }
 
-function selectProject(id){
-  cid=id; _curDoc=null;
-  const p=getProj(); if(!p) return;
+function selProj(id){
+  cid=id;_doc=null;
+  const p=gp(); if(!p) return;
+  setNavActive(null);
+  setTopbar(p.name,null,null);
   renderSidebar();
-  openDoc('callsheet');
+  openDoc('cs');
 }
 
-function openDoc(type){
+function openDoc(t){
   if(!cid) return;
-  _curDoc = type;
-  const p = getProj(); if(!p) return;
-  const names = {callsheet:'كول شيت', shotlist:'اللقطات', schedule:'الجدول'};
-  setTopbar(p.name, names[type], type);
-  showScreen(type);
-  if(type==='callsheet') renderCallsheet();
-  else if(type==='shotlist') renderShotlist();
-  else if(type==='schedule') renderSchedule();
+  _doc=t;
+  const p=gp(); if(!p) return;
+  const nm={cs:'كول شيت',sl:'اللقطات',sc:'الجدول'};
+  setTopbar(p.name,nm[t],t);
+  setNavActive(null);
+  showScreen(t);
+  t==='cs'?renderCs():t==='sl'?renderSl():renderSc();
   renderSidebar();
 }
 
-// ═══════════════════════════════════════
+// ══════════════════════════════
 //  HOME
-// ═══════════════════════════════════════
-function renderProjects(q){
-  const grid = document.getElementById('projects-grid');
-  let list = projects;
-  if(q){ const lq=q.toLowerCase(); list=projects.filter(p=>p.name.toLowerCase().includes(lq)||(p.client||'').toLowerCase().includes(lq)); }
-  let html = '';
-  list.forEach(p => {
-    const col = projColor(p.id);
-    const cs = (p.docs?.callsheet?.crew||[]).length;
-    const sl = (p.docs?.shotlist?.shots||[]).length;
-    const sc = (p.docs?.schedule?.days||[]).length;
-    html += `<div class="proj-card" onclick="selectProject('${p.id}')">
-      <div class="proj-card-stripe" style="background:${col}"></div>
+// ══════════════════════════════
+function renderHome(q){
+  const grid=document.getElementById('pg');
+  let list=projs;
+  if(q){ const lq=q.toLowerCase(); list=projs.filter(p=>p.name.toLowerCase().includes(lq)||(p.client||'').toLowerCase().includes(lq)); }
+  let h='';
+  list.forEach(p=>{
+    const col=pcol(p.id);
+    const abbr=p.name.replace(/[^a-zA-Z؀-ۿ]/g,' ').split(' ').filter(Boolean).slice(0,2).map(w=>w[0]).join('');
+    const cs=(p.docs?.cs?.crew||[]).length, sl=(p.docs?.sl?.shots||[]).length, sc=(p.docs?.sc?.days||[]).length;
+    h+=`<div class="proj-card" onclick="selProj('${p.id}')">
+      <div class="proj-card-hero" style="background:linear-gradient(135deg,${col}22,${col}44)">
+        <div class="proj-card-hero-abbr" style="color:${col}44">${esc(abbr||p.name.slice(0,2))}</div>
+        <div style="position:absolute;bottom:10px;right:14px;width:10px;height:10px;border-radius:50%;background:${col}"></div>
+      </div>
       <div class="proj-card-body">
         <div class="proj-card-name">${esc(p.name)}</div>
         <div class="proj-card-meta">
-          ${p.client?`<span>👤 ${esc(p.client)}</span>`:''}
-          ${p.date?`<span>📅 ${p.date}</span>`:''}
-          ${p.city?`<span>📍 ${esc(p.city)}</span>`:''}
+          ${p.client?`<span class="proj-card-meta-item">👤 ${esc(p.client)}</span>`:''}
+          ${p.date?`<span class="proj-card-meta-item">📅 ${p.date}</span>`:''}
+          ${p.city?`<span class="proj-card-meta-item">📍 ${esc(p.city)}</span>`:''}
         </div>
         <div class="proj-card-docs">
-          <span class="doc-badge ${cs>0?'done':'empty'}">كول شيت${cs>0?' ✓':''}</span>
-          <span class="doc-badge ${sl>0?'done':'empty'}">اللقطات${sl>0?' ('+sl+')':''}</span>
-          <span class="doc-badge ${sc>0?'done':'empty'}">الجدول${sc>0?' ('+sc+')':''}</span>
+          <span class="doc-chip ${cs>0?'done':'empty'}">كول شيت${cs>0?' ✓':''}</span>
+          <span class="doc-chip ${sl>0?'done':'empty'}">لقطات${sl>0?' ('+sl+')':''}</span>
+          <span class="doc-chip ${sc>0?'done':'empty'}">جدول${sc>0?' ('+sc+')':''}</span>
         </div>
       </div>
       <div class="proj-card-footer">
-        <button class="btn-del-proj" onclick="event.stopPropagation();deleteProject('${p.id}')">🗑 حذف</button>
+        <button class="btn-del-card" onclick="event.stopPropagation();delProj('${p.id}')">🗑 حذف</button>
       </div>
     </div>`;
   });
-  if(!list.length && q){ grid.innerHTML='<div style="padding:40px;color:var(--text-dim);text-align:center">لا توجد نتائج لـ «'+esc(q)+'»</div>'; return; }
-  html += `<div class="new-proj-card" onclick="showNewProjectModal()">
-    <div class="new-proj-icon">+</div>
-    <div class="new-proj-label">مشروع جديد</div>
+  if(!list.length&&q){ grid.innerHTML=`<div style="padding:40px;color:var(--text2);text-align:center">لا توجد نتائج لـ «${esc(q)}»</div>`; return; }
+  h+=`<div class="new-card" onclick="openModal()">
+    <div class="new-card-plus">+</div>
+    <div class="new-card-label">مشروع جديد</div>
   </div>`;
-  grid.innerHTML = html;
+  grid.innerHTML=h;
 }
 
-function filterProjects(){ renderProjects(document.getElementById('search-input').value.trim()); }
-
-function showNewProjectModal(){
-  document.getElementById('modal-new-proj').classList.remove('hidden');
-  setTimeout(()=>document.getElementById('np-name').focus(), 60);
+function openModal(){
+  document.getElementById('modal').classList.remove('hidden');
+  setTimeout(()=>document.getElementById('mn').focus(),50);
 }
 function closeModal(){
-  document.getElementById('modal-new-proj').classList.add('hidden');
-  ['np-name','np-client','np-city'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('np-date').value='';
+  document.getElementById('modal').classList.add('hidden');
+  ['mn','mc','mci'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('md').value='';
 }
-function createProject(){
-  const name = document.getElementById('np-name').value.trim();
-  if(!name){ document.getElementById('np-name').focus(); return; }
-  const id = 'p_'+Date.now()+'_'+Math.random().toString(36).slice(2,7);
-  projects.unshift({
-    id, name,
-    client: document.getElementById('np-client').value.trim(),
-    date:   document.getElementById('np-date').value,
-    city:   document.getElementById('np-city').value.trim(),
-    docs:   {}
-  });
-  save(); closeModal(); cid=id; renderSidebar(); openDoc('callsheet');
+function createProj(){
+  const nm=document.getElementById('mn').value.trim();
+  if(!nm){ document.getElementById('mn').focus(); return; }
+  const id='p_'+Date.now()+'_'+Math.random().toString(36).slice(2,6);
+  projs.unshift({id,name:nm,client:document.getElementById('mc').value.trim(),date:document.getElementById('md').value,city:document.getElementById('mci').value.trim(),docs:{}});
+  save(); closeModal(); cid=id; renderSidebar(); openDoc('cs');
 }
-function deleteProject(id){
+function delProj(id){
   if(!confirm('هل أنت متأكد من حذف هذا المشروع؟')) return;
-  projects = projects.filter(p=>p.id!==id); save();
-  if(cid===id){ cid=null; _curDoc=null; }
+  projs=projs.filter(p=>p.id!==id); save();
+  if(cid===id){cid=null;_doc=null;}
   renderSidebar(); showHome();
 }
 
-// ═══════════════════════════════════════
+// ══════════════════════════════
 //  CALL SHEET
-// ═══════════════════════════════════════
-function renderCallsheet(){
-  const d = getDoc('callsheet')||{};
-  ['date','city','calltime','weather','location','parking','hospital','notes']
-    .forEach(f => document.getElementById('cs-'+f).value = d[f]||'');
-  const tbody = document.getElementById('cs-crew-body');
-  const crew  = d.crew||[];
-  tbody.innerHTML = crew.map(m=>`<tr>
-    <td><input type="text" value="${esc(m.name||'')}" placeholder="الاسم" oninput="scheduleSave('callsheet')"></td>
-    <td><input type="text" value="${esc(m.role||'')}" placeholder="الدور" oninput="scheduleSave('callsheet')"></td>
-    <td><input type="time" value="${m.calltime||''}" oninput="scheduleSave('callsheet')"></td>
-    <td><input type="tel" value="${esc(m.phone||'')}" placeholder="05x" oninput="scheduleSave('callsheet')" dir="ltr"></td>
-    <td><input type="email" value="${esc(m.email||'')}" placeholder="email@" oninput="scheduleSave('callsheet')" dir="ltr"></td>
-    <td><input type="text" value="${esc(m.notes||'')}" placeholder="..." oninput="scheduleSave('callsheet')"></td>
-    <td><button class="btn-del-row" onclick="this.closest('tr').remove();scheduleSave('callsheet')">✕</button></td>
+// ══════════════════════════════
+function renderCs(){
+  const d=gDoc('cs')||{};
+  [['cs-date','date'],['cs-city','city'],['cs-ct','calltime'],['cs-wx','weather'],['cs-loc','location'],['cs-park','parking'],['cs-hosp','hospital'],['cs-notes','notes']]
+    .forEach(([id,k])=>document.getElementById(id).value=d[k]||'');
+  const tb=document.getElementById('cs-tb');
+  tb.innerHTML=(d.crew||[]).map(m=>`<tr>
+    <td><input type="text" value="${esc(m.name||'')}" placeholder="الاسم" oninput="sched('cs')"></td>
+    <td><input type="text" value="${esc(m.role||'')}" placeholder="الدور" oninput="sched('cs')"></td>
+    <td><input type="time" value="${m.ct||''}" oninput="sched('cs')"></td>
+    <td><input type="tel" value="${esc(m.phone||'')}" placeholder="05x" oninput="sched('cs')" dir="ltr"></td>
+    <td><input type="email" value="${esc(m.email||'')}" placeholder="email@" oninput="sched('cs')" dir="ltr"></td>
+    <td><input type="text" value="${esc(m.notes||'')}" placeholder="..." oninput="sched('cs')"></td>
+    <td><button class="btn-del" onclick="this.closest('tr').remove();sched('cs')">✕</button></td>
   </tr>`).join('');
-  if(!crew.length) addCrewRow();
+  if(!(d.crew||[]).length) addCsRow();
 }
-
-function addCrewRow(){
-  const tbody = document.getElementById('cs-crew-body');
-  const tr = document.createElement('tr');
-  tr.innerHTML = `
-    <td><input type="text" placeholder="الاسم" oninput="scheduleSave('callsheet')"></td>
-    <td><input type="text" placeholder="الدور" oninput="scheduleSave('callsheet')"></td>
-    <td><input type="time" oninput="scheduleSave('callsheet')"></td>
-    <td><input type="tel" placeholder="05x" oninput="scheduleSave('callsheet')" dir="ltr"></td>
-    <td><input type="email" placeholder="email@" oninput="scheduleSave('callsheet')" dir="ltr"></td>
-    <td><input type="text" placeholder="..." oninput="scheduleSave('callsheet')"></td>
-    <td><button class="btn-del-row" onclick="this.closest('tr').remove();scheduleSave('callsheet')">✕</button></td>`;
-  tbody.appendChild(tr);
+function addCsRow(){
+  const tr=document.createElement('tr');
+  tr.innerHTML=`
+    <td><input type="text" placeholder="الاسم" oninput="sched('cs')"></td>
+    <td><input type="text" placeholder="الدور" oninput="sched('cs')"></td>
+    <td><input type="time" oninput="sched('cs')"></td>
+    <td><input type="tel" placeholder="05x" oninput="sched('cs')" dir="ltr"></td>
+    <td><input type="email" placeholder="email@" oninput="sched('cs')" dir="ltr"></td>
+    <td><input type="text" placeholder="..." oninput="sched('cs')"></td>
+    <td><button class="btn-del" onclick="this.closest('tr').remove();sched('cs')">✕</button></td>`;
+  document.getElementById('cs-tb').appendChild(tr);
 }
-
-function _saveCS(){
-  const v = id => document.getElementById(id).value;
-  const crew = Array.from(document.querySelectorAll('#cs-crew-body tr')).map(r=>{
-    const i = r.querySelectorAll('input');
-    return {name:i[0]?.value||'',role:i[1]?.value||'',calltime:i[2]?.value||'',phone:i[3]?.value||'',email:i[4]?.value||'',notes:i[5]?.value||''};
+function saveCs(){
+  const v=id=>document.getElementById(id).value;
+  const crew=Array.from(document.querySelectorAll('#cs-tb tr')).map(r=>{
+    const i=r.querySelectorAll('input');
+    return{name:i[0]?.value||'',role:i[1]?.value||'',ct:i[2]?.value||'',phone:i[3]?.value||'',email:i[4]?.value||'',notes:i[5]?.value||''};
   }).filter(m=>m.name||m.role);
-  setDoc('callsheet',{date:v('cs-date'),city:v('cs-city'),calltime:v('cs-calltime'),weather:v('cs-weather'),location:v('cs-location'),parking:v('cs-parking'),hospital:v('cs-hospital'),notes:v('cs-notes'),crew});
+  setDoc('cs',{date:v('cs-date'),city:v('cs-city'),calltime:v('cs-ct'),weather:v('cs-wx'),location:v('cs-loc'),parking:v('cs-park'),hospital:v('cs-hosp'),notes:v('cs-notes'),crew});
 }
 
-// ═══════════════════════════════════════
+// ══════════════════════════════
 //  SHOT LIST
-// ═══════════════════════════════════════
-function renderShotlist(){
-  const shots = (getDoc('shotlist')||{}).shots||[];
-  const tbody = document.getElementById('sl-body');
-  tbody.innerHTML = shots.map((s,i)=>shotRow(s,i+1)).join('');
-  if(!shots.length) addShotRow();
+// ══════════════════════════════
+function renderSl(){
+  const shots=(gDoc('sl')||{}).shots||[];
+  const tb=document.getElementById('sl-tb');
+  tb.innerHTML=shots.map((s,i)=>`<tr>
+    <td><input type="number" value="${i+1}" style="width:36px;text-align:center" readonly></td>
+    <td><input type="text" value="${esc(s.desc||'')}" placeholder="وصف اللقطة" oninput="sched('sl')"></td>
+    <td><input type="text" value="${esc(s.scene||'')}" placeholder="رقم المشهد" oninput="sched('sl')"></td>
+    <td><input type="text" value="${esc(s.cam||'')}" placeholder="الكاميرا" oninput="sched('sl')"></td>
+    <td><input type="text" value="${esc(s.move||'')}" placeholder="الحركة" oninput="sched('sl')"></td>
+    <td><input type="text" value="${esc(s.light||'')}" placeholder="الإضاءة" oninput="sched('sl')"></td>
+    <td><input type="text" value="${esc(s.dur||'')}" placeholder="0:30" oninput="sched('sl')"></td>
+    <td><button class="btn-del" onclick="delSlRow(this)">✕</button></td>
+  </tr>`).join('');
+  if(!shots.length) addSlRow();
 }
-
-function shotRow(s,n){
-  return `<tr>
-    <td><input type="number" value="${n}" style="width:38px;text-align:center" readonly></td>
-    <td><input type="text" value="${esc(s.desc||'')}" placeholder="وصف اللقطة" oninput="scheduleSave('shotlist')"></td>
-    <td><input type="text" value="${esc(s.scene||'')}" placeholder="رقم المشهد" oninput="scheduleSave('shotlist')"></td>
-    <td><input type="text" value="${esc(s.camera||'')}" placeholder="نوع الكاميرا" oninput="scheduleSave('shotlist')"></td>
-    <td><input type="text" value="${esc(s.movement||'')}" placeholder="الحركة" oninput="scheduleSave('shotlist')"></td>
-    <td><input type="text" value="${esc(s.light||'')}" placeholder="الإضاءة" oninput="scheduleSave('shotlist')"></td>
-    <td><input type="text" value="${esc(s.duration||'')}" placeholder="0:30" oninput="scheduleSave('shotlist')"></td>
-    <td><button class="btn-del-row" onclick="delShotRow(this)">✕</button></td>
-  </tr>`;
+function addSlRow(){
+  const tb=document.getElementById('sl-tb');
+  const n=tb.querySelectorAll('tr').length+1;
+  const tr=document.createElement('tr');
+  tr.innerHTML=`
+    <td><input type="number" value="${n}" style="width:36px;text-align:center" readonly></td>
+    <td><input type="text" placeholder="وصف اللقطة" oninput="sched('sl')"></td>
+    <td><input type="text" placeholder="رقم المشهد" oninput="sched('sl')"></td>
+    <td><input type="text" placeholder="الكاميرا" oninput="sched('sl')"></td>
+    <td><input type="text" placeholder="الحركة" oninput="sched('sl')"></td>
+    <td><input type="text" placeholder="الإضاءة" oninput="sched('sl')"></td>
+    <td><input type="text" placeholder="0:30" oninput="sched('sl')"></td>
+    <td><button class="btn-del" onclick="delSlRow(this)">✕</button></td>`;
+  tb.appendChild(tr);
 }
-
-function addShotRow(){
-  const tbody = document.getElementById('sl-body');
-  const n = tbody.querySelectorAll('tr').length+1;
-  const tr = document.createElement('tr');
-  tr.innerHTML = `
-    <td><input type="number" value="${n}" style="width:38px;text-align:center" readonly></td>
-    <td><input type="text" placeholder="وصف اللقطة" oninput="scheduleSave('shotlist')"></td>
-    <td><input type="text" placeholder="رقم المشهد" oninput="scheduleSave('shotlist')"></td>
-    <td><input type="text" placeholder="نوع الكاميرا" oninput="scheduleSave('shotlist')"></td>
-    <td><input type="text" placeholder="الحركة" oninput="scheduleSave('shotlist')"></td>
-    <td><input type="text" placeholder="الإضاءة" oninput="scheduleSave('shotlist')"></td>
-    <td><input type="text" placeholder="0:30" oninput="scheduleSave('shotlist')"></td>
-    <td><button class="btn-del-row" onclick="delShotRow(this)">✕</button></td>`;
-  tbody.appendChild(tr);
-}
-
-function delShotRow(btn){
+function delSlRow(btn){
   btn.closest('tr').remove();
-  document.querySelectorAll('#sl-body tr').forEach((tr,i)=>{ const inp=tr.querySelector('input[type="number"]'); if(inp) inp.value=i+1; });
-  scheduleSave('shotlist');
+  document.querySelectorAll('#sl-tb tr').forEach((tr,i)=>{const n=tr.querySelector('input[type="number"]');if(n)n.value=i+1;});
+  sched('sl');
 }
-
-function _saveSL(){
-  const shots = Array.from(document.querySelectorAll('#sl-body tr')).map(r=>{
+function saveSl(){
+  const shots=Array.from(document.querySelectorAll('#sl-tb tr')).map(r=>{
     const i=r.querySelectorAll('input');
-    return {desc:i[1]?.value||'',scene:i[2]?.value||'',camera:i[3]?.value||'',movement:i[4]?.value||'',light:i[5]?.value||'',duration:i[6]?.value||''};
+    return{desc:i[1]?.value||'',scene:i[2]?.value||'',cam:i[3]?.value||'',move:i[4]?.value||'',light:i[5]?.value||'',dur:i[6]?.value||''};
   }).filter(s=>s.desc||s.scene);
-  setDoc('shotlist',{shots});
+  setDoc('sl',{shots});
 }
 
-// ═══════════════════════════════════════
+// ══════════════════════════════
 //  SCHEDULE
-// ═══════════════════════════════════════
-function renderSchedule(){
-  const days = (getDoc('schedule')||{}).days||[];
-  const tbody = document.getElementById('sc-body');
-  tbody.innerHTML = days.map(d=>schedRow(d)).join('');
-  if(!days.length) addScheduleRow();
+// ══════════════════════════════
+function renderSc(){
+  const days=(gDoc('sc')||{}).days||[];
+  const tb=document.getElementById('sc-tb');
+  tb.innerHTML=days.map(d=>`<tr>
+    <td><input type="date" value="${d.date||''}" oninput="sched('sc')"></td>
+    <td><input type="time" value="${d.time||''}" oninput="sched('sc')"></td>
+    <td><input type="text" value="${esc(d.scene||'')}" placeholder="المشهد" oninput="sched('sc')"></td>
+    <td><input type="text" value="${esc(d.loc||'')}" placeholder="الموقع" oninput="sched('sc')"></td>
+    <td><input type="text" value="${esc(d.talent||'')}" placeholder="الأسماء" oninput="sched('sc')"></td>
+    <td><input type="text" value="${esc(d.equip||'')}" placeholder="المعدات" oninput="sched('sc')"></td>
+    <td><input type="text" value="${esc(d.notes||'')}" placeholder="..." oninput="sched('sc')"></td>
+    <td><button class="btn-del" onclick="this.closest('tr').remove();sched('sc')">✕</button></td>
+  </tr>`).join('');
+  if(!days.length) addScRow();
 }
-
-function schedRow(d){
-  return `<tr>
-    <td><input type="date" value="${d.date||''}" oninput="scheduleSave('schedule')"></td>
-    <td><input type="time" value="${d.time||''}" oninput="scheduleSave('schedule')"></td>
-    <td><input type="text" value="${esc(d.scene||'')}" placeholder="المشهد" oninput="scheduleSave('schedule')"></td>
-    <td><input type="text" value="${esc(d.location||'')}" placeholder="الموقع" oninput="scheduleSave('schedule')"></td>
-    <td><input type="text" value="${esc(d.talent||'')}" placeholder="الأسماء" oninput="scheduleSave('schedule')"></td>
-    <td><input type="text" value="${esc(d.equipment||'')}" placeholder="المعدات" oninput="scheduleSave('schedule')"></td>
-    <td><input type="text" value="${esc(d.notes||'')}" placeholder="..." oninput="scheduleSave('schedule')"></td>
-    <td><button class="btn-del-row" onclick="this.closest('tr').remove();scheduleSave('schedule')">✕</button></td>
-  </tr>`;
+function addScRow(){
+  const tr=document.createElement('tr');
+  tr.innerHTML=`
+    <td><input type="date" oninput="sched('sc')"></td>
+    <td><input type="time" oninput="sched('sc')"></td>
+    <td><input type="text" placeholder="المشهد" oninput="sched('sc')"></td>
+    <td><input type="text" placeholder="الموقع" oninput="sched('sc')"></td>
+    <td><input type="text" placeholder="الأسماء" oninput="sched('sc')"></td>
+    <td><input type="text" placeholder="المعدات" oninput="sched('sc')"></td>
+    <td><input type="text" placeholder="..." oninput="sched('sc')"></td>
+    <td><button class="btn-del" onclick="this.closest('tr').remove();sched('sc')">✕</button></td>`;
+  document.getElementById('sc-tb').appendChild(tr);
 }
-
-function addScheduleRow(){
-  const tbody = document.getElementById('sc-body');
-  const tr = document.createElement('tr');
-  tr.innerHTML = `
-    <td><input type="date" oninput="scheduleSave('schedule')"></td>
-    <td><input type="time" oninput="scheduleSave('schedule')"></td>
-    <td><input type="text" placeholder="المشهد" oninput="scheduleSave('schedule')"></td>
-    <td><input type="text" placeholder="الموقع" oninput="scheduleSave('schedule')"></td>
-    <td><input type="text" placeholder="الأسماء" oninput="scheduleSave('schedule')"></td>
-    <td><input type="text" placeholder="المعدات" oninput="scheduleSave('schedule')"></td>
-    <td><input type="text" placeholder="..." oninput="scheduleSave('schedule')"></td>
-    <td><button class="btn-del-row" onclick="this.closest('tr').remove();scheduleSave('schedule')">✕</button></td>`;
-  tbody.appendChild(tr);
-}
-
-function _saveSC(){
-  const days = Array.from(document.querySelectorAll('#sc-body tr')).map(r=>{
+function saveSc(){
+  const days=Array.from(document.querySelectorAll('#sc-tb tr')).map(r=>{
     const i=r.querySelectorAll('input');
-    return {date:i[0]?.value||'',time:i[1]?.value||'',scene:i[2]?.value||'',location:i[3]?.value||'',talent:i[4]?.value||'',equipment:i[5]?.value||'',notes:i[6]?.value||''};
+    return{date:i[0]?.value||'',time:i[1]?.value||'',scene:i[2]?.value||'',loc:i[3]?.value||'',talent:i[4]?.value||'',equip:i[5]?.value||'',notes:i[6]?.value||''};
   }).filter(d=>d.date||d.scene);
-  setDoc('schedule',{days});
+  setDoc('sc',{days});
 }
 
-// ═══════════════════════════════════════
-//  PDF & UTILS
-// ═══════════════════════════════════════
-function exportPDF(){ window.print(); }
-
+// ══════════════════════════════
+//  UTIL
+// ══════════════════════════════
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-document.addEventListener('keydown', e=>{
-  if(e.key==='Escape' && !document.getElementById('modal-new-proj').classList.contains('hidden')) closeModal();
-  if((e.metaKey||e.ctrlKey) && e.key==='Enter' && !document.getElementById('modal-new-proj').classList.contains('hidden')) createProject();
-  if(e.key==='Enter' && !document.getElementById('auth-overlay').classList.contains('hidden')) authSubmit();
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&!document.getElementById('modal').classList.contains('hidden')) closeModal();
+  if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&!document.getElementById('modal').classList.contains('hidden')) createProj();
+  if(e.key==='Enter'&&!document.getElementById('auth-page').classList.contains('hidden')) authGo();
 });
 </script>
 </body>
