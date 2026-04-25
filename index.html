@@ -2513,7 +2513,9 @@ function renderApproval(){ const el=document.getElementById('approval-bar'); if(
 let _wxCache = {};
 
 async function fetchWeather(targetElId){
-  const city=V('s-city')||'Riyadh'; const date=V('s-date');
+  const _AR_CITIES={'الرياض':'Riyadh','جدة':'Jeddah','مكة المكرمة':'Mecca','مكة':'Mecca','المدينة المنورة':'Medina','الدمام':'Dammam','أبوظبي':'Abu Dhabi','دبي':'Dubai','الكويت':'Kuwait City','القاهرة':'Cairo','بيروت':'Beirut','عمّان':'Amman','عمان':'Amman','بغداد':'Baghdad','الدوحة':'Doha','مسقط':'Muscat','الخرطوم':'Khartoum','تونس':'Tunis','الجزائر':'Algiers','الرباط':'Rabat','الدار البيضاء':'Casablanca','طرابلس':'Tripoli','دمشق':'Damascus','صنعاء':'Sanaa'};
+  const rawCity=V('s-city')||'Riyadh';
+  const city=_AR_CITIES[rawCity.trim()]||rawCity; const date=V('s-date');
   const elIds = targetElId ? [targetElId] : ['weather-area','cs-weather-widget'];
   const els = elIds.map(id=>document.getElementById(id)).filter(Boolean);
   if(!els.length) return;
