@@ -1502,6 +1502,87 @@ function switchView(v){
 }
 function skipToPlanner(){ switchView('planner'); }
 
+// ═════════════════════════════════════════════════
+// WELCOME SCREEN ENTRY POINTS
+// ═════════════════════════════════════════════════
+function startWithAI(){
+  switchView('intake');
+}
+
+function startManual(){
+  switchView('planner');
+}
+
+function startWithExample(){
+  document.getElementById('s-name') && (document.getElementById('s-name').value = 'إعلان عطر لافييتا');
+  document.getElementById('s-client') && (document.getElementById('s-client').value = 'لافييتا العربية');
+  document.getElementById('s-date') && (document.getElementById('s-date').value = new Date(Date.now()+7*864e5).toISOString().slice(0,10));
+  document.getElementById('s-city') && (document.getElementById('s-city').value = 'الرياض');
+  S.scenes = [
+    {sceneNum:1,title:'مشهد الفجر',location:'صحراء رمال الذهب',timeOfDay:'فجر',duration:3,cast:'البطلة',notes:'drone بزاوية واسعة، ضوء طبيعي'},
+    {sceneNum:2,title:'مشهد الاستوديو',location:'استوديو الرياض A',timeOfDay:'نهار',duration:5,cast:'البطلة، الطاقم',notes:'إضاءة ناعمة، خلفية بيضاء'},
+    {sceneNum:3,title:'مشهد النهاية',location:'قصر الضيافة',timeOfDay:'غروب',duration:4,cast:'البطلة',notes:'slow motion، العطر في الإطار'},
+  ];
+  S.crew = ['مدير التصوير','المخرج','مدير الإنتاج','مصمم الإضاءة','مدير الصوت','مساعد مخرج'];
+  S.locations = [
+    {name:'صحراء رمال الذهب',addr:'طريق الرياض-الدوادمي',type:'Outdoor – natural',travel:45,parking:'متاح',permit:'مطلوب'},
+    {name:'استوديو الرياض A',addr:'حي العليا، الرياض',type:'Indoor – studio',travel:15,parking:'مجاني',permit:'لا يلزم'},
+    {name:'قصر الضيافة',addr:'حي النرجس، الرياض',type:'Indoor – location',travel:20,parking:'متاح',permit:'مطلوب'},
+  ];
+  S.budget.rows = [
+    {cat:'Crew',item:'المخرج',est:'8000',act:''},{cat:'Crew',item:'مدير التصوير',est:'6000',act:''},
+    {cat:'Equipment',item:'كاميرا + عدسات',est:'3500',act:''},{cat:'Equipment',item:'طقم إضاءة',est:'2000',act:''},
+    {cat:'Location',item:'رسوم الموقع',est:'4000',act:''},{cat:'Location',item:'تصاريح',est:'500',act:''},
+    {cat:'Production',item:'مواصلات + وجبات',est:'1500',act:''},{cat:'Post',item:'مونتاج',est:'5000',act:''},
+  ];
+  updateSidebar(); autoSave(); switchView('planner');
+}
+
+// ═════════════════════════════════════════════════
+// CONFIRM DELETE / IMPORT HELPERS
+// ═════════════════════════════════════════════════
+function confirmDelete(msg, cb){ if(window.confirm(msg)) cb(); }
+
+function exportJSON(){
+  const name = (document.getElementById('s-name')||{}).value || 'shootplan';
+  const blob = new Blob([JSON.stringify(S,null,2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name.replace(/\s+/g,'-') + '.json';
+  a.click();
+  showToast('تم التصدير ✓');
+}
+
+function importJSON(){
+  const inp = document.createElement('input');
+  inp.type = 'file'; inp.accept = '.json';
+  inp.onchange = e => {
+    const f = e.target.files[0]; if(!f) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try{
+        Object.assign(S, JSON.parse(ev.target.result));
+        updateSidebar(); autoSave(); switchView('planner'); showToast('تم الاستيراد ✓');
+      }catch(err){ showToast('خطأ في قراءة الملف'); }
+    };
+    reader.readAsText(f);
+  };
+  inp.click();
+}
+
+function confirmImport(){
+  if(!extractedData){ closeImportModal(); return; }
+  const boxes = document.querySelectorAll('#im-sections input[type=checkbox]');
+  [...boxes].filter(c=>c.checked).map(c=>c.value).forEach(s=>{ if(!appliedSections.has(s)) applySection(s); });
+  closeImportModal(); switchView('planner'); showToast('تم الاستيراد ✓');
+}
+
+function closeImportModal(){
+  const m = document.getElementById('import-modal');
+  if(m) m.style.display='none';
+}
+
+
 // ════════════════════════════════════════════════════
 // HELPERS
 // ════════════════════════════════════════════════════
