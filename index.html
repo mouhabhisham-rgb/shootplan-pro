@@ -1590,7 +1590,7 @@ function V(id){ return (document.getElementById(id)||{}).value||''; }
 function fmtTime(h,m){ const s=h>=12?'PM':'AM'; const fh=h>12?h-12:(h===0?12:h); return`${fh}:${String(m).padStart(2,'0')} ${s}`; }
 function toggleChip(el){ el.classList.toggle('on'); autoSave(); }
 function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); }
-function autoSave(){ try{ localStorage.setItem('shootplan_v4',JSON.stringify(S)); saveCurrentProject(); scheduleCloudSync(); }catch(e){} }
+function autoSave(){ try{ localStorage.setItem('shootplan_v4',JSON.stringify(S)); saveCurrentProject(); scheduleCloudSync(); if(typeof broadcastProjectChange==='function') broadcastProjectChange(); }catch(e){} }
 
 // ── Project Management ───────────────────────────────────────
 let projects = [];
@@ -2937,12 +2937,7 @@ function showCollabStatus(msg, type) {
   el.style.display = msg ? 'block' : 'none';
 }
 
-// ── Hook into existing autoSave ──────────────────
-const _origAutoSave = autoSave;
-function autoSave() {
-  _origAutoSave();
-  broadcastProjectChange();
-}
+
 
 // ── Load shared projects (projects where I'm a member) ──
 async function loadSharedProjects() {
