@@ -1516,22 +1516,34 @@ function startManual(){
 }
 
 function startWithExample(){
-  document.getElementById('s-name') && (document.getElementById('s-name').value = 'إعلان عطر لافييتا');
-  document.getElementById('s-client') && (document.getElementById('s-client').value = 'لافييتا العربية');
-  document.getElementById('s-date') && (document.getElementById('s-date').value = new Date(Date.now()+7*864e5).toISOString().slice(0,10));
-  document.getElementById('s-city') && (document.getElementById('s-city').value = 'الرياض');
-  S.scenes = [
-    {sceneNum:1,title:'مشهد الفجر',location:'صحراء رمال الذهب',timeOfDay:'فجر',duration:3,cast:'البطلة',notes:'drone بزاوية واسعة، ضوء طبيعي'},
-    {sceneNum:2,title:'مشهد الاستوديو',location:'استوديو الرياض A',timeOfDay:'نهار',duration:5,cast:'البطلة، الطاقم',notes:'إضاءة ناعمة، خلفية بيضاء'},
-    {sceneNum:3,title:'مشهد النهاية',location:'قصر الضيافة',timeOfDay:'غروب',duration:4,cast:'البطلة',notes:'slow motion، العطر في الإطار'},
+  const el=id=>document.getElementById(id);
+  if(el('s-name')) el('s-name').value='إعلان عطر لافييتا';
+  if(el('s-client')) el('s-client').value='لافييتا العربية';
+  if(el('s-date')) el('s-date').value='2026-05-02';
+  if(el('s-city')) el('s-city').value='الرياض';
+  if(el('s-calltime')) el('s-calltime').value='06:30';
+  S.scenes=[
+    {name:'لقطة الفجر الواسعة',type:'Wide',dur:20,lens:'16mm',move:'Drone',priority:'must',locIdx:'0',talentIds:[],day:1,notes:'drone بزاوية واسعة، ضوء طبيعي',sceneNum:1,shootOrder:1,status:'pending'},
+    {name:'لقطة وجه البطلة',type:'Close-up',dur:15,lens:'85mm',move:'Static',priority:'must',locIdx:'1',talentIds:[],day:1,notes:'تعبير وجهي، إضاءة ناعمة',sceneNum:2,shootOrder:2,status:'pending'},
+    {name:'لقطة المنتج',type:'Product',dur:10,lens:'50mm Macro',move:'Slider',priority:'must',locIdx:'1',talentIds:[],day:1,notes:'slow motion للعطر',sceneNum:3,shootOrder:3,status:'pending'},
+    {name:'لقطة الختام',type:'Wide',dur:25,lens:'24mm',move:'Tracking',priority:'must',locIdx:'2',talentIds:[],day:2,notes:'غروب، slow motion، العطر في الإطار',sceneNum:4,shootOrder:4,status:'pending'},
   ];
-  S.crew = ['مدير التصوير','المخرج','مدير الإنتاج','مصمم الإضاءة','مدير الصوت','مساعد مخرج'];
-  S.locations = [
-    {name:'صحراء رمال الذهب',addr:'طريق الرياض-الدوادمي',type:'Outdoor – natural',travel:45,parking:'متاح',permit:'مطلوب'},
-    {name:'استوديو الرياض A',addr:'حي العليا، الرياض',type:'Indoor – studio',travel:15,parking:'مجاني',permit:'لا يلزم'},
-    {name:'قصر الضيافة',addr:'حي النرجس، الرياض',type:'Indoor – location',travel:20,parking:'متاح',permit:'مطلوب'},
+  S.talent=[
+    {name:'سارة العمري',role:'البطلة',mu:'60',call:'05:30',wardrobe:'فستان أبيض',notes:''},
+    {name:'فيصل الرشيد',role:'مساعد',mu:'20',call:'06:00',wardrobe:'سوداء',notes:''},
   ];
-  S.budget.rows = [
+  S.crew=['مدير التصوير','المخرج','مدير الإنتاج','مصمم الإضاءة','مدير الصوت','مساعد مخرج'];
+  S.locations=[
+    {name:'صحراء رمال الذهب',addr:'طريق الرياض-الدوادمي',type:'Outdoor',travel:45,parking:'متاح',permit:'مطلوب'},
+    {name:'استوديو الرياض A',addr:'حي العليا، الرياض',type:'Indoor',travel:15,parking:'مجاني',permit:'لا يلزم'},
+    {name:'قصر الضيافة',addr:'حي النرجس، الرياض',type:'Indoor',travel:20,parking:'متاح',permit:'مطلوب'},
+  ];
+  S.calEvents=[
+    {name:'يوم التصوير 1 - صحراء',date:'2026-05-02',type:'Shoot',assigned:'كل الطاقم',notes:''},
+    {name:'يوم التصوير 2 - استوديو',date:'2026-05-03',type:'Shoot',assigned:'كل الطاقم',notes:''},
+    {name:'تسليم المونتاج',date:'2026-05-04',type:'Deadline',assigned:'مدير الإنتاج',notes:''},
+  ];
+  S.budget.rows=[
     {cat:'Crew',item:'المخرج',est:'8000',act:''},{cat:'Crew',item:'مدير التصوير',est:'6000',act:''},
     {cat:'Equipment',item:'كاميرا + عدسات',est:'3500',act:''},{cat:'Equipment',item:'طقم إضاءة',est:'2000',act:''},
     {cat:'Location',item:'رسوم الموقع',est:'4000',act:''},{cat:'Location',item:'تصاريح',est:'500',act:''},
