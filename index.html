@@ -9,244 +9,105 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#F3E9DD;
-  --bg2:#ede3d4;
-  --surface:#ffffff;
-  --surface2:#f5ede0;
-  --border:rgba(0,0,0,.09);
-  --border2:rgba(0,0,0,.14);
-  --text:#171717;
-  --text2:#666666;
-  --text3:#aaaaaa;
-  --accent:#FAB617;
-  --accent-h:#ffc030;
-  --accent-glow:rgba(250,182,23,.15);
-  --green:#16a34a;
-  --red:#dc2626;
-  --sb-w:232px;
-  --tb-h:52px;
-  --r:10px;
-  --r2:7px;
-  --arabic:'Noto Naskh Arabic',sans-serif;
-  --latin:'DM Sans',sans-serif;
+  --bg:#F3E9DD;--bg2:#ede3d4;--surface:#ffffff;--surface2:#f5ede0;
+  --border:rgba(0,0,0,.09);--border2:rgba(0,0,0,.14);
+  --text:#171717;--text2:#666666;--text3:#aaaaaa;
+  --accent:#FAB617;--accent-h:#ffc030;--accent-glow:rgba(250,182,23,.15);
+  --green:#16a34a;--red:#dc2626;--blue:#2563eb;--purple:#7c3aed;
+  --sb-w:232px;--tb-h:52px;--r:10px;--r2:7px;
+  --arabic:'Noto Naskh Arabic',sans-serif;--latin:'DM Sans',sans-serif;
 }
 body{font-family:var(--arabic);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
-/* ══════════════ AUTH ══════════════ */
+/* AUTH */
 #auth-page{display:flex;min-height:100vh}
 #auth-page.hidden{display:none}
-
-.auth-left{
-  flex:0 0 52%;
-  background:linear-gradient(145deg,#171717 0%,#1e1a14 60%,#111111 100%);
-  display:flex;flex-direction:column;
-  padding:48px 56px;
-  position:relative;overflow:hidden;
-  border-left:1px solid rgba(255,255,255,.05);
-}
-.auth-left::before{
-  content:'';position:absolute;
-  top:-160px;right:-100px;
-  width:440px;height:440px;
-  background:radial-gradient(circle,rgba(250,182,23,.14) 0%,transparent 70%);
-  pointer-events:none;
-}
+.auth-left{flex:0 0 52%;background:linear-gradient(145deg,#171717 0%,#1e1a14 60%,#111111 100%);display:flex;flex-direction:column;padding:48px 56px;position:relative;overflow:hidden;border-left:1px solid rgba(255,255,255,.05)}
+.auth-left::before{content:'';position:absolute;top:-160px;right:-100px;width:440px;height:440px;background:radial-gradient(circle,rgba(250,182,23,.14) 0%,transparent 70%);pointer-events:none}
 .auth-left-logo{display:flex;align-items:center;gap:10px;margin-bottom:auto}
-.auth-left-logo-icon{
-  width:34px;height:34px;background:var(--accent);border-radius:8px;
-  display:flex;align-items:center;justify-content:center;font-size:17px;
-}
+.auth-left-logo-icon{width:34px;height:34px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px}
 .auth-left-logo-name{font-family:var(--latin);font-size:16px;font-weight:700;letter-spacing:-.3px;color:#fff}
-
 .auth-left-hero{margin-top:auto;margin-bottom:auto;padding:40px 0}
 .auth-left-hero h1{font-size:34px;font-weight:700;line-height:1.35;color:#fff;margin-bottom:14px;letter-spacing:-.4px}
 .auth-left-hero h1 span{color:var(--accent)}
 .auth-left-hero p{font-size:15px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:36px}
-
 .auth-feature-list{display:flex;flex-direction:column;gap:14px}
 .auth-feature{display:flex;align-items:flex-start;gap:12px}
-.auth-feature-icon{
-  width:32px;height:32px;border-radius:8px;
-  background:rgba(250,182,23,.12);border:1px solid rgba(250,182,23,.2);
-  display:flex;align-items:center;justify-content:center;
-  font-size:15px;flex-shrink:0;margin-top:1px;
-}
+.auth-feature-icon{width:32px;height:32px;border-radius:8px;background:rgba(250,182,23,.12);border:1px solid rgba(250,182,23,.2);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;margin-top:1px}
 .auth-feature-text{font-size:13px;color:rgba(255,255,255,.5);line-height:1.5}
 .auth-feature-text strong{color:rgba(255,255,255,.85);display:block;font-size:13.5px;margin-bottom:2px}
 .auth-left-footer{margin-top:auto;font-size:12px;color:rgba(255,255,255,.25)}
-
-.auth-right{
-  flex:1;display:flex;align-items:center;justify-content:center;
-  padding:40px 32px;background:var(--bg2);
-}
+.auth-right{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 32px;background:var(--bg2)}
 .auth-form-wrap{width:100%;max-width:380px}
 .auth-form-title{font-size:22px;font-weight:700;margin-bottom:6px;color:var(--text)}
 .auth-form-sub{font-size:13px;color:var(--text2);margin-bottom:28px}
-
-.auth-tabs{
-  display:flex;background:#e8ddd0;border:1px solid rgba(0,0,0,.1);
-  border-radius:var(--r);padding:3px;margin-bottom:24px;gap:3px;
-}
-.auth-tab{
-  flex:1;padding:8px;background:none;border:none;
-  color:var(--text2);font-family:var(--arabic);font-size:14px;
-  border-radius:7px;cursor:pointer;transition:all .15s;
-}
+.auth-tabs{display:flex;background:#e8ddd0;border:1px solid rgba(0,0,0,.1);border-radius:var(--r);padding:3px;margin-bottom:24px;gap:3px}
+.auth-tab{flex:1;padding:8px;background:none;border:none;color:var(--text2);font-family:var(--arabic);font-size:14px;border-radius:7px;cursor:pointer;transition:all .15s}
 .auth-tab.active{background:#fff;color:var(--text);font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.08)}
-
 .auth-msg{border-radius:var(--r2);padding:10px 14px;font-size:13px;margin-bottom:16px;display:none}
 .auth-msg.err{background:rgba(220,38,38,.07);border:1px solid rgba(220,38,38,.2);color:#dc2626}
 .auth-msg.ok{background:rgba(22,163,74,.07);border:1px solid rgba(22,163,74,.2);color:#16a34a}
 .auth-msg.show{display:block}
-
 .auth-label{display:block;font-size:12px;color:var(--text2);margin-bottom:6px;font-weight:500}
-.auth-input{
-  display:block;width:100%;background:#fff;
-  border:1px solid rgba(0,0,0,.15);border-radius:var(--r2);
-  padding:10px 14px;color:var(--text);font-family:var(--arabic);
-  font-size:14px;outline:none;direction:ltr;margin-bottom:14px;
-  transition:border-color .15s,box-shadow .15s;
-}
+.auth-input{display:block;width:100%;background:#fff;border:1px solid rgba(0,0,0,.15);border-radius:var(--r2);padding:10px 14px;color:var(--text);font-family:var(--arabic);font-size:14px;outline:none;direction:ltr;margin-bottom:14px;transition:border-color .15s,box-shadow .15s}
 .auth-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
 .auth-input::placeholder{color:var(--text3)}
-
-.auth-btn-main{
-  display:block;width:100%;padding:11px;
-  background:var(--accent);border:none;border-radius:var(--r2);
-  color:#171717;font-family:var(--arabic);font-size:15px;font-weight:600;
-  cursor:pointer;transition:background .15s,transform .1s;margin-top:6px;
-}
+.auth-btn-main{display:block;width:100%;padding:11px;background:var(--accent);border:none;border-radius:var(--r2);color:#171717;font-family:var(--arabic);font-size:15px;font-weight:600;cursor:pointer;transition:background .15s,transform .1s;margin-top:6px}
 .auth-btn-main:hover{background:var(--accent-h)}
 .auth-btn-main:active{transform:scale(.99)}
 .auth-btn-main:disabled{opacity:.4;cursor:default}
-
 .auth-sep{display:flex;align-items:center;gap:10px;margin:18px 0;color:var(--text3);font-size:12px}
 .auth-sep::before,.auth-sep::after{content:'';flex:1;height:1px;background:rgba(0,0,0,.1)}
-
-.auth-btn-google{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  width:100%;padding:10px;background:#fff;
-  border:1px solid rgba(0,0,0,.14);border-radius:var(--r2);
-  color:var(--text);font-family:var(--arabic);font-size:14px;cursor:pointer;
-  transition:border-color .15s,background .15s;
-}
+.auth-btn-google{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:10px;background:#fff;border:1px solid rgba(0,0,0,.14);border-radius:var(--r2);color:var(--text);font-family:var(--arabic);font-size:14px;cursor:pointer;transition:border-color .15s,background .15s}
 .auth-btn-google:hover{background:var(--surface2);border-color:rgba(0,0,0,.2)}
 
-/* ══════════════ APP ══════════════ */
+/* APP */
 #app{display:none}
 #app.show{display:flex;min-height:100vh}
 
-/* ── SIDEBAR ── */
-#sb{
-  position:fixed;top:0;right:0;
-  width:var(--sb-w);height:100vh;
-  background:#171717;
-  border-left:1px solid rgba(255,255,255,.06);
-  display:flex;flex-direction:column;z-index:50;
-  overflow:hidden;
-}
-
-.sb-logo{
-  height:var(--tb-h);display:flex;align-items:center;
-  padding:0 16px;gap:10px;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0;
-}
-.sb-logo-icon{
-  width:28px;height:28px;background:var(--accent);border-radius:7px;
-  display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;
-}
+/* SIDEBAR */
+#sb{position:fixed;top:0;right:0;width:var(--sb-w);height:100vh;background:#171717;border-left:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;z-index:50;overflow:hidden}
+.sb-logo{height:var(--tb-h);display:flex;align-items:center;padding:0 16px;gap:10px;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0}
+.sb-logo-icon{width:28px;height:28px;background:var(--accent);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
 .sb-logo-name{font-family:var(--latin);font-size:14px;font-weight:700;letter-spacing:-.2px;color:#fff}
-
 .sb-nav{padding:8px;flex-shrink:0}
-.sb-nav-item{
-  display:flex;align-items:center;gap:9px;
-  padding:8px 10px;border-radius:var(--r2);
-  color:rgba(255,255,255,.5);cursor:pointer;font-size:13px;font-weight:500;
-  transition:background .12s,color .12s;
-}
+.sb-nav-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r2);color:rgba(255,255,255,.5);cursor:pointer;font-size:13px;font-weight:500;transition:background .12s,color .12s}
 .sb-nav-item:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.85)}
 .sb-nav-item.active{background:rgba(250,182,23,.12);color:var(--accent)}
 .sb-nav-icon{font-size:15px;flex-shrink:0;width:18px;text-align:center}
-
 .sb-divider{height:1px;background:rgba(255,255,255,.06);margin:4px 0;flex-shrink:0}
-
-.sb-section-label{
-  padding:12px 16px 4px;font-size:10px;font-weight:700;
-  text-transform:uppercase;letter-spacing:1.2px;color:rgba(255,255,255,.28);flex-shrink:0;
-}
-
-.sb-new-btn{
-  display:flex;align-items:center;justify-content:center;gap:7px;
-  margin:0 8px 4px;padding:8px 12px;
-  background:var(--accent);border:none;border-radius:var(--r2);
-  color:#171717;font-family:var(--arabic);font-size:13px;font-weight:600;
-  cursor:pointer;transition:background .15s;flex-shrink:0;
-}
+.sb-section-label{padding:12px 16px 4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:rgba(255,255,255,.28);flex-shrink:0}
+.sb-new-btn{display:flex;align-items:center;justify-content:center;gap:7px;margin:0 8px 4px;padding:8px 12px;background:var(--accent);border:none;border-radius:var(--r2);color:#171717;font-family:var(--arabic);font-size:13px;font-weight:600;cursor:pointer;transition:background .15s;flex-shrink:0}
 .sb-new-btn:hover{background:var(--accent-h)}
-
 .sb-proj-section{flex:1;overflow-y:auto;padding:0 8px 8px}
 .sb-proj-section::-webkit-scrollbar{width:3px}
 .sb-proj-section::-webkit-scrollbar-track{background:transparent}
 .sb-proj-section::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:2px}
-
 .sb-proj-item{margin-bottom:1px}
-.sb-proj-btn{
-  display:flex;align-items:center;gap:8px;
-  padding:7px 10px;border-radius:var(--r2);
-  cursor:pointer;transition:background .12s;
-}
+.sb-proj-btn{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:var(--r2);cursor:pointer;transition:background .12s}
 .sb-proj-btn:hover{background:rgba(255,255,255,.05)}
 .sb-proj-btn.active{background:rgba(250,182,23,.1)}
 .sb-proj-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .sb-proj-name{font-size:12.5px;color:rgba(255,255,255,.5);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
 .sb-proj-btn.active .sb-proj-name{color:rgba(255,255,255,.85)}
-
 .sb-subnav{padding:2px 0 4px;display:none}
 .sb-subnav.open{display:block}
-.sb-sublink{
-  display:flex;align-items:center;gap:7px;
-  padding:5px 10px 5px 12px;margin:0 0 0 16px;
-  border-radius:var(--r2);font-size:12px;color:rgba(255,255,255,.35);
-  cursor:pointer;transition:background .12s,color .12s;
-}
+.sb-sublink{display:flex;align-items:center;gap:7px;padding:5px 10px 5px 12px;margin:0 0 0 16px;border-radius:var(--r2);font-size:12px;color:rgba(255,255,255,.35);cursor:pointer;transition:background .12s,color .12s}
 .sb-sublink:hover{background:rgba(255,255,255,.04);color:rgba(255,255,255,.6)}
 .sb-sublink.active{color:var(--accent);font-weight:500}
-
 .sb-empty-msg{padding:10px;font-size:12px;color:rgba(255,255,255,.28)}
-
-.sb-user{
-  border-top:1px solid rgba(255,255,255,.06);padding:12px;
-  display:flex;align-items:center;gap:10px;flex-shrink:0;
-}
-.sb-avatar{
-  width:30px;height:30px;background:rgba(250,182,23,.15);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:700;color:var(--accent);flex-shrink:0;
-  font-family:var(--latin);
-}
+.sb-user{border-top:1px solid rgba(255,255,255,.06);padding:12px;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.sb-avatar{width:30px;height:30px;background:rgba(250,182,23,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--accent);flex-shrink:0;font-family:var(--latin)}
 .sb-user-info{flex:1;min-width:0}
 .sb-user-email{font-size:11px;color:rgba(255,255,255,.4);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.sb-signout-btn{
-  background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;
-  font-size:14px;padding:4px;transition:color .12s;flex-shrink:0;
-}
+.sb-signout-btn{background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:14px;padding:4px;transition:color .12s;flex-shrink:0}
 .sb-signout-btn:hover{color:#ef4444}
 
-/* ── CONTENT AREA ── */
-#content{
-  margin-right:var(--sb-w);
-  display:flex;flex-direction:column;
-  min-height:100vh;
-  width:calc(100% - var(--sb-w));
-  background:var(--bg);
-}
+/* CONTENT */
+#content{margin-right:var(--sb-w);display:flex;flex-direction:column;min-height:100vh;width:calc(100% - var(--sb-w));background:var(--bg)}
 
-/* ── TOPBAR ── */
-#topbar{
-  height:var(--tb-h);background:#fff;
-  border-bottom:1px solid var(--border);
-  display:flex;align-items:center;padding:0 24px;gap:14px;
-  position:sticky;top:0;z-index:40;flex-shrink:0;
-}
+/* TOPBAR */
+#topbar{height:var(--tb-h);background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:14px;position:sticky;top:0;z-index:40;flex-shrink:0}
 .bc{display:flex;align-items:center;gap:5px;font-size:13px;flex:1;min-width:0}
 .bc-seg{color:var(--text3);cursor:pointer;transition:color .12s;white-space:nowrap;font-weight:500}
 .bc-seg:hover{color:var(--text)}
@@ -254,278 +115,184 @@ body{font-family:var(--arabic);background:var(--bg);color:var(--text);min-height
 .bc-arrow{color:var(--text3);font-size:11px;line-height:1}
 .tb-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
 #sh{font-size:11.5px;color:var(--green);min-width:60px;text-align:center;font-family:var(--latin)}
-.btn-pdf{
-  display:flex;align-items:center;gap:6px;
-  padding:6px 14px;background:transparent;
-  border:1px solid var(--border2);border-radius:var(--r2);
-  color:var(--text2);font-family:var(--arabic);font-size:12.5px;
-  cursor:pointer;transition:all .15s;font-weight:500;
-}
+.btn-pdf{display:flex;align-items:center;gap:6px;padding:6px 14px;background:transparent;border:1px solid var(--border2);border-radius:var(--r2);color:var(--text2);font-family:var(--arabic);font-size:12.5px;cursor:pointer;transition:all .15s;font-weight:500}
 .btn-pdf:hover{background:var(--surface);color:var(--text);border-color:rgba(0,0,0,.2)}
 .btn-pdf.hidden{display:none}
 
-/* ── DOC TAB BAR (StudioBinder-style) ── */
-#doc-tabbar{
-  background:#fff;
-  border-bottom:2px solid var(--border);
-  display:flex;align-items:stretch;
-  padding:0 20px;
-  position:sticky;top:var(--tb-h);z-index:39;
-  flex-shrink:0;gap:0;
-}
+/* DOC TAB BAR */
+#doc-tabbar{background:#fff;border-bottom:2px solid var(--border);display:flex;align-items:stretch;padding:0 20px;position:sticky;top:var(--tb-h);z-index:39;flex-shrink:0;gap:0;overflow-x:auto}
 #doc-tabbar.hidden{display:none}
-.dtab{
-  display:flex;align-items:center;gap:7px;
-  padding:0 16px;height:44px;
-  font-size:13.5px;font-weight:500;color:var(--text2);
-  cursor:pointer;border-bottom:2.5px solid transparent;
-  margin-bottom:-2px;
-  transition:color .15s,border-color .15s;
-  white-space:nowrap;
-}
+.dtab{display:flex;align-items:center;gap:7px;padding:0 14px;height:44px;font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-2px;transition:color .15s,border-color .15s;white-space:nowrap}
 .dtab:hover{color:var(--text)}
 .dtab.active{color:var(--text);border-bottom-color:var(--accent);font-weight:600}
 .dtab-icon{font-size:14px}
 
-/* ── MAIN ── */
+/* MAIN */
 #main{flex:1;padding:28px 28px 40px}
 .screen{display:none}
 .screen.active{display:block}
 
-/* ══ HOME ══ */
+/* HOME */
 .pg-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
 .pg-title{font-size:21px;font-weight:700;letter-spacing:-.3px}
 .search-box{position:relative;width:220px}
-.search-box input{
-  width:100%;background:#fff;border:1px solid var(--border2);
-  border-radius:var(--r2);padding:8px 32px 8px 12px;
-  color:var(--text);font-family:var(--arabic);font-size:13px;outline:none;
-  transition:border-color .15s,box-shadow .15s;
-}
+.search-box input{width:100%;background:#fff;border:1px solid var(--border2);border-radius:var(--r2);padding:8px 32px 8px 12px;color:var(--text);font-family:var(--arabic);font-size:13px;outline:none;transition:border-color .15s,box-shadow .15s}
 .search-box input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
 .search-box input::placeholder{color:var(--text3)}
 .search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:13px;pointer-events:none}
-
 .proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(256px,1fr));gap:14px}
-
-.proj-card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:12px;overflow:hidden;cursor:pointer;
-  transition:border-color .18s,box-shadow .18s,transform .12s;
-  box-shadow:0 1px 3px rgba(0,0,0,.05);
-}
-.proj-card:hover{
-  border-color:rgba(0,0,0,.16);
-  box-shadow:0 6px 20px rgba(0,0,0,.1);
-  transform:translateY(-2px);
-}
-.proj-card-banner{
-  height:80px;position:relative;overflow:hidden;
-  display:flex;align-items:flex-end;padding:10px 14px;
-}
-.proj-card-abbr{
-  font-family:var(--latin);font-size:32px;font-weight:800;
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  letter-spacing:-1px;text-transform:uppercase;opacity:.15;color:#fff;
-  pointer-events:none;user-select:none;
-}
-.proj-card-color-dot{
-  width:9px;height:9px;border-radius:50%;
-  position:absolute;bottom:10px;right:14px;
-}
+.proj-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color .18s,box-shadow .18s,transform .12s;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.proj-card:hover{border-color:rgba(0,0,0,.16);box-shadow:0 6px 20px rgba(0,0,0,.1);transform:translateY(-2px)}
+.proj-card-banner{height:80px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:10px 14px}
+.proj-card-abbr{font-family:var(--latin);font-size:32px;font-weight:800;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);letter-spacing:-1px;text-transform:uppercase;opacity:.15;color:#fff;pointer-events:none;user-select:none}
 .proj-card-body{padding:14px}
 .proj-card-name{font-size:14.5px;font-weight:600;margin-bottom:7px;line-height:1.3;color:var(--text)}
-.proj-card-meta{display:flex;flex-wrap:wrap;gap:4px 12px;margin-bottom:12px}
+.proj-card-meta{display:flex;flex-wrap:wrap;gap:4px 12px;margin-bottom:10px}
 .proj-card-meta-item{font-size:11.5px;color:var(--text2);display:flex;align-items:center;gap:4px}
-.proj-card-chips{display:flex;gap:5px;flex-wrap:wrap}
-.doc-chip{
-  padding:3px 9px;border-radius:20px;font-size:10.5px;font-weight:500;border:1px solid;
-}
+.proj-card-chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.doc-chip{padding:3px 9px;border-radius:20px;font-size:10.5px;font-weight:500;border:1px solid}
 .doc-chip.done{background:rgba(22,163,74,.08);border-color:rgba(22,163,74,.25);color:#15803d}
 .doc-chip.empty{background:transparent;border-color:rgba(0,0,0,.11);color:var(--text3)}
-.proj-card-footer{
-  padding:8px 14px;border-top:1px solid var(--border);
-  display:flex;justify-content:flex-end;
-}
-.btn-del-card{
-  background:none;border:none;color:var(--text3);cursor:pointer;
-  font-family:var(--arabic);font-size:11.5px;padding:3px 8px;border-radius:4px;
-  transition:background .12s,color .12s;
-}
+.proj-card-footer{padding:8px 14px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.btn-del-card{background:none;border:none;color:var(--text3);cursor:pointer;font-family:var(--arabic);font-size:11.5px;padding:3px 8px;border-radius:4px;transition:background .12s,color .12s}
 .btn-del-card:hover{background:rgba(220,38,38,.08);color:var(--red)}
+.btn-dup-card{background:none;border:none;color:var(--text3);cursor:pointer;font-family:var(--arabic);font-size:11.5px;padding:3px 8px;border-radius:4px;transition:background .12s,color .12s}
+.btn-dup-card:hover{background:rgba(37,99,235,.08);color:var(--blue)}
 
-.new-card{
-  background:var(--surface);border:1.5px dashed rgba(0,0,0,.18);
-  border-radius:12px;min-height:180px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  cursor:pointer;gap:10px;
-  transition:border-color .15s,background .15s;
-}
-.new-card:hover{border-color:var(--accent);background:rgba(250,182,23,.04)}
-.new-card-plus{
-  width:42px;height:42px;border-radius:50%;
-  background:var(--bg2);
-  display:flex;align-items:center;justify-content:center;
-  font-size:22px;color:var(--text2);
-  transition:background .15s,color .15s;
-}
-.new-card:hover .new-card-plus{background:var(--accent);color:#fff}
-.new-card-label{font-size:13px;color:var(--text2)}
+/* STATUS BADGE */
+.status-badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid;gap:4px}
+.status-badge.pre{background:rgba(37,99,235,.08);border-color:rgba(37,99,235,.25);color:#1d4ed8}
+.status-badge.prod{background:rgba(22,163,74,.08);border-color:rgba(22,163,74,.25);color:#15803d}
+.status-badge.post{background:rgba(124,58,237,.08);border-color:rgba(124,58,237,.25);color:#6d28d9}
 
-/* ══ PROJECT OVERVIEW ══ */
-.proj-ov{max-width:760px}
-.proj-ov-head{
-  background:#fff;border:1px solid var(--border);border-radius:12px;
-  display:flex;align-items:center;gap:16px;padding:20px 24px;margin-bottom:24px;
-  box-shadow:0 1px 3px rgba(0,0,0,.04);
-}
-.proj-ov-color-block{
-  width:52px;height:52px;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--latin);font-size:20px;font-weight:800;
-  color:#fff;flex-shrink:0;letter-spacing:-1px;text-transform:uppercase;
-}
+/* PROGRESS BAR */
+.progress-wrap{margin-top:10px}
+.progress-label{font-size:11px;color:var(--text2);margin-bottom:5px;display:flex;justify-content:space-between}
+.progress-bar{height:6px;background:var(--bg2);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:var(--green);border-radius:3px;transition:width .4s ease}
+.progress-fill.mid{background:var(--accent)}
+.progress-fill.low{background:var(--red)}
+
+/* PROJECT OVERVIEW */
+.proj-ov{max-width:800px}
+.proj-ov-head{background:#fff;border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;gap:16px;padding:20px 24px;margin-bottom:24px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.proj-ov-color-block{width:52px;height:52px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--latin);font-size:20px;font-weight:800;color:#fff;flex-shrink:0;letter-spacing:-1px;text-transform:uppercase}
 .proj-ov-info{flex:1;min-width:0}
 .proj-ov-name{font-size:20px;font-weight:700;margin-bottom:5px;letter-spacing:-.3px}
-.proj-ov-meta{display:flex;gap:14px;flex-wrap:wrap}
+.proj-ov-meta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
 .proj-ov-meta-item{font-size:12.5px;color:var(--text2);display:flex;align-items:center;gap:5px}
 .proj-ov-actions{display:flex;gap:8px;flex-shrink:0}
+.btn-sm{padding:7px 14px;border:1px solid var(--border2);border-radius:var(--r2);background:#fff;color:var(--text2);font-family:var(--arabic);font-size:12.5px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:5px}
+.btn-sm:hover{border-color:rgba(0,0,0,.2);color:var(--text);background:var(--surface2)}
+.btn-sm.accent{background:var(--accent);border-color:var(--accent);color:#171717;font-weight:600}
+.btn-sm.accent:hover{background:var(--accent-h)}
 
-.proj-ov-section-label{
-  font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
-  color:var(--text3);margin-bottom:10px;padding:0 2px;
-}
-
+.proj-ov-section-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-bottom:10px;padding:0 2px}
 .doc-list{display:flex;flex-direction:column;gap:8px}
-.doc-list-row{
-  background:#fff;border:1px solid var(--border);border-radius:10px;
-  display:flex;align-items:center;gap:0;
-  cursor:pointer;
-  transition:border-color .15s,box-shadow .15s,transform .1s;
-  overflow:hidden;
-  box-shadow:0 1px 3px rgba(0,0,0,.04);
-}
-.doc-list-row:hover{
-  border-color:rgba(0,0,0,.14);
-  box-shadow:0 3px 12px rgba(0,0,0,.08);
-  transform:translateY(-1px);
-}
+.doc-list-row{background:#fff;border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;gap:0;cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .1s;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.doc-list-row:hover{border-color:rgba(0,0,0,.14);box-shadow:0 3px 12px rgba(0,0,0,.08);transform:translateY(-1px)}
 .doc-list-stripe{width:4px;height:100%;min-height:72px;flex-shrink:0}
-.doc-list-icon-wrap{
-  width:52px;height:72px;display:flex;align-items:center;justify-content:center;
-  font-size:22px;flex-shrink:0;
-}
+.doc-list-icon-wrap{width:52px;height:72px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
 .doc-list-body{flex:1;padding:14px 6px 14px 14px;min-width:0}
 .doc-list-title{font-size:15px;font-weight:600;margin-bottom:4px}
 .doc-list-desc{font-size:12.5px;color:var(--text2)}
-.doc-list-badge{
-  flex-shrink:0;margin-left:12px;padding:4px 12px;
-  border-radius:20px;font-size:11.5px;font-weight:600;
-}
+.doc-list-badge{flex-shrink:0;margin-left:12px;padding:4px 12px;border-radius:20px;font-size:11.5px;font-weight:600}
 .doc-list-badge.filled{background:rgba(22,163,74,.1);color:#15803d;border:1px solid rgba(22,163,74,.2)}
 .doc-list-badge.empty{background:var(--bg2);color:var(--text3);border:1px solid var(--border)}
-.doc-list-arrow{
-  color:var(--text3);font-size:20px;font-weight:300;
-  padding:0 16px;flex-shrink:0;
-}
+.doc-list-arrow{color:var(--text3);font-size:20px;font-weight:300;padding:0 16px;flex-shrink:0}
 
-/* ══ MODAL ══ */
-.modal-bg{
-  position:fixed;inset:0;background:rgba(0,0,0,.5);
-  display:flex;align-items:center;justify-content:center;z-index:300;
-  backdrop-filter:blur(4px);
-}
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:300;backdrop-filter:blur(4px)}
 .modal-bg.hidden{display:none}
-.modal{
-  background:#fff;border:1px solid var(--border2);
-  border-radius:14px;width:440px;padding:28px;
-  box-shadow:0 16px 48px rgba(0,0,0,.14);
-}
+.modal{background:#fff;border:1px solid var(--border2);border-radius:14px;width:460px;max-width:95vw;padding:28px;box-shadow:0 16px 48px rgba(0,0,0,.14);max-height:90vh;overflow-y:auto}
 .modal-title{font-size:17px;font-weight:700;margin-bottom:20px}
 .mf{margin-bottom:13px}
 .mf label{display:block;font-size:12px;color:var(--text2);margin-bottom:5px;font-weight:500}
-.mf input{
-  display:block;width:100%;background:var(--bg2);border:1px solid var(--border2);
-  border-radius:var(--r2);padding:9px 12px;color:var(--text);
-  font-family:var(--arabic);font-size:14px;outline:none;transition:border-color .15s,box-shadow .15s;
-}
-.mf input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+.mf input,.mf select{display:block;width:100%;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r2);padding:9px 12px;color:var(--text);font-family:var(--arabic);font-size:14px;outline:none;transition:border-color .15s,box-shadow .15s}
+.mf input:focus,.mf select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
 .modal-actions{display:flex;gap:10px;margin-top:20px}
-.btn-p{
-  padding:9px 22px;background:var(--accent);border:none;border-radius:var(--r2);
-  color:#171717;font-family:var(--arabic);font-size:14px;font-weight:600;
-  cursor:pointer;transition:background .15s;
-}
+.btn-p{padding:9px 22px;background:var(--accent);border:none;border-radius:var(--r2);color:#171717;font-family:var(--arabic);font-size:14px;font-weight:600;cursor:pointer;transition:background .15s}
 .btn-p:hover{background:var(--accent-h)}
-.btn-g{
-  padding:9px 22px;background:none;border:1px solid var(--border2);border-radius:var(--r2);
-  color:var(--text2);font-family:var(--arabic);font-size:14px;cursor:pointer;
-  transition:border-color .15s,color .15s;
-}
+.btn-g{padding:9px 22px;background:none;border:1px solid var(--border2);border-radius:var(--r2);color:var(--text2);font-family:var(--arabic);font-size:14px;cursor:pointer;transition:border-color .15s,color .15s}
 .btn-g:hover{border-color:rgba(0,0,0,.2);color:var(--text)}
 
-/* ══ DOC PAGES ══ */
+/* SHARE MODAL */
+.share-link-box{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r2);padding:10px 14px;font-size:12px;color:var(--text2);word-break:break-all;margin-bottom:14px;direction:ltr;font-family:var(--latin)}
+.share-btns{display:flex;gap:10px;flex-wrap:wrap}
+.share-btn{display:flex;align-items:center;gap:8px;padding:10px 18px;border:none;border-radius:var(--r2);font-family:var(--arabic);font-size:13.5px;font-weight:600;cursor:pointer;transition:opacity .15s}
+.share-btn.wa{background:#25D366;color:#fff}
+.share-btn.em{background:#4f7df3;color:#fff}
+.share-btn.cp{background:var(--bg2);color:var(--text);border:1px solid var(--border2)}
+.share-btn:hover{opacity:.88}
+
+/* DOC PAGES */
 .doc-page{max-width:900px}
-.doc-card{
-  background:#fff;border:1px solid var(--border);
-  border-radius:12px;margin-bottom:14px;overflow:hidden;
-  box-shadow:0 1px 3px rgba(0,0,0,.04);
-}
-.doc-card-hdr{
-  padding:11px 18px;border-bottom:1px solid var(--border);
-  font-size:11px;font-weight:700;color:var(--text2);
-  text-transform:uppercase;letter-spacing:.8px;
-  display:flex;align-items:center;gap:8px;
-  background:var(--surface2);
-}
+.doc-card{background:#fff;border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.doc-card-hdr{padding:11px 18px;border-bottom:1px solid var(--border);font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;display:flex;align-items:center;gap:8px;background:var(--surface2)}
+.doc-card-hdr-right{margin-right:auto;display:flex;gap:8px}
 .doc-card-body{padding:18px}
 .fg{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .fg.three{grid-template-columns:1fr 1fr 1fr}
 .fgl label{display:block;font-size:11.5px;color:var(--text2);margin-bottom:5px;font-weight:500}
-.fgl input,.fgl textarea{
-  display:block;width:100%;background:var(--bg2);border:1px solid var(--border2);
-  border-radius:var(--r2);padding:8px 12px;color:var(--text);
-  font-family:var(--arabic);font-size:13.5px;outline:none;
-  transition:border-color .15s,box-shadow .15s;resize:vertical;
-}
-.fgl input:focus,.fgl textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+.fgl input,.fgl textarea,.fgl select{display:block;width:100%;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r2);padding:8px 12px;color:var(--text);font-family:var(--arabic);font-size:13.5px;outline:none;transition:border-color .15s,box-shadow .15s;resize:vertical}
+.fgl input:focus,.fgl textarea:focus,.fgl select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
 
 /* TABLES */
 .tbl-wrap{overflow-x:auto;border-radius:var(--r2);border:1px solid var(--border)}
 table{width:100%;border-collapse:collapse;min-width:580px}
-thead th{
-  background:var(--surface2);padding:9px 12px;text-align:right;
-  font-size:11px;font-weight:700;color:var(--text2);
-  border-bottom:1px solid var(--border);white-space:nowrap;
-  letter-spacing:.3px;
-}
+thead th{background:var(--surface2);padding:9px 12px;text-align:right;font-size:11px;font-weight:700;color:var(--text2);border-bottom:1px solid var(--border);white-space:nowrap;letter-spacing:.3px}
 tbody tr{border-bottom:1px solid rgba(0,0,0,.05)}
 tbody tr:last-child{border-bottom:none}
 tbody tr:hover{background:rgba(0,0,0,.02)}
 tbody td{padding:3px}
-tbody td input{
-  display:block;width:100%;background:transparent;border:none;
-  color:var(--text);font-family:var(--arabic);font-size:13px;
-  padding:6px 10px;border-radius:4px;outline:none;
-  transition:background .12s;
-}
-tbody td input:focus{background:rgba(250,182,23,.07);border-radius:4px}
+tbody td input,tbody td select{display:block;width:100%;background:transparent;border:none;color:var(--text);font-family:var(--arabic);font-size:13px;padding:6px 10px;border-radius:4px;outline:none;transition:background .12s}
+tbody td input:focus,tbody td select:focus{background:rgba(250,182,23,.07);border-radius:4px}
 tbody td input[type="date"],tbody td input[type="time"]{direction:ltr;font-family:var(--latin)}
-.btn-add{
-  margin-top:12px;padding:7px 16px;
-  background:transparent;border:1.5px dashed rgba(0,0,0,.16);
-  border-radius:var(--r2);color:var(--text2);font-family:var(--arabic);
-  font-size:12.5px;cursor:pointer;transition:all .12s;
-}
+tbody td select{cursor:pointer}
+.btn-add{margin-top:12px;padding:7px 16px;background:transparent;border:1.5px dashed rgba(0,0,0,.16);border-radius:var(--r2);color:var(--text2);font-family:var(--arabic);font-size:12.5px;cursor:pointer;transition:all .12s}
 .btn-add:hover{background:rgba(0,0,0,.03);border-color:rgba(0,0,0,.25);color:var(--text)}
-.btn-del{
-  display:flex;align-items:center;justify-content:center;
-  background:none;border:none;color:var(--text3);cursor:pointer;
-  font-size:13px;padding:5px 8px;transition:color .12s;border-radius:4px;
-}
+.btn-del{display:flex;align-items:center;justify-content:center;background:none;border:none;color:var(--text3);cursor:pointer;font-size:13px;padding:5px 8px;transition:color .12s;border-radius:4px}
 .btn-del:hover{color:var(--red);background:rgba(220,38,38,.06)}
 
-/* ══ ANIM ══ */
+/* STATUS SELECT */
+.s-todo{color:#d97706}
+.s-wip{color:#2563eb}
+.s-done{color:#16a34a}
+
+/* CREW DB */
+.crew-db-page{max-width:900px}
+
+/* STRIPBOARD */
+.strip-board{display:flex;flex-direction:column;gap:16px;max-width:900px}
+.strip-day-block{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.strip-day-hdr{padding:10px 16px;font-size:12px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px}
+.strip-day-scenes{display:flex;flex-wrap:wrap;gap:8px;padding:12px}
+.strip-scene{border-radius:6px;padding:8px 12px;min-width:120px;font-size:12px;border:1px solid rgba(0,0,0,.08)}
+.strip-scene-num{font-weight:700;font-size:14px;margin-bottom:3px;font-family:var(--latin)}
+.strip-scene-loc{color:var(--text2);font-size:11px;margin-bottom:2px}
+.strip-scene-type{font-size:10px;font-weight:600;padding:1px 6px;border-radius:3px;display:inline-block;margin-top:2px}
+.strip-scene-int{background:rgba(37,99,235,.1);color:#1d4ed8}
+.strip-scene-ext{background:rgba(22,163,74,.1);color:#15803d}
+
+/* READ-ONLY PAGE */
+#ro-page{display:none;min-height:100vh;background:var(--bg);font-family:var(--arabic)}
+#ro-page.show{display:block}
+.ro-topbar{height:var(--tb-h);background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:12px;position:sticky;top:0;z-index:40}
+.ro-topbar-logo{display:flex;align-items:center;gap:8px}
+.ro-topbar-logo-icon{width:28px;height:28px;background:var(--accent);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px}
+.ro-topbar-logo-name{font-family:var(--latin);font-size:14px;font-weight:700;color:var(--text)}
+.ro-badge{margin-right:auto;background:rgba(22,163,74,.1);color:#15803d;border:1px solid rgba(22,163,74,.2);padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.ro-body{max-width:860px;margin:0 auto;padding:28px 24px}
+.ro-proj-name{font-size:24px;font-weight:700;margin-bottom:6px}
+.ro-proj-meta{font-size:13px;color:var(--text2);margin-bottom:24px}
+.ro-section{margin-bottom:28px}
+.ro-section-title{font-size:14px;font-weight:700;margin-bottom:12px;color:var(--text2);display:flex;align-items:center;gap:8px}
+.ro-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;font-size:13px}
+.ro-table th{background:var(--surface2);padding:9px 12px;text-align:right;font-size:11px;font-weight:700;color:var(--text2);border-bottom:1px solid var(--border)}
+.ro-table td{padding:8px 12px;border-bottom:1px solid rgba(0,0,0,.05);vertical-align:top}
+.ro-table tr:last-child td{border-bottom:none}
+
+/* ANIM */
 .fade-in{animation:fi .2s ease}
 @keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
@@ -537,90 +304,76 @@ tbody td input[type="date"],tbody td input[type="time"]{direction:ltr;font-famil
 
 /* PRINT */
 @media print{
-  #sb,#topbar,#doc-tabbar{display:none!important}
+  #sb,#topbar,#doc-tabbar,.btn-add,.btn-del,.btn-pdf,#sh,.proj-ov-actions,.doc-card-hdr-right{display:none!important}
   #content{margin-right:0!important;width:100%!important}
-  body{background:#fff!important;color:#000!important}
-  .doc-card{border:1px solid #ddd!important;background:#fff!important;break-inside:avoid;margin-bottom:20px!important}
-  .doc-card-hdr{background:#f5f5f5!important;color:#333!important}
-  input{background:transparent!important;color:#000!important;border:none!important;border-bottom:1px solid #ddd!important}
-  .btn-add,.btn-del,.btn-pdf,#sh{display:none!important}
+  body{background:#fff!important;color:#000!important;font-size:12pt}
+  #main{padding:0!important}
+  .doc-page{max-width:100%!important}
+  .doc-card{border:1px solid #ccc!important;background:#fff!important;break-inside:avoid;margin-bottom:16pt!important;page-break-inside:avoid}
+  .doc-card-hdr{background:#f0f0f0!important;color:#333!important;font-size:10pt!important;padding:8pt 12pt!important}
+  .doc-card-body{padding:12pt!important}
+  .fgl input,.fgl textarea{background:transparent!important;border:none!important;border-bottom:1pt solid #ddd!important;padding:4pt 0!important;color:#000!important}
+  .tbl-wrap{border:1pt solid #ccc!important}
+  table{min-width:0!important;font-size:10pt}
+  thead th{background:#f5f5f5!important;color:#333!important;padding:6pt 8pt!important}
+  tbody td input,tbody td select{padding:4pt 6pt!important;background:transparent!important;color:#000!important}
+  .fg,.fg.three{gap:8pt!important}
+  @page{margin:1.5cm;size:A4}
 }
 </style>
 </head>
 <body>
 
-<!-- ══════════════ AUTH ══════════════ -->
-<div id="auth-page">
+<!-- READ-ONLY PAGE (shown when URL has #view=BASE64) -->
+<div id="ro-page">
+  <div class="ro-topbar">
+    <div class="ro-topbar-logo">
+      <div class="ro-topbar-logo-icon">🎬</div>
+      <div class="ro-topbar-logo-name">ShootPlan Pro</div>
+    </div>
+    <span class="ro-badge">👁 عرض للقراءة فقط</span>
+    <a href="/" style="font-size:12px;color:var(--text2);text-decoration:none">تسجيل الدخول ←</a>
+  </div>
+  <div class="ro-body" id="ro-body"></div>
+</div>
 
+<!-- AUTH -->
+<div id="auth-page">
   <div class="auth-left">
     <div class="auth-left-logo">
       <div class="auth-left-logo-icon">🎬</div>
       <div class="auth-left-logo-name">ShootPlan Pro</div>
     </div>
-
     <div class="auth-left-hero">
       <h1>خطط بذكاء.<br><span>صوّر باحتراف.</span></h1>
       <p>منصة إدارة الإنتاج المرئي المصممة للفرق الاحترافية — كل شيء في مكان واحد.</p>
-
       <div class="auth-feature-list">
-        <div class="auth-feature">
-          <div class="auth-feature-icon">📋</div>
-          <div class="auth-feature-text">
-            <strong>كول شيت ذكي</strong>
-            طاقم، مواعيد، موقع، طقس — جاهز بثوانٍ
-          </div>
-        </div>
-        <div class="auth-feature">
-          <div class="auth-feature-icon">🎞️</div>
-          <div class="auth-feature-text">
-            <strong>قائمة اللقطات</strong>
-            نظّم لقطاتك مع الكاميرا والحركة والإضاءة
-          </div>
-        </div>
-        <div class="auth-feature">
-          <div class="auth-feature-icon">📅</div>
-          <div class="auth-feature-text">
-            <strong>جدول التصوير</strong>
-            خطط كل يوم تصوير بدقة واحترافية
-          </div>
-        </div>
-        <div class="auth-feature">
-          <div class="auth-feature-icon">📄</div>
-          <div class="auth-feature-text">
-            <strong>تصدير PDF</strong>
-            شارك وثائقك مع فريقك بضغطة واحدة
-          </div>
-        </div>
+        <div class="auth-feature"><div class="auth-feature-icon">📋</div><div class="auth-feature-text"><strong>كول شيت ذكي</strong>طاقم، مواعيد، موقع، طقس — جاهز بثوانٍ</div></div>
+        <div class="auth-feature"><div class="auth-feature-icon">🎞️</div><div class="auth-feature-text"><strong>قائمة اللقطات</strong>نظّم لقطاتك مع الكاميرا والحركة والإضاءة</div></div>
+        <div class="auth-feature"><div class="auth-feature-icon">🎬</div><div class="auth-feature-text"><strong>تفصيل المشاهد</strong>تفصيل احترافي للمشاهد، Strip Board، وقوائم المعدات</div></div>
+        <div class="auth-feature"><div class="auth-feature-icon">👥</div><div class="auth-feature-text"><strong>قاعدة الطاقم</strong>احفظ بيانات الفريق واستورده في أي مشروع</div></div>
       </div>
     </div>
-
     <div class="auth-left-footer">© 2025 ShootPlan Pro — جميع الحقوق محفوظة</div>
   </div>
-
   <div class="auth-right">
     <div class="auth-form-wrap">
       <div class="auth-form-title">مرحباً بك</div>
       <div class="auth-form-sub">سجّل دخولك للمتابعة إلى مشاريعك</div>
-
       <div class="auth-tabs">
         <button class="auth-tab active" id="tab-in" onclick="switchTab('in')">تسجيل الدخول</button>
         <button class="auth-tab" id="tab-up" onclick="switchTab('up')">إنشاء حساب</button>
       </div>
-
       <div id="auth-err" class="auth-msg err"></div>
       <div id="auth-ok" class="auth-msg ok"></div>
-
       <label class="auth-label">البريد الإلكتروني</label>
       <input class="auth-input" type="email" id="ae" placeholder="you@example.com" autocomplete="email">
-
       <label class="auth-label">كلمة المرور</label>
       <input class="auth-input" type="password" id="ap" placeholder="••••••••" autocomplete="current-password">
-
       <div id="ap2-wrap" style="display:none">
         <label class="auth-label">تأكيد كلمة المرور</label>
         <input class="auth-input" type="password" id="ap2" placeholder="••••••••" autocomplete="new-password">
       </div>
-
       <button class="auth-btn-main" id="auth-submit" onclick="authGo()">تسجيل الدخول</button>
       <div class="auth-sep">أو</div>
       <button class="auth-btn-google" onclick="authGoogle()">
@@ -631,64 +384,46 @@ tbody td input[type="date"],tbody td input[type="time"]{direction:ltr;font-famil
   </div>
 </div>
 
-<!-- ══════════════ APP ══════════════ -->
+<!-- APP -->
 <div id="app">
-
-  <!-- SIDEBAR -->
   <nav id="sb">
     <div class="sb-logo">
       <div class="sb-logo-icon">🎬</div>
       <div class="sb-logo-name">ShootPlan Pro</div>
     </div>
-
     <div class="sb-nav">
-      <div class="sb-nav-item active" id="nav-home" onclick="showHome()">
-        <span class="sb-nav-icon">⊞</span> الرئيسية
-      </div>
+      <div class="sb-nav-item active" id="nav-home" onclick="showHome()"><span class="sb-nav-icon">⊞</span> الرئيسية</div>
+      <div class="sb-nav-item" id="nav-crew" onclick="showCrewDb()"><span class="sb-nav-icon">👥</span> قاعدة الطاقم</div>
     </div>
-
     <div class="sb-divider"></div>
     <button class="sb-new-btn" onclick="openModal()">+ مشروع جديد</button>
     <div class="sb-section-label">المشاريع</div>
     <div class="sb-proj-section" id="sb-projs"></div>
-
     <div class="sb-user">
       <div class="sb-avatar" id="sb-av">م</div>
-      <div class="sb-user-info">
-        <div class="sb-user-email" id="sb-em">—</div>
-      </div>
+      <div class="sb-user-info"><div class="sb-user-email" id="sb-em">—</div></div>
       <button class="sb-signout-btn" onclick="doSignOut()" title="خروج">⏻</button>
     </div>
   </nav>
 
-  <!-- CONTENT -->
   <div id="content">
-
-    <!-- TOPBAR -->
     <div id="topbar">
-      <div class="bc" id="bc">
-        <span class="bc-seg cur" onclick="showHome()">الرئيسية</span>
-      </div>
+      <div class="bc" id="bc"><span class="bc-seg cur" onclick="showHome()">الرئيسية</span></div>
       <div class="tb-right">
         <span id="sh"></span>
         <button class="btn-pdf hidden" id="pdf-btn" onclick="window.print()">↓ PDF</button>
       </div>
     </div>
 
-    <!-- DOC TAB BAR -->
     <div id="doc-tabbar" class="hidden">
-      <div class="dtab" id="dtab-cs" onclick="openDoc('cs')">
-        <span class="dtab-icon">📋</span> كول شيت
-      </div>
-      <div class="dtab" id="dtab-sl" onclick="openDoc('sl')">
-        <span class="dtab-icon">🎞️</span> اللقطات
-      </div>
-      <div class="dtab" id="dtab-sc" onclick="openDoc('sc')">
-        <span class="dtab-icon">📅</span> الجدول
-      </div>
+      <div class="dtab" id="dtab-cs" onclick="openDoc('cs')"><span class="dtab-icon">📋</span> كول شيت</div>
+      <div class="dtab" id="dtab-sl" onclick="openDoc('sl')"><span class="dtab-icon">🎞️</span> اللقطات</div>
+      <div class="dtab" id="dtab-sc" onclick="openDoc('sc')"><span class="dtab-icon">📅</span> الجدول</div>
+      <div class="dtab" id="dtab-bd" onclick="openDoc('bd')"><span class="dtab-icon">🎬</span> تفصيل المشاهد</div>
+      <div class="dtab" id="dtab-eq" onclick="openDoc('eq')"><span class="dtab-icon">🎥</span> المعدات</div>
+      <div class="dtab" id="dtab-sb" onclick="openDoc('sb')"><span class="dtab-icon">📊</span> Strip Board</div>
     </div>
 
-    <!-- SCREENS -->
     <div id="main">
 
       <!-- HOME -->
@@ -710,7 +445,11 @@ tbody td input[type="date"],tbody td input[type="time"]{direction:ltr;font-famil
       <div class="screen" id="s-cs">
         <div class="doc-page fade-in">
           <div class="doc-card">
-            <div class="doc-card-hdr">📋 تفاصيل الإنتاج</div>
+            <div class="doc-card-hdr">📋 تفاصيل الإنتاج
+              <div class="doc-card-hdr-right">
+                <button class="btn-sm" onclick="openCrewImport()" style="font-size:11px;padding:4px 10px">+ استيراد من الطاقم</button>
+              </div>
+            </div>
             <div class="doc-card-body">
               <div class="fg">
                 <div class="fgl"><label>تاريخ التصوير</label><input type="date" id="cs-date" oninput="sched('cs')"></div>
@@ -724,16 +463,12 @@ tbody td input[type="date"],tbody td input[type="time"]{direction:ltr;font-famil
               </div>
             </div>
           </div>
-
           <div class="doc-card">
             <div class="doc-card-hdr">👥 قائمة الطاقم</div>
             <div class="doc-card-body">
               <div class="tbl-wrap">
                 <table>
-                  <thead><tr>
-                    <th>الاسم</th><th>الدور</th><th>الحضور</th>
-                    <th>الجوال</th><th>الإيميل</th><th>ملاحظات</th><th style="width:32px"></th>
-                  </tr></thead>
+                  <thead><tr><th>الاسم</th><th>الدور</th><th>الحضور</th><th>الجوال</th><th>الإيميل</th><th>ملاحظات</th><th style="width:32px"></th></tr></thead>
                   <tbody id="cs-tb"></tbody>
                 </table>
               </div>
@@ -752,8 +487,9 @@ tbody td input[type="date"],tbody td input[type="time"]{direction:ltr;font-famil
               <div class="tbl-wrap">
                 <table>
                   <thead><tr>
-                    <th style="width:40px">#</th><th>الوصف</th><th style="width:72px">المشهد</th>
-                    <th>الكاميرا</th><th>الحركة</th><th>الإضاءة</th><th style="width:64px">المدة</th><th style="width:32px"></th>
+                    <th style="width:36px">#</th><th>الوصف</th><th style="width:72px">المشهد</th>
+                    <th>الكاميرا</th><th>الحركة</th><th>الإضاءة</th>
+                    <th style="width:64px">المدة</th><th style="width:80px">الحالة</th><th style="width:32px"></th>
                   </tr></thead>
                   <tbody id="sl-tb"></tbody>
                 </table>
@@ -772,10 +508,7 @@ tbody td input[type="date"],tbody td input[type="time"]{direction:ltr;font-famil
             <div class="doc-card-body">
               <div class="tbl-wrap">
                 <table>
-                  <thead><tr>
-                    <th>التاريخ</th><th style="width:82px">الوقت</th><th>المشهد</th>
-                    <th>الموقع</th><th>الأسماء</th><th>المعدات</th><th>ملاحظات</th><th style="width:32px"></th>
-                  </tr></thead>
+                  <thead><tr><th>التاريخ</th><th style="width:82px">الوقت</th><th>المشهد</th><th>الموقع</th><th>الأسماء</th><th>المعدات</th><th>ملاحظات</th><th style="width:32px"></th></tr></thead>
                   <tbody id="sc-tb"></tbody>
                 </table>
               </div>
@@ -785,11 +518,82 @@ tbody td input[type="date"],tbody td input[type="time"]{direction:ltr;font-famil
         </div>
       </div>
 
+      <!-- SCENE BREAKDOWN -->
+      <div class="screen" id="s-bd">
+        <div class="doc-page fade-in">
+          <div class="doc-card">
+            <div class="doc-card-hdr">🎬 تفصيل المشاهد — Scene Breakdown</div>
+            <div class="doc-card-body">
+              <div class="tbl-wrap">
+                <table>
+                  <thead><tr>
+                    <th style="width:52px">مشهد#</th><th style="width:70px">INT/EXT</th><th style="width:70px">DAY/NIGHT</th>
+                    <th>الموقع</th><th>الملخص</th><th>الممثلون</th>
+                    <th>الإكسسوار</th><th>المكياج</th><th style="width:60px">يوم التصوير</th><th style="width:32px"></th>
+                  </tr></thead>
+                  <tbody id="bd-tb"></tbody>
+                </table>
+              </div>
+              <button class="btn-add" onclick="addBdRow()">+ إضافة مشهد</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EQUIPMENT LIST -->
+      <div class="screen" id="s-eq">
+        <div class="doc-page fade-in">
+          <div class="doc-card">
+            <div class="doc-card-hdr">🎥 قائمة المعدات</div>
+            <div class="doc-card-body">
+              <div class="tbl-wrap">
+                <table>
+                  <thead><tr>
+                    <th>اسم المعدة</th><th style="width:60px">الكمية</th><th>الفئة</th>
+                    <th>المسؤول</th><th style="width:100px">الحالة</th><th>ملاحظات</th><th style="width:32px"></th>
+                  </tr></thead>
+                  <tbody id="eq-tb"></tbody>
+                </table>
+              </div>
+              <button class="btn-add" onclick="addEqRow()">+ إضافة معدة</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STRIP BOARD -->
+      <div class="screen" id="s-sb">
+        <div class="strip-board fade-in" id="sb-content">
+          <div style="color:var(--text2);font-size:14px;padding:20px 0">أضف مشاهد في تبويب «تفصيل المشاهد» لتظهر هنا.</div>
+        </div>
+      </div>
+
+      <!-- CREW DATABASE -->
+      <div class="screen" id="s-crew">
+        <div class="crew-db-page fade-in">
+          <div class="pg-header">
+            <div class="pg-title">قاعدة بيانات الطاقم</div>
+            <button class="btn-sm accent" onclick="addCrewDbRow()">+ إضافة فرد</button>
+          </div>
+          <div class="doc-card">
+            <div class="doc-card-hdr">👥 أعضاء الطاقم المحفوظون</div>
+            <div class="doc-card-body">
+              <div class="tbl-wrap">
+                <table>
+                  <thead><tr><th>الاسم</th><th>الدور</th><th>الجوال</th><th>الإيميل</th><th>ملاحظات</th><th style="width:32px"></th></tr></thead>
+                  <tbody id="crew-db-tb"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /main -->
   </div><!-- /content -->
 </div><!-- /app -->
 
-<!-- MODAL -->
+<!-- NEW PROJECT MODAL -->
 <div class="modal-bg hidden" id="modal">
   <div class="modal">
     <div class="modal-title">+ مشروع جديد</div>
@@ -797,6 +601,13 @@ tbody td input[type="date"],tbody td input[type="time"]{direction:ltr;font-famil
     <div class="mf"><label>العميل</label><input type="text" id="mc" placeholder="اسم العميل"></div>
     <div class="mf"><label>تاريخ التصوير</label><input type="date" id="md"></div>
     <div class="mf"><label>المدينة</label><input type="text" id="mci" placeholder="الرياض"></div>
+    <div class="mf"><label>حالة المشروع</label>
+      <select id="mst">
+        <option value="pre">ما قبل التصوير</option>
+        <option value="prod">التصوير</option>
+        <option value="post">ما بعد التصوير</option>
+      </select>
+    </div>
     <div class="modal-actions">
       <button class="btn-p" onclick="createProj()">إنشاء</button>
       <button class="btn-g" onclick="closeModal()">إلغاء</button>
@@ -804,23 +615,65 @@ tbody td input[type="date"],tbody td input[type="time"]{direction:ltr;font-famil
   </div>
 </div>
 
+<!-- SHARE MODAL -->
+<div class="modal-bg hidden" id="share-modal">
+  <div class="modal">
+    <div class="modal-title">🔗 مشاركة المشروع</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">أنشئ رابطًا للقراءة فقط — يمكن لأي شخص عرض المشروع دون تسجيل دخول.</p>
+    <div class="share-link-box" id="share-link-box">جارٍ إنشاء الرابط...</div>
+    <div class="share-btns">
+      <button class="share-btn wa" onclick="shareWhatsApp()">📱 WhatsApp</button>
+      <button class="share-btn em" onclick="shareEmail()">✉️ إيميل</button>
+      <button class="share-btn cp" onclick="copyShareLink()">📋 نسخ الرابط</button>
+    </div>
+    <div class="modal-actions" style="margin-top:16px">
+      <button class="btn-g" onclick="closeShareModal()">إغلاق</button>
+    </div>
+  </div>
+</div>
+
+<!-- CREW IMPORT MODAL -->
+<div class="modal-bg hidden" id="crew-import-modal">
+  <div class="modal">
+    <div class="modal-title">👥 استيراد من قاعدة الطاقم</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">اختر الأعضاء لإضافتهم إلى كول شيت المشروع الحالي.</p>
+    <div id="crew-import-list" style="display:flex;flex-direction:column;gap:8px;max-height:300px;overflow-y:auto;margin-bottom:14px"></div>
+    <div class="modal-actions">
+      <button class="btn-p" onclick="doCrewImport()">إضافة المحددين</button>
+      <button class="btn-g" onclick="closeCrewImport()">إلغاء</button>
+    </div>
+  </div>
+</div>
+
 <script>
-// ════════════════════════════
-//  SUPABASE
-// ════════════════════════════
+// ════════════ SUPABASE ════════════
 const SB_URL  = 'https://lldbkfvzkikowojjtyan.supabase.co';
 const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxsZGJrZnZ6a2lrb3dvamp0eWFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTE5OTksImV4cCI6MjA5MjQ2Nzk5OX0.rDo-lm1cb25pVr6xVFPL3uDAuCNiaJBd0gQ4exqJ9m8';
 const _sb = supabase.createClient(SB_URL, SB_ANON);
 let _u = null, _mode = 'in';
 
-_sb.auth.onAuthStateChange((ev, sess) => {
-  _u = sess?.user || null;
-  _u ? enterApp() : enterAuth();
-});
+// Check read-only share link first
+(function(){
+  const h = location.hash;
+  if(h.startsWith('#view=')){
+    try{
+      const data = JSON.parse(atob(h.slice(6)));
+      renderReadOnly(data);
+      document.getElementById('ro-page').classList.add('show');
+      return;
+    }catch(e){}
+  }
+  // Normal auth flow
+  _sb.auth.onAuthStateChange((ev, sess) => {
+    _u = sess?.user || null;
+    _u ? enterApp() : enterAuth();
+  });
+})();
 
 const getSK = () => 'spp_v2' + (_u ? '_' + _u.id : '');
+const getCrewSK = () => 'spp_crew_v1' + (_u ? '_' + _u.id : '');
 
-// ── Auth helpers ──
+// ════════════ AUTH ════════════
 function setErr(m){ const e=document.getElementById('auth-err'); e.textContent=m; e.classList.toggle('show',!!m); document.getElementById('auth-ok').classList.remove('show'); }
 function setOk(m){ const e=document.getElementById('auth-ok'); e.textContent=m; e.classList.toggle('show',!!m); document.getElementById('auth-err').classList.remove('show'); }
 
@@ -880,9 +733,7 @@ function enterApp(){
   load(); renderSidebar(); showHome();
 }
 
-// ════════════════════════════
-//  DATA
-// ════════════════════════════
+// ════════════ DATA ════════════
 let projs=[], cid=null;
 
 function load(){
@@ -894,26 +745,38 @@ function gp(){ return projs.find(p=>p.id===cid); }
 function setDoc(t,d){ const p=gp(); if(!p) return; p.docs=p.docs||{}; p.docs[t]=d; save(); }
 function gDoc(t){ const p=gp(); if(!p) return null; return (p.docs||{})[t]||null; }
 
-// ════════════════════════════
-//  COLORS
-// ════════════════════════════
+// Crew DB
+function loadCrewDb(){ try{ return JSON.parse(localStorage.getItem(getCrewSK())||'[]'); }catch(e){ return []; } }
+function saveCrewDb(crew){ localStorage.setItem(getCrewSK(),JSON.stringify(crew)); }
+
+// ════════════ COLORS ════════════
 const COLS=['#e85d04','#2563eb','#7c3aed','#059669','#dc2626','#0891b2','#d97706','#9333ea','#16a34a','#db2777'];
 function pcol(id){ let h=0; for(let c of(id||'x')) h=(h*31+c.charCodeAt(0))%COLS.length; return COLS[h]; }
 
-// ════════════════════════════
-//  SIDEBAR
-// ════════════════════════════
+// ════════════ STATUS ════════════
+const ST_LABELS = {pre:'ما قبل التصوير', prod:'التصوير', post:'ما بعد التصوير'};
+const ST_DOT = {pre:'🔵', prod:'🟢', post:'🟣'};
+function statusBadge(s){ if(!s) return ''; return `<span class="status-badge ${s}">${ST_DOT[s]||''} ${ST_LABELS[s]||s}</span>`; }
+
+// ════════════ SHOT PROGRESS ════════════
+function shotProgress(p){
+  const shots=(p.docs?.sl?.shots)||[];
+  if(!shots.length) return null;
+  const done=shots.filter(s=>s.status==='done').length;
+  const pct=Math.round((done/shots.length)*100);
+  return {done,total:shots.length,pct};
+}
+
+// ════════════ SIDEBAR ════════════
 let _doc=null;
 function renderSidebar(){
   const el=document.getElementById('sb-projs');
   if(!projs.length){ el.innerHTML='<div class="sb-empty-msg">لا توجد مشاريع بعد</div>'; return; }
   el.innerHTML=projs.map(p=>{
     const col=pcol(p.id), act=p.id===cid;
-    const sub=act?`<div class="sb-subnav open">
-      <div class="sb-sublink ${_doc==='cs'?'active':''}" onclick="openDoc('cs')">▸ كول شيت</div>
-      <div class="sb-sublink ${_doc==='sl'?'active':''}" onclick="openDoc('sl')">▸ اللقطات</div>
-      <div class="sb-sublink ${_doc==='sc'?'active':''}" onclick="openDoc('sc')">▸ الجدول</div>
-    </div>`:'';
+    const docLinks=['cs','sl','sc','bd','eq','sb'];
+    const docNames={cs:'كول شيت',sl:'اللقطات',sc:'الجدول',bd:'تفصيل المشاهد',eq:'المعدات',sb:'Strip Board'};
+    const sub=act?`<div class="sb-subnav open">${docLinks.map(t=>`<div class="sb-sublink ${_doc===t?'active':''}" onclick="openDoc('${t}')">▸ ${docNames[t]}</div>`).join('')}</div>`:'';
     return `<div class="sb-proj-item"><div class="sb-proj-btn${act?' active':''}" onclick="selProj('${p.id}')">
       <div class="sb-proj-dot" style="background:${col}"></div>
       <div class="sb-proj-name">${esc(p.name)}</div>
@@ -921,47 +784,36 @@ function renderSidebar(){
   }).join('');
 }
 
-// ════════════════════════════
-//  TOPBAR + TAB BAR
-// ════════════════════════════
+// ════════════ TOPBAR ════════════
 function setTopbar(proj, docName, docType){
   _doc = docType || null;
-  const bc      = document.getElementById('bc');
-  const tabbar  = document.getElementById('doc-tabbar');
-  const pdf     = document.getElementById('pdf-btn');
-
+  const bc=document.getElementById('bc');
+  const tabbar=document.getElementById('doc-tabbar');
+  const pdf=document.getElementById('pdf-btn');
   if(!proj){
-    bc.innerHTML = '<span class="bc-seg cur">الرئيسية</span>';
-    tabbar.classList.add('hidden');
-    pdf.classList.add('hidden');
-    return;
+    bc.innerHTML='<span class="bc-seg cur">الرئيسية</span>';
+    tabbar.classList.add('hidden'); pdf.classList.add('hidden'); return;
   }
-
   if(!docName){
-    // Project overview — no doc tabs, no PDF
-    bc.innerHTML = `<span class="bc-seg" onclick="showHome()">الرئيسية</span><span class="bc-arrow"> › </span><span class="bc-seg cur">${esc(proj)}</span>`;
-    tabbar.classList.add('hidden');
-    pdf.classList.add('hidden');
+    bc.innerHTML=`<span class="bc-seg" onclick="showHome()">الرئيسية</span><span class="bc-arrow"> › </span><span class="bc-seg cur">${esc(proj)}</span>`;
+    tabbar.classList.add('hidden'); pdf.classList.add('hidden');
   } else {
-    // Document view — show tabs + PDF
-    bc.innerHTML = `<span class="bc-seg" onclick="showHome()">الرئيسية</span><span class="bc-arrow"> › </span><span class="bc-seg" onclick="selProj(cid)">${esc(proj)}</span><span class="bc-arrow"> › </span><span class="bc-seg cur">${docName}</span>`;
-    tabbar.classList.remove('hidden');
-    pdf.classList.remove('hidden');
+    bc.innerHTML=`<span class="bc-seg" onclick="showHome()">الرئيسية</span><span class="bc-arrow"> › </span><span class="bc-seg" onclick="selProj(cid)">${esc(proj)}</span><span class="bc-arrow"> › </span><span class="bc-seg cur">${docName}</span>`;
+    tabbar.classList.remove('hidden'); pdf.classList.remove('hidden');
   }
-
-  ['cs','sl','sc'].forEach(t=>{
-    document.getElementById('dtab-'+t).classList.toggle('active', t===docType);
+  ['cs','sl','sc','bd','eq','sb'].forEach(t=>{
+    const el=document.getElementById('dtab-'+t);
+    if(el) el.classList.toggle('active', t===docType);
   });
 }
 
-// ════════════════════════════
-//  AUTOSAVE
-// ════════════════════════════
+// ════════════ AUTOSAVE ════════════
 const _T={};
 function sched(t){ clearTimeout(_T[t]); _T[t]=setTimeout(()=>doSave(t),700); }
 function doSave(t){
   if(!cid) return;
-  t==='cs'?saveCs():t==='sl'?saveSl():saveSc();
+  const map={cs:saveCs, sl:saveSl, sc:saveSc, bd:saveBd, eq:saveEq};
+  if(map[t]) map[t]();
   flashSave(); renderSidebar();
 }
 function flashSave(){
@@ -970,9 +822,7 @@ function flashSave(){
   el._t=setTimeout(()=>el.textContent='',2400);
 }
 
-// ════════════════════════════
-//  SCREEN ROUTER
-// ════════════════════════════
+// ════════════ SCREEN ROUTER ════════════
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('s-'+id)?.classList.add('active');
@@ -984,38 +834,40 @@ function setNavActive(id){
 
 function showHome(){
   cid=null; _doc=null;
-  setTopbar(null);
-  setNavActive('nav-home');
-  showScreen('home');
-  renderHome();
-  renderSidebar();
+  setTopbar(null); setNavActive('nav-home');
+  showScreen('home'); renderHome(); renderSidebar();
+}
+
+function showCrewDb(){
+  cid=null; _doc=null;
+  const bc=document.getElementById('bc');
+  bc.innerHTML='<span class="bc-seg cur">قاعدة الطاقم</span>';
+  document.getElementById('doc-tabbar').classList.add('hidden');
+  document.getElementById('pdf-btn').classList.add('hidden');
+  setNavActive('nav-crew');
+  showScreen('crew'); renderCrewDb(); renderSidebar();
 }
 
 function selProj(id){
   cid=id; _doc=null;
   const p=gp(); if(!p) return;
-  setNavActive(null);
-  setTopbar(p.name, null, null);
-  renderSidebar();
-  renderProjOverview();
-  showScreen('proj');
+  setNavActive(null); setTopbar(p.name, null, null);
+  renderSidebar(); renderProjOverview(); showScreen('proj');
 }
 
 function openDoc(t){
   if(!cid) return;
   _doc=t;
   const p=gp(); if(!p) return;
-  const nm={cs:'كول شيت',sl:'اللقطات',sc:'الجدول'};
+  const nm={cs:'كول شيت',sl:'اللقطات',sc:'الجدول',bd:'تفصيل المشاهد',eq:'المعدات',sb:'Strip Board'};
   setTopbar(p.name, nm[t], t);
-  setNavActive(null);
-  showScreen(t);
-  t==='cs'?renderCs():t==='sl'?renderSl():renderSc();
+  setNavActive(null); showScreen(t);
+  const fn={cs:renderCs, sl:renderSl, sc:renderSc, bd:renderBd, eq:renderEq, sb:renderStripboard};
+  if(fn[t]) fn[t]();
   renderSidebar();
 }
 
-// ════════════════════════════
-//  HOME
-// ════════════════════════════
+// ════════════ HOME ════════════
 function renderHome(q){
   const grid=document.getElementById('pg');
   let list=projs;
@@ -1025,13 +877,18 @@ function renderHome(q){
     const col=pcol(p.id);
     const abbr=p.name.replace(/[^a-zA-Z؀-ۿ]/g,' ').split(' ').filter(Boolean).slice(0,2).map(w=>w[0]).join('');
     const cs=(p.docs?.cs?.crew||[]).length, sl=(p.docs?.sl?.shots||[]).length, sc=(p.docs?.sc?.days||[]).length;
+    const bd=(p.docs?.bd?.scenes||[]).length, eq=(p.docs?.eq?.items||[]).length;
+    const prog=shotProgress(p);
+    const stBadge=statusBadge(p.status||'pre');
     h+=`<div class="proj-card" onclick="selProj('${p.id}')">
       <div class="proj-card-banner" style="background:linear-gradient(135deg,${col}dd,${col}99)">
         <div class="proj-card-abbr">${esc(abbr||p.name.slice(0,2))}</div>
-        <div class="proj-card-color-dot" style="background:rgba(255,255,255,.5)"></div>
       </div>
       <div class="proj-card-body">
-        <div class="proj-card-name">${esc(p.name)}</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+          <div class="proj-card-name" style="margin:0">${esc(p.name)}</div>
+          ${stBadge}
+        </div>
         <div class="proj-card-meta">
           ${p.client?`<span class="proj-card-meta-item">👤 ${esc(p.client)}</span>`:''}
           ${p.date?`<span class="proj-card-meta-item">📅 ${p.date}</span>`:''}
@@ -1040,104 +897,156 @@ function renderHome(q){
         <div class="proj-card-chips">
           <span class="doc-chip ${cs>0?'done':'empty'}">كول شيت${cs>0?' ✓':''}</span>
           <span class="doc-chip ${sl>0?'done':'empty'}">لقطات${sl>0?' ('+sl+')':''}</span>
-          <span class="doc-chip ${sc>0?'done':'empty'}">جدول${sc>0?' ('+sc+')':''}</span>
+          <span class="doc-chip ${bd>0?'done':'empty'}">مشاهد${bd>0?' ('+bd+')':''}</span>
+          <span class="doc-chip ${eq>0?'done':'empty'}">معدات${eq>0?' ('+eq+')':''}</span>
         </div>
+        ${prog?`<div class="progress-wrap"><div class="progress-label"><span>تقدم اللقطات</span><span>${prog.done}/${prog.total}</span></div><div class="progress-bar"><div class="progress-fill ${prog.pct>=70?'':'prog.pct>=30?mid:low'}" style="width:${prog.pct}%"></div></div></div>`:''}
       </div>
       <div class="proj-card-footer">
+        <button class="btn-dup-card" onclick="event.stopPropagation();duplicateProj('${p.id}')">⎘ نسخ</button>
         <button class="btn-del-card" onclick="event.stopPropagation();delProj('${p.id}')">🗑 حذف</button>
       </div>
     </div>`;
   });
   if(!list.length&&q){ grid.innerHTML=`<div style="padding:40px;color:var(--text2);text-align:center">لا توجد نتائج لـ «${esc(q)}»</div>`; return; }
-  h+=`<div class="new-card" onclick="openModal()">
-    <div class="new-card-plus">+</div>
-    <div class="new-card-label">مشروع جديد</div>
-  </div>`;
+  h+=`<div class="new-card" onclick="openModal()"><div class="new-card-plus">+</div><div class="new-card-label">مشروع جديد</div></div>`;
   grid.innerHTML=h;
 }
 
-// ════════════════════════════
-//  PROJECT OVERVIEW
-// ════════════════════════════
+
+// ════════════ PROJECT OVERVIEW ════════════
 function renderProjOverview(){
   const p=gp(); if(!p) return;
   const col=pcol(p.id);
   const abbr=p.name.replace(/[^a-zA-Z؀-ۿ]/g,' ').split(' ').filter(Boolean).slice(0,2).map(w=>w[0]).join('')||p.name.slice(0,2);
-  const cs=(p.docs?.cs?.crew||[]).length;
-  const sl=(p.docs?.sl?.shots||[]).length;
-  const sc=(p.docs?.sc?.days||[]).length;
-
+  const cs=(p.docs?.cs?.crew||[]).length, sl=(p.docs?.sl?.shots||[]).length, sc=(p.docs?.sc?.days||[]).length;
+  const bd=(p.docs?.bd?.scenes||[]).length, eq=(p.docs?.eq?.items||[]).length;
+  const prog=shotProgress(p);
+  const docs=[
+    {t:'cs',icon:'📋',title:'كول شيت',desc:'تفاصيل الإنتاج — الموقع، الطقس، مواعيد الحضور، قائمة الطاقم',cnt:cs,unit:'أعضاء'},
+    {t:'sl',icon:'🎞️',title:'قائمة اللقطات',desc:'اللقطات، الكاميرا، الحركة، الإضاءة، حالة كل لقطة',cnt:sl,unit:'لقطات'},
+    {t:'sc',icon:'📅',title:'جدول التصوير',desc:'أيام التصوير، المواقع، الأسماء، المعدات',cnt:sc,unit:'أيام'},
+    {t:'bd',icon:'🎬',title:'تفصيل المشاهد',desc:'Scene breakdown — مشاهد، مواقع، طاقم، إكسسوار، مكياج',cnt:bd,unit:'مشاهد'},
+    {t:'eq',icon:'🎥',title:'قائمة المعدات',desc:'المعدات، الكميات، الحالة، المسؤول عن كل معدة',cnt:eq,unit:'معدات'},
+    {t:'sb',icon:'📊',title:'Strip Board',desc:'عرض بصري للمشاهد مرتبة حسب يوم التصوير',cnt:bd,unit:'مشاهد'},
+  ];
+  let progBar='';
+  if(prog){
+    const cls=prog.pct>=70?'':'prog.pct>=30?"mid":"low"';
+    progBar=`<div class="progress-wrap" style="margin-top:12px;max-width:300px">
+      <div class="progress-label"><span>تقدم اللقطات</span><span>${prog.done}/${prog.total} (${prog.pct}%)</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${prog.pct}%;background:${prog.pct>=70?'var(--green)':prog.pct>=30?'var(--accent)':'var(--red)'}"></div></div>
+    </div>`;
+  }
   document.getElementById('s-proj').innerHTML=`
     <div class="proj-ov fade-in">
       <div class="proj-ov-head">
         <div class="proj-ov-color-block" style="background:${col}">${esc(abbr)}</div>
         <div class="proj-ov-info">
-          <div class="proj-ov-name">${esc(p.name)}</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+            <div class="proj-ov-name" style="margin:0">${esc(p.name)}</div>
+            ${statusBadge(p.status||'pre')}
+          </div>
           <div class="proj-ov-meta">
             ${p.client?`<span class="proj-ov-meta-item">👤 ${esc(p.client)}</span>`:''}
             ${p.date?`<span class="proj-ov-meta-item">📅 ${p.date}</span>`:''}
             ${p.city?`<span class="proj-ov-meta-item">📍 ${esc(p.city)}</span>`:''}
           </div>
+          ${progBar}
+        </div>
+        <div class="proj-ov-actions">
+          <button class="btn-sm" onclick="openShareModal()">🔗 مشاركة</button>
+          <button class="btn-sm" onclick="duplicateProj(cid)">⎘ نسخ</button>
+          <button class="btn-sm" onclick="openStatusModal()">✏️ الحالة</button>
         </div>
       </div>
-
       <div class="proj-ov-section-label">الوثائق</div>
       <div class="doc-list">
-
-        <div class="doc-list-row" onclick="openDoc('cs')">
+        ${docs.map(d=>`
+        <div class="doc-list-row" onclick="openDoc('${d.t}')">
           <div class="doc-list-stripe" style="background:${col}"></div>
-          <div class="doc-list-icon-wrap">📋</div>
+          <div class="doc-list-icon-wrap">${d.icon}</div>
           <div class="doc-list-body">
-            <div class="doc-list-title">كول شيت</div>
-            <div class="doc-list-desc">تفاصيل الإنتاج — الموقع، الطقس، مواعيد الحضور، قائمة الطاقم</div>
+            <div class="doc-list-title">${d.title}</div>
+            <div class="doc-list-desc">${d.desc}</div>
           </div>
-          <span class="doc-list-badge ${cs>0?'filled':'empty'}">${cs>0?cs+' أعضاء':'فارغ'}</span>
+          <span class="doc-list-badge ${d.cnt>0?'filled':'empty'}">${d.cnt>0?d.cnt+' '+d.unit:'فارغ'}</span>
           <div class="doc-list-arrow">›</div>
-        </div>
-
-        <div class="doc-list-row" onclick="openDoc('sl')">
-          <div class="doc-list-stripe" style="background:${col}"></div>
-          <div class="doc-list-icon-wrap">🎞️</div>
-          <div class="doc-list-body">
-            <div class="doc-list-title">قائمة اللقطات</div>
-            <div class="doc-list-desc">اللقطات، الكاميرا، الحركة، الإضاءة، المدة</div>
-          </div>
-          <span class="doc-list-badge ${sl>0?'filled':'empty'}">${sl>0?sl+' لقطات':'فارغ'}</span>
-          <div class="doc-list-arrow">›</div>
-        </div>
-
-        <div class="doc-list-row" onclick="openDoc('sc')">
-          <div class="doc-list-stripe" style="background:${col}"></div>
-          <div class="doc-list-icon-wrap">📅</div>
-          <div class="doc-list-body">
-            <div class="doc-list-title">جدول التصوير</div>
-            <div class="doc-list-desc">أيام التصوير، المواقع، الأسماء، المعدات، الملاحظات</div>
-          </div>
-          <span class="doc-list-badge ${sc>0?'filled':'empty'}">${sc>0?sc+' أيام':'فارغ'}</span>
-          <div class="doc-list-arrow">›</div>
-        </div>
-
+        </div>`).join('')}
       </div>
     </div>`;
 }
 
-// ════════════════════════════
-//  MODAL
-// ════════════════════════════
+// ════════════ STATUS MODAL (inline, reuses modal) ════════════
+function openStatusModal(){
+  const p=gp(); if(!p) return;
+  const h=`<div class="modal-title">✏️ حالة المشروع</div>
+  <div class="mf"><label>الحالة الحالية</label>
+  <select id="status-sel">
+    <option value="pre" ${(p.status||'pre')==='pre'?'selected':''}>ما قبل التصوير</option>
+    <option value="prod" ${p.status==='prod'?'selected':''}>التصوير</option>
+    <option value="post" ${p.status==='post'?'selected':''}>ما بعد التصوير</option>
+  </select></div>
+  <div class="modal-actions">
+    <button class="btn-p" onclick="saveStatus()">حفظ</button>
+    <button class="btn-g" onclick="closeGenModal()">إلغاء</button>
+  </div>`;
+  showGenModal(h);
+}
+function saveStatus(){
+  const p=gp(); if(!p) return;
+  p.status=document.getElementById('status-sel').value;
+  save(); closeGenModal(); renderProjOverview(); renderHome();
+}
+
+// Generic modal helper
+function showGenModal(inner){
+  const m=document.getElementById('modal');
+  m.querySelector('.modal').innerHTML=inner;
+  m.classList.remove('hidden');
+}
+function closeGenModal(){
+  document.getElementById('modal').classList.add('hidden');
+}
+
+// ════════════ MODAL ════════════
 function openModal(){
-  document.getElementById('modal').classList.remove('hidden');
-  setTimeout(()=>document.getElementById('mn').focus(),50);
+  const m=document.getElementById('modal');
+  m.querySelector('.modal').innerHTML=`
+    <div class="modal-title">+ مشروع جديد</div>
+    <div class="mf"><label>اسم المشروع *</label><input type="text" id="mn" placeholder="مثال: حملة رمضان 2025"></div>
+    <div class="mf"><label>العميل</label><input type="text" id="mc" placeholder="اسم العميل"></div>
+    <div class="mf"><label>تاريخ التصوير</label><input type="date" id="md"></div>
+    <div class="mf"><label>المدينة</label><input type="text" id="mci" placeholder="الرياض"></div>
+    <div class="mf"><label>حالة المشروع</label>
+      <select id="mst">
+        <option value="pre">ما قبل التصوير</option>
+        <option value="prod">التصوير</option>
+        <option value="post">ما بعد التصوير</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-p" onclick="createProj()">إنشاء</button>
+      <button class="btn-g" onclick="closeModal()">إلغاء</button>
+    </div>`;
+  m.classList.remove('hidden');
+  setTimeout(()=>document.getElementById('mn')?.focus(),50);
 }
 function closeModal(){
   document.getElementById('modal').classList.add('hidden');
-  ['mn','mc','mci'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('md').value='';
 }
 function createProj(){
-  const nm=document.getElementById('mn').value.trim();
-  if(!nm){ document.getElementById('mn').focus(); return; }
+  const nm=document.getElementById('mn')?.value.trim();
+  if(!nm){ document.getElementById('mn')?.focus(); return; }
   const id='p_'+Date.now()+'_'+Math.random().toString(36).slice(2,6);
-  projs.unshift({id,name:nm,client:document.getElementById('mc').value.trim(),date:document.getElementById('md').value,city:document.getElementById('mci').value.trim(),docs:{}});
+  projs.unshift({
+    id, name:nm,
+    client:document.getElementById('mc')?.value.trim()||'',
+    date:document.getElementById('md')?.value||'',
+    city:document.getElementById('mci')?.value.trim()||'',
+    status:document.getElementById('mst')?.value||'pre',
+    docs:{}
+  });
   save(); closeModal(); cid=id; renderSidebar(); selProj(id);
 }
 function delProj(id){
@@ -1147,13 +1056,134 @@ function delProj(id){
   renderSidebar(); showHome();
 }
 
-// ════════════════════════════
-//  CALL SHEET
-// ════════════════════════════
+// ════════════ DUPLICATE PROJECT ════════════
+function duplicateProj(id){
+  const src=projs.find(p=>p.id===id); if(!src) return;
+  const nid='p_'+Date.now()+'_'+Math.random().toString(36).slice(2,6);
+  const clone=JSON.parse(JSON.stringify(src));
+  clone.id=nid; clone.name=clone.name+' (نسخة)';
+  projs.splice(projs.indexOf(src)+1,0,clone);
+  save(); renderHome(); renderSidebar();
+  flashMsg('تم نسخ المشروع ✓');
+}
+function flashMsg(msg){
+  const el=document.getElementById('sh');
+  el.textContent=msg; clearTimeout(el._t);
+  el._t=setTimeout(()=>el.textContent='',3000);
+}
+
+
+// ════════════ SHARE ════════════
+let _shareUrl='';
+function openShareModal(){
+  const p=gp(); if(!p) return;
+  document.getElementById('share-modal').classList.remove('hidden');
+  const data={name:p.name,client:p.client||'',date:p.date||'',city:p.city||'',status:p.status||'pre',docs:p.docs||{}};
+  const encoded=btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+  _shareUrl=window.location.origin+window.location.pathname+'#view='+encoded;
+  document.getElementById('share-link-box').textContent=_shareUrl;
+}
+function closeShareModal(){
+  document.getElementById('share-modal').classList.add('hidden');
+  _shareUrl='';
+}
+function copyShareLink(){
+  navigator.clipboard.writeText(_shareUrl).then(()=>flashMsg('تم نسخ الرابط ✓')).catch(()=>{
+    prompt('انسخ الرابط:',_shareUrl);
+  });
+}
+function shareWhatsApp(){
+  const p=gp();
+  const text=`*${p?.name||'مشروع'}* — ShootPlan Pro\n\n${_shareUrl}`;
+  window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');
+}
+function shareEmail(){
+  const p=gp();
+  const sub=encodeURIComponent('مشاركة مشروع: '+(p?.name||''));
+  const body=encodeURIComponent(`مرحباً،\n\nأشاركك تفاصيل مشروع "${p?.name||''}" عبر ShootPlan Pro:\n\n${_shareUrl}\n\nيمكنك عرض جميع وثائق المشروع دون الحاجة لتسجيل دخول.`);
+  window.location.href=`mailto:?subject=${sub}&body=${body}`;
+}
+
+// ════════════ READ-ONLY RENDER ════════════
+function renderReadOnly(data){
+  const body=document.getElementById('ro-body');
+  const stMap={pre:'ما قبل التصوير',prod:'التصوير',post:'ما بعد التصوير'};
+  let h=`<div class="ro-proj-name">${esc(data.name||'')}</div>
+    <div class="ro-proj-meta">
+      ${data.client?`👤 ${esc(data.client)} &nbsp;·&nbsp; `:''}
+      ${data.date?`📅 ${data.date} &nbsp;·&nbsp; `:''}
+      ${data.city?`📍 ${esc(data.city)} &nbsp;·&nbsp; `:''}
+      ${stMap[data.status]||''}
+    </div>`;
+
+  // Call Sheet
+  const cs=data.docs?.cs;
+  if(cs){
+    h+=`<div class="ro-section"><div class="ro-section-title">📋 كول شيت</div>`;
+    if(cs.date||cs.location) h+=`<div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px;font-size:13px">
+      ${cs.date?`<div style="margin-bottom:6px">📅 <strong>التاريخ:</strong> ${cs.date}</div>`:''}
+      ${cs.calltime?`<div style="margin-bottom:6px">⏰ <strong>الحضور:</strong> ${cs.calltime}</div>`:''}
+      ${cs.location?`<div style="margin-bottom:6px">📍 <strong>الموقع:</strong> ${esc(cs.location)}</div>`:''}
+      ${cs.city?`<div style="margin-bottom:6px">🏙️ <strong>المدينة:</strong> ${esc(cs.city)}</div>`:''}
+      ${cs.weather?`<div style="margin-bottom:6px">🌤️ <strong>الطقس:</strong> ${esc(cs.weather)}</div>`:''}
+      ${cs.notes?`<div>📝 ${esc(cs.notes)}</div>`:''}
+    </div>`;
+    if((cs.crew||[]).length){
+      h+=`<table class="ro-table"><thead><tr><th>الاسم</th><th>الدور</th><th>الحضور</th><th>الجوال</th></tr></thead><tbody>`;
+      (cs.crew||[]).forEach(m=>{h+=`<tr><td>${esc(m.name)}</td><td>${esc(m.role)}</td><td>${m.ct||'—'}</td><td dir="ltr">${esc(m.phone)}</td></tr>`;});
+      h+=`</tbody></table>`;
+    }
+    h+=`</div>`;
+  }
+
+  // Shot List
+  const sl=data.docs?.sl;
+  if(sl&&(sl.shots||[]).length){
+    h+=`<div class="ro-section"><div class="ro-section-title">🎞️ قائمة اللقطات</div>
+    <table class="ro-table"><thead><tr><th>#</th><th>الوصف</th><th>المشهد</th><th>الكاميرا</th><th>الحركة</th><th>الحالة</th></tr></thead><tbody>`;
+    (sl.shots||[]).forEach((s,i)=>{
+      const stc={todo:'#d97706',wip:'#2563eb',done:'#16a34a'};
+      const stn={todo:'لم يبدأ',wip:'جارٍ',done:'مكتمل'};
+      h+=`<tr><td style="font-family:var(--latin)">${i+1}</td><td>${esc(s.desc)}</td><td>${esc(s.scene)}</td><td>${esc(s.cam)}</td><td>${esc(s.move)}</td><td style="color:${stc[s.status]||'inherit'}">${stn[s.status]||'—'}</td></tr>`;
+    });
+    h+=`</tbody></table></div>`;
+  }
+
+  // Schedule
+  const sc=data.docs?.sc;
+  if(sc&&(sc.days||[]).length){
+    h+=`<div class="ro-section"><div class="ro-section-title">📅 جدول التصوير</div>
+    <table class="ro-table"><thead><tr><th>التاريخ</th><th>الوقت</th><th>المشهد</th><th>الموقع</th><th>الأسماء</th></tr></thead><tbody>`;
+    (sc.days||[]).forEach(d=>{h+=`<tr><td>${d.date||'—'}</td><td>${d.time||'—'}</td><td>${esc(d.scene)}</td><td>${esc(d.loc)}</td><td>${esc(d.talent)}</td></tr>`;});
+    h+=`</tbody></table></div>`;
+  }
+
+  // Breakdown
+  const bd=data.docs?.bd;
+  if(bd&&(bd.scenes||[]).length){
+    h+=`<div class="ro-section"><div class="ro-section-title">🎬 تفصيل المشاهد</div>
+    <table class="ro-table"><thead><tr><th>#</th><th>INT/EXT</th><th>الموقع</th><th>الملخص</th><th>الممثلون</th></tr></thead><tbody>`;
+    (bd.scenes||[]).forEach(s=>{h+=`<tr><td style="font-family:var(--latin)">${s.num||''}</td><td>${s.ie||''}</td><td>${esc(s.loc)}</td><td>${esc(s.synopsis)}</td><td>${esc(s.cast)}</td></tr>`;});
+    h+=`</tbody></table></div>`;
+  }
+
+  // Equipment
+  const eq=data.docs?.eq;
+  if(eq&&(eq.items||[]).length){
+    h+=`<div class="ro-section"><div class="ro-section-title">🎥 قائمة المعدات</div>
+    <table class="ro-table"><thead><tr><th>المعدة</th><th>الكمية</th><th>الفئة</th><th>المسؤول</th><th>الحالة</th></tr></thead><tbody>`;
+    (eq.items||[]).forEach(i=>{h+=`<tr><td>${esc(i.name)}</td><td>${i.qty||1}</td><td>${esc(i.cat)}</td><td>${esc(i.owner)}</td><td>${esc(i.status)}</td></tr>`;});
+    h+=`</tbody></table></div>`;
+  }
+
+  body.innerHTML=h;
+}
+
+// ════════════ CALL SHEET ════════════
 function renderCs(){
   const d=gDoc('cs')||{};
   [['cs-date','date'],['cs-city','city'],['cs-ct','calltime'],['cs-wx','weather'],['cs-loc','location'],['cs-park','parking'],['cs-hosp','hospital'],['cs-notes','notes']]
-    .forEach(([id,k])=>document.getElementById(id).value=d[k]||'');
+    .forEach(([id,k])=>{ const el=document.getElementById(id); if(el) el.value=d[k]||''; });
   const tb=document.getElementById('cs-tb');
   tb.innerHTML=(d.crew||[]).map(m=>`<tr>
     <td><input type="text" value="${esc(m.name||'')}" placeholder="الاسم" oninput="sched('cs')"></td>
@@ -1168,8 +1198,7 @@ function renderCs(){
 }
 function addCsRow(){
   const tr=document.createElement('tr');
-  tr.innerHTML=`
-    <td><input type="text" placeholder="الاسم" oninput="sched('cs')"></td>
+  tr.innerHTML=`<td><input type="text" placeholder="الاسم" oninput="sched('cs')"></td>
     <td><input type="text" placeholder="الدور" oninput="sched('cs')"></td>
     <td><input type="time" oninput="sched('cs')"></td>
     <td><input type="tel" placeholder="05x" oninput="sched('cs')" dir="ltr"></td>
@@ -1179,7 +1208,7 @@ function addCsRow(){
   document.getElementById('cs-tb').appendChild(tr);
 }
 function saveCs(){
-  const v=id=>document.getElementById(id).value;
+  const v=id=>document.getElementById(id)?.value||'';
   const crew=Array.from(document.querySelectorAll('#cs-tb tr')).map(r=>{
     const i=r.querySelectorAll('input');
     return{name:i[0]?.value||'',role:i[1]?.value||'',ct:i[2]?.value||'',phone:i[3]?.value||'',email:i[4]?.value||'',notes:i[5]?.value||''};
@@ -1187,20 +1216,24 @@ function saveCs(){
   setDoc('cs',{date:v('cs-date'),city:v('cs-city'),calltime:v('cs-ct'),weather:v('cs-wx'),location:v('cs-loc'),parking:v('cs-park'),hospital:v('cs-hosp'),notes:v('cs-notes'),crew});
 }
 
-// ════════════════════════════
-//  SHOT LIST
-// ════════════════════════════
+
+// ════════════ SHOT LIST ════════════
 function renderSl(){
   const shots=(gDoc('sl')||{}).shots||[];
   const tb=document.getElementById('sl-tb');
   tb.innerHTML=shots.map((s,i)=>`<tr>
-    <td><input type="number" value="${i+1}" style="width:36px;text-align:center" readonly></td>
+    <td><input type="number" value="${i+1}" style="width:34px;text-align:center" readonly></td>
     <td><input type="text" value="${esc(s.desc||'')}" placeholder="وصف اللقطة" oninput="sched('sl')"></td>
     <td><input type="text" value="${esc(s.scene||'')}" placeholder="رقم المشهد" oninput="sched('sl')"></td>
     <td><input type="text" value="${esc(s.cam||'')}" placeholder="الكاميرا" oninput="sched('sl')"></td>
     <td><input type="text" value="${esc(s.move||'')}" placeholder="الحركة" oninput="sched('sl')"></td>
     <td><input type="text" value="${esc(s.light||'')}" placeholder="الإضاءة" oninput="sched('sl')"></td>
     <td><input type="text" value="${esc(s.dur||'')}" placeholder="0:30" oninput="sched('sl')"></td>
+    <td><select onchange="sched('sl')" style="font-size:11px;padding:4px 6px">
+      <option value="todo" ${(s.status||'todo')==='todo'?'selected':''}>⏳ لم يبدأ</option>
+      <option value="wip" ${s.status==='wip'?'selected':''}>🔄 جارٍ</option>
+      <option value="done" ${s.status==='done'?'selected':''}>✅ مكتمل</option>
+    </select></td>
     <td><button class="btn-del" onclick="delSlRow(this)">✕</button></td>
   </tr>`).join('');
   if(!shots.length) addSlRow();
@@ -1210,13 +1243,18 @@ function addSlRow(){
   const n=tb.querySelectorAll('tr').length+1;
   const tr=document.createElement('tr');
   tr.innerHTML=`
-    <td><input type="number" value="${n}" style="width:36px;text-align:center" readonly></td>
+    <td><input type="number" value="${n}" style="width:34px;text-align:center" readonly></td>
     <td><input type="text" placeholder="وصف اللقطة" oninput="sched('sl')"></td>
     <td><input type="text" placeholder="رقم المشهد" oninput="sched('sl')"></td>
     <td><input type="text" placeholder="الكاميرا" oninput="sched('sl')"></td>
     <td><input type="text" placeholder="الحركة" oninput="sched('sl')"></td>
     <td><input type="text" placeholder="الإضاءة" oninput="sched('sl')"></td>
     <td><input type="text" placeholder="0:30" oninput="sched('sl')"></td>
+    <td><select onchange="sched('sl')" style="font-size:11px;padding:4px 6px">
+      <option value="todo">⏳ لم يبدأ</option>
+      <option value="wip">🔄 جارٍ</option>
+      <option value="done">✅ مكتمل</option>
+    </select></td>
     <td><button class="btn-del" onclick="delSlRow(this)">✕</button></td>`;
   tb.appendChild(tr);
 }
@@ -1227,15 +1265,14 @@ function delSlRow(btn){
 }
 function saveSl(){
   const shots=Array.from(document.querySelectorAll('#sl-tb tr')).map(r=>{
-    const i=r.querySelectorAll('input');
-    return{desc:i[1]?.value||'',scene:i[2]?.value||'',cam:i[3]?.value||'',move:i[4]?.value||'',light:i[5]?.value||'',dur:i[6]?.value||''};
+    const inputs=r.querySelectorAll('input');
+    const sel=r.querySelector('select');
+    return{desc:inputs[1]?.value||'',scene:inputs[2]?.value||'',cam:inputs[3]?.value||'',move:inputs[4]?.value||'',light:inputs[5]?.value||'',dur:inputs[6]?.value||'',status:sel?.value||'todo'};
   }).filter(s=>s.desc||s.scene);
   setDoc('sl',{shots});
 }
 
-// ════════════════════════════
-//  SCHEDULE
-// ════════════════════════════
+// ════════════ SCHEDULE ════════════
 function renderSc(){
   const days=(gDoc('sc')||{}).days||[];
   const tb=document.getElementById('sc-tb');
@@ -1272,13 +1309,237 @@ function saveSc(){
   setDoc('sc',{days});
 }
 
-// ════════════════════════════
-//  UTIL
-// ════════════════════════════
+// ════════════ SCENE BREAKDOWN ════════════
+function renderBd(){
+  const scenes=(gDoc('bd')||{}).scenes||[];
+  const tb=document.getElementById('bd-tb');
+  tb.innerHTML=scenes.map(s=>`<tr>
+    <td><input type="text" value="${esc(s.num||'')}" placeholder="1" oninput="sched('bd')" style="width:44px;text-align:center"></td>
+    <td><select onchange="sched('bd')" style="font-size:12px;padding:4px 6px">
+      <option value="INT" ${(s.ie||'INT')==='INT'?'selected':''}>INT</option>
+      <option value="EXT" ${s.ie==='EXT'?'selected':''}>EXT</option>
+    </select></td>
+    <td><select onchange="sched('bd')" style="font-size:12px;padding:4px 6px">
+      <option value="DAY" ${(s.dn||'DAY')==='DAY'?'selected':''}>DAY</option>
+      <option value="NIGHT" ${s.dn==='NIGHT'?'selected':''}>NIGHT</option>
+    </select></td>
+    <td><input type="text" value="${esc(s.loc||'')}" placeholder="الموقع" oninput="sched('bd')"></td>
+    <td><input type="text" value="${esc(s.synopsis||'')}" placeholder="الملخص" oninput="sched('bd')"></td>
+    <td><input type="text" value="${esc(s.cast||'')}" placeholder="الممثلون" oninput="sched('bd')"></td>
+    <td><input type="text" value="${esc(s.props||'')}" placeholder="الإكسسوار" oninput="sched('bd')"></td>
+    <td><input type="text" value="${esc(s.makeup||'')}" placeholder="المكياج" oninput="sched('bd')"></td>
+    <td><input type="text" value="${esc(s.shootday||'')}" placeholder="1" oninput="sched('bd')" style="width:52px;text-align:center"></td>
+    <td><button class="btn-del" onclick="this.closest('tr').remove();sched('bd')">✕</button></td>
+  </tr>`).join('');
+  if(!scenes.length) addBdRow();
+}
+function addBdRow(){
+  const tb=document.getElementById('bd-tb');
+  const n=tb.querySelectorAll('tr').length+1;
+  const tr=document.createElement('tr');
+  tr.innerHTML=`
+    <td><input type="text" value="${n}" placeholder="${n}" oninput="sched('bd')" style="width:44px;text-align:center"></td>
+    <td><select onchange="sched('bd')" style="font-size:12px;padding:4px 6px"><option value="INT">INT</option><option value="EXT">EXT</option></select></td>
+    <td><select onchange="sched('bd')" style="font-size:12px;padding:4px 6px"><option value="DAY">DAY</option><option value="NIGHT">NIGHT</option></select></td>
+    <td><input type="text" placeholder="الموقع" oninput="sched('bd')"></td>
+    <td><input type="text" placeholder="الملخص" oninput="sched('bd')"></td>
+    <td><input type="text" placeholder="الممثلون" oninput="sched('bd')"></td>
+    <td><input type="text" placeholder="الإكسسوار" oninput="sched('bd')"></td>
+    <td><input type="text" placeholder="المكياج" oninput="sched('bd')"></td>
+    <td><input type="text" placeholder="1" oninput="sched('bd')" style="width:52px;text-align:center"></td>
+    <td><button class="btn-del" onclick="this.closest('tr').remove();sched('bd')">✕</button></td>`;
+  tb.appendChild(tr);
+}
+function saveBd(){
+  const scenes=Array.from(document.querySelectorAll('#bd-tb tr')).map(r=>{
+    const inputs=r.querySelectorAll('input');
+    const sels=r.querySelectorAll('select');
+    return{num:inputs[0]?.value||'',ie:sels[0]?.value||'INT',dn:sels[1]?.value||'DAY',loc:inputs[1]?.value||'',synopsis:inputs[2]?.value||'',cast:inputs[3]?.value||'',props:inputs[4]?.value||'',makeup:inputs[5]?.value||'',shootday:inputs[6]?.value||''};
+  }).filter(s=>s.num||s.loc||s.synopsis);
+  setDoc('bd',{scenes});
+}
+
+// ════════════ EQUIPMENT ════════════
+function renderEq(){
+  const items=(gDoc('eq')||{}).items||[];
+  const tb=document.getElementById('eq-tb');
+  tb.innerHTML=items.map(i=>`<tr>
+    <td><input type="text" value="${esc(i.name||'')}" placeholder="اسم المعدة" oninput="sched('eq')"></td>
+    <td><input type="number" value="${i.qty||1}" style="width:52px;text-align:center" oninput="sched('eq')"></td>
+    <td><input type="text" value="${esc(i.cat||'')}" placeholder="الفئة" oninput="sched('eq')"></td>
+    <td><input type="text" value="${esc(i.owner||'')}" placeholder="المسؤول" oninput="sched('eq')"></td>
+    <td><select onchange="sched('eq')" style="font-size:12px;padding:4px 6px">
+      <option value="متاح" ${(i.status||'متاح')==='متاح'?'selected':''}>✅ متاح</option>
+      <option value="مستأجر" ${i.status==='مستأجر'?'selected':''}>📦 مستأجر</option>
+      <option value="مفقود" ${i.status==='مفقود'?'selected':''}>❌ مفقود</option>
+    </select></td>
+    <td><input type="text" value="${esc(i.notes||'')}" placeholder="ملاحظات" oninput="sched('eq')"></td>
+    <td><button class="btn-del" onclick="this.closest('tr').remove();sched('eq')">✕</button></td>
+  </tr>`).join('');
+  if(!items.length) addEqRow();
+}
+function addEqRow(){
+  const tr=document.createElement('tr');
+  tr.innerHTML=`
+    <td><input type="text" placeholder="اسم المعدة" oninput="sched('eq')"></td>
+    <td><input type="number" value="1" style="width:52px;text-align:center" oninput="sched('eq')"></td>
+    <td><input type="text" placeholder="الفئة" oninput="sched('eq')"></td>
+    <td><input type="text" placeholder="المسؤول" oninput="sched('eq')"></td>
+    <td><select onchange="sched('eq')" style="font-size:12px;padding:4px 6px">
+      <option value="متاح">✅ متاح</option>
+      <option value="مستأجر">📦 مستأجر</option>
+      <option value="مفقود">❌ مفقود</option>
+    </select></td>
+    <td><input type="text" placeholder="ملاحظات" oninput="sched('eq')"></td>
+    <td><button class="btn-del" onclick="this.closest('tr').remove();sched('eq')">✕</button></td>`;
+  document.getElementById('eq-tb').appendChild(tr);
+}
+function saveEq(){
+  const items=Array.from(document.querySelectorAll('#eq-tb tr')).map(r=>{
+    const inputs=r.querySelectorAll('input');
+    const sel=r.querySelector('select');
+    return{name:inputs[0]?.value||'',qty:inputs[1]?.value||1,cat:inputs[2]?.value||'',owner:inputs[3]?.value||'',status:sel?.value||'متاح',notes:inputs[4]?.value||''};
+  }).filter(i=>i.name);
+  setDoc('eq',{items});
+}
+
+
+// ════════════ STRIP BOARD ════════════
+function renderStripboard(){
+  const scenes=(gDoc('bd')||{}).scenes||[];
+  const el=document.getElementById('sb-content');
+  if(!scenes.length){
+    el.innerHTML='<div style="color:var(--text2);font-size:14px;padding:20px 0">أضف مشاهد في تبويب «تفصيل المشاهد» لتظهر هنا.</div>';
+    return;
+  }
+  // Group by shoot day
+  const days={};
+  scenes.forEach(s=>{
+    const d=s.shootday||'غير محدد';
+    if(!days[d]) days[d]=[];
+    days[d].push(s);
+  });
+  const dayColors=['#e85d04','#2563eb','#7c3aed','#059669','#dc2626','#0891b2','#d97706','#9333ea','#16a34a','#db2777'];
+  const sortedDays=Object.keys(days).sort((a,b)=>{
+    const na=parseInt(a)||999, nb=parseInt(b)||999;
+    return na-nb;
+  });
+  let h='';
+  sortedDays.forEach((day,idx)=>{
+    const col=dayColors[idx%dayColors.length];
+    const scenes=days[day];
+    h+=`<div class="strip-day-block">
+      <div class="strip-day-hdr" style="background:${col}">
+        📅 يوم التصوير ${esc(day)} <span style="font-size:11px;opacity:.8;margin-right:8px">(${scenes.length} مشهد)</span>
+      </div>
+      <div class="strip-day-scenes">
+        ${scenes.map(s=>`<div class="strip-scene" style="background:${col}12;border-color:${col}30">
+          <div class="strip-scene-num">${esc(s.num||'?')}</div>
+          <div class="strip-scene-loc">${esc(s.loc||'موقع غير محدد')}</div>
+          <div>
+            <span class="strip-scene-type ${s.ie==='EXT'?'strip-scene-ext':'strip-scene-int'}">${s.ie||'INT'}</span>
+            <span class="strip-scene-type" style="background:rgba(0,0,0,.06);color:var(--text2);margin-right:4px">${s.dn||'DAY'}</span>
+          </div>
+          ${s.cast?`<div style="font-size:10px;color:var(--text3);margin-top:3px">👤 ${esc(s.cast)}</div>`:''}
+        </div>`).join('')}
+      </div>
+    </div>`;
+  });
+  el.innerHTML=`<div class="strip-board fade-in">${h}</div>`;
+}
+
+// ════════════ CREW DATABASE ════════════
+function renderCrewDb(){
+  const crew=loadCrewDb();
+  const tb=document.getElementById('crew-db-tb');
+  if(!crew.length){
+    tb.innerHTML=`<tr><td colspan="6" style="text-align:center;padding:24px;color:var(--text3);font-size:13px">لا يوجد أعضاء محفوظون بعد. أضف أعضاء الطاقم هنا لاستخدامهم في أي مشروع.</td></tr>`;
+    return;
+  }
+  tb.innerHTML=crew.map((m,i)=>`<tr>
+    <td><input type="text" value="${esc(m.name||'')}" placeholder="الاسم" oninput="updateCrewDb(${i},'name',this.value)"></td>
+    <td><input type="text" value="${esc(m.role||'')}" placeholder="الدور" oninput="updateCrewDb(${i},'role',this.value)"></td>
+    <td><input type="tel" value="${esc(m.phone||'')}" placeholder="05x" oninput="updateCrewDb(${i},'phone',this.value)" dir="ltr"></td>
+    <td><input type="email" value="${esc(m.email||'')}" placeholder="email@" oninput="updateCrewDb(${i},'email',this.value)" dir="ltr"></td>
+    <td><input type="text" value="${esc(m.notes||'')}" placeholder="..." oninput="updateCrewDb(${i},'notes',this.value)"></td>
+    <td><button class="btn-del" onclick="delCrewDb(${i})">✕</button></td>
+  </tr>`).join('');
+}
+function addCrewDbRow(){
+  const crew=loadCrewDb();
+  crew.push({name:'',role:'',phone:'',email:'',notes:''});
+  saveCrewDb(crew); renderCrewDb();
+  // Focus last row name input
+  setTimeout(()=>{
+    const rows=document.querySelectorAll('#crew-db-tb tr');
+    if(rows.length) rows[rows.length-1].querySelector('input')?.focus();
+  },50);
+}
+function updateCrewDb(idx,field,val){
+  const crew=loadCrewDb();
+  if(crew[idx]) crew[idx][field]=val;
+  saveCrewDb(crew);
+  flashMsg('✓ محفوظ');
+}
+function delCrewDb(idx){
+  const crew=loadCrewDb();
+  crew.splice(idx,1);
+  saveCrewDb(crew); renderCrewDb();
+}
+
+// ════════════ CREW IMPORT ════════════
+function openCrewImport(){
+  const crew=loadCrewDb();
+  const modal=document.getElementById('crew-import-modal');
+  const list=document.getElementById('crew-import-list');
+  if(!crew.length){
+    list.innerHTML='<div style="color:var(--text2);font-size:13px;padding:12px 0">قاعدة الطاقم فارغة. أضف أعضاء في صفحة «قاعدة الطاقم» أولاً.</div>';
+  } else {
+    list.innerHTML=crew.map((m,i)=>`
+      <label style="display:flex;align-items:center;gap:10px;padding:8px;border:1px solid var(--border);border-radius:var(--r2);cursor:pointer;background:#fff">
+        <input type="checkbox" value="${i}" style="width:16px;height:16px;accent-color:var(--accent)">
+        <div>
+          <div style="font-size:13px;font-weight:600">${esc(m.name||'بدون اسم')}</div>
+          <div style="font-size:11.5px;color:var(--text2)">${esc(m.role||'')} ${m.phone?'· '+m.phone:''}</div>
+        </div>
+      </label>`).join('');
+  }
+  modal.classList.remove('hidden');
+}
+function closeCrewImport(){
+  document.getElementById('crew-import-modal').classList.add('hidden');
+}
+function doCrewImport(){
+  const crew=loadCrewDb();
+  const checked=Array.from(document.querySelectorAll('#crew-import-list input[type="checkbox"]:checked')).map(c=>parseInt(c.value));
+  if(!checked.length){ closeCrewImport(); return; }
+  checked.forEach(i=>{
+    const m=crew[i]; if(!m) return;
+    const tr=document.createElement('tr');
+    tr.innerHTML=`
+      <td><input type="text" value="${esc(m.name||'')}" placeholder="الاسم" oninput="sched('cs')"></td>
+      <td><input type="text" value="${esc(m.role||'')}" placeholder="الدور" oninput="sched('cs')"></td>
+      <td><input type="time" oninput="sched('cs')"></td>
+      <td><input type="tel" value="${esc(m.phone||'')}" placeholder="05x" oninput="sched('cs')" dir="ltr"></td>
+      <td><input type="email" value="${esc(m.email||'')}" placeholder="email@" oninput="sched('cs')" dir="ltr"></td>
+      <td><input type="text" placeholder="..." oninput="sched('cs')"></td>
+      <td><button class="btn-del" onclick="this.closest('tr').remove();sched('cs')">✕</button></td>`;
+    document.getElementById('cs-tb').appendChild(tr);
+  });
+  sched('cs');
+  closeCrewImport();
+  flashMsg(`تم إضافة ${checked.length} فرد ✓`);
+}
+
+// ════════════ UTIL ════════════
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'&&!document.getElementById('modal').classList.contains('hidden')) closeModal();
+  if(e.key==='Escape'){
+    if(!document.getElementById('modal').classList.contains('hidden')) closeModal();
+    if(!document.getElementById('share-modal').classList.contains('hidden')) closeShareModal();
+    if(!document.getElementById('crew-import-modal').classList.contains('hidden')) closeCrewImport();
+  }
   if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&!document.getElementById('modal').classList.contains('hidden')) createProj();
   if(e.key==='Enter'&&!document.getElementById('auth-page').classList.contains('hidden')) authGo();
 });
