@@ -302,6 +302,88 @@ tbody td select{cursor:pointer}
 ::-webkit-scrollbar-thumb{background:rgba(0,0,0,.12);border-radius:3px}
 ::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.2)}
 
+
+/* ── MOBILE RESPONSIVE ── */
+.sb-toggle{display:none;background:none;border:none;color:var(--text2);font-size:22px;cursor:pointer;padding:2px 8px;line-height:1;flex-shrink:0}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:49;backdrop-filter:blur(3px)}
+.sb-overlay.show{display:block}
+@media(max-width:900px){
+  .sb-toggle{display:block}
+  #sb{position:fixed;top:0;right:0;height:100vh;transform:translateX(105%);transition:transform .28s cubic-bezier(.4,0,.2,1);z-index:50}
+  #sb.open{transform:none;box-shadow:-12px 0 40px rgba(0,0,0,.25)}
+  #content{margin-right:0;width:100%}
+  .proj-grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+  .fg.three{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .auth-left{display:none}
+  .auth-right{padding:32px 24px}
+  .auth-form-wrap{max-width:100%}
+  .proj-grid{grid-template-columns:1fr}
+  .modal{width:calc(100vw - 24px);padding:22px 18px}
+  .proj-ov-head{flex-direction:column;align-items:flex-start;gap:12px}
+  .proj-ov-actions{flex-wrap:wrap}
+  .fg{grid-template-columns:1fr}
+  .fg.three{grid-template-columns:1fr}
+  #doc-tabbar{padding:0 8px}
+  .dtab{padding:0 8px;height:40px;font-size:11.5px}
+  .dtab-icon{font-size:12px}
+  #main{padding:18px 14px 40px}
+  .pg-header{flex-direction:column;align-items:flex-start;gap:10px}
+  .search-box{width:100%}
+  .proj-ov-info{min-width:0;width:100%}
+  .proj-ov-meta{flex-wrap:wrap;gap:8px}
+  .doc-list-row{border-radius:10px}
+}
+
+/* ── UNDO TOAST ── */
+#undo-toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;font-size:13px;padding:9px 22px;border-radius:24px;z-index:990;opacity:0;transition:opacity .22s;pointer-events:none;font-family:var(--arabic);box-shadow:0 4px 16px rgba(0,0,0,.25);white-space:nowrap}
+#undo-toast.show{opacity:1}
+
+/* ── SYNC DOT ── */
+.sync-dot{width:8px;height:8px;border-radius:50%;background:#cbd5e1;display:inline-block;flex-shrink:0;transition:background .4s;cursor:default}
+.sync-dot.synced{background:var(--green)}
+.sync-dot.syncing{background:var(--accent);animation:sdpulse .8s infinite}
+.sync-dot.error{background:var(--red)}
+@keyframes sdpulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* ── CLOUD BANNER ── */
+#sync-banner{background:#fef9ec;border:1px solid #fde68a;border-radius:12px;padding:14px 18px;margin-bottom:20px;font-size:13px;color:#92400e;display:none;flex-direction:column;gap:10px}
+#sync-banner.show{display:flex}
+#sync-banner pre{background:#fff;border:1px solid #fde68a;border-radius:8px;padding:10px 14px;font-size:11.5px;direction:ltr;text-align:left;overflow-x:auto;color:#374151;white-space:pre;margin:0}
+
+/* ── DRAG-DROP STRIP ── */
+.strip-scene{cursor:grab;transition:opacity .15s,transform .12s,box-shadow .12s;user-select:none}
+.strip-scene:active,.strip-scene.grabbing{cursor:grabbing}
+.strip-scene.dragging{opacity:.35;transform:scale(.95)}
+.strip-day-scenes{min-height:52px;transition:background .15s,outline .15s}
+.strip-day-scenes.drag-over{background:rgba(250,182,23,.1)!important;outline:2px dashed rgba(250,182,23,.5);outline-offset:2px;border-radius:8px}
+
+/* ── PDF PRINT IMPROVEMENTS ── */
+@media print{
+  #sb,#topbar,#doc-tabbar,.btn-add,.btn-del,.btn-pdf,#sh,.proj-ov-actions,
+  .doc-card-hdr-right,.sb-toggle,.sb-overlay,#sync-banner,#undo-toast{display:none!important}
+  #content{margin-right:0!important;width:100%!important}
+  body{background:#fff!important;color:#000!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #main{padding:0!important}
+  .doc-page{max-width:100%!important}
+  .doc-card{border:1px solid #ddd!important;background:#fff!important;break-inside:avoid;margin-bottom:20pt!important;page-break-inside:avoid;border-radius:0!important;box-shadow:none!important}
+  .doc-card-hdr{background:#f5f5f5!important;color:#333!important;font-size:9pt!important;padding:8pt 12pt!important;border-radius:0!important}
+  .doc-card-body{padding:12pt!important}
+  .fgl input,.fgl textarea{background:transparent!important;border:none!important;border-bottom:1pt solid #ccc!important;padding:3pt 0!important;color:#000!important;font-size:10pt!important}
+  .fgl select{background:transparent!important;border:none!important;border-bottom:1pt solid #ccc!important;padding:3pt 0!important;color:#000!important}
+  .fgl label{color:#555!important;font-size:8pt!important}
+  .tbl-wrap{border:1pt solid #ccc!important;border-radius:0!important}
+  table{min-width:0!important;font-size:9pt}
+  thead th{background:#f0f0f0!important;color:#333!important;padding:5pt 8pt!important;border-bottom:1pt solid #ccc!important}
+  tbody tr{border-bottom:1pt solid #eee!important}
+  tbody td{padding:4pt 6pt!important}
+  tbody td input,tbody td select{padding:3pt 5pt!important;background:transparent!important;color:#000!important;border:none!important;font-size:9pt!important}
+  .fg,.fg.three{gap:8pt!important}
+  .status-badge,.doc-chip{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  h1,h2,h3{page-break-after:avoid}
+  @page{margin:1.2cm 1.4cm;size:A4}
+}
 /* PRINT */
 @media print{
   #sb,#topbar,#doc-tabbar,.btn-add,.btn-del,.btn-pdf,#sh,.proj-ov-actions,.doc-card-hdr-right{display:none!important}
@@ -386,6 +468,7 @@ tbody td select{cursor:pointer}
 
 <!-- APP -->
 <div id="app">
+  <div class="sb-overlay" id="sb-overlay" onclick="closeSb()"></div>
   <nav id="sb">
     <div class="sb-logo">
       <div class="sb-logo-icon">🎬</div>
@@ -408,10 +491,12 @@ tbody td select{cursor:pointer}
 
   <div id="content">
     <div id="topbar">
+      <button class="sb-toggle" onclick="toggleSb()" title="القائمة">☰</button>
       <div class="bc" id="bc"><span class="bc-seg cur" onclick="showHome()">الرئيسية</span></div>
       <div class="tb-right">
+        <span class="sync-dot" id="sync-dot" title="المزامنة"></span>
         <span id="sh"></span>
-        <button class="btn-pdf hidden" id="pdf-btn" onclick="window.print()">↓ PDF</button>
+        <button class="btn-pdf hidden" id="pdf-btn" onclick="exportPDF()">↓ PDF</button>
       </div>
     </div>
 
@@ -426,6 +511,14 @@ tbody td select{cursor:pointer}
 
     <div id="main">
 
+      <div id="sync-banner"><div><b>☁️ فعّل المزامنة السحابية</b> — أضف الجدول التالي في Supabase SQL Editor لحفظ مشاريعك على جميع أجهزتك:</div><pre>create table if not exists projects (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references auth.users not null unique,
+  data jsonb default '[]'::jsonb,
+  updated_at timestamptz default now()
+);
+alter table projects enable row level security;
+create policy "own" on projects using (auth.uid()=user_id) with check (auth.uid()=user_id);</pre><button onclick="document.getElementById('sync-banner').classList.remove('show')" style="align-self:flex-start;background:none;border:1px solid #d97706;border-radius:6px;padding:4px 12px;color:#92400e;cursor:pointer;font-family:var(--arabic);font-size:12px">إغلاق</button></div>
       <!-- HOME -->
       <div class="screen active" id="s-home">
         <div class="pg-header">
@@ -730,17 +823,27 @@ function enterApp(){
   const em=_u?.email||'';
   document.getElementById('sb-em').textContent=em;
   document.getElementById('sb-av').textContent=(em[0]||'م').toUpperCase();
-  load(); renderSidebar(); showHome();
+  load(); _undoStack=[JSON.stringify(projs)]; renderSidebar(); showHome(); cloudLoad();
 }
 
 // ════════════ DATA ════════════
 let projs=[], cid=null;
+// Undo stack
+let _undoStack=[], _MAX_UNDO=40;
+// Cloud sync
+let _cloudEnabled=false;
 
 function load(){
   ['shootplan_projects','shootplan_v4','spp_global_contacts','spp_onboarded','spp_lang','pusherTransportTLS'].forEach(k=>localStorage.removeItem(k));
   try{ projs=JSON.parse(localStorage.getItem(getSK())||'[]'); }catch(e){ projs=[]; }
 }
-function save(){ localStorage.setItem(getSK(),JSON.stringify(projs)); }
+function save(){
+  // push undo snapshot before overwriting
+  const snap=JSON.stringify(projs);
+  if(_undoStack[_undoStack.length-1]!==snap){ _undoStack.push(snap); if(_undoStack.length>_MAX_UNDO) _undoStack.shift(); }
+  localStorage.setItem(getSK(),JSON.stringify(projs));
+  cloudSave();
+}
 function gp(){ return projs.find(p=>p.id===cid); }
 function setDoc(t,d){ const p=gp(); if(!p) return; p.docs=p.docs||{}; p.docs[t]=d; save(); }
 function gDoc(t){ const p=gp(); if(!p) return null; return (p.docs||{})[t]||null; }
@@ -818,8 +921,10 @@ function doSave(t){
 }
 function flashSave(){
   const el=document.getElementById('sh');
-  el.textContent='✓ تم الحفظ'; clearTimeout(el._t);
-  el._t=setTimeout(()=>el.textContent='',2400);
+  el.textContent='✓ محفوظ';
+  el.style.color='var(--green)';
+  clearTimeout(el._t);
+  el._t=setTimeout(()=>{ el.textContent=''; el.style.color=''; },2200);
 }
 
 // ════════════ SCREEN ROUTER ════════════
@@ -1406,46 +1511,70 @@ function saveEq(){
 
 // ════════════ STRIP BOARD ════════════
 function renderStripboard(){
-  const scenes=(gDoc('bd')||{}).scenes||[];
+  const bds=gDoc('bd')||{};
+  const allScenes=bds.scenes||[];
   const el=document.getElementById('sb-content');
-  if(!scenes.length){
+  if(!allScenes.length){
     el.innerHTML='<div style="color:var(--text2);font-size:14px;padding:20px 0">أضف مشاهد في تبويب «تفصيل المشاهد» لتظهر هنا.</div>';
     return;
   }
-  // Group by shoot day
   const days={};
-  scenes.forEach(s=>{
+  allScenes.forEach((s,origIdx)=>{
     const d=s.shootday||'غير محدد';
     if(!days[d]) days[d]=[];
-    days[d].push(s);
+    days[d].push({...s, _origIdx: origIdx});
   });
   const dayColors=['#e85d04','#2563eb','#7c3aed','#059669','#dc2626','#0891b2','#d97706','#9333ea','#16a34a','#db2777'];
-  const sortedDays=Object.keys(days).sort((a,b)=>{
-    const na=parseInt(a)||999, nb=parseInt(b)||999;
-    return na-nb;
-  });
+  const sortedDays=Object.keys(days).sort((a,b)=>{ const na=parseInt(a)||999,nb=parseInt(b)||999; return na-nb; });
   let h='';
   sortedDays.forEach((day,idx)=>{
     const col=dayColors[idx%dayColors.length];
-    const scenes=days[day];
+    const sc=days[day];
     h+=`<div class="strip-day-block">
       <div class="strip-day-hdr" style="background:${col}">
-        📅 يوم التصوير ${esc(day)} <span style="font-size:11px;opacity:.8;margin-right:8px">(${scenes.length} مشهد)</span>
+        📅 يوم التصوير ${esc(day)} <span style="font-size:11px;opacity:.75;margin-right:8px">(${sc.length} مشهد)</span>
+        <span style="font-size:10px;opacity:.55;margin-right:auto">اسحب لإعادة الترتيب</span>
       </div>
-      <div class="strip-day-scenes">
-        ${scenes.map(s=>`<div class="strip-scene" style="background:${col}12;border-color:${col}30">
+      <div class="strip-day-scenes" data-day="${esc(day)}">
+        ${sc.map(s=>`<div class="strip-scene" draggable="true" data-idx="${s._origIdx}" style="background:${col}14;border-color:${col}35">
           <div class="strip-scene-num">${esc(s.num||'?')}</div>
           <div class="strip-scene-loc">${esc(s.loc||'موقع غير محدد')}</div>
-          <div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:4px">
             <span class="strip-scene-type ${s.ie==='EXT'?'strip-scene-ext':'strip-scene-int'}">${s.ie||'INT'}</span>
-            <span class="strip-scene-type" style="background:rgba(0,0,0,.06);color:var(--text2);margin-right:4px">${s.dn||'DAY'}</span>
+            <span class="strip-scene-type" style="background:rgba(0,0,0,.06);color:var(--text2)">${s.dn||'DAY'}</span>
           </div>
-          ${s.cast?`<div style="font-size:10px;color:var(--text3);margin-top:3px">👤 ${esc(s.cast)}</div>`:''}
+          ${s.cast?`<div style="font-size:10px;color:var(--text3);margin-top:4px">👤 ${esc(s.cast)}</div>`:''}
         </div>`).join('')}
       </div>
     </div>`;
   });
   el.innerHTML=`<div class="strip-board fade-in">${h}</div>`;
+  // Attach drag-and-drop handlers
+  el.querySelectorAll('.strip-scene').forEach(card=>{
+    card.addEventListener('dragstart',e=>{
+      card.classList.add('dragging');
+      e.dataTransfer.effectAllowed='move';
+      e.dataTransfer.setData('text/plain', card.dataset.idx);
+    });
+    card.addEventListener('dragend',()=>card.classList.remove('dragging'));
+  });
+  el.querySelectorAll('.strip-day-scenes').forEach(zone=>{
+    zone.addEventListener('dragover',e=>{ e.preventDefault(); e.dataTransfer.dropEffect='move'; zone.classList.add('drag-over'); });
+    zone.addEventListener('dragleave',e=>{ if(!zone.contains(e.relatedTarget)) zone.classList.remove('drag-over'); });
+    zone.addEventListener('drop',e=>{
+      e.preventDefault();
+      zone.classList.remove('drag-over');
+      const origIdx=parseInt(e.dataTransfer.getData('text/plain'));
+      const newDay=zone.dataset.day;
+      if(isNaN(origIdx)||!newDay) return;
+      const bdsNow=gDoc('bd')||{};
+      if(bdsNow.scenes&&bdsNow.scenes[origIdx]){
+        bdsNow.scenes[origIdx].shootday=newDay;
+        setDoc('bd',bdsNow);
+        renderStripboard(); flashSave();
+      }
+    });
+  });
 }
 
 // ════════════ CREW DATABASE ════════════
@@ -1532,6 +1661,203 @@ function doCrewImport(){
 }
 
 // ════════════ UTIL ════════════
+
+// ════════════ MOBILE SIDEBAR ════════════
+function toggleSb(){
+  const sb=document.getElementById('sb');
+  const ov=document.getElementById('sb-overlay');
+  const open=sb.classList.toggle('open');
+  ov.classList.toggle('show', open);
+}
+function closeSb(){
+  document.getElementById('sb').classList.remove('open');
+  document.getElementById('sb-overlay').classList.remove('show');
+}
+// Close sidebar on nav
+const _origSelProj=selProj;
+function selProj(id){ _origSelProj(id); closeSb(); }
+
+// ════════════ UNDO ════════════
+function undo(){
+  if(_undoStack.length<=1){ showUndoToast('لا يوجد ما يمكن التراجع عنه'); return; }
+  _undoStack.pop(); // remove current
+  projs=JSON.parse(_undoStack[_undoStack.length-1]);
+  localStorage.setItem(getSK(),JSON.stringify(projs));
+  cloudSave();
+  renderSidebar();
+  const fn={cs:renderCs,sl:renderSl,sc:renderSc,bd:renderBd,eq:renderEq,sb:renderStripboard};
+  if(_doc&&fn[_doc]) fn[_doc](); else if(cid) renderProjOverview(); else showHome();
+  showUndoToast('↩ تم التراجع');
+}
+function showUndoToast(msg){
+  const t=document.getElementById('undo-toast');
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(t._t);
+  t._t=setTimeout(()=>t.classList.remove('show'),2200);
+}
+document.addEventListener('keydown',e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key==='z'&&!e.shiftKey){
+    const active=document.activeElement;
+    // only undo if focus is not inside an input/textarea
+    if(!active||!['INPUT','TEXTAREA','SELECT'].includes(active.tagName)){
+      e.preventDefault(); undo();
+    }
+  }
+});
+
+// ════════════ CLOUD SYNC ════════════
+async function cloudLoad(){
+  if(!_u) return;
+  try{
+    const {data,error}=await _sb.from('projects').select('data').eq('user_id',_u.id).single();
+    if(error){
+      if(error.code==='PGRST116'||error.message?.includes('0 rows')){
+        // table exists but no row yet — will upsert on first save
+        _cloudEnabled=true;
+        setSyncDot('synced');
+      } else if(error.message?.includes('does not exist')||error.message?.includes('relation')){
+        // table missing — show setup banner
+        document.getElementById('sync-banner')?.classList.add('show');
+      }
+      return;
+    }
+    const cloudProjs=data?.data||[];
+    if(cloudProjs.length>0){
+      // prefer cloud if it has more projects (most up-to-date)
+      if(cloudProjs.length>=projs.length){
+        projs=cloudProjs;
+        localStorage.setItem(getSK(),JSON.stringify(projs));
+        renderSidebar(); showHome();
+      }
+    }
+    _cloudEnabled=true;
+    setSyncDot('synced');
+  }catch(e){
+    console.warn('Cloud unavailable',e);
+  }
+}
+async function cloudSave(){
+  if(!_cloudEnabled||!_u) return;
+  setSyncDot('syncing');
+  try{
+    const {error}=await _sb.from('projects').upsert({
+      user_id:_u.id,
+      data:projs,
+      updated_at:new Date().toISOString()
+    },{onConflict:'user_id'});
+    setSyncDot(error?'error':'synced');
+  }catch(e){
+    setSyncDot('error');
+  }
+}
+function setSyncDot(state){
+  const d=document.getElementById('sync-dot');
+  if(!d) return;
+  d.className='sync-dot '+state;
+  const labels={synced:'محفوظ على السحابة ☁️',syncing:'جاري المزامنة…',error:'خطأ في المزامنة'};
+  d.title=labels[state]||'';
+}
+
+// ════════════ PDF EXPORT ════════════
+function exportPDF(){
+  const p=gp();
+  if(!p){ window.print(); return; }
+  const col=pcol(p.id);
+  const cs=gDoc('cs')||{};
+  const sl=gDoc('sl')||{};
+  const sc=gDoc('sc')||{};
+  const bd=gDoc('bd')||{};
+
+  const rowsHtml=(rows,cols)=>{
+    if(!rows||!rows.length) return '<tr><td colspan="'+cols.length+'" style="color:#888;padding:8pt;font-size:9pt">—</td></tr>';
+    return rows.map(r=>'<tr>'+cols.map(c=>`<td>${esc(r[c]||'')}</td>`).join('')+'</tr>').join('');
+  };
+
+  const win=window.open('','_blank','width=900,height=700');
+  win.document.write(`<!DOCTYPE html><html dir="rtl"><head>
+<meta charset="UTF-8">
+<title>كول شيت — ${esc(p.name)}</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Naskh Arabic',sans-serif;color:#0f172a;background:#fff;font-size:10pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page-header{background:${col};color:#fff;padding:14pt 18pt;display:flex;justify-content:space-between;align-items:center}
+.page-header h1{font-size:18pt;font-weight:700;letter-spacing:-.3px}
+.page-header .meta{font-size:9pt;opacity:.85;text-align:left;direction:ltr;font-family:'DM Sans',sans-serif}
+.page-header .logo{font-size:10pt;font-weight:700;opacity:.7;font-family:'DM Sans',sans-serif}
+.page-body{padding:14pt 18pt}
+.section{margin-bottom:16pt;break-inside:avoid}
+.section-title{font-size:11pt;font-weight:700;color:${col};border-bottom:2pt solid ${col};padding-bottom:4pt;margin-bottom:8pt;display:flex;align-items:center;gap:6pt}
+.info-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8pt;margin-bottom:8pt}
+.info-cell label{display:block;font-size:7.5pt;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.5pt;margin-bottom:2pt}
+.info-cell span{font-size:10pt;font-weight:600;display:block}
+table{width:100%;border-collapse:collapse;font-size:9pt}
+th{background:#f1f5f9;padding:5pt 8pt;text-align:right;font-weight:700;border-bottom:1pt solid #e2e8f0;color:#475569;font-size:8pt;text-transform:uppercase;letter-spacing:.3pt}
+td{padding:5pt 8pt;border-bottom:1pt solid #f1f5f9;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#fafafa}
+.print-btn{display:block;margin:8pt auto;padding:8pt 20pt;background:${col};color:#fff;border:none;border-radius:6pt;font-size:10pt;cursor:pointer;font-family:'Noto Naskh Arabic',sans-serif;font-weight:600}
+@media print{.print-btn{display:none} @page{margin:1.2cm;size:A4}}
+</style></head><body>
+<div class="page-header">
+  <div>
+    <div class="logo">ShootPlan Pro</div>
+    <h1>${esc(p.name)}</h1>
+    <div style="font-size:9pt;margin-top:4pt;opacity:.8">${p.status?({pre:'ما قبل التصوير',prod:'التصوير',post:'ما بعد التصوير'}[p.status]||p.status):''} ${p.genre?'· '+esc(p.genre):''} ${p.format?'· '+esc(p.format):''}</div>
+  </div>
+  <div class="meta">
+    <div style="font-size:13pt;font-weight:700;font-family:'DM Sans',sans-serif">${new Date().toLocaleDateString('ar-SA')}</div>
+    <div style="margin-top:4pt;opacity:.7">تاريخ الطباعة</div>
+  </div>
+</div>
+<div class="page-body">
+  <button class="print-btn" onclick="window.print()">🖨️ طباعة / حفظ PDF</button>
+
+  <div class="section">
+    <div class="section-title">📋 معلومات المشروع</div>
+    <div class="info-grid">
+      <div class="info-cell"><label>المخرج</label><span>${esc(p.director||'—')}</span></div>
+      <div class="info-cell"><label>المنتج</label><span>${esc(p.producer||'—')}</span></div>
+      <div class="info-cell"><label>التاريخ</label><span>${esc(p.shootdate||'—')}</span></div>
+      <div class="info-cell"><label>الموقع</label><span>${esc(p.location||'—')}</span></div>
+      <div class="info-cell"><label>الكاميرا</label><span>${esc(p.camera||'—')}</span></div>
+      <div class="info-cell"><label>الميزانية</label><span>${esc(p.budget||'—')}</span></div>
+    </div>
+  </div>
+
+  ${(cs.rows||[]).length?`
+  <div class="section">
+    <div class="section-title">📞 كول شيت — جدول الاستدعاء</div>
+    <table><thead><tr><th>الاسم</th><th>الدور</th><th>وقت الوصول</th><th>الملاحظات</th></tr></thead>
+    <tbody>${rowsHtml(cs.rows,['name','role','calltime','note'])}</tbody></table>
+  </div>`:''} 
+
+  ${(sl.rows||[]).length?`
+  <div class="section">
+    <div class="section-title">🎞️ قائمة اللقطات</div>
+    <table><thead><tr><th>#</th><th>المشهد</th><th>الموقع</th><th>النوع</th><th>الممثلون</th><th>الحالة</th></tr></thead>
+    <tbody>${rowsHtml(sl.rows,['num','scene','loc','ie','cast','status'])}</tbody></table>
+  </div>`:''} 
+
+  ${(sc.rows||[]).length?`
+  <div class="section">
+    <div class="section-title">📅 جدول التصوير</div>
+    <table><thead><tr><th>اليوم</th><th>التاريخ</th><th>الموقع</th><th>الوقت</th><th>ملاحظات</th></tr></thead>
+    <tbody>${rowsHtml(sc.rows,['day','date','loc','time','note'])}</tbody></table>
+  </div>`:''} 
+
+  ${(bd.scenes||[]).length?`
+  <div class="section">
+    <div class="section-title">🎬 تفصيل المشاهد</div>
+    <table><thead><tr><th>#</th><th>الموقع</th><th>INT/EXT</th><th>DAY/NIGHT</th><th>الممثلون</th><th>يوم التصوير</th></tr></thead>
+    <tbody>${rowsHtml(bd.scenes,['num','loc','ie','dn','cast','shootday'])}</tbody></table>
+  </div>`:''} 
+</div>
+</body></html>`);
+  win.document.close();
+  setTimeout(()=>{ if(!win.closed){ win.focus(); } },500);
+}
+
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 document.addEventListener('keydown',e=>{
@@ -1544,5 +1870,6 @@ document.addEventListener('keydown',e=>{
   if(e.key==='Enter'&&!document.getElementById('auth-page').classList.contains('hidden')) authGo();
 });
 </script>
+<div id="undo-toast"></div>
 </body>
 </html>
